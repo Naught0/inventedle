@@ -44,5 +44,5 @@ async function main() {
 
 (async () => {
   const dtos = await main();
-  await writeFile("./data.json", JSON.stringify(dtos, undefined, 2));
+  await writeFile("./src/app/data/data.json", JSON.stringify(dtos));
 })();
