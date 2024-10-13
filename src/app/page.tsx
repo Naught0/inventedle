@@ -7,7 +7,7 @@ export default async function Page() {
     <div className="flex flex-col items-center justify-center gap-6">
       <div className="flex w-full max-w-screen-sm flex-col gap-6">
         <h1 className="text-4xl">
-          <span className="font-black text-cyan-200">{invention.name}</span>
+          <span className="font-black text-primary">{invention.name}</span>
         </h1>
         <Game invention={invention} />
       </div>
