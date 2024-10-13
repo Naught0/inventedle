@@ -12,7 +12,7 @@ export function EraSelect({
     onChange(value === Era.BCE ? Era.CE : Era.BCE);
   }
   return (
-    <Button className="h-[46px]" onClick={toggleEra}>
+    <Button className="h-[46px] rounded-l-none" onClick={toggleEra}>
       {value}
     </Button>
   );

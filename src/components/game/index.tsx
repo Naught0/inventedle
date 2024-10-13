@@ -31,7 +31,8 @@ export function Game({
     <div className="flex w-full flex-col gap-6">
       {gameWon && (
         <div className="text-3xl font-bold">
-          You won! The year was {inventionData.year}
+          You won! The year was{" "}
+          <span className="text-cyan-200">{inventionData.year}</span>
         </div>
       )}
       <Guesses invention={inventionData} guesses={guesses} />
@@ -48,8 +49,9 @@ export function Game({
       >
         <div className="flex flex-col gap-3">
           <Label>Guess the year of this invention</Label>
-          <div className="flex flex-row items-center gap-1">
+          <div className="flex flex-row items-center gap-0">
             <Input
+              className="rounded-r-none"
               min={0}
               max={new Date().getFullYear()}
               name="guess"
