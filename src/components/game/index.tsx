@@ -1,41 +1,56 @@
 "use client";
 import { InventionSelect } from "@/db/schema";
-import { useSetAtom } from "jotai";
 import { createRef, useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { inventionAtom } from "./atom";
 import { EraSelect } from "./era-select";
 import { Guesses } from "./guesses";
 import { getGuessDistance, guessIsCorrect } from "./logic";
 import { Era } from "./types";
 
-export function Game({
-  invention: inventionData,
-}: {
-  invention: InventionSelect;
-}) {
-  const setInvention = useSetAtom(inventionAtom);
-  useEffect(() => {
-    setInvention(inventionData);
-  }, [inventionData, setInvention]);
+function formatYear(year: number) {
+  return Math.abs(year).toString() + (year < 0 ? " BCE" : "");
+}
+
+export function Game({ invention }: { invention: InventionSelect }) {
   const [era, setEra] = useState<Era>(Era.CE);
   const [guesses, setGuesses] = useState<number[]>([]);
-  const gameWon = guesses.some((g) =>
-    guessIsCorrect(getGuessDistance(g, inventionData)),
+  const gameWon = guessIsCorrect(
+    getGuessDistance(guesses.slice(-1)[0], invention),
   );
+  const [gameLost, setGameLost] = useState(false);
   const formRef = createRef<HTMLFormElement>();
+
+  useEffect(
+    function handleLoss() {
+      if (gameWon) return;
+      if (guesses.length < 5) return;
+
+      setGameLost(true);
+    },
+    [guesses, gameWon],
+  );
 
   return (
     <div className="flex w-full flex-col gap-6">
       {gameWon && (
         <div className="text-3xl font-bold">
           You won! The year was{" "}
-          <span className="text-cyan-200">{inventionData.year}</span>
+          <span className="text-primary">{formatYear(invention.year)}</span>
         </div>
       )}
-      <Guesses invention={inventionData} guesses={guesses} />
+      {gameLost && (
+        <div className="text-3xl font-bold">
+          You lost! The year was{" "}
+          <span className="text-primary">{formatYear(invention.year)}</span>
+        </div>
+      )}
+      <Guesses
+        totalAllowedGuesses={5}
+        invention={invention}
+        guesses={guesses}
+      />
       <form
         ref={formRef}
         action={(data) => {
@@ -52,10 +67,14 @@ export function Game({
           <div className="flex flex-row items-center gap-0">
             <Input
               className="rounded-r-none"
-              min={0}
-              max={new Date().getFullYear()}
               name="guess"
               type="number"
+              disabled={gameWon || gameLost}
+              placeholder={
+                !(gameWon || gameLost)
+                  ? `Guess (${guesses.length + 1} / 5)`
+                  : undefined
+              }
             />
             <EraSelect value={era} onChange={setEra} />
           </div>
