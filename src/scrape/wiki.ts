@@ -5,6 +5,7 @@ import { db } from "@/db";
 
 const URI = "https://en.wikipedia.org/wiki/Timeline_of_historic_inventions";
 
+// TODO: Parse YearType (Xth cetury, 1900, etc.)
 async function getWikiPage(url = URI) {
   const resp = await fetch(url);
   return await resp.text();
