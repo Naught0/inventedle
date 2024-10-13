@@ -7,14 +7,15 @@ export default async function Home() {
   const data = await db.select().from(inventions).orderBy(inventions.year);
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="flex w-full justify-center">
       <div className="max-w-screen-sm lg:max-w-screen-md">
         <div className="fixed left-5 top-10">
           <AddInvention />
         </div>
-        <table className="border-spacing-4 border-separate">
+        <table className="border-separate border-spacing-4">
           <thead>
             <tr className="text-lg">
+              <th>id</th>
               <th>year</th>
               <th>name</th>
               <th>description</th>
@@ -23,7 +24,8 @@ export default async function Home() {
           <tbody>
             {data.map((d) => (
               <tr key={d.id}>
-                <td className="w-50 flex">{d.year}</td>
+                <td className="w-50">{d.id}</td>
+                <td className="w-50">{d.year}</td>
                 <td>
                   <InventionUpdateInput
                     inventionId={d.id}
