@@ -1,3 +1,7 @@
-import { drizzle } from "drizzle-orm/connect";
+import { drizzle } from "drizzle-orm/libsql";
+import { createClient } from "@libsql/client";
 
-export const db = await drizzle("libsql");
+const client = createClient({
+  url: process.env.DATABASE_URL!,
+});
+export const db = drizzle(client);
