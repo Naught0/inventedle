@@ -7,3 +7,9 @@ Daily game where you guess the year of an invention
 - Always show image of invention
 - 4 or 5 guesses
 - Cron job stores current invention ID in used_inventions w/ is_current = 1
+
+TODO:
+- [ ] Use a better colorscheme (muted-er?)
+- [ ] Implement BC/AD toggle
+- [ ] Add hint/tip/make-obvious how the bc/ad toggle works
+- [ ] Impelement better rules
