@@ -11,16 +11,17 @@ async function getWikiPage(url = URI) {
 }
 
 function lineItemToDTO(elem: Element): InventionInsert | null {
-  const dto: InventionInsert = {};
   const time = elem.querySelector("b");
   if (!time) return null;
 
-  dto.year = time.textContent?.replace(/\:$/, "");
-  if (!/^\d*$/g.test(dto.year ?? "")) return null;
+  const yearStr = time.textContent?.replace(/\:$/, "");
+  if (!/^\d*$/g.test(yearStr ?? "")) return null;
   if (time) time.remove();
-  dto.description = stripFootnotes(elem.textContent?.trim() ?? "");
 
-  return dto;
+  const description = stripFootnotes(elem.textContent?.trim() ?? "");
+  const year = parseInt(yearStr!);
+
+  return { year, description };
 }
 
 function stripFootnotes(text: string) {
