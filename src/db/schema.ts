@@ -4,9 +4,9 @@ import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 export const inventions = sqliteTable("inventions", {
   id: integer().primaryKey(),
-  name: text(),
+  name: text().unique(),
   year: integer().notNull(),
-  description: text().notNull(),
+  description: text().notNull().unique(),
   image_url: text(),
   created_at: integer()
     .notNull()
