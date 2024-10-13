@@ -15,11 +15,16 @@ function lineItemToDTO(elem: Element): InventionInsert | null {
   if (!time) return null;
 
   const yearStr = time.textContent?.replace(/\:$/, "");
-  if (!/^\d*$/g.test(yearStr ?? "")) return null;
   if (time) time.remove();
 
   const description = stripFootnotes(elem.textContent?.trim() ?? "");
-  const year = parseInt(yearStr!);
+  if (!yearStr) return null;
+  if (yearStr.match(/^[0-9]+ BC$/i))
+    return { year: -parseInt(yearStr), description };
+
+  if (!/^\d*$/g.test(yearStr ?? "")) return null;
+  const year = parseInt(yearStr);
+  if (isNaN(year)) return null;
 
   return { year, description };
 }
@@ -46,6 +51,9 @@ async function main(): Promise<InventionInsert[]> {
 
 (async () => {
   const dtos = await main();
-  await db.insert(inventions).values(dtos);
-  await writeFile("./src/app/data/data.json", JSON.stringify(dtos));
+  await db.insert(inventions).values(dtos).onConflictDoNothing();
+  await writeFile(
+    "./src/app/data/data.json",
+    JSON.stringify(dtos, undefined, 2),
+  );
 })();
