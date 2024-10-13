@@ -4,6 +4,6 @@ export default defineConfig({
   dialect: "sqlite",
   schema: "./src/db/schema.ts",
   dbCredentials: {
-    url: "file:./src/db/inventedle.db",
+    url: process.env.DATABASE_URL!,
   },
 });
