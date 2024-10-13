@@ -15,9 +15,7 @@ import { Dialog } from "@radix-ui/react-dialog";
 export function AddInvention() {
   return (
     <Dialog>
-      <DialogTrigger>
-        <Button>Add an Invention</Button>
-      </DialogTrigger>
+      <DialogTrigger>Add an Invention</DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Add an Invention</DialogTitle>
@@ -27,11 +25,10 @@ export function AddInvention() {
             "use server";
             const year = data.get("year")?.toString();
             const description = data.get("description")?.toString();
-            console.log(year, description);
             if (!year || !description) return;
 
             await db.insert(inventions).values({
-              year,
+              year: parseInt(year),
               description,
             });
           }}
