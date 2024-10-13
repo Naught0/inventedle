@@ -1,6 +1,7 @@
 import { JSDOM } from "jsdom";
-import { InventionInsert } from "@/db/schema";
+import { InventionInsert, inventions } from "@/db/schema";
 import { writeFile } from "fs/promises";
+import { db } from "@/db";
 
 const URI = "https://en.wikipedia.org/wiki/Timeline_of_historic_inventions";
 
@@ -26,7 +27,7 @@ function stripFootnotes(text: string) {
   return text.replaceAll(/\[.*\]/g, "");
 }
 
-async function main() {
+async function main(): Promise<InventionInsert[]> {
   const html = await getWikiPage();
   const doc = new JSDOM(html).window.document;
   const container = doc.querySelector(".mw-content-ltr.mw-parser-output");
@@ -39,10 +40,11 @@ async function main() {
   const lis = [...container.querySelectorAll("li")].filter((li) => !li.id);
 
   const dtos = [...lis].map((li) => lineItemToDTO(li)).filter((li) => li);
-  return dtos;
+  return dtos as InventionInsert[];
 }
 
 (async () => {
   const dtos = await main();
+  await db.insert(inventions).values(dtos);
   await writeFile("./src/app/data/data.json", JSON.stringify(dtos));
 })();
