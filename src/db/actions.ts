@@ -1,5 +1,5 @@
 "use server";
-import { desc, eq } from "drizzle-orm";
+import { desc, eq, sql } from "drizzle-orm";
 import { db } from ".";
 import { InventionInsert, inventions, usedInventions } from "./schema";
 
@@ -12,7 +12,17 @@ export async function updateInvention(
     .where(eq(inventions.id, invention.id));
 }
 
+export async function getRandomInvention() {
+  const result = await db
+    .select()
+    .from(inventions)
+    .orderBy(sql`random()`)
+    .limit(1);
+  return result[0];
+}
+
 export async function getInventionOfTheDay() {
+  return await getRandomInvention();
   const inventionId = await db
     .select()
     .from(usedInventions)

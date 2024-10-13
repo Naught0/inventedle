@@ -6,6 +6,8 @@ import { Guesses } from "./guesses";
 import { createRef, useEffect, useState } from "react";
 import { useSetAtom } from "jotai";
 import { inventionAtom } from "./atom";
+import { Button } from "../ui/button";
+import { getGuessDistance, guessIsCorrect } from "./logic";
 
 export function Game({
   invention: inventionData,
@@ -17,14 +19,18 @@ export function Game({
     setInvention(inventionData);
   }, [inventionData, setInvention]);
   const [guesses, setGuesses] = useState<number[]>([]);
+  const gameWon = guesses.some((g) =>
+    guessIsCorrect(getGuessDistance(g, inventionData)),
+  );
   const formRef = createRef<HTMLFormElement>();
 
   return (
-    <div className="flex flex-col gap-6">
-      <pre className="whitespace-pre-wrap">
-        {JSON.stringify(inventionData, null, 2)}
-      </pre>
-
+    <div className="flex w-full flex-col gap-6">
+      {gameWon && (
+        <div className="text-3xl font-bold">
+          You won! The year was {inventionData.year}
+        </div>
+      )}
       <Guesses invention={inventionData} guesses={guesses} />
       <form
         ref={formRef}
@@ -38,8 +44,16 @@ export function Game({
         }}
       >
         <div className="flex flex-col gap-3">
-          <Label>Guess the year</Label>
-          <Input name="guess" type="number" />
+          <Label>Guess the year of this invention</Label>
+          <Input
+            min={0}
+            max={new Date().getFullYear()}
+            name="guess"
+            type="number"
+          />
+          <div>
+            <Button type="submit">Guess</Button>
+          </div>
         </div>
       </form>
     </div>

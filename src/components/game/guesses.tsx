@@ -33,7 +33,7 @@ export function Guess(props: { guess: number; guessDistance: number }) {
   };
   return (
     <li
-      className={`flex items-center gap-2 px-3 py-2 text-lg font-bold lg:text-2xl ${getBgClassName()}`}
+      className={`flex items-center gap-2 rounded-md px-3 py-2 text-lg font-bold lg:text-xl ${getBgClassName()}`}
     >
       {getIcon()}
       {props.guess}
@@ -45,7 +45,7 @@ export function Guesses(props: {
   guesses: number[];
 }) {
   return (
-    <ul className="flex flex-col gap-3">
+    <ul className="flex flex-col gap-2">
       {props.guesses.map((guess) => (
         <Guess
           key={`${guess}`}
