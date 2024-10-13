@@ -17,6 +17,15 @@ export const selectInventionSchema = createSelectSchema(inventions);
 export type InventionSelect = InferSelectModel<typeof inventions>;
 export type InventionInsert = InferInsertModel<typeof inventions>;
 
+export const usedInventions = sqliteTable("used_inventions", {
+  id: integer().primaryKey(),
+  invention_id: integer().notNull(),
+  is_current: integer().notNull().default(1),
+  used_at: integer()
+    .notNull()
+    .default(sql`(unixepoch())`),
+});
+
 export const scores = sqliteTable("scores", {
   id: integer().primaryKey(),
   invention_id: integer(),
