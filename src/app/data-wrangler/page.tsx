@@ -24,7 +24,7 @@ export default async function Home() {
             {data.map((d) => (
               <tr key={d.id}>
                 <td className="w-50 flex">{d.year}</td>
-                <td className="">
+                <td>
                   <InventionUpdateInput
                     inventionId={d.id}
                     defaultValue={d.name ?? d.description ?? ""}
