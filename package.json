@@ -19,11 +19,13 @@
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.34.1",
     "drizzle-zod": "^0.5.1",
+    "jotai": "^2.10.0",
     "jsdom": "^25.0.1",
     "lucide-react": "^0.451.0",
     "next": "14.2.15",
     "react": "^18",
     "react-dom": "^18",
+    "react-icons": "^5.3.0",
     "tailwind-merge": "^2.5.3",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"
@@ -37,6 +39,8 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
     "postcss": "^8",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
