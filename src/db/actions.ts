@@ -1,28 +1,22 @@
 "use server";
-import { eq, sql } from "drizzle-orm";
+import { Invention } from "@prisma/client";
 import { db } from ".";
-import { InventionInsert, inventions } from "./schema";
 
-export async function updateInvention(
-  invention: Partial<InventionInsert> & { id: number },
-) {
-  return await db
-    .update(inventions)
-    .set(invention)
-    .where(eq(inventions.id, invention.id));
+export async function updateInvention(invention: Invention) {
+  return await db.invention.update({
+    where: { id: invention.id },
+    data: invention,
+  });
 }
 
 export async function getRandomInvention() {
-  const result = await db
-    .select()
-    .from(inventions)
-    .orderBy(sql`random()`)
-    .limit(1);
-  return result[0];
+  const ids = await db.invention.findMany({ select: { id: true } });
+  const inventionId = ids[Math.floor(Math.random() * ids.length)];
+  return await db.invention.findUnique({ where: { id: inventionId.id } });
 }
 
 export async function getInventionOfTheDay() {
-  return (await db.select().from(inventions).where(eq(inventions.id, 328)))[0];
+  return await db.invention.findUnique({ where: { id: 328 } });
   // return await getRandomInvention();
   // const inventionId = await db
   //   .select()

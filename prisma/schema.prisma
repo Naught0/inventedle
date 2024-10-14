@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Invention {
+  id           Int     @id @default(autoincrement())
+  name         String? @unique(map: "inventions_name_unique")
+  start_year   Int
+  description  String  @unique(map: "inventions_description_unique")
+  image_url    String?
+  created_at   Int     @default(dbgenerated("unixepoch()"))
+  end_year     Int?
+  wiki_summary String?
+
+  @@map("inventions")
+}
+
+model Score {
+  id           Int  @id @default(autoincrement())
+  invention_id Int?
+  created_at   Int  @default(dbgenerated("unixepoch()"))
+
+  @@map("scores")
+}
+
+model UsedInvention {
+  id           Int @id @default(autoincrement())
+  invention_id Int
+  is_current   Int @default(1)
+  used_at      Int @default(dbgenerated("unixepoch()"))
+
+  @@map("used_inventions")
+}
+
+model User {
+  id         Int     @id @default(autoincrement())
+  name       String?
+  created_at Int     @default(dbgenerated("unixepoch()"))
+
+  @@map("users")
+}

@@ -9,36 +9,47 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { db } from "@/db";
-import { inventions } from "@/db/schema";
 import { Dialog } from "@radix-ui/react-dialog";
-
+function parseYearInput(input: FormDataEntryValue | null) {
+  return parseInt(input?.toString() ?? "");
+}
 export function AddInvention() {
   return (
     <Dialog>
       <DialogTrigger>Add an Invention</DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="max-w-full sm:max-w-screen-sm">
         <DialogHeader>
           <DialogTitle>Add an Invention</DialogTitle>
         </DialogHeader>
         <form
           action={async (data) => {
             "use server";
-            const year = data.get("year")?.toString();
+            const start_year = parseYearInput(data.get("start_year"));
+            const end_year = parseYearInput(data.get("end_year"));
             const description = data.get("description")?.toString();
-            if (!year || !description) return;
+            if (!start_year || !description) return;
 
-            await db.insert(inventions).values({
-              year: parseInt(year),
-              description,
+            await db.invention.create({
+              data: {
+                start_year,
+                end_year,
+                description,
+              },
             });
           }}
         >
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="year" className="text-right">
-                year
+              <Label htmlFor="start_year" className="text-right">
+                start_year
               </Label>
-              <Input id="year" name="year" className="col-span-3" />
+              <Input id="start_year" name="start_year" className="col-span-3" />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="end_year" className="text-right">
+                end_year
+              </Label>
+              <Input id="end_year" name="end_year" className="col-span-3" />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="name" className="text-right">

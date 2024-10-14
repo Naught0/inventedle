@@ -1,5 +1,4 @@
 "use client";
-import { InventionSelect } from "@/db/schema";
 import { createRef, useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
@@ -8,12 +7,13 @@ import { EraSelect } from "./era-select";
 import { Guesses } from "./guesses";
 import { getGuessDistance, guessIsCorrect } from "./logic";
 import { Era } from "./types";
+import { Invention } from "@prisma/client";
 
-function formatYear(year: number) {
+export function formatYear(year: number) {
   return Math.abs(year).toString() + (year < 0 ? " BCE" : "");
 }
 
-export function Game({ invention }: { invention: InventionSelect }) {
+export function Game({ invention }: { invention: Invention }) {
   const [era, setEra] = useState<Era>(Era.CE);
   const [guesses, setGuesses] = useState<number[]>([]);
   const gameWon = guessIsCorrect(
@@ -37,13 +37,17 @@ export function Game({ invention }: { invention: InventionSelect }) {
       {gameWon && (
         <div className="text-3xl font-bold">
           You won! The year was{" "}
-          <span className="text-primary">{formatYear(invention.year)}</span>
+          <span className="text-primary">
+            {formatYear(invention.start_year)}
+          </span>
         </div>
       )}
       {gameLost && (
         <div className="text-3xl font-bold">
           You lost! The year was{" "}
-          <span className="text-primary">{formatYear(invention.year)}</span>
+          <span className="text-primary">
+            {formatYear(invention.start_year)}
+          </span>
         </div>
       )}
       <Guesses
@@ -54,7 +58,8 @@ export function Game({ invention }: { invention: InventionSelect }) {
       <form
         ref={formRef}
         action={(data) => {
-          const guess = parseInt((data.get("guess") as string) ?? "");
+          const factor = era === Era.CE ? 1 : -1;
+          const guess = parseInt((data.get("guess") as string) ?? "") * factor;
           if (!isNaN(guess)) {
             setGuesses([...guesses, guess]);
           }
@@ -75,6 +80,7 @@ export function Game({ invention }: { invention: InventionSelect }) {
                   ? `Guess (${guesses.length + 1} / 5)`
                   : undefined
               }
+              autoFocus
             />
             <EraSelect value={era} onChange={setEra} />
           </div>

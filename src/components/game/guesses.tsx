@@ -1,28 +1,31 @@
+import { Invention } from "@prisma/client";
+import { ReactNode } from "react";
 import {
-  PiArrowFatUpFill,
   PiArrowFatDownFill,
+  PiArrowFatUpFill,
   PiCheckFatFill,
 } from "react-icons/pi";
+import { formatYear } from ".";
 import {
   getGuessDistance,
   getGuessDistanceColor,
   guessIsCorrect,
 } from "./logic";
-import { InventionSelect } from "@/db/schema";
 
 export function GuessPlaceholder() {
   return (
-    <li className="flex items-center gap-2 rounded-md bg-secondary px-3 py-2 text-lg font-bold lg:text-xl">
+    <li className="bg-secondary flex items-center gap-2 rounded-md px-3 py-2 text-lg font-bold lg:text-xl">
       <span className="invisible">Text</span>
     </li>
   );
 }
-export function Guess(props: { guess: number; guessDistance: number }) {
+
+export function Guess(props: { guess: ReactNode; guessDistance: number }) {
   const getBgClassName = () => {
     const color = getGuessDistanceColor(props.guessDistance);
     switch (color) {
       case "green":
-        return "bg-green-700";
+        return "bg-primary text-primary-foreground";
       case "yellow":
         return "bg-yellow-600";
       case "red":
@@ -51,7 +54,7 @@ export function Guesses({
   totalAllowedGuesses,
   ...props
 }: {
-  invention: InventionSelect;
+  invention: Invention;
   guesses: number[];
   totalAllowedGuesses: number;
 }) {
@@ -65,7 +68,7 @@ export function Guesses({
         <Guess
           key={`${guess}`}
           guessDistance={getGuessDistance(guess, props.invention)}
-          guess={guess}
+          guess={formatYear(guess)}
         />
       ))}
     </ul>

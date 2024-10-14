@@ -1,7 +1,3 @@
-import { drizzle } from "drizzle-orm/libsql";
-import { createClient } from "@libsql/client";
+import { PrismaClient } from "@prisma/client";
 
-const client = createClient({
-  url: process.env.DATABASE_URL!,
-});
-export const db = drizzle(client);
+export const db = new PrismaClient();
