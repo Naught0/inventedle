@@ -1,4 +1,5 @@
 "use client";
+
 import { createRef, useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
@@ -33,9 +34,9 @@ export function Game({ invention }: { invention: Invention }) {
   );
 
   return (
-    <div className="flex max-w-screen-sm flex-col gap-6">
+    <div className="flex flex-col gap-6">
       {gameWon && (
-        <div className="text-3xl font-bold">
+        <div className="text-xl font-bold lg:text-3xl">
           You won! The year was{" "}
           <span className="text-primary">
             {formatYear(invention.start_year)}
@@ -43,7 +44,7 @@ export function Game({ invention }: { invention: Invention }) {
         </div>
       )}
       {gameLost && (
-        <div className="text-3xl font-bold">
+        <div className="text-xl font-bold lg:text-3xl">
           You lost! The year was{" "}
           <span className="text-primary">
             {formatYear(invention.start_year)}
@@ -72,7 +73,7 @@ export function Game({ invention }: { invention: Invention }) {
           formRef.current?.reset();
         }}
       >
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-grow flex-col gap-3">
           <Label>Guess the year of this invention</Label>
           <div className="flex flex-row items-center gap-0">
             <Input
@@ -90,7 +91,9 @@ export function Game({ invention }: { invention: Invention }) {
             <EraSelect value={era} onChange={setEra} />
           </div>
           <div>
-            <Button type="submit">Guess</Button>
+            <Button type="submit" disabled={gameWon || gameLost}>
+              Guess
+            </Button>
           </div>
         </div>
       </form>

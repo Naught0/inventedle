@@ -14,7 +14,7 @@ import {
 
 export function GuessPlaceholder() {
   return (
-    <li className="bg-secondary flex items-center gap-2 rounded-md px-3 py-2 text-lg font-bold lg:text-xl">
+    <li className="bg-secondary flex items-center gap-2 rounded-md px-3 py-1 text-base font-bold lg:py-2 lg:text-xl">
       <span className="invisible">Text</span>
     </li>
   );
@@ -43,9 +43,9 @@ export function Guess(props: { guess: ReactNode; guessDistance: number }) {
   };
   return (
     <li
-      className={`flex items-center gap-2 rounded-md px-3 py-2 text-lg font-bold lg:text-xl ${getBgClassName()}`}
+      className={`flex items-center gap-2 rounded-md px-3 py-1 text-base font-bold lg:py-2 lg:text-xl ${getBgClassName()}`}
     >
-      <span className="text-2xl">{getIcon()}</span>
+      <span className="text-base lg:text-2xl">{getIcon()}</span>
       {props.guess}
     </li>
   );
@@ -60,10 +60,12 @@ export function Guesses({
 }) {
   return (
     <ul className="flex flex-col gap-2">
-      {props.guesses.length < totalAllowedGuesses &&
-        [...Array(totalAllowedGuesses - props.guesses.length).keys()].map(
-          (idx) => <GuessPlaceholder key={idx} />,
-        )}
+      <div className="hidden lg:contents">
+        {props.guesses.length < totalAllowedGuesses &&
+          [...Array(totalAllowedGuesses - props.guesses.length).keys()].map(
+            (idx) => <GuessPlaceholder key={idx} />,
+          )}
+      </div>
       {props.guesses.map((guess) => (
         <Guess
           key={`${guess}`}

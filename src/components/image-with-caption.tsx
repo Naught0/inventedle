@@ -6,8 +6,10 @@ export function ImageWithCaption({
   ...props
 }: ImageProps & { children?: ReactNode }) {
   return (
-    <div className="flex flex-col gap-2">
-      <Image {...props} />
+    <div className="flex flex-col items-center gap-2">
+      <div className="w-fit rounded bg-white p-1 drop-shadow-lg">
+        <Image {...props} />
+      </div>
 
       {children && (
         <p className="text-muted-foreground text-xs lg:text-sm">{children}</p>
