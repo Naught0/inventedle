@@ -97,7 +97,9 @@ async function enrichDbWithWikiData() {
 async function downloadAndCompressImage(url: string, filename: string) {
   const resp = await fetch(url);
   const buffer = await resp.arrayBuffer();
-  const image = sharp(buffer).resize({ width: 1280 }).webp({ force: true });
+  const image = sharp(buffer)
+    .resize({ width: 1280, withoutEnlargement: true })
+    .webp();
   await image.toFile(filename);
 }
 
