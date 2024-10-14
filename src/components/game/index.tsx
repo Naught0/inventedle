@@ -33,7 +33,7 @@ export function Game({ invention }: { invention: Invention }) {
   );
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex max-w-screen-sm flex-col gap-6">
       {gameWon && (
         <div className="text-3xl font-bold">
           You won! The year was{" "}
@@ -50,6 +50,11 @@ export function Game({ invention }: { invention: Invention }) {
           </span>
         </div>
       )}
+      {gameLost || gameWon ? (
+        <article
+          dangerouslySetInnerHTML={{ __html: invention.wiki_summary! }}
+        />
+      ) : null}
       <Guesses
         totalAllowedGuesses={5}
         invention={invention}
