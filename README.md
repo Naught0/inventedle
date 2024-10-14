@@ -13,3 +13,9 @@ TODO:
 - [ ] Implement BC/AD toggle
 - [ ] Add hint/tip/make-obvious how the bc/ad toggle works
 - [ ] Impelement better rules
+- [ ] Add help
+    - Arrows describe direction of correct answer
+    - Get within 10 years to win
+    - >100 years off - Red
+    - <100 years off - Yellow
+    - <= 10 years off - Green
