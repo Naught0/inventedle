@@ -1,7 +1,10 @@
-import { db } from "@/db";
-import type { Prisma } from "@prisma/client";
+import type { Invention, Prisma } from "@prisma/client";
 import { writeFile } from "fs/promises";
 import { JSDOM } from "jsdom";
+import wiki from "wikipedia";
+import DOMPurify from "isomorphic-dompurify";
+import { db } from "@/db";
+import sharp from "sharp";
 
 const URI = "https://en.wikipedia.org/wiki/Timeline_of_historic_inventions";
 
@@ -36,7 +39,7 @@ function stripFootnotes(text: string) {
   return text.replaceAll(/\[.*\]/g, "");
 }
 
-async function main(): Promise<Prisma.InventionCreateInput[]> {
+async function getInventions(): Promise<Prisma.InventionCreateInput[]> {
   const html = await getWikiPage();
   const doc = new JSDOM(html).window.document;
   const container = doc.querySelector(".mw-content-ltr.mw-parser-output");
@@ -52,15 +55,62 @@ async function main(): Promise<Prisma.InventionCreateInput[]> {
   return dtos;
 }
 
-(async () => {
-  const dtos = await main();
-  try {
-    await db.invention.createMany({ data: dtos });
-  } catch (e) {
-    console.error(e);
+async function getWikiInfo(
+  name: string,
+): Promise<Pick<Invention, "name" | "wiki_summary" | "image_url">> {
+  const results = await wiki.search(name, { limit: 1 });
+  const s = await wiki.summary(results.results[0].title);
+  return {
+    name: results.results[0].title,
+    image_url: s.originalimage?.source,
+
+    wiki_summary: DOMPurify.sanitize(s.extract_html),
+  };
+}
+
+async function enrichDbWithWikiData() {
+  const inventions = await db.invention.findMany();
+  const failedToWiki = [];
+  for (let i = 0; i < inventions.length; i++) {
+    console.log(i + 1, "/", inventions.length);
+    const invention = inventions[i];
+    if (!invention.name) continue;
+    if (invention.wiki_summary || invention.image_url) continue;
+
+    try {
+      const data = await getWikiInfo(invention.name);
+      console.log(invention.name, "got wiki info", data);
+      await db.invention.update({
+        where: { id: invention.id },
+        data,
+      });
+    } catch {
+      console.error("Couldn't get wiki info for", invention.name);
+      failedToWiki.push(invention.name);
+    }
+    console.log(invention.name, "updating with wiki info");
   }
-  await writeFile(
-    "./src/app/data/data.json",
-    JSON.stringify(dtos, undefined, 2),
-  );
+
+  await writeFile("failedToWiki.json", JSON.stringify(failedToWiki));
+}
+
+async function downloadAndCompressImage(url: string, filename: string) {
+  const resp = await fetch(url);
+  const buffer = await resp.arrayBuffer();
+  const image = sharp(buffer).resize({ width: 1280 }).webp({ force: true });
+  await image.toFile(filename);
+}
+
+(async () => {
+  const inventions = await db.invention.findMany({
+    select: { id: true, image_url: true },
+    where: { image_url: { not: null } },
+  });
+
+  for (let i = 0; i < inventions.length; i++) {
+    const invention = inventions[i];
+    console.log(i + 1, "/", inventions.length);
+    const filename = `./public/img/inventions/${invention.id}.webp`;
+    await downloadAndCompressImage(invention.image_url!, filename);
+  }
 })();

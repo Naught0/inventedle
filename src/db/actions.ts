@@ -15,8 +15,8 @@ export async function getRandomInvention() {
   return await db.invention.findUnique({ where: { id: inventionId.id } });
 }
 
-export async function getInventionOfTheDay() {
-  return await db.invention.findUnique({ where: { id: 328 } });
+export async function getInventionOfTheDay(): Promise<Invention> {
+  return (await db.invention.findUnique({ where: { id: 328 } }))!;
   // return await getRandomInvention();
   // const inventionId = await db
   //   .select()

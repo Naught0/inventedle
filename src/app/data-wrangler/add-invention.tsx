@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { db } from "@/db";
 import { Dialog } from "@radix-ui/react-dialog";
 function parseYearInput(input: FormDataEntryValue | null) {
@@ -16,7 +16,9 @@ function parseYearInput(input: FormDataEntryValue | null) {
 export function AddInvention() {
   return (
     <Dialog>
-      <DialogTrigger>Add an Invention</DialogTrigger>
+      <DialogTrigger className={buttonVariants({ variant: "default" })}>
+        Add an Invention
+      </DialogTrigger>
       <DialogContent className="max-w-full sm:max-w-screen-sm">
         <DialogHeader>
           <DialogTitle>Add an Invention</DialogTitle>

@@ -1,5 +1,6 @@
 import { Game } from "@/components/game";
 import { getInventionOfTheDay } from "@/db/actions";
+import Image from "next/image";
 
 export default async function Page() {
   const invention = await getInventionOfTheDay();
@@ -7,8 +8,17 @@ export default async function Page() {
     <div className="flex flex-col items-center justify-center gap-6">
       <div className="flex w-full max-w-screen-sm flex-col gap-6">
         <h1 className="text-4xl">
-          <span className="font-black text-primary">{invention.name}</span>
+          <span className="text-primary font-black">{invention.name}</span>
         </h1>
+
+        <Image
+          className="bg-white"
+          src={`/img/inventions/${invention.id}.webp`}
+          alt={`${invention.name}`}
+          width={1280}
+          height={720}
+        />
+
         <Game invention={invention} />
       </div>
     </div>
