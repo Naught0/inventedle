@@ -10,7 +10,7 @@ export function Hyperlink({
   return (
     <a
       className={cn(
-        "hover:text-primary inline-flex items-center gap-1 underline-offset-4 transition-colors hover:underline",
+        "hover:text-primary text-muted-foreground inline-flex items-center underline-offset-4 transition-colors hover:underline",
         className,
       )}
       {...props}

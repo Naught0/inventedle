@@ -174,5 +174,20 @@ async function downloadAndCompressPexelsImages() {
 }
 
 (async () => {
-  await downloadAndCompressPexelsImages();
+  await populateMissingDbImages();
+  const inventions = await db.invention.findMany({
+    where: { id: { in: [3, 4, 392] } },
+  });
+  for (const invention of inventions) {
+    console.log(invention.name);
+    const url = await getHigherResImage(invention.name!);
+    await db.invention.update({
+      where: { id: invention.id },
+      data: { image_url: url },
+    });
+    await downloadAndCompressImage(
+      invention.image_url!,
+      `public/img/inventions/${invention.id}.webp`,
+    );
+  }
 })();

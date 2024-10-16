@@ -10,7 +10,10 @@ export async function updateInvention(invention: Invention) {
 }
 
 export async function getRandomInvention() {
-  const ids = await db.invention.findMany({ select: { id: true } });
+  const ids = await db.invention.findMany({
+    select: { id: true },
+    where: { image_url: { contains: "pexels" } },
+  });
   const { id } = ids[Math.floor(Math.random() * ids.length)];
   return (await db.invention.findUnique({ where: { id } }))!;
 }
