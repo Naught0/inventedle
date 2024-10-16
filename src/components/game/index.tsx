@@ -9,18 +9,22 @@ import { Guesses } from "./guesses";
 import { getGuessDistance, guessIsCorrect } from "./logic";
 import { Era } from "./types";
 import { Invention } from "@prisma/client";
+import { Hyperlink } from "../hyperlink";
+import { ShareScore } from "./share-score";
 
 export function formatYear(year: number) {
   return Math.abs(year).toString() + (year < 0 ? " BCE" : "");
 }
 
 export function Game({ invention }: { invention: Invention }) {
+  const isYearRange = invention.start_year !== invention.end_year;
   const [era, setEra] = useState<Era>(Era.CE);
   const [guesses, setGuesses] = useState<number[]>([]);
   const gameWon = guessIsCorrect(
     getGuessDistance(guesses.slice(-1)[0], invention),
   );
   const [gameLost, setGameLost] = useState(false);
+  const gameOver = gameWon || gameLost;
   const formRef = createRef<HTMLFormElement>();
 
   useEffect(
@@ -51,52 +55,75 @@ export function Game({ invention }: { invention: Invention }) {
           </span>
         </div>
       )}
-      {gameLost || gameWon ? (
-        <article
-          dangerouslySetInnerHTML={{ __html: invention.wiki_summary! }}
-        />
+      {gameOver ? (
+        <div className="flex flex-col gap-3">
+          <ShareScore
+            guessDistances={guesses.map((g) => getGuessDistance(g, invention))}
+          />
+          <article>
+            <strong>
+              {isYearRange ? "From" : "In"} {formatYear(invention.start_year)}
+              {isYearRange ? `to ${formatYear(invention.end_year!)}` : ""}
+              {": "}
+            </strong>
+            {invention.description}
+          </article>
+          <article
+            dangerouslySetInnerHTML={{ __html: invention.wiki_summary! }}
+          />
+          {invention.wiki_link && (
+            <Hyperlink
+              href={invention.wiki_link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Read more on Wikipedia
+            </Hyperlink>
+          )}
+        </div>
       ) : null}
       <Guesses
         totalAllowedGuesses={5}
         invention={invention}
         guesses={guesses}
       />
-      <form
-        ref={formRef}
-        action={(data) => {
-          const factor = era === Era.CE ? 1 : -1;
-          const guess = parseInt((data.get("guess") as string) ?? "") * factor;
-          if (!isNaN(guess)) {
-            setGuesses([...guesses, guess]);
-          }
+      {!gameOver && (
+        <form
+          ref={formRef}
+          action={(data) => {
+            const factor = era === Era.CE ? 1 : -1;
+            const guess =
+              parseInt((data.get("guess") as string) ?? "") * factor;
+            if (!isNaN(guess)) {
+              setGuesses([...guesses, guess]);
+            }
 
-          formRef.current?.reset();
-        }}
-      >
-        <div className="flex flex-grow flex-col gap-3">
-          <Label>Guess the year of this invention</Label>
-          <div className="flex flex-row items-center gap-0">
-            <Input
-              className="rounded-r-none"
-              name="guess"
-              type="number"
-              disabled={gameWon || gameLost}
-              placeholder={
-                !(gameWon || gameLost)
-                  ? `Guess (${guesses.length + 1} / 5)`
-                  : undefined
-              }
-              autoFocus
-            />
-            <EraSelect value={era} onChange={setEra} />
+            formRef.current?.reset();
+          }}
+        >
+          <div className="flex flex-grow flex-col gap-3">
+            <Label>Guess the year of this invention</Label>
+            <div className="flex flex-row items-center gap-0">
+              <Input
+                className="rounded-r-none"
+                name="guess"
+                type="number"
+                disabled={gameOver}
+                placeholder={
+                  !gameOver ? `Guess (${guesses.length + 1} / 5)` : undefined
+                }
+                autoFocus
+              />
+              <EraSelect value={era} onChange={setEra} disabled={gameOver} />
+            </div>
+            <div>
+              <Button type="submit" disabled={gameOver}>
+                Guess
+              </Button>
+            </div>
           </div>
-          <div>
-            <Button type="submit" disabled={gameWon || gameLost}>
-              Guess
-            </Button>
-          </div>
-        </div>
-      </form>
+        </form>
+      )}
     </div>
   );
 }

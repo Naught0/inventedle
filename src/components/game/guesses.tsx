@@ -66,9 +66,9 @@ export function Guesses({
             (idx) => <GuessPlaceholder key={idx} />,
           )}
       </div>
-      {props.guesses.map((guess) => (
+      {props.guesses.map((guess, idx) => (
         <Guess
-          key={`${guess}`}
+          key={`${idx}${guess}`}
           guessDistance={getGuessDistance(guess, props.invention)}
           guess={formatYear(guess)}
         />

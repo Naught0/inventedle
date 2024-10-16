@@ -1,10 +1,11 @@
 import type { Invention, Prisma } from "@prisma/client";
 import { writeFile } from "fs/promises";
 import { JSDOM } from "jsdom";
-import wiki from "wikipedia";
+import wiki, { wikiSummary } from "wikipedia";
 import DOMPurify from "isomorphic-dompurify";
 import { db } from "@/db";
 import sharp from "sharp";
+import { PexelsSearchResults } from "./types";
 
 const URI = "https://en.wikipedia.org/wiki/Timeline_of_historic_inventions";
 
@@ -57,15 +58,27 @@ async function getInventions(): Promise<Prisma.InventionCreateInput[]> {
 
 async function getWikiInfo(
   name: string,
-): Promise<Pick<Invention, "name" | "wiki_summary" | "image_url">> {
+): Promise<Pick<Invention, "wiki_summary" | "image_url" | "wiki_link">> {
   const results = await wiki.search(name, { limit: 1 });
-  const s = await wiki.summary(results.results[0].title);
+  const s: wikiSummary = await wiki.summary(results.results[0].title);
   return {
-    name: results.results[0].title,
     image_url: s.originalimage?.source,
-
     wiki_summary: DOMPurify.sanitize(s.extract_html),
+    wiki_link: s.content_urls.desktop.page,
   };
+}
+
+async function getHigherResImage(query: string) {
+  const resp = await fetch(
+    "https://api.pexels.com/v1/search?" + new URLSearchParams({ query }),
+    {
+      headers: {
+        Authorization: process.env.PEXELS_KEY!,
+      },
+    },
+  );
+  const data: PexelsSearchResults = await resp.json();
+  return data.photos[0].src.large2x;
 }
 
 async function enrichDbWithWikiData() {
@@ -94,25 +107,72 @@ async function enrichDbWithWikiData() {
   await writeFile("failedToWiki.json", JSON.stringify(failedToWiki));
 }
 
-async function downloadAndCompressImage(url: string, filename: string) {
+async function downloadImage(url: string) {
   const resp = await fetch(url);
-  const buffer = await resp.arrayBuffer();
-  const image = sharp(buffer)
-    .resize({ width: 1280, withoutEnlargement: true })
-    .webp();
+  return await resp.arrayBuffer();
+}
+
+function compressImage(buffer: ArrayBuffer) {
+  return sharp(buffer).resize({ width: 1280, withoutEnlargement: true }).webp();
+}
+
+async function downloadAndCompressImage(url: string, filename: string) {
+  const buffer = await downloadImage(url);
+  const image = compressImage(buffer);
   await image.toFile(filename);
 }
 
-(async () => {
+async function updateWithWikiData() {
   const inventions = await db.invention.findMany({
-    select: { id: true, image_url: true },
-    where: { image_url: { not: null } },
+    select: { id: true, name: true },
+    where: { wiki_link: null, name: { not: null } },
+  });
+  for (const i of inventions) {
+    console.log(i.name);
+    const data = await getWikiInfo(i.name!);
+    try {
+      await db.invention.update({
+        where: { id: i.id },
+        data,
+      });
+    } catch {
+      console.log("Skipping", i.name);
+    }
+  }
+}
+
+async function populateMissingDbImages() {
+  const missingImages = await db.invention.findMany({
+    where: { image_url: null },
   });
 
-  for (let i = 0; i < inventions.length; i++) {
-    const invention = inventions[i];
-    console.log(i + 1, "/", inventions.length);
-    const filename = `./public/img/inventions/${invention.id}.webp`;
-    await downloadAndCompressImage(invention.image_url!, filename);
+  for (const invention of missingImages) {
+    try {
+      const url = await getHigherResImage(invention.name!);
+      await db.invention.update({
+        where: { id: invention.id },
+        data: { image_url: url },
+      });
+      console.log(invention.name, url);
+    } catch {
+      console.log("Skipping", invention.name);
+    }
   }
+}
+
+async function downloadAndCompressPexelsImages() {
+  const inventions = await db.invention.findMany({
+    where: { image_url: { contains: "pexels" } },
+  });
+  for (const invention of inventions) {
+    await downloadAndCompressImage(
+      invention.image_url!,
+      `public/img/inventions/${invention.id}.webp`,
+    );
+    console.log("Downloaded", invention.name);
+  }
+}
+
+(async () => {
+  await downloadAndCompressPexelsImages();
 })();

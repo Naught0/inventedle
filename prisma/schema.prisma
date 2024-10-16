@@ -16,6 +16,7 @@ model Invention {
   created_at   Int     @default(dbgenerated("unixepoch()"))
   end_year     Int?
   wiki_summary String?
+  wiki_link    String?
 
   @@map("inventions")
 }

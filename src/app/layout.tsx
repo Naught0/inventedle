@@ -15,8 +15,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Inventedle",
-  description: "Guess when inventions first appeared, daily!",
+  title: "Inventle",
+  description: "the inventurous daily guessing game",
 };
 
 export default function RootLayout({

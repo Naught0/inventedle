@@ -11,8 +11,8 @@ export async function updateInvention(invention: Invention) {
 
 export async function getRandomInvention() {
   const ids = await db.invention.findMany({ select: { id: true } });
-  const inventionId = ids[Math.floor(Math.random() * ids.length)];
-  return (await db.invention.findUnique({ where: { id: inventionId.id } }))!;
+  const { id } = ids[Math.floor(Math.random() * ids.length)];
+  return (await db.invention.findUnique({ where: { id } }))!;
 }
 
 export async function getInventionOfTheDay(): Promise<Invention> {

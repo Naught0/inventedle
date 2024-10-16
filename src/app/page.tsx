@@ -1,7 +1,7 @@
 import { Game } from "@/components/game";
+import { Hyperlink } from "@/components/hyperlink";
 import { ImageWithCaption } from "@/components/image-with-caption";
 import { getInventionOfTheDay } from "@/db/actions";
-import { PiArrowUpRightLight } from "react-icons/pi";
 
 export default async function Page() {
   const invention = await getInventionOfTheDay();
@@ -19,16 +19,17 @@ export default async function Page() {
             alt={`${invention.name}`}
             width={1280}
             height={720}
+            priority
           >
             {invention.image_url && (
               <>
                 image from wikipedia |{" "}
-                <a
+                <Hyperlink
                   href={invention.image_url}
                   className="inline-flex items-center gap-1"
                 >
-                  original <PiArrowUpRightLight />
-                </a>
+                  original
+                </Hyperlink>
               </>
             )}
           </ImageWithCaption>
