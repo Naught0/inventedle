@@ -41,7 +41,6 @@ export function Game({ invention }: { invention: Invention }) {
 
   return (
     <div className="flex flex-col gap-6">
-      {invention.start_year}
       {gameWon && (
         <div className="text-xl font-bold lg:text-3xl">
           You won! The year was{" "}
