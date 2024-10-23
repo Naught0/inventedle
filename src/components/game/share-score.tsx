@@ -1,7 +1,6 @@
 "use client";
-
-import { PiCopy, PiCopyFill, PiShare } from "react-icons/pi";
-import { getGuessDistanceColor, guessIsCorrect } from "./logic";
+import { PiShare } from "react-icons/pi";
+import { getHotness, guessIsCorrect } from "./logic";
 import {
   Popover,
   PopoverAnchor,
@@ -10,27 +9,34 @@ import {
 } from "@/components/ui/popover";
 import { useState } from "react";
 import { buttonVariants } from "../ui/button";
-import { PopoverArrow } from "@radix-ui/react-popover";
+import { HotnessRules } from "./types";
+import { Hotness } from "./enum";
 
-export function ShareScore(props: { guessDistances: number[] }) {
+export function ShareScore(props: {
+  guessDistances: number[];
+  rules: HotnessRules;
+}) {
   const [showCopied, setShowCopied] = useState(false);
   const [copiedMessage, setCopiedMessage] = useState<string>();
   const getEmoji = (distance: number) => {
-    const color = getGuessDistanceColor(distance);
-    switch (color) {
-      case "green":
+    const proximity = getHotness(distance, props.rules);
+    switch (proximity) {
+      case Hotness.CORRECT:
         return "🟩";
-      case "yellow":
-        return "🟨";
-      case "red":
+      case Hotness.COLD:
         return "🟥";
+      case Hotness.HOT:
+        return "🟨";
+      case Hotness.WARM:
+        return "🟧";
     }
   };
   const onClick = () => {
     const guesses = props.guessDistances.map(getEmoji);
     const pad = 5 - guesses.length;
     const emojis = [...guesses, "◼️".repeat(pad)];
-    const winner = props.guessDistances.findIndex(guessIsCorrect) + 1;
+    const winner =
+      props.guessDistances.findIndex((d) => guessIsCorrect(d, props.rules)) + 1;
     const text = `Inventle ${winner ? `${winner}/5` : "X/5"}\n\n${emojis.join(" ")}`;
     navigator.clipboard.writeText(text);
     setCopiedMessage(emojis.join(" "));

@@ -13,7 +13,9 @@ export function ImageWithCaption({
       </div>
 
       {children && (
-        <p className="text-muted-foreground text-xs lg:text-sm">{children}</p>
+        <div className="text-muted-foreground contents text-xs lg:text-sm">
+          {children}
+        </div>
       )}
     </div>
   );

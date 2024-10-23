@@ -2,7 +2,7 @@
 import { Invention } from "@prisma/client";
 import { db } from ".";
 
-export async function updateInvention(invention: Invention) {
+export async function updateInvention(invention: Partial<Invention>) {
   return await db.invention.update({
     where: { id: invention.id },
     data: invention,
@@ -12,7 +12,7 @@ export async function updateInvention(invention: Invention) {
 export async function getRandomInvention() {
   const ids = await db.invention.findMany({
     select: { id: true },
-    where: { image_url: { contains: "pexels" } },
+    where: { start_year: { gte: 2000 } },
   });
   const { id } = ids[Math.floor(Math.random() * ids.length)];
   return (await db.invention.findUnique({ where: { id } }))!;

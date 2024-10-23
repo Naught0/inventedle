@@ -19,4 +19,8 @@ TODO:
     - >100 years off - Red
     - <100 years off - Yellow
     - <= 10 years off - Green
-- [ ] Change name to "inventle" ?
+- [ ] Fix data
+    - [ ] rust resistant metallurgy summary
+    - [ ] general anaesthetic image
+    - [ ] Charles dy[something] entry
+- [ ] Censor `in \d\d\d\d` and other spoilers for display as a clue

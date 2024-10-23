@@ -1,15 +1,15 @@
 "use client";
 
+import { Invention } from "@prisma/client";
 import { createRef, useEffect, useState } from "react";
+import { Hyperlink } from "../hyperlink";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
+import { Era } from "./enum";
 import { EraSelect } from "./era-select";
 import { Guesses } from "./guesses";
-import { getGuessDistance, guessIsCorrect } from "./logic";
-import { Era } from "./types";
-import { Invention } from "@prisma/client";
-import { Hyperlink } from "../hyperlink";
+import { getGuessDistance, getRulesByYear, guessIsCorrect } from "./logic";
 import { ShareScore } from "./share-score";
 
 export function formatYear(year: number) {
@@ -20,8 +20,10 @@ export function Game({ invention }: { invention: Invention }) {
   const isYearRange = invention.start_year !== invention.end_year;
   const [era, setEra] = useState<Era>(Era.CE);
   const [guesses, setGuesses] = useState<number[]>([]);
+  const rules = getRulesByYear(invention.start_year);
   const gameWon = guessIsCorrect(
     getGuessDistance(guesses.slice(-1)[0], invention),
+    rules,
   );
   const [gameLost, setGameLost] = useState(false);
   const gameOver = gameWon || gameLost;
@@ -39,6 +41,7 @@ export function Game({ invention }: { invention: Invention }) {
 
   return (
     <div className="flex flex-col gap-6">
+      {invention.start_year}
       {gameWon && (
         <div className="text-xl font-bold lg:text-3xl">
           You won! The year was{" "}
@@ -59,6 +62,7 @@ export function Game({ invention }: { invention: Invention }) {
         <div className="flex flex-col gap-3">
           <ShareScore
             guessDistances={guesses.map((g) => getGuessDistance(g, invention))}
+            rules={rules}
           />
           <article>
             <strong>

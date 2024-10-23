@@ -8,9 +8,12 @@ import {
 import { formatYear } from ".";
 import {
   getGuessDistance,
-  getGuessDistanceColor,
+  getHotness,
+  getRulesByYear,
   guessIsCorrect,
 } from "./logic";
+import { HotnessRules } from "./types";
+import { Hotness } from "./enum";
 
 export function GuessPlaceholder() {
   return (
@@ -20,20 +23,26 @@ export function GuessPlaceholder() {
   );
 }
 
-export function Guess(props: { guess: ReactNode; guessDistance: number }) {
+export function Guess(props: {
+  guess: ReactNode;
+  guessDistance: number;
+  rules: HotnessRules;
+}) {
   const getBgClassName = () => {
-    const color = getGuessDistanceColor(props.guessDistance);
+    const color = getHotness(props.guessDistance, props.rules);
     switch (color) {
-      case "green":
-        return "bg-primary text-primary-foreground";
-      case "yellow":
+      case Hotness.CORRECT:
+        return "bg-emerald-600";
+      case Hotness.HOT:
         return "bg-yellow-600";
-      case "red":
+      case Hotness.WARM:
+        return "bg-orange-600";
+      case Hotness.COLD:
         return "bg-destructive";
     }
   };
   const getIcon = () => {
-    if (guessIsCorrect(props.guessDistance)) {
+    if (guessIsCorrect(props.guessDistance, props.rules)) {
       return <PiCheckFatFill />;
     } else if (props.guessDistance > 0) {
       return <PiArrowFatDownFill />;
@@ -68,6 +77,7 @@ export function Guesses({
       </div>
       {props.guesses.map((guess, idx) => (
         <Guess
+          rules={getRulesByYear(props.invention.start_year)}
           key={`${idx}${guess}`}
           guessDistance={getGuessDistance(guess, props.invention)}
           guess={formatYear(guess)}

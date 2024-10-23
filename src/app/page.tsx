@@ -1,6 +1,7 @@
 import { Game } from "@/components/game";
 import { Hyperlink } from "@/components/hyperlink";
 import { ImageWithCaption } from "@/components/image-with-caption";
+import { Separator } from "@/components/ui/separator";
 import { getInventionOfTheDay } from "@/db/actions";
 
 export default async function Page() {
@@ -21,16 +22,22 @@ export default async function Page() {
             priority
           >
             {invention.image_url && (
-              <>
-                image from{" "}
-                {new URL(invention.image_url!).hostname.split(".")[1]} |{" "}
+              <div className="inline-flex h-4 items-center gap-1.5">
+                <span>
+                  image from{" "}
+                  {new URL(invention.image_url!).hostname.split(".")[1]}
+                </span>
+                <Separator
+                  orientation="vertical"
+                  className="bg-muted-foreground"
+                />
                 <Hyperlink
                   href={invention.image_url}
                   className="inline-flex items-center gap-1"
                 >
                   original
                 </Hyperlink>
-              </>
+              </div>
             )}
           </ImageWithCaption>
         </div>

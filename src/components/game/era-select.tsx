@@ -1,5 +1,5 @@
-import { Era } from "./types";
 import { Button } from "../ui/button";
+import { Era } from "./enum";
 
 export function EraSelect({
   value = Era.CE,
