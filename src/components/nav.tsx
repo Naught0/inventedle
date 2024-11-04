@@ -1,5 +1,3 @@
-import React from "react";
-
 export function Nav() {
   return (
     <nav className="flex flex-row justify-center gap-3 px-12 py-6 text-center">
