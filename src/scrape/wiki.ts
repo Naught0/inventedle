@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars  */
 import type { Invention, Prisma } from "@prisma/client";
 import { writeFile } from "fs/promises";
 import { JSDOM } from "jsdom";
