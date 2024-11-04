@@ -108,7 +108,7 @@ export function Game({ invention }: { invention: Invention }) {
             <Label>Guess the year of this invention</Label>
             <div className="flex flex-row items-center gap-0">
               <Input
-                className="rounded-r-none"
+                className="text-foreground placeholder:text-text rounded-r-none"
                 name="guess"
                 type="number"
                 disabled={gameOver}
