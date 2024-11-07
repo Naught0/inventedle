@@ -5,7 +5,6 @@ import {
   PiArrowFatUpFill,
   PiCheckFatFill,
 } from "react-icons/pi";
-import { formatYear } from ".";
 import {
   getGuessDistance,
   getHotness,
@@ -14,10 +13,11 @@ import {
 } from "./logic";
 import { HotnessRules } from "./types";
 import { Hotness } from "./enum";
+import { formatYear } from "./utils";
 
 export function GuessPlaceholder() {
   return (
-    <li className="bg-secondary flex items-center gap-2 rounded-md px-3 py-1 text-base font-bold lg:py-2 lg:text-xl">
+    <li className="bg-secondary flex items-center gap-2 px-3 py-1 text-base font-bold lg:py-2 lg:text-xl">
       <span className="invisible">Text</span>
     </li>
   );
@@ -34,9 +34,9 @@ export function Guess(props: {
       case Hotness.CORRECT:
         return "bg-emerald-600";
       case Hotness.HOT:
-        return "bg-yellow-600";
+        return "bg-orange-500";
       case Hotness.WARM:
-        return "bg-orange-600";
+        return "bg-closeYellow";
       case Hotness.COLD:
         return "bg-destructive";
     }
@@ -52,7 +52,7 @@ export function Guess(props: {
   };
   return (
     <li
-      className={`flex items-center gap-2 rounded-md px-3 py-1 text-base font-bold lg:py-2 lg:text-xl ${getBgClassName()}`}
+      className={`flex items-center gap-2 px-3 py-1 text-base font-bold lg:py-2 lg:text-xl ${getBgClassName()}`}
     >
       <span className="text-base lg:text-2xl">{getIcon()}</span>
       {props.guess}

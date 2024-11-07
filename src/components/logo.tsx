@@ -1,0 +1,20 @@
+"use client";
+import { useState } from "react";
+import { Dangle } from "./animations/dangle";
+
+export default function Logo() {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <strong
+      className="inline-flex border-b border-r border-white p-3 text-3xl lg:text-4xl"
+      onMouseOver={() => setHovered(true)}
+      onMouseOut={() => setHovered(false)}
+    >
+      <span>Invented</span>
+      <Dangle isHovering={hovered}>
+        <span className="text-primary">le</span>
+      </Dangle>
+    </strong>
+  );
+}

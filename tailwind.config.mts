@@ -10,6 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        closeYellow: "hsl(var(--close-yellow))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

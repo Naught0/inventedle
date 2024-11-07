@@ -7,11 +7,14 @@ import { getInventionOfTheDay } from "@/db/actions";
 export default async function Page() {
   const invention = await getInventionOfTheDay();
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-3 p-3 lg:gap-6">
+    <div className="flex w-full flex-col items-center gap-3 p-3 lg:gap-6">
       <h2 className="text-center text-3xl lg:text-5xl">
         <span className="text-foreground font-black">{invention.name}</span>
       </h2>
       <div className="grid w-full max-w-screen-sm grid-cols-1 flex-row flex-wrap justify-center gap-9 lg:max-w-screen-lg lg:grid-cols-2 lg:flex-nowrap">
+        <div className="flex-grow basis-1/2">
+          <Game invention={invention} />
+        </div>
         <div className="flex min-w-64 flex-1 basis-1/2 flex-col gap-6">
           <ImageWithCaption
             className="max-h-80 w-full min-w-72 max-w-[95vw] object-contain lg:max-h-[512px]"
@@ -40,9 +43,6 @@ export default async function Page() {
               </div>
             )}
           </ImageWithCaption>
-        </div>
-        <div className="flex-grow basis-1/2">
-          <Game invention={invention} />
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Geist Mono", Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
@@ -41,21 +41,22 @@ body {
     --radius: 0.5rem;
   }
   .dark {
-    --background: 210 40% 10%;
+    --background: 210 0% 10%;
     --foreground: 60 9.1% 97.8%;
     --card: 210 14.3% 4.1%;
     --card-foreground: 60 9.1% 97.8%;
+    --close-yellow: 43 70% 48%;
     --popover: 210 14.3% 4.1%;
     --popover-foreground: 60 9.1% 97.8%;
-    --primary: 210 50% 70%;
-    --primary-foreground: 24 9.8% 10%;
-    --secondary: 210 20% 20%;
+    --primary: 30 40% 85%;
+    --primary-foreground: 24 9.8% 20%;
+    --secondary: 210 20% 30%;
     --secondary-foreground: 60 9.1% 97.8%;
     --muted: 210 6.5% 15.1%;
     --muted-foreground: 210 5.4% 85%;
     --accent: 210 20% 40%;
     --accent-foreground: 60 9.1% 97.8%;
-    --destructive: 0 55% 45%;
+    --destructive: 0 80% 50%;
     --destructive-foreground: 60 9.1% 97.8%;
     --border: 210, 20%, 25%;
     --input: 210 6.5% 15.1%;

@@ -1,8 +1,9 @@
+import { Hyperlink } from "@/components/hyperlink";
+import { Nav } from "@/components/nav";
 import type { Metadata } from "next";
+import { Lora } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Nav } from "@/components/nav";
-import { Hyperlink } from "@/components/hyperlink";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -13,6 +14,11 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
+});
+const lora = Lora({
+  weight: "400",
+  variable: "--font-lora",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -28,13 +34,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`dark ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`dark ${lora.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Nav />
-        <main className="flex min-h-screen flex-1 flex-col gap-6 pb-12 pt-6 lg:pb-24 lg:pt-12">
-          {children}
+        <main className="flex min-h-screen w-full flex-grow flex-col items-center gap-6 pb-12 font-sans lg:pb-24">
+          <div className="flex w-full max-w-screen-lg flex-grow">
+            {children}
+          </div>
         </main>
-        <footer className="bg-secondary flex flex-col items-center justify-center gap-6 py-36 text-xs lg:text-sm">
+        <footer className="bg-secondary flex flex-col items-center gap-6 py-36 text-center text-xs lg:text-sm">
           <p>
             this project is{" "}
             <Hyperlink

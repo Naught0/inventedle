@@ -1,5 +1,4 @@
 "use client";
-
 import { Invention } from "@prisma/client";
 import { createRef, useEffect, useState } from "react";
 import { Hyperlink } from "../hyperlink";
@@ -11,10 +10,7 @@ import { EraSelect } from "./era-select";
 import { Guesses } from "./guesses";
 import { getGuessDistance, getRulesByYear, guessIsCorrect } from "./logic";
 import { ShareScore } from "./share-score";
-
-export function formatYear(year: number) {
-  return Math.abs(year).toString() + (year < 0 ? " BCE" : "");
-}
+import { formatYear } from "./utils";
 
 export function Game({ invention }: { invention: Invention }) {
   const isYearRange = invention.start_year !== invention.end_year;

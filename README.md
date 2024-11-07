@@ -23,4 +23,10 @@ TODO:
     - [ ] rust resistant metallurgy summary
     - [ ] general anaesthetic image
     - [ ] Charles dy[something] entry
+    - [ ] Fix tiny image:
+        - [ ] Soundcloud
+        - [ ] Netflix
+        - [ ] mobile banking
+        - [ ] snythetic biology
 - [ ] Censor `in \d\d\d\d` and other spoilers for display as a clue
+
