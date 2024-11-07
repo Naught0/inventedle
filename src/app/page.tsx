@@ -17,7 +17,7 @@ export default async function Page() {
         </div>
         <div className="flex min-w-64 flex-1 basis-1/2 flex-col gap-6">
           <ImageWithCaption
-            className="max-h-80 w-full min-w-72 max-w-[95vw] object-contain lg:max-h-[512px]"
+            className="max-h-80 w-full max-w-[95vw] object-contain lg:max-h-[512px]"
             src={`/img/inventions/${invention.id}.webp`}
             alt={`${invention.name}`}
             width={1280}
