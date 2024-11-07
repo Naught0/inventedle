@@ -34,9 +34,9 @@ export function Guess(props: {
       case Hotness.CORRECT:
         return "bg-emerald-600";
       case Hotness.HOT:
-        return "bg-orange-500";
-      case Hotness.WARM:
         return "bg-closeYellow";
+      case Hotness.WARM:
+        return "bg-orange-500";
       case Hotness.COLD:
         return "bg-destructive";
     }
@@ -77,10 +77,10 @@ export function Guesses({
       </div>
       {props.guesses.map((guess, idx) => (
         <Guess
-          rules={getRulesByYear(props.invention.start_year)}
           key={`${idx}${guess}`}
-          guessDistance={getGuessDistance(guess, props.invention)}
           guess={formatYear(guess)}
+          rules={getRulesByYear(props.invention.start_year)}
+          guessDistance={getGuessDistance(guess, props.invention)}
         />
       ))}
     </ul>

@@ -8,8 +8,8 @@ export default async function Page() {
   const invention = await getInventionOfTheDay();
   return (
     <div className="flex w-full flex-col items-center gap-3 p-3 lg:gap-6">
-      <h2 className="text-center text-3xl lg:text-5xl">
-        <span className="text-foreground font-black">{invention.name}</span>
+      <h2 className="text-center text-3xl lg:text-4xl">
+        <span className="text-foreground font-extrabold">{invention.name}</span>
       </h2>
       <div className="grid w-full max-w-screen-sm grid-cols-1 flex-row flex-wrap justify-center gap-9 lg:max-w-screen-lg lg:grid-cols-2 lg:flex-nowrap">
         <div className="flex-grow basis-1/2">

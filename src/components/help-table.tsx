@@ -7,61 +7,76 @@ function Square({ className }: { className: string }) {
 }
 
 const getBg = (idx: number) => {
-  const colors = ["bg-emerald-600", "bg-yellow-600", "bg-destructive"];
+  const colors = [
+    "bg-emerald-600/50",
+    "bg-yellow-600/50",
+    "bg-orange-500/50",
+    "bg-destructive/50",
+  ];
 
   return colors[idx % colors.length];
 };
 
 export function HelpTable({ rules }: { rules: GameRule[] }) {
   return (
-    <table className="text-right">
-      <thead>
-        <tr>
-          <th className="py-3 text-left">
-            <div className="inline-flex gap-2">Year</div>
-          </th>
-          <th>
-            <div className="inline-flex gap-2">
-              Win <Square className="bg-emerald-600" />
-            </div>
-          </th>
-          <th>
-            <div className="inline-flex gap-2">
-              Close <Square className="bg-yellow-600" />
-            </div>
-          </th>
-          <th>
-            <div className="inline-flex gap-2">
-              Far <Square className="bg-destructive" />
-            </div>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {rules.map((rule, idx) => (
-          <tr key={`${JSON.stringify(rule)}`}>
-            <td className={`px-3 py-3 text-left ${getBg(idx)}`}>
-              {rule.yearStarting !== undefined && (
-                <div className={`inline-flex items-center gap-3`}>
-                  <PiArrowFatUpFill />
-                  {formatYear(rule.yearStarting)}
-                </div>
-              )}
-              {rule.yearEnding && (
-                <div className={`inline-flex items-center gap-3 ${getBg(idx)}`}>
-                  <PiArrowFatDownFill />
-                  {formatYear(rule.yearEnding)}
-                </div>
-              )}
-            </td>
-            {rule.scale.map((hotnessRule) => (
-              <td className={getBg(idx) + " px-3"} key={hotnessRule.hotness}>
-                {hotnessRule.maxDistance}
-              </td>
-            ))}
+    <div className="w-full overflow-x-auto">
+      <table className="w-full text-right">
+        <thead>
+          <tr>
+            <th className="bg-background sticky left-0 py-3 text-left">
+              <div className="inline-flex gap-2">Year</div>
+            </th>
+            <th>
+              <div className="inline-flex gap-2">
+                <Square className="bg-emerald-600" /> Win
+              </div>
+            </th>
+            <th>
+              <div className="inline-flex gap-2">
+                <Square className="bg-closeYellow" /> Close
+              </div>
+            </th>
+            <th>
+              <div className="inline-flex gap-2">
+                <Square className="bg-orange-500" /> Warmer
+              </div>
+            </th>
+            <th>
+              <div className="inline-flex gap-2">
+                <Square className="bg-destructive" /> Far
+              </div>
+            </th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {rules.map((rule, idx) => (
+            <tr key={`${JSON.stringify(rule)}`}>
+              <td className="bg-background sticky left-0 px-3 py-3 text-left">
+                {rule.yearStarting !== undefined && (
+                  <div className={`inline-flex items-center gap-3`}>
+                    <PiArrowFatUpFill />
+                    {formatYear(rule.yearStarting)}
+                  </div>
+                )}
+                {rule.yearEnding && (
+                  <div className={"inline-flex items-center gap-3"}>
+                    <PiArrowFatDownFill />
+                    {formatYear(rule.yearEnding)}
+                  </div>
+                )}
+              </td>
+              {rule.scale.map((hotnessRule, hIdx) => (
+                <td className={getBg(hIdx) + " px-3"} key={hotnessRule.hotness}>
+                  {hotnessRule.maxDistance}
+                </td>
+              ))}
+              <td className={getBg(3) + " px-3"} key={"far"}>
+                &ge;{rule.scale[2].maxDistance + 1}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
