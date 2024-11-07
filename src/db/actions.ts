@@ -12,7 +12,6 @@ export async function updateInvention(invention: Partial<Invention>) {
 export async function getRandomInvention() {
   const ids = await db.invention.findMany({
     select: { id: true },
-    where: { start_year: { gte: 2000 } },
   });
   const { id } = ids[Math.floor(Math.random() * ids.length)];
   return (await db.invention.findUnique({ where: { id } }))!;
