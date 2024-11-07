@@ -49,7 +49,7 @@ export function HelpTable({ rules }: { rules: GameRule[] }) {
           </tr>
         </thead>
         <tbody>
-          {rules.map((rule, idx) => (
+          {rules.map((rule) => (
             <tr key={`${JSON.stringify(rule)}`}>
               <td className="bg-background sticky left-0 px-3 py-3 text-left">
                 {rule.yearStarting !== undefined && (
