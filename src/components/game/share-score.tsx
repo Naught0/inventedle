@@ -23,12 +23,12 @@ export function ShareScore(props: {
     switch (proximity) {
       case Hotness.CORRECT:
         return "🟩";
-      case Hotness.COLD:
-        return "🟥";
       case Hotness.HOT:
         return "🟨";
       case Hotness.WARM:
         return "🟧";
+      case Hotness.COLD:
+        return "🟥";
     }
   };
   const onClick = () => {
@@ -61,8 +61,7 @@ export function ShareScore(props: {
         </PopoverTrigger>
       </PopoverAnchor>
 
-      <PopoverContent className="inline-flex w-fit items-center justify-center gap-2 bg-white px-4 text-center font-bold text-slate-900">
-        <span>copied</span>
+      <PopoverContent className="inline-flex w-fit items-center justify-center gap-2 bg-slate-100 px-4 text-center font-bold text-slate-900">
         {copiedMessage}
       </PopoverContent>
     </Popover>
