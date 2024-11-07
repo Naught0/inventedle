@@ -61,21 +61,17 @@ export function Guess(props: {
 }
 export function Guesses({
   totalAllowedGuesses,
+  showBlanks,
   ...props
 }: {
   invention: Invention;
   guesses: number[];
+  showBlanks?: boolean;
   totalAllowedGuesses: number;
 }) {
   return (
     <ul className="flex flex-col gap-2">
-      <div className="hidden lg:contents">
-        {props.guesses.length < totalAllowedGuesses &&
-          [...Array(totalAllowedGuesses - props.guesses.length).keys()].map(
-            (idx) => <GuessPlaceholder key={idx} />,
-          )}
-      </div>
-      {props.guesses.map((guess, idx) => (
+      {props.guesses.toReversed().map((guess, idx) => (
         <Guess
           key={`${idx}${guess}`}
           guess={formatYear(guess)}
@@ -83,6 +79,14 @@ export function Guesses({
           guessDistance={getGuessDistance(guess, props.invention)}
         />
       ))}
+      {showBlanks && (
+        <div className="hidden lg:contents">
+          {props.guesses.length < totalAllowedGuesses &&
+            [...Array(totalAllowedGuesses - props.guesses.length).keys()].map(
+              (idx) => <GuessPlaceholder key={idx} />,
+            )}
+        </div>
+      )}
     </ul>
   );
 }

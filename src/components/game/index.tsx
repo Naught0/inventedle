@@ -85,6 +85,7 @@ export function Game({ invention }: { invention: Invention }) {
         totalAllowedGuesses={5}
         invention={invention}
         guesses={guesses}
+        showBlanks={!gameOver}
       />
       {!gameOver && (
         <form
