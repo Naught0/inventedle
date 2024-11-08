@@ -5,11 +5,6 @@ import { Lora } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -34,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`dark ${lora.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`dark ${lora.variable} ${geistMono.variable} antialiased`}
       >
         <Nav />
         <main className="flex min-h-screen w-full flex-grow flex-col items-center gap-6 pb-12 font-sans lg:pb-24">
