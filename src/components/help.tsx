@@ -25,16 +25,16 @@ export function Help() {
           <span>How to play</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-screen max-h-[90vh] overflow-y-auto md:max-w-[512px]">
+      <DialogContent className="max-w-screen max-h-[90vh] overflow-y-auto md:max-w-screen-sm">
         <DialogHeader>
           <DialogTitle>Game Rules</DialogTitle>
           <DialogDescription className="text-left text-base">
             <p>The rules of the game depend on the year of the invention.</p>
             <p>
-              E.g. To win for inventions from the year 2000 or newer, your guess
-              must be within 1 (one) year of the invention&apos;s creation. For
-              an invention made in 1910, you must guess within 5 (five) years to
-              win. Find all the rules in the table below.
+              E.g. To win for inventions from the year 2000 or newer, you must
+              guess the exact year to get it right. For an invention made in
+              1910, you must guess within 3 (three) years to win. Find all the
+              rules in the table below.
             </p>
           </DialogDescription>
         </DialogHeader>

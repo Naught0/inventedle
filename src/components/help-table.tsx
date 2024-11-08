@@ -23,26 +23,26 @@ export function HelpTable({ rules }: { rules: GameRule[] }) {
       <table className="w-full text-right">
         <thead>
           <tr>
-            <th className="bg-background sticky left-0 py-3 text-left">
+            <th className="bg-background sticky left-0 px-3 py-3 text-left">
               <div className="inline-flex gap-2">Year</div>
             </th>
             <th>
-              <div className="inline-flex gap-2">
+              <div className="inline-flex gap-2 px-3">
                 <Square className="bg-emerald-600" /> Win
               </div>
             </th>
             <th>
-              <div className="inline-flex gap-2">
+              <div className="inline-flex gap-2 px-3">
                 <Square className="bg-closeYellow" /> Close
               </div>
             </th>
             <th>
-              <div className="inline-flex gap-2">
+              <div className="inline-flex gap-2 px-3">
                 <Square className="bg-orange-500" /> Warmer
               </div>
             </th>
             <th>
-              <div className="inline-flex gap-2">
+              <div className="inline-flex gap-2 px-3">
                 <Square className="bg-destructive" /> Far
               </div>
             </th>
