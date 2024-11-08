@@ -16,10 +16,8 @@ export function Dangle({
       animate={isHovering ? { rotate: 120 } : { rotate: 0 }}
       transition={{
         type: isHovering ? "spring" : "tween",
-        stiffness: 18,
-        damping: 0.8,
-        repeat: 0,
-        repeatType: "reverse",
+        stiffness: 20,
+        damping: 0.9,
       }}
       style={{
         transformOrigin: "bottom left",
