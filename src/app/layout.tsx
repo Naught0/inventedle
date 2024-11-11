@@ -1,7 +1,7 @@
 import { Hyperlink } from "@/components/hyperlink";
 import { Nav } from "@/components/nav";
 import type { Metadata } from "next";
-import { JetBrains_Mono, Merriweather_Sans } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const jbMono = JetBrains_Mono({
@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`dark ${jbMono.variable} antialiased`}>
+      <body className={`dark ${jbMono.variable} font-mono antialiased`}>
         <Nav />
         <main className="flex min-h-screen w-full flex-grow flex-col items-center gap-6 pb-12 font-sans lg:pb-24">
           <div className="flex w-full max-w-screen-lg flex-grow">
