@@ -1,19 +1,13 @@
 import { Hyperlink } from "@/components/hyperlink";
 import { Nav } from "@/components/nav";
 import type { Metadata } from "next";
-import { Lora } from "next/font/google";
-import localFont from "next/font/local";
+import { JetBrains_Mono, Merriweather_Sans } from "next/font/google";
 import "./globals.css";
 
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-const lora = Lora({
-  weight: "400",
-  variable: "--font-lora",
+const jbMono = JetBrains_Mono({
+  weight: ["500", "800"],
   subsets: ["latin"],
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
@@ -28,9 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`dark ${lora.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`dark ${jbMono.variable} antialiased`}>
         <Nav />
         <main className="flex min-h-screen w-full flex-grow flex-col items-center gap-6 pb-12 font-sans lg:pb-24">
           <div className="flex w-full max-w-screen-lg flex-grow">

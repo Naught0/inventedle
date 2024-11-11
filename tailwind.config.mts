@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        mono: ["var(--font-mono)", "monospace"],
+        sans: ["var(--font-mono)", "var(--fallback-fonts)"],
+      },
       colors: {
         closeYellow: "hsl(var(--close-yellow))",
         background: "hsl(var(--background))",
@@ -59,6 +63,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 };
 export default config;

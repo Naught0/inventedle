@@ -6,12 +6,12 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { defaultRules } from "./game/rules";
 import { HelpTable } from "./help-table";
 import { PiQuestion } from "react-icons/pi";
-import { DialogClose } from "@radix-ui/react-dialog";
 
 export function Help() {
   return (
@@ -25,17 +25,21 @@ export function Help() {
           <span>How to play</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-screen max-h-[90vh] overflow-y-auto md:max-w-screen-sm">
+      <DialogContent className="max-w-screen max-h-[90vh] overflow-y-auto font-mono md:max-w-screen-sm">
         <DialogHeader>
           <DialogTitle>Game Rules</DialogTitle>
           <DialogDescription className="text-left text-base">
-            <p>The rules of the game depend on the year of the invention.</p>
-            <p>
-              E.g. To win for inventions from the year 2000 or newer, you must
-              guess the exact year to get it right. For an invention made in
-              1910, you must guess within 3 (three) years to win. Find all the
-              rules in the table below.
-            </p>
+            <article className="prose prose-invert">
+              <p>The rules of the game depend on the year of the invention.</p>
+              <p>
+                E.g. To win for inventions from the year 2000 onward, you must
+                guess the exact year to get it right. For an invention made in
+                1910, you would need to guess within 3 (three) years to win. The
+                margin to win becomes more forgiving as you go farther back in
+                time.
+              </p>
+              <p>Find all the rules in the table below.</p>
+            </article>
           </DialogDescription>
         </DialogHeader>
         <HelpTable rules={defaultRules} />

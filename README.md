@@ -29,4 +29,4 @@ TODO:
         - [ ] mobile banking
         - [ ] snythetic biology
 - [ ] Censor `in \d\d\d\d` and other spoilers for display as a clue
-
+- [ ] In after-game screen show bar graphs for statistics of average of players for the day

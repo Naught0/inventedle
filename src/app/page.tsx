@@ -1,3 +1,4 @@
+import { Dangle } from "@/components/animations/dangle";
 import { Game } from "@/components/game";
 import { Hyperlink } from "@/components/hyperlink";
 import { ImageWithCaption } from "@/components/image-with-caption";
@@ -16,35 +17,37 @@ export default async function Page() {
         <div className="flex-grow basis-1/2">
           <Game invention={invention} />
         </div>
-        <div className="flex min-w-64 flex-1 basis-1/2 flex-col gap-6">
-          <ImageWithCaption
-            className="max-h-80 w-full max-w-[95vw] object-contain lg:max-h-[512px]"
-            src={`/img/inventions/${invention.id}.webp`}
-            alt={`${invention.name}`}
-            width={1280}
-            height={720}
-            priority
-          >
-            {invention.image_url && (
-              <div className="inline-flex h-4 items-center gap-1.5">
-                <span>
-                  image from{" "}
-                  {new URL(invention.image_url!).hostname.split(".")[1]}
-                </span>
-                <Separator
-                  orientation="vertical"
-                  className="bg-muted-foreground"
-                />
-                <Hyperlink
-                  href={invention.image_url}
-                  className="inline-flex items-center gap-1"
-                >
-                  original
-                </Hyperlink>
-              </div>
-            )}
-          </ImageWithCaption>
-        </div>
+        <Dangle>
+          <div className="flex min-w-64 flex-1 basis-1/2 flex-col gap-6">
+            <ImageWithCaption
+              className="max-h-80 w-full max-w-[95vw] object-contain lg:max-h-[512px]"
+              src={`/img/inventions/${invention.id}.webp`}
+              alt={`${invention.name}`}
+              width={1280}
+              height={720}
+              priority
+            >
+              {invention.image_url && (
+                <div className="inline-flex h-4 items-center gap-1.5">
+                  <span>
+                    image from{" "}
+                    {new URL(invention.image_url!).hostname.split(".")[1]}
+                  </span>
+                  <Separator
+                    orientation="vertical"
+                    className="bg-muted-foreground"
+                  />
+                  <Hyperlink
+                    href={invention.image_url}
+                    className="inline-flex items-center gap-1"
+                  >
+                    original
+                  </Hyperlink>
+                </div>
+              )}
+            </ImageWithCaption>
+          </div>
+        </Dangle>
       </div>
     </div>
   );

@@ -1,16 +1,15 @@
 "use client";
 import { Invention } from "@prisma/client";
 import { createRef, useEffect, useState } from "react";
-import { Hyperlink } from "../hyperlink";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { Label } from "../ui/label";
 import { Era } from "./enum";
 import { EraSelect } from "./era-select";
 import { Guesses } from "./guesses";
 import { getGuessDistance, getRulesByYear, guessIsCorrect } from "./logic";
 import { ShareScore } from "./share-score";
 import { formatYear } from "./utils";
+import { WikiSummary } from "./wiki-summary";
 
 export function Game({ invention }: { invention: Invention }) {
   const isYearRange = invention.start_year !== invention.end_year;
@@ -40,16 +39,16 @@ export function Game({ invention }: { invention: Invention }) {
       {gameWon && (
         <div className="text-xl font-bold lg:text-3xl">
           You won! The year was{" "}
-          <span className="text-primary">
-            {formatYear(invention.start_year)}
+          <span className="text-primary underline underline-offset-8">
+            {formatYear(invention.start_year, true)}
           </span>
         </div>
       )}
       {gameLost && (
         <div className="text-xl font-bold lg:text-3xl">
           You lost! The year was{" "}
-          <span className="text-primary">
-            {formatYear(invention.start_year)}
+          <span className="text-primary underline underline-offset-8">
+            {formatYear(invention.start_year, true)}
           </span>
         </div>
       )}
@@ -67,18 +66,8 @@ export function Game({ invention }: { invention: Invention }) {
             </strong>
             {invention.description}
           </article>
-          <article
-            dangerouslySetInnerHTML={{ __html: invention.wiki_summary! }}
-          />
-          {invention.wiki_link && (
-            <Hyperlink
-              href={invention.wiki_link}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Read more on Wikipedia
-            </Hyperlink>
-          )}
+
+          <WikiSummary invention={invention} />
         </div>
       ) : null}
       <Guesses
@@ -102,7 +91,6 @@ export function Game({ invention }: { invention: Invention }) {
           }}
         >
           <div className="flex flex-grow flex-col gap-3">
-            <Label>Guess the year of this invention</Label>
             <div className="flex flex-row items-center gap-0">
               <Input
                 className="text-foreground placeholder:text-text rounded-r-none"
@@ -117,7 +105,7 @@ export function Game({ invention }: { invention: Invention }) {
               <EraSelect value={era} onChange={setEra} disabled={gameOver} />
             </div>
             <div>
-              <Button type="submit" disabled={gameOver}>
+              <Button size="xl" type="submit" disabled={gameOver}>
                 Guess
               </Button>
             </div>

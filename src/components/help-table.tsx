@@ -23,27 +23,37 @@ export function HelpTable({ rules }: { rules: GameRule[] }) {
       <table className="w-full text-right">
         <thead>
           <tr>
-            <th className="bg-background sticky left-0 px-3 py-3 text-left">
-              <div className="inline-flex gap-2">Year</div>
+            <th></th>
+            <th colSpan={4} className="text-center">
+              Distance (years)
+            </th>
+          </tr>
+          <tr>
+            <th className="bg-background sticky left-0 px-2 py-3 text-left md:px-3">
+              <div className="inline-flex gap-2">Invention year</div>
             </th>
             <th>
-              <div className="inline-flex gap-2 px-3">
-                <Square className="bg-emerald-600" /> Win
+              <div className="inline-flex gap-2 px-2 md:px-3">
+                <Square className="bg-emerald-600" />
+                <span className="hidden md:inline"> Win</span>
               </div>
             </th>
             <th>
-              <div className="inline-flex gap-2 px-3">
-                <Square className="bg-closeYellow" /> Close
+              <div className="inline-flex gap-2 px-2 md:px-3">
+                <Square className="bg-closeYellow" />
+                <span className="hidden md:inline"> Close</span>
               </div>
             </th>
             <th>
-              <div className="inline-flex gap-2 px-3">
-                <Square className="bg-orange-500" /> Warmer
+              <div className="inline-flex gap-2 px-2 md:px-3">
+                <Square className="bg-orange-500" />
+                <span className="hidden md:inline"> Warmer</span>
               </div>
             </th>
             <th>
-              <div className="inline-flex gap-2 px-3">
-                <Square className="bg-destructive" /> Far
+              <div className="inline-flex gap-2 px-2 md:px-3">
+                <Square className="bg-destructive" />
+                <span className="hidden md:inline"> Far</span>
               </div>
             </th>
           </tr>
@@ -51,7 +61,7 @@ export function HelpTable({ rules }: { rules: GameRule[] }) {
         <tbody>
           {rules.map((rule) => (
             <tr key={`${JSON.stringify(rule)}`}>
-              <td className="bg-background sticky left-0 px-3 py-3 text-left">
+              <td className="bg-background sticky left-0 px-2 py-3 text-left md:px-3">
                 {rule.yearStarting !== undefined && (
                   <div className={`inline-flex items-center gap-3`}>
                     <PiArrowFatUpFill />
@@ -66,12 +76,15 @@ export function HelpTable({ rules }: { rules: GameRule[] }) {
                 )}
               </td>
               {rule.scale.map((hotnessRule, hIdx) => (
-                <td className={getBg(hIdx) + " px-3"} key={hotnessRule.hotness}>
+                <td
+                  className={getBg(hIdx) + " px-2 md:px-3"}
+                  key={hotnessRule.hotness}
+                >
                   {hotnessRule.maxDistance}
                 </td>
               ))}
-              <td className={getBg(3) + " px-3"} key={"far"}>
-                &ge;{rule.scale[2].maxDistance + 1}
+              <td className={getBg(3) + " px-2 md:px-3"} key={"far"}>
+                &gt;{rule.scale[2].maxDistance}
               </td>
             </tr>
           ))}
