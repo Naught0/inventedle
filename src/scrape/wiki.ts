@@ -7,6 +7,7 @@ import DOMPurify from "isomorphic-dompurify";
 import { db } from "@/db";
 import sharp from "sharp";
 import { PexelsSearchResults } from "./types";
+import { writeFileSync } from "fs";
 
 const URI = "https://en.wikipedia.org/wiki/Timeline_of_historic_inventions";
 
@@ -14,6 +15,19 @@ const URI = "https://en.wikipedia.org/wiki/Timeline_of_historic_inventions";
 async function getWikiPage(url = URI) {
   const resp = await fetch(url);
   return await resp.text();
+}
+
+function centuryStringToYear(century: string) {
+  const words = century.split(" ");
+  const pat = /(\d+)(?:st|nd|rd|th)/;
+  const year = words.find((w) => w.match(pat));
+  if (!year) throw new Error(`Could not parse year from string ${century}`);
+
+  const isBc = words.some((w) => ["bc", "bce"].includes(w.toLowerCase()));
+  if (isBc) return -parseInt(year) * 100;
+
+  // const isAd = words.some((w) => ["ad", "ce"].includes(w.toLowerCase()));
+  return (parseInt(year) - 1) * 100;
 }
 
 function lineItemToDTO(elem: Element): Prisma.InventionCreateInput | null {
@@ -25,9 +39,26 @@ function lineItemToDTO(elem: Element): Prisma.InventionCreateInput | null {
 
   const description = stripFootnotes(elem.textContent?.trim() ?? "");
   if (!yearStr) return null;
-  if (yearStr.match(/^[0-9]+ BC$/i)) {
-    const year = -parseInt(yearStr);
-    return { start_year: year, end_year: year, description };
+
+  // Handle "100 BC" and "10,000 BC - 9,999 BC"
+  const [start, end] = yearStr
+    .split(/[-–—]/)
+    .map((x) => x.replace(",", "").trim());
+  if ([start, end].some((x) => x?.match(/^[0-9]+ BC$/i))) {
+    return {
+      start_year: -parseInt(start),
+      end_year: -parseInt(end),
+      description,
+    };
+  }
+
+  // Handle "1st century AD" and "5th century BC"
+  if (yearStr.toLowerCase().includes("century")) {
+    return {
+      start_year: centuryStringToYear(start),
+      end_year: end ? centuryStringToYear(end) : null,
+      description,
+    };
   }
 
   if (!/^\d*$/g.test(yearStr ?? "")) return null;
@@ -174,10 +205,12 @@ async function downloadAndCompressPexelsImages() {
   }
 }
 
-(async () => {
+async function findAndDownloadHigherResImagesForInventionIds(
+  inventionIds: number[],
+) {
   await populateMissingDbImages();
   const inventions = await db.invention.findMany({
-    where: { id: { in: [3, 4, 392] } },
+    where: { id: { in: inventionIds } },
   });
   for (const invention of inventions) {
     console.log(invention.name);
@@ -191,4 +224,9 @@ async function downloadAndCompressPexelsImages() {
       `public/img/inventions/${invention.id}.webp`,
     );
   }
+}
+
+(async () => {
+  const dtos = await getInventions();
+  writeFileSync("inventions.json", JSON.stringify(dtos));
 })();
