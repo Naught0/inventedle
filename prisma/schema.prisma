@@ -2,19 +2,25 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator zod {
+  provider = "zod-prisma-types"
+  output   = "../src/db/schema"
+}
+
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
 model Invention {
-  id           Int     @id @default(autoincrement())
-  name         String? @unique(map: "inventions_name_unique")
+  id           Int      @id @default(autoincrement())
+  name         String?
+  name_updated Boolean  @default(false)
   start_year   Int
-  description  String  @unique(map: "inventions_description_unique")
-  image_url    String?
-  created_at   Int     @default(dbgenerated("unixepoch()"))
   end_year     Int?
+  description  String
+  image_url    String?
+  created_at   DateTime @default(now())
   wiki_summary String?
   wiki_link    String?
 
@@ -22,26 +28,26 @@ model Invention {
 }
 
 model Score {
-  id           Int  @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   invention_id Int?
-  created_at   Int  @default(dbgenerated("unixepoch()"))
+  created_at   DateTime @default(now())
 
   @@map("scores")
 }
 
 model UsedInvention {
-  id           Int @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   invention_id Int
-  is_current   Int @default(1)
-  used_at      Int @default(dbgenerated("unixepoch()"))
+  is_current   Int      @default(1)
+  used_at      DateTime @default(now())
 
   @@map("used_inventions")
 }
 
 model User {
-  id         Int     @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   name       String?
-  created_at Int     @default(dbgenerated("unixepoch()"))
+  created_at DateTime @default(now())
 
   @@map("users")
 }
