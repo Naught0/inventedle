@@ -1,5 +1,5 @@
 "use client";
-import { PiShare } from "react-icons/pi";
+import { PiCopyFill } from "react-icons/pi";
 import { getHotness, guessIsCorrect } from "./logic";
 import {
   Popover,
@@ -96,7 +96,7 @@ export function ShareScore(props: {
           type="button"
           onClick={onClick}
         >
-          Share <PiShare />
+          Share <PiCopyFill />
         </PopoverTrigger>
       </PopoverAnchor>
 
