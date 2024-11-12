@@ -37,7 +37,7 @@ export function Game({ invention }: { invention: Invention }) {
   return (
     <div className="flex flex-col gap-6">
       {gameWon && (
-        <div className="text-xl font-bold lg:text-3xl">
+        <div className="text-lg font-bold lg:text-2xl">
           You won! The year was{" "}
           <span className="text-primary underline underline-offset-8">
             {formatYear(invention.start_year, true)}
@@ -45,7 +45,7 @@ export function Game({ invention }: { invention: Invention }) {
         </div>
       )}
       {gameLost && (
-        <div className="text-xl font-bold lg:text-3xl">
+        <div className="text-lg font-bold lg:text-2xl">
           You lost! The year was{" "}
           <span className="text-primary underline underline-offset-8">
             {formatYear(invention.start_year, true)}

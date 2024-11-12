@@ -29,7 +29,7 @@ export default function RootLayout({
             {children}
           </div>
         </main>
-        <footer className="bg-secondary flex flex-col items-center gap-6 py-36 text-center text-xs lg:text-sm">
+        <footer className="bg-secondary flex flex-col items-center gap-6 px-6 py-36 text-center text-xs lg:text-sm">
           <p>
             this project is{" "}
             <Hyperlink

@@ -13,7 +13,7 @@ export default async function Page() {
       <h2 className="text-center text-2xl md:text-3xl">
         <span className="text-foreground font-extrabold">{invention.name}</span>
       </h2>
-      <div className="grid w-full max-w-screen-sm grid-cols-1 flex-row flex-wrap justify-center gap-9 lg:max-w-screen-lg lg:grid-cols-2 lg:flex-nowrap">
+      <div className="grid w-full max-w-screen-sm grid-cols-1 flex-row flex-wrap justify-center gap-6 lg:max-w-screen-lg lg:grid-cols-2 lg:flex-nowrap lg:gap-9">
         <div className="flex-grow basis-1/2">
           <Game invention={invention} />
         </div>
