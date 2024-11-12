@@ -28,5 +28,6 @@ TODO:
         - [ ] Netflix
         - [ ] mobile banking
         - [ ] snythetic biology
+        - [ ] list of aircraft engines
 - [ ] Censor `in \d\d\d\d` and other spoilers for display as a clue
 - [ ] In after-game screen show bar graphs for statistics of average of players for the day
