@@ -1,0 +1,2888 @@
+[
+  {
+    "start_year": -10000,
+    "end_year": -9000,
+    "description": "Agriculture in the Fertile Crescent",
+    "name": "Cultivation"
+  },
+  {
+    "start_year": -10000,
+    "end_year": -9000,
+    "description": "Domestication of sheep in Southwest Asia (followed shortly by pigs, goats and cattle)",
+    "name": "Animal husbandry"
+  },
+  {
+    "start_year": -9500,
+    "end_year": -9000,
+    "description": "Oldest known surviving building – Göbekli Tepe, in Turkey",
+    "name": "Stone circles"
+  },
+  {
+    "start_year": -9000,
+    "end_year": -6000,
+    "description": "Domestication of rice in China",
+    "name": "Agricultural practice"
+  },
+  {
+    "start_year": -9000,
+    "end_year": null,
+    "description": "Mudbricks (unfired bricks), and clay mortar in Jericho",
+    "name": "Early construction material"
+  },
+  {
+    "start_year": -8400,
+    "end_year": null,
+    "description": "Oldest known water well in Cyprus",
+    "name": "Water well"
+  },
+  {
+    "start_year": -8040,
+    "end_year": -7510,
+    "description": "The Pesse canoe is the oldest boat we have found, while early human habitation of Crete and Australia make clear human seafaring goes back tens or hundreds of thousands of years. (see above)",
+    "name": "Canoe"
+  },
+  {
+    "start_year": -8000,
+    "end_year": -7500,
+    "description": "Proto-city – large permanent settlements, such as Tell es-Sultan (Jericho) and Çatalhöyük, Turkey",
+    "name": "Urbanization"
+  },
+  {
+    "start_year": -8000,
+    "end_year": -5000,
+    "description": "Domestication of potatoes, in southern Peru and northwestern Bolivia by pre-Columbian farmers, around Lake Titicaca",
+    "name": "Potato"
+  },
+  {
+    "start_year": -7500,
+    "end_year": -6500,
+    "description": "Copper tools, by the people of the Old Copper Complex from the Great Lakes region of North America",
+    "name": "Copper tools"
+  },
+  {
+    "start_year": -7000,
+    "end_year": null,
+    "description": "Alcohol fermentation – specifically mead, in China",
+    "name": "Mead"
+  },
+  {
+    "start_year": -7000,
+    "end_year": null,
+    "description": "Sled dog and Dog sled, in Siberia",
+    "name": "Transportation"
+  },
+  {
+    "start_year": -6500,
+    "end_year": null,
+    "description": "Evidence of lead smelting in Çatalhöyük, Turkey",
+    "name": "Smelting"
+  },
+  {
+    "start_year": -6000,
+    "end_year": null,
+    "description": "Kiln in Mesopotamia (Iraq)",
+    "name": "Ceramic furnace"
+  },
+  {
+    "start_year": -6000,
+    "end_year": -3200,
+    "description": "Proto-writing in present-day Egypt, Iraq, Romania, China, India and Pakistan",
+    "name": "Cuneiform"
+  },
+  {
+    "start_year": -5900,
+    "end_year": -5600,
+    "description": "Oldest evidence of salt production found in Southeastern Europe, in the countries of Moldova and Romania",
+    "name": "Salt extraction"
+  },
+  {
+    "start_year": -5500,
+    "end_year": -5200,
+    "description": "Oldest evidence of cheese found, in Poland and on the Dalmatian coast of Croatia",
+    "name": "Fermentation"
+  },
+  {
+    "start_year": -5500,
+    "end_year": null,
+    "description": "Sailing - pottery depictions of sail boats, in Mesopotamia,",
+    "name": "Sailboat technology"
+  },
+  {
+    "start_year": -5000,
+    "end_year": null,
+    "description": "Copper smelting in Serbia",
+    "name": "Smelting technology"
+  },
+  {
+    "start_year": -5000,
+    "end_year": null,
+    "description": "Seawall in Tel Hreiz, near Haifa, Israel",
+    "name": "Coastal defense barrier"
+  },
+  {
+    "start_year": -5000,
+    "end_year": null,
+    "description": "Cotton thread, in Mehrgarh, Pakistan, connecting the copper beads of a bracelet",
+    "name": "Textile production"
+  },
+  {
+    "start_year": -5000,
+    "end_year": -4500,
+    "description": "Rowing oars in China",
+    "name": "Boat propulsion"
+  },
+  {
+    "start_year": -4500,
+    "end_year": -3500,
+    "description": "Lost-wax casting in Palestine",
+    "name": "Metal casting technique"
+  },
+  {
+    "start_year": -4400,
+    "end_year": null,
+    "description": "Fired bricks in China",
+    "name": "Kiln"
+  },
+  {
+    "start_year": -4000,
+    "end_year": null,
+    "description": "Probable time period of the first diamond-mines in the world, in Southern India",
+    "name": "Diamond mining"
+  },
+  {
+    "start_year": -4000,
+    "end_year": null,
+    "description": "Paved roads, in and around the Mesopotamian city of Ur, Iraq",
+    "name": "Road construction"
+  },
+  {
+    "start_year": -4000,
+    "end_year": null,
+    "description": "Plumbing. The earliest pipes were made of clay, and are found at the Temple of Bel at Nippur in Babylonia",
+    "name": "Plumbing"
+  },
+  {
+    "start_year": -4000,
+    "end_year": null,
+    "description": "Oldest evidence of locks, the earliest example discovered in the ruins of Nineveh, the capital of ancient Assyria",
+    "name": "Locks"
+  },
+  {
+    "start_year": -4000,
+    "end_year": -3400,
+    "description": "Oldest evidence of wheels, found in the countries of Ukraine, Poland, and Germany",
+    "name": "Rotating circular device"
+  },
+  {
+    "start_year": -3630,
+    "end_year": null,
+    "description": "Silk garments (sericulture) in China",
+    "name": "Sericulture"
+  },
+  {
+    "start_year": -3500,
+    "end_year": null,
+    "description": "Probable first domestication of the horse in the Eurasian Steppes",
+    "name": "Animal labor"
+  },
+  {
+    "start_year": -3500,
+    "end_year": null,
+    "description": "Wine as general anaesthesia in Sumer",
+    "name": "Wine"
+  },
+  {
+    "start_year": -3500,
+    "end_year": null,
+    "description": "Seal (emblem) invented around in the Near East, at the contemporary sites of Uruk in southern Mesopotamia and slightly later at Susa in south-western Iran during the Proto-Elamite period, and they follow the development of stamp seals in the Halaf culture or slightly earlier",
+    "name": "Stamp seal"
+  },
+  {
+    "start_year": -3500,
+    "end_year": null,
+    "description": "Ploughing, on a site in Bubeneč, Czech Republic",
+    "name": "Tractor"
+  },
+  {
+    "start_year": -3400,
+    "end_year": -3100,
+    "description": "Tattoos in southern Europe",
+    "name": "Body modification"
+  },
+  {
+    "start_year": -3300,
+    "end_year": null,
+    "description": "The first documented swords. They have been found in Arslantepe, Turkey, are made from arsenical bronze, and are about 60 cm (24 in) long",
+    "name": "Bronze swords"
+  },
+  {
+    "start_year": -3300,
+    "end_year": null,
+    "description": "City in Uruk, Sumer, Mesopotamia (modern-day Iraq)",
+    "name": "Writing system"
+  },
+  {
+    "start_year": -3200,
+    "end_year": null,
+    "description": "Dry Latrines in the city of Uruk, Iraq, with later dry squat Toilets, that added raised fired brick foot platforms, and pedestal toilets, all over clay pipe constructed drains",
+    "name": "Dry sanitation systems"
+  },
+  {
+    "start_year": -3200,
+    "end_year": null,
+    "description": "Earliest actual wheel ever found, the Ljubljana Marshes Wheel, made of wood, in Slovenia",
+    "name": "A wheeled vehicle"
+  },
+  {
+    "start_year": -3000,
+    "end_year": null,
+    "description": "Devices functionally equivalent to dice, in the form of flat two-sided throwsticks, are seen in the Egyptian game of Senet",
+    "name": "Throwsticks"
+  },
+  {
+    "start_year": -3000,
+    "end_year": null,
+    "description": "Tin extraction in Central Asia",
+    "name": "Smelting furnace"
+  },
+  {
+    "start_year": -3000,
+    "end_year": -2560,
+    "description": "Papyrus in Egypt",
+    "name": "Writing material"
+  },
+  {
+    "start_year": -3000,
+    "end_year": null,
+    "description": "Reservoir in Girnar, Indus Valley",
+    "name": "Water clock"
+  },
+  {
+    "start_year": -3000,
+    "end_year": null,
+    "description": "Receipt in Ancient Mesopotamia (Iraq)",
+    "name": "Clay tablet writing"
+  },
+  {
+    "start_year": -3000,
+    "end_year": -2800,
+    "description": "Prosthesis first documented in the Ancient Near East, in ancient Egypt and Iran, specifically for an eye prosthetics, the eye found in Iran was likely made of bitumen paste that was covered with a thin layer of gold",
+    "name": "Eye prosthesis"
+  },
+  {
+    "start_year": -3000,
+    "end_year": -2500,
+    "description": "Rhinoplasty in Egypt",
+    "name": "Surgical nose reshaping"
+  },
+  {
+    "start_year": -2650,
+    "end_year": null,
+    "description": "The Ruler, or Measuring rod, in the subdivided Nippur, copper rod, of the Sumerian Civilisation (modern-day Iraq)",
+    "name": "Measuring rod"
+  },
+  {
+    "start_year": -2600,
+    "end_year": null,
+    "description": "Planned city in Indus Valley",
+    "name": "Urban planning"
+  },
+  {
+    "start_year": -2600,
+    "end_year": null,
+    "description": "Public sewage and sanitation systems in Indus Valley sites such as Mohenjo-daro and Rakhigarhi",
+    "name": "Urban sanitation"
+  },
+  {
+    "start_year": -2600,
+    "end_year": null,
+    "description": "Public bath in Mohenjo-daro, Indus Valley (modern-day Pakistan)",
+    "name": "Urban sanitation"
+  },
+  {
+    "start_year": -2600,
+    "end_year": null,
+    "description": "Levee in Indus Valley",
+    "name": "Flood defense"
+  },
+  {
+    "start_year": -2600,
+    "end_year": null,
+    "description": "Balance weights and scales, from the Fourth Dynasty of Egypt; examples of Deben (unit) balance weights, from reign of Sneferu (c. 2600 BC) have been attributed",
+    "name": "Weighing system"
+  },
+  {
+    "start_year": -2556,
+    "end_year": null,
+    "description": "Docks structure in Wadi al-Jarf, Egypt, which was developed by the reign of the Pharaoh Khufu",
+    "name": "Pyramids"
+  },
+  {
+    "start_year": -2500,
+    "end_year": null,
+    "description": "Puppetry in the Indus Valley",
+    "name": "Ancient puppetry"
+  },
+  {
+    "start_year": -2400,
+    "end_year": null,
+    "description": "Fork in Bronze Age Qijia culture in China",
+    "name": "A utensil"
+  },
+  {
+    "start_year": -2400,
+    "end_year": null,
+    "description": "Copper pipes, the Pyramid of Sahure, an adjoining temple complex at Abusir, was discovered to have a network of copper drainage pipes",
+    "name": "Drainage system"
+  },
+  {
+    "start_year": -2400,
+    "end_year": null,
+    "description": "Touchstone in the Indus Valley site of Banawali (modern-day India)",
+    "name": "Bronze tools"
+  },
+  {
+    "start_year": -2300,
+    "end_year": null,
+    "description": "Dictionary in Mesopotamia",
+    "name": "Writing system"
+  },
+  {
+    "start_year": -2200,
+    "end_year": -2000,
+    "description": "Iron smelting in Kaman-Kalehöyük",
+    "name": "Metalworking"
+  },
+  {
+    "start_year": -2200,
+    "end_year": null,
+    "description": "Protractor, Phase IV, Lothal, Indus Valley (modern-day India), a Xancus shell cylinder with sawn grooves, at right angles, in its top and bottom surfaces, has been proposed as an angle marking tool",
+    "name": "Angle measuring device"
+  },
+  {
+    "start_year": -2000,
+    "end_year": null,
+    "description": "Water clock by at least the old Babylonian period (c. 2000 – c. 1600 BC),",
+    "name": "Water clock"
+  },
+  {
+    "start_year": -2000,
+    "end_year": null,
+    "description": "Chariot in Russia and Kazakhstan",
+    "name": "Vehicle"
+  },
+  {
+    "start_year": -2000,
+    "end_year": null,
+    "description": "Scissors, in Mesopotamia",
+    "name": "Cutting tool"
+  },
+  {
+    "start_year": -1850,
+    "end_year": null,
+    "description": "Proto-alphabet (Proto-Sinaitic script) in Egypt",
+    "name": "Early alphabet"
+  },
+  {
+    "start_year": -1600,
+    "end_year": null,
+    "description": "Surgical treatise appeared in Egypt",
+    "name": "Anesthesia"
+  },
+  {
+    "start_year": -1500,
+    "end_year": null,
+    "description": "Sundial in Ancient Egypt or Babylonia (modern-day Iraq)",
+    "name": "Timekeeping device"
+  },
+  {
+    "start_year": -1500,
+    "end_year": null,
+    "description": "Glass manufacture in either Mesopotamia or Ancient Egypt",
+    "name": "Glass"
+  },
+  {
+    "start_year": -1500,
+    "end_year": null,
+    "description": "Seed drill in Babylonia",
+    "name": "Agricultural device"
+  },
+  {
+    "start_year": -1400,
+    "end_year": null,
+    "description": "Rubber,",
+    "name": "Elastomer"
+  },
+  {
+    "start_year": -1400,
+    "end_year": -1200,
+    "description": "Concrete in Tiryns (Mycenaean Greece),",
+    "name": "Ancient concrete"
+  },
+  {
+    "start_year": -1300,
+    "end_year": null,
+    "description": "Lathe in Ancient Egypt",
+    "name": "Turning device"
+  },
+  {
+    "start_year": -1200,
+    "end_year": null,
+    "description": "Distillation is described on Akkadian tablets documenting perfumery operations",
+    "name": "Perfume production technique"
+  },
+  {
+    "start_year": -1100,
+    "end_year": null,
+    "description": "Star catalogue — Three Stars Each is the earliest known catalogue in long-running tradition of Babylonian astronomy,",
+    "name": "Star catalogue"
+  },
+  {
+    "start_year": -700,
+    "end_year": null,
+    "description": "Saddle (fringed cloths or pads used by Assyrian cavalry)",
+    "name": "Cavalry padding"
+  },
+  {
+    "start_year": -700,
+    "end_year": null,
+    "description": "The royal Library of Ashurbanipal at Nineveh had 30,000 clay tablets, in several languages, organized according to shape and separated by content. The first recorded example of a library catalog",
+    "name": "Cataloging system"
+  },
+  {
+    "start_year": -688,
+    "end_year": null,
+    "description": "Waterproof concrete in use, by the Assyrians",
+    "name": "Concrete waterproofing"
+  },
+  {
+    "start_year": -650,
+    "end_year": null,
+    "description": "Crossbow in China",
+    "name": "A ranged weapon"
+  },
+  {
+    "start_year": -600,
+    "end_year": null,
+    "description": "Coins in Phoenicia (Modern Lebanon) or Lydia",
+    "name": "Metal currency"
+  },
+  {
+    "start_year": -700,
+    "end_year": null,
+    "description": "Wagonway called Diolkos across the Isthmus of Corinth in Ancient Greece",
+    "name": "A road"
+  },
+  {
+    "start_year": -600,
+    "end_year": 900,
+    "description": "High Carbon Steel, produced by the Closed Crucible method, later known as Wootz steel, of South India",
+    "name": "Wootz steel"
+  },
+  {
+    "start_year": 500,
+    "end_year": -200,
+    "description": "Systematization of medicine and surgery in the Sushruta Samhita in Vedic Northern India. Documented procedures to:\nPerform cataract surgery (couching). Babylonian and Egyptian texts, a millennium before, depict and mention oculists, but not the procedure itself.\nPerform Caesarean section.\nConstruct Prosthetic limbs.\nPerform Plastic surgery, though reconstructive nasal surgery is described in millennia older Egyptian papyri",
+    "name": "Sushruta’s Samhita"
+  },
+  {
+    "start_year": -600,
+    "end_year": null,
+    "description": "Crank motion (rotary quern) in Carthage Later during the Roman empire, a mechanism appeared that incorporated a connecting rod",
+    "name": "Grinding mill"
+  },
+  {
+    "start_year": -500,
+    "end_year": null,
+    "description": "Loan deeds in Upanishadic India",
+    "name": "Land ownership records"
+  },
+  {
+    "start_year": -500,
+    "end_year": null,
+    "description": "Lighthouse in Greece",
+    "name": "A guiding structure"
+  },
+  {
+    "start_year": -500,
+    "end_year": -200,
+    "description": "Toe stirrup, depicted in 2nd century Buddhist art, of the Sanchi and Bhaja Caves, of the Deccan Satavahana empire (modern-day India)",
+    "name": "Horse riding equipment"
+  },
+  {
+    "start_year": -485,
+    "end_year": null,
+    "description": "Catapult by Ajatashatru in Magadha, India",
+    "name": "A projectile weapon"
+  },
+  {
+    "start_year": -485,
+    "end_year": null,
+    "description": "Scythed chariot by Ajatashatru in Magadha, India",
+    "name": "A war vehicle"
+  },
+  {
+    "start_year": -500,
+    "end_year": null,
+    "description": "Cast iron in Ancient China: Confirmed by archaeological evidence, the earliest cast iron is developed in China by the early 5th century BC during the Zhou dynasty (1122–256 BC), the oldest specimens found in a tomb of Luhe County in Jiangsu province",
+    "name": "Cast iron"
+  },
+  {
+    "start_year": -480,
+    "end_year": null,
+    "description": "Spiral stairs (Temple A) in Selinunte, Sicily (see also List of ancient spiral stairs)",
+    "name": "Ancient architectural design"
+  },
+  {
+    "start_year": -400,
+    "end_year": null,
+    "description": "Traction trebuchet in Ancient China",
+    "name": "Siege weapon"
+  },
+  {
+    "start_year": -400,
+    "end_year": null,
+    "description": "Gears in Ancient China",
+    "name": "Mechanical devices"
+  },
+  {
+    "start_year": -400,
+    "end_year": null,
+    "description": "Reed pens, utilising a split nib, were used to write with ink on Papyrus in Egypt",
+    "name": "Writing instrument"
+  },
+  {
+    "start_year": -400,
+    "end_year": null,
+    "description": "Nailed Horseshoe, with 4 bronze shoes found in an Etruscan tomb",
+    "name": "Horseshoes"
+  },
+  {
+    "start_year": -375,
+    "end_year": -350,
+    "description": "Animal-driven rotary mill in Carthage",
+    "name": "Rotary mill"
+  },
+  {
+    "start_year": -400,
+    "end_year": null,
+    "description": "Corporations in either the Maurya Empire of India or in Ancient Rome (Collegium)",
+    "name": "A guild"
+  },
+  {
+    "start_year": -400,
+    "end_year": null,
+    "description": "Cheque in the Maurya Empire of India",
+    "name": "A written payment order"
+  },
+  {
+    "start_year": -400,
+    "end_year": null,
+    "description": "Formal systems by Pāṇini in India, possibly during the reign of Chandragupta Maurya",
+    "name": "Linguistic rules"
+  },
+  {
+    "start_year": -400,
+    "end_year": null,
+    "description": "Zinc production in North-Western India during the Maurya Empire",
+    "name": "Metallurgy"
+  },
+  {
+    "start_year": -300,
+    "end_year": null,
+    "description": "Analog computers in the Hellenistic world (see e.g. the Antikythera mechanism), possibly in Rhodes",
+    "name": "Mechanical calculator"
+  },
+  {
+    "start_year": -300,
+    "end_year": null,
+    "description": "Archimedes' screw, one of the earliest hydraulic machines, was first used in the Nile river for irrigation purposes in Ancient Egypt",
+    "name": "A water-lifting device"
+  },
+  {
+    "start_year": -300,
+    "end_year": null,
+    "description": "Canal lock in Canal of the Pharaohs under Ptolemy II (283–246 BC) in Hellenistic Egypt",
+    "name": "Water-sealed gate"
+  },
+  {
+    "start_year": -300,
+    "end_year": null,
+    "description": "Cam during the Hellenistic period, used in water-driven automata",
+    "name": "Water-powered wheel"
+  },
+  {
+    "start_year": -300,
+    "end_year": null,
+    "description": "Water wheel. The origin is unclear: Indian Pali texts dating to the 4th century BCE refer to the cakkavattaka, which later commentaries describe as arahatta-ghati-yanta (machine with wheel-pots attached). Helaine Selin suggests that the device existed in Persia before 350 BC",
+    "name": "Water wheel"
+  },
+  {
+    "start_year": -300,
+    "end_year": null,
+    "description": "Gimbal described by Philo of Byzantium",
+    "name": "A pivoting mechanism"
+  },
+  {
+    "start_year": -300,
+    "end_year": null,
+    "description": "Dry dock under Ptolemy IV (221–205 BC) in Hellenistic Egypt",
+    "name": "Ship repair"
+  },
+  {
+    "start_year": -300,
+    "end_year": -200,
+    "description": "Blast furnace in Ancient China: The earliest discovered blast furnaces in China date to the 3rd and 2nd centuries BC, although most sites are from the later Han dynasty",
+    "name": "Blast furnace"
+  },
+  {
+    "start_year": -200,
+    "end_year": null,
+    "description": "Paper in Han dynasty China",
+    "name": "Papermaking"
+  },
+  {
+    "start_year": -206,
+    "end_year": null,
+    "description": "Compass in Han dynasty China",
+    "name": "Navigation tool"
+  },
+  {
+    "start_year": -200,
+    "end_year": null,
+    "description": "Astrolabe invented by Apollonius of Perga",
+    "name": "A navigational instrument"
+  },
+  {
+    "start_year": -100,
+    "end_year": null,
+    "description": "Segmental arch bridge (e.g. Pont-Saint-Martin or Ponte San Lorenzo) in Italy, Roman Republic",
+    "name": "Segmented arch bridge"
+  },
+  {
+    "start_year": -100,
+    "end_year": null,
+    "description": "News bulletin during the reign of Julius Caesar",
+    "name": "Printing press"
+  },
+  {
+    "start_year": -100,
+    "end_year": null,
+    "description": "Arch dam (Glanum Dam) in Gallia Narbonensis, Roman Republic (see also List of Roman dams)",
+    "name": "Roman dam"
+  },
+  {
+    "start_year": -37,
+    "end_year": -14,
+    "description": "Glass blowing developed in Jerusalem",
+    "name": "Glassmaking"
+  },
+  {
+    "start_year": -25,
+    "end_year": null,
+    "description": "Noodle in Lajia in China",
+    "name": "Pasta"
+  },
+  {
+    "start_year": 0,
+    "end_year": null,
+    "description": "The aeolipile, a simple steam turbine is recorded by Hero of Alexandria",
+    "name": "Steam turbine"
+  },
+  {
+    "start_year": 0,
+    "end_year": null,
+    "description": "The first use of respiratory protective equipment is documented by Pliny the Elder (c. 23 AD–79) using animal bladder skins to protect workers in Roman mines from red lead oxide dust",
+    "name": "Respiratory protection"
+  },
+  {
+    "start_year": 0,
+    "end_year": null,
+    "description": "Oldest surviving wine",
+    "name": "Pressurizing vessel"
+  },
+  {
+    "start_year": 0,
+    "end_year": null,
+    "description": "Vending machines invented by Hero of Alexandria",
+    "name": "Vending machines"
+  },
+  {
+    "start_year": 132,
+    "end_year": 132,
+    "description": "Seismometer and pendulum in Han dynasty China, built by Zhang Heng. It is a large metal urn-shaped instrument which employed either a suspended pendulum or inverted pendulum acting on inertia, like the ground tremors from earthquakes, to dislodge a metal ball by a lever trip device",
+    "name": "Earthquake detection device"
+  },
+  {
+    "start_year": 100,
+    "end_year": null,
+    "description": "Carding in India",
+    "name": "Wool comb"
+  },
+  {
+    "start_year": 200,
+    "end_year": null,
+    "description": "Crystallized sugar in India",
+    "name": "Sugar refining"
+  },
+  {
+    "start_year": 200,
+    "end_year": null,
+    "description": "Woodblock printing is invented in Han dynasty China at sometime before 220 AD. This made China become the world's first print culture",
+    "name": "Woodblock printing"
+  },
+  {
+    "start_year": 200,
+    "end_year": 300,
+    "description": "Water turbine in the Roman Empire in modern-day Tunisia",
+    "name": "Hydropower"
+  },
+  {
+    "start_year": 300,
+    "end_year": null,
+    "description": "Roman Dichroic glass, which displays one of two different colors depending on lighting conditions",
+    "name": "Colored glass"
+  },
+  {
+    "start_year": 300,
+    "end_year": null,
+    "description": "Simple suspension bridge, independently invented in Pre-Columbian South America,  and the Hindu Kush range, of present-day Afghanistan and Pakistan. With Han dynasty travelers noting bridges being constructed from 3 or more vines or 3 ropes",
+    "name": "Bridge"
+  },
+  {
+    "start_year": 300,
+    "end_year": null,
+    "description": "Fishing reel in Ancient China: In literary records, the earliest evidence of the fishing reel comes from a 4th-century AD",
+    "name": "Fishing reel"
+  },
+  {
+    "start_year": 347,
+    "end_year": 347,
+    "description": "Oil Wells and Borehole drilling in China. Such wells could reach depths of up to 240 m (790 ft)",
+    "name": "Borehole drilling"
+  },
+  {
+    "start_year": 400,
+    "end_year": 400,
+    "description": "The construction of the Iron pillar of Delhi in Mathura by the Gupta Empire shows the development of rust-resistant ferrous metallurgy in Ancient India, although original texts do not survive to detail the specific processes invented in this period",
+    "name": "Rust-resistant metallurgy"
+  },
+  {
+    "start_year": 400,
+    "end_year": null,
+    "description": "The horse collar as a fully developed collar harness is developed in Northern and Southern dynasties China during the 5th century AD",
+    "name": "Harness"
+  },
+  {
+    "start_year": 400,
+    "end_year": 500,
+    "description": "Pointed arch bridge (Karamagara Bridge) in Cappadocia, Eastern Roman Empire",
+    "name": "Arch bridge"
+  },
+  {
+    "start_year": 500,
+    "end_year": null,
+    "description": "Incense clock in China",
+    "name": "A fragrant timepiece"
+  },
+  {
+    "start_year": 563,
+    "end_year": 563,
+    "description": "Pendentive dome (Hagia Sophia) in Constantinople, Eastern Roman Empire",
+    "name": "Architectural form"
+  },
+  {
+    "start_year": 577,
+    "end_year": 577,
+    "description": "Sulfur matches exist in China",
+    "name": "Pyrotechnic matches"
+  },
+  {
+    "start_year": 589,
+    "end_year": 589,
+    "description": "Toilet paper in Sui dynasty China, first mentioned by the official Yan Zhitui (531–591), with full evidence of continual use in subsequent dynasties",
+    "name": "Paper for sanitation"
+  },
+  {
+    "start_year": 619,
+    "end_year": 619,
+    "description": "Toothbrush in China during the Tang dynasty",
+    "name": "Brush"
+  },
+  {
+    "start_year": 672,
+    "end_year": 672,
+    "description": "Greek fire in Constantinople, Byzantine Empire: Greek fire, an incendiary weapon likely based on petroleum or naphtha, is invented by Kallinikos, a Lebanese Greek refugee from Baalbek, as described by Theophanes",
+    "name": "Incendiary weapon"
+  },
+  {
+    "start_year": 600,
+    "end_year": null,
+    "description": "Banknote in Tang dynasty China: The banknote is first developed in China during the Tang and Song dynasties, starting in the 7th century. Its roots are in merchant receipts of deposit during the Tang dynasty (618–907), as merchants and wholesalers desire to avoid the heavy bulk of copper coinage in large commercial transactions",
+    "name": "Paper money"
+  },
+  {
+    "start_year": 600,
+    "end_year": null,
+    "description": "Porcelain in Tang dynasty China: True porcelain is manufactured in northern China from roughly the beginning of the Tang dynasty in the 7th century, while true porcelain was not manufactured in southern China until about 300 years later, during the early 10th century",
+    "name": "Ceramic ware"
+  },
+  {
+    "start_year": 800,
+    "end_year": null,
+    "description": "Gunpowder in Tang dynasty China: Gunpowder is, according to prevailing academic consensus, discovered in the 9th century by Chinese alchemists searching for an elixir of immortality",
+    "name": "Gunpowder"
+  },
+  {
+    "start_year": 800,
+    "end_year": null,
+    "description": "Playing card in Tang dynasty China",
+    "name": "Playing cards"
+  },
+  {
+    "start_year": 900,
+    "end_year": null,
+    "description": "Fire lance in Song dynasty China, developed in the 10th century with a tube of first bamboo and later on metal that shot a weak gunpowder blast of flame and shrapnel, its earliest depiction is a painting found at Dunhuang",
+    "name": "Fire lance"
+  },
+  {
+    "start_year": 900,
+    "end_year": null,
+    "description": "Fireworks in Song dynasty China: Fireworks first appear in China during the Song dynasty (960–1279), in the early age of gunpowder. Fireworks could be purchased from market vendors; these were made of sticks of bamboo packed with gunpowder",
+    "name": "Gunpowder devices"
+  },
+  {
+    "start_year": 974,
+    "end_year": 974,
+    "description": "Fountain pen: invented at the request of al-Mu'izz li-Din Allah in Arab Egypt",
+    "name": "Writing instrument"
+  },
+  {
+    "start_year": 1000,
+    "end_year": null,
+    "description": "Early versions of the Bessemer process are developed in China",
+    "name": "Steelmaking process"
+  },
+  {
+    "start_year": 1000,
+    "end_year": null,
+    "description": "Endless power-transmitting chain drive by Su Song for the development an astronomical clock (the Cosmic Engine)",
+    "name": "Chain drive"
+  },
+  {
+    "start_year": 1000,
+    "end_year": null,
+    "description": "Calico was developed in Calicut, India",
+    "name": "Textile Dye"
+  },
+  {
+    "start_year": 1088,
+    "end_year": 1088,
+    "description": "Movable type in Song dynasty China: The first record of a movable type system is in the Dream Pool Essays, which attributes the invention of the movable type to Bi Sheng",
+    "name": "Movable type"
+  },
+  {
+    "start_year": 1200,
+    "end_year": null,
+    "description": "Rocket for military and recreational uses date back to at least 13th-century China",
+    "name": "Rocket"
+  },
+  {
+    "start_year": 1200,
+    "end_year": null,
+    "description": "The earliest form of mechanical escapement, the verge escapement in Europe",
+    "name": "Verge escapement"
+  },
+  {
+    "start_year": 1200,
+    "end_year": null,
+    "description": "Buttons (combined with buttonholes) as a functional fastening for closing clothes appear first in Germany",
+    "name": "Fasteners"
+  },
+  {
+    "start_year": 1200,
+    "end_year": null,
+    "description": "Explosive bomb in Jin dynasty Manchuria: Explosive bombs are used in 1221 by the Jin dynasty against a Song dynasty city",
+    "name": "Explosive bombs"
+  },
+  {
+    "start_year": 1200,
+    "end_year": null,
+    "description": "Hand cannon in Yuan dynasty China: The earliest hand cannon dates to the 13th century based on archaeological evidence from a Heilongjiang excavation. There is also written evidence in the Yuanshi (1370) on Li Tang, an ethnic Jurchen commander under the Yuan dynasty who in 1288 suppresses the rebellion of the Christian prince Nayan with his \"gun-soldiers\" or chongzu, this being the earliest known event where this phrase is used",
+    "name": "Early firearm"
+  },
+  {
+    "start_year": 1200,
+    "end_year": null,
+    "description": "Earliest documented snow goggles, a type of sunglasses, made of flattened walrus or caribou ivory are used by the Inuit peoples in the arctic regions of North America",
+    "name": "Snow goggles"
+  },
+  {
+    "start_year": 1200,
+    "end_year": null,
+    "description": "Double-entry bookkeeping in Italy",
+    "name": "Accounting method"
+  },
+  {
+    "start_year": 1200,
+    "end_year": 1300,
+    "description": "Worm gear cotton gin in India",
+    "name": "Cotton gin"
+  },
+  {
+    "start_year": 1277,
+    "end_year": 1277,
+    "description": "Land mine in Song dynasty China: Textual evidence suggests that the first use of a land mine in history is by a Song dynasty brigadier general known as Lou Qianxia, who uses an 'enormous bomb' (huo pao) to kill Mongol soldiers invading Guangxi in 1277",
+    "name": "Land mine"
+  },
+  {
+    "start_year": 1286,
+    "end_year": 1286,
+    "description": "Eyeglasses in Italy",
+    "name": "Eyeglasses"
+  },
+  {
+    "start_year": 1300,
+    "end_year": 1300,
+    "description": "Huolongchushui, the first Multistage rocket, was developed in Ming dynasty China and described in Huolongjing by Jiao Yu",
+    "name": "Multistage rocket"
+  },
+  {
+    "start_year": 1300,
+    "end_year": null,
+    "description": "Painting Canvas was first used in Italy",
+    "name": "Art medium"
+  },
+  {
+    "start_year": 1300,
+    "end_year": null,
+    "description": "Jacob's staff described by Levi ben Gerson",
+    "name": "A shepherd's crook"
+  },
+  {
+    "start_year": 1300,
+    "end_year": null,
+    "description": "Naval mine in Ming dynasty Mentioned in the Huolongjing military manuscript written by Jiao Yu (fl. 14th to early 15th century) and Liu Bowen (1311–1375), describing naval mines used at sea or on rivers and lakes, made of wrought iron and enclosed in an ox bladder. A later model is documented in Song Yingxing's encyclopedia written in 1637",
+    "name": "Naval mine"
+  },
+  {
+    "start_year": 1300,
+    "end_year": null,
+    "description": "Bidriware in the Bahmani Sultanate in India",
+    "name": "Metal-engraving technique"
+  },
+  {
+    "start_year": 1364,
+    "end_year": 1364,
+    "description": "first use of a handgun",
+    "name": "Early firearm"
+  },
+  {
+    "start_year": 1400,
+    "end_year": null,
+    "description": "Coil spring in Europe",
+    "name": "Suspension system"
+  },
+  {
+    "start_year": 1400,
+    "end_year": null,
+    "description": "Mainspring in Europe",
+    "name": "Clock mechanism"
+  },
+  {
+    "start_year": 1439,
+    "end_year": 1439,
+    "description": "Printing press in Mainz, Germany: The printing press is invented in the Holy Roman Empire by Johannes Gutenberg before 1440, based on existing screw presses",
+    "name": "Printing press"
+  },
+  {
+    "start_year": 1400,
+    "end_year": null,
+    "description": "The Arquebus (also spelled Harquebus) is invented, possibly in Spain",
+    "name": "Early firearm"
+  },
+  {
+    "start_year": 1500,
+    "end_year": null,
+    "description": "Chintz or printed clothing in Golconda, India",
+    "name": "Printed fabric"
+  },
+  {
+    "start_year": 1500,
+    "end_year": null,
+    "description": "Hookah by Irfan Shaikh, at the court of the Mughal emperor Akbar I",
+    "name": "Smoking device"
+  },
+  {
+    "start_year": 1540,
+    "end_year": 1540,
+    "description": "Rifling is first used in firearms, after being invented in 1498",
+    "name": "Gun barrel grooves"
+  },
+  {
+    "start_year": 1560,
+    "end_year": 1560,
+    "description": "Floating dry dock in Venice, Venetian Republic",
+    "name": "Submersible dock"
+  },
+  {
+    "start_year": 1569,
+    "end_year": 1569,
+    "description": "Mercator Projection map created by Gerardus Mercator",
+    "name": "Map projection"
+  },
+  {
+    "start_year": 1589,
+    "end_year": 1589,
+    "description": "Stocking frame: Invented by William Lee",
+    "name": "Stocking frame"
+  },
+  {
+    "start_year": 1594,
+    "end_year": 1594,
+    "description": "Backstaff: Invented by Captain John Davis",
+    "name": "Navigation instrument"
+  },
+  {
+    "start_year": 1605,
+    "end_year": 1605,
+    "description": "Newspaper (Relation): Johann Carolus in Strassburg (see also List of the oldest newspapers)",
+    "name": "Printing press"
+  },
+  {
+    "start_year": 1608,
+    "end_year": 1608,
+    "description": "Telescope: Patent applied for by Hans Lippershey. Actual inventor unknown since it seemed to already be a common item being offered by the spectacle makers in the Netherlands with Jacob Metius also applying for patent and the son of Zacharias Janssen making a claim 47 years later that his father invented it",
+    "name": "Optical instrument"
+  },
+  {
+    "start_year": 1620,
+    "end_year": 1620,
+    "description": "Compound microscopes, which combine an objective lens with an eyepiece to view a real image, first appear in Europe. Apparently derived from the telescope, actual inventor unknown, variously attributed to Zacharias Janssen (his son claiming it was invented in 1590), Cornelis Drebbel, and Galileo Galilei",
+    "name": "Microscope"
+  },
+  {
+    "start_year": 1630,
+    "end_year": 1630,
+    "description": "Slide rule: invented by William Oughtred",
+    "name": "Slide rule"
+  },
+  {
+    "start_year": 1630,
+    "end_year": 1630,
+    "description": "first use of the flintlock",
+    "name": "Firearm ignition"
+  },
+  {
+    "start_year": 1642,
+    "end_year": 1642,
+    "description": "Mechanical calculator. The Pascaline is built by Blaise Pascal",
+    "name": "Mechanical calculator"
+  },
+  {
+    "start_year": 1643,
+    "end_year": 1643,
+    "description": "Barometer: invented by Evangelista Torricelli, or possibly up to three years earlier by Gasparo Berti",
+    "name": "Pressure measurement device"
+  },
+  {
+    "start_year": 1650,
+    "end_year": 1650,
+    "description": "Vacuum pump: Invented by Otto von Guericke",
+    "name": "Vacuum pump"
+  },
+  {
+    "start_year": 1656,
+    "end_year": 1656,
+    "description": "Pendulum clock: Invented by Christiaan Huygens. It was first conceptualized in 1637 by Galileo Galilei but he was unable to create a working model",
+    "name": "Pendulum clock"
+  },
+  {
+    "start_year": 1668,
+    "end_year": 1668,
+    "description": "First functional reflecting telescope constructed by Isaac Newton",
+    "name": "Reflecting telescope"
+  },
+  {
+    "start_year": 1679,
+    "end_year": 1679,
+    "description": "Pressure-cooker: Invented by Denis Papin",
+    "name": "Pressure cooker"
+  },
+  {
+    "start_year": 1680,
+    "end_year": 1680,
+    "description": "Christiaan Huygens provides the first known description of a piston engine",
+    "name": "Piston engine"
+  },
+  {
+    "start_year": 1698,
+    "end_year": 1698,
+    "description": "Thomas Savery develops a steam-powered water pump: for draining mines",
+    "name": "Steam pump"
+  },
+  {
+    "start_year": 1709,
+    "end_year": 1709,
+    "description": "Bartolomeo Cristofori crafts the first piano, which became a leading instrument of Western art music",
+    "name": "Keyboard instrument"
+  },
+  {
+    "start_year": 1712,
+    "end_year": 1712,
+    "description": "Thomas Newcomen builds the first commercial steam engine to pump water out of mines",
+    "name": "Steam engine"
+  },
+  {
+    "start_year": 1738,
+    "end_year": 1738,
+    "description": "Lewis Paul and John Wyatt invent the first mechanized cotton spinning machine, helping to establish the British textile industry",
+    "name": "Cotton spinning machine"
+  },
+  {
+    "start_year": 1745,
+    "end_year": 1745,
+    "description": "Musschenbroek and Kleist independently develop the Leyden jar, an early form of capacitor",
+    "name": "Leyden jar"
+  },
+  {
+    "start_year": 1746,
+    "end_year": 1746,
+    "description": "John Roebuck invents the lead chamber process, mass producing sulfuric acid for manufacturing",
+    "name": "Lead chamber process"
+  },
+  {
+    "start_year": 1755,
+    "end_year": 1755,
+    "description": "William Cullen invents the first artificial refrigeration machine",
+    "name": "Refrigeration machine"
+  },
+  {
+    "start_year": 1764,
+    "end_year": 1764,
+    "description": "James Hargreaves invents the spinning jenny, revolutionizing textile production during the Industrial Revolution",
+    "name": "Spinning jenny"
+  },
+  {
+    "start_year": 1769,
+    "end_year": 1769,
+    "description": "Nicolas-Joseph Cugnot invents the first steam-powered vehicle capable of carrying passengers, an early car",
+    "name": "Steam-powered vehicle"
+  },
+  {
+    "start_year": 1774,
+    "end_year": 1774,
+    "description": "John Wilkinson invents his boring machine, considered by some to be the first machine tool",
+    "name": "Boring machine"
+  },
+  {
+    "start_year": 1775,
+    "end_year": 1775,
+    "description": "Jesse Ramsden invents the modern screw-cutting lathe",
+    "name": "Screw-cutting lathe"
+  },
+  {
+    "start_year": 1776,
+    "end_year": 1776,
+    "description": "John Wilkinson invents a mechanical air compressor that would become the prototype for all later mechanical compressors",
+    "name": "Air compressor"
+  },
+  {
+    "start_year": 1780,
+    "end_year": 1780,
+    "description": "Hyder Ali of Mysore, India develops the first metal-cylinder rockets",
+    "name": "Metal-cylinder rockets"
+  },
+  {
+    "start_year": 1783,
+    "end_year": 1783,
+    "description": "Claude de Jouffroy builds the first steamboat",
+    "name": "Steamboat"
+  },
+  {
+    "start_year": 1783,
+    "end_year": 1783,
+    "description": "Joseph-Ralf and Jacques-Étienne Montgolfier build the first manned hot air balloon",
+    "name": "Hot air balloon"
+  },
+  {
+    "start_year": 1783,
+    "end_year": 1783,
+    "description": "Louis-Sébastien Lenormand invents and uses the first modern parachute",
+    "name": "Parachute"
+  },
+  {
+    "start_year": 1785,
+    "end_year": 1785,
+    "description": "Martinus van Marum is the first to use the electrolysis technique",
+    "name": "Electrolysis"
+  },
+  {
+    "start_year": 1786,
+    "end_year": 1786,
+    "description": "Andrew Meikle invents the threshing machine",
+    "name": "Threshing machine"
+  },
+  {
+    "start_year": 1789,
+    "end_year": 1789,
+    "description": "Edmund Cartwright invents the power loom",
+    "name": "Power loom"
+  },
+  {
+    "start_year": 1792,
+    "end_year": 1792,
+    "description": "Claude Chappe invents the semaphore telegraph",
+    "name": "Semaphore telegraph"
+  },
+  {
+    "start_year": 1793,
+    "end_year": 1793,
+    "description": "Eli Whitney invents the modern cotton gin",
+    "name": "Cotton gin"
+  },
+  {
+    "start_year": 1795,
+    "end_year": 1795,
+    "description": "Joseph Bramah invents the hydraulic press",
+    "name": "Hydraulic press"
+  },
+  {
+    "start_year": 1796,
+    "end_year": 1796,
+    "description": "Alois Senefelder invents the lithography printing technique",
+    "name": "Lithography"
+  },
+  {
+    "start_year": 1796,
+    "end_year": 1796,
+    "description": ": Edward Jenner invented the vaccine and inoculates an individual for smallpox",
+    "name": "Vaccine"
+  },
+  {
+    "start_year": 1799,
+    "end_year": 1799,
+    "description": "The first paper machine is invented by Louis-Nicolas Robert",
+    "name": "Paper machine"
+  },
+  {
+    "start_year": 1800,
+    "end_year": 1800,
+    "description": "Alessandro Volta invents the voltaic pile, an early form of battery in Italy, based on previous works by Luigi Galvani",
+    "name": "Voltaic pile"
+  },
+  {
+    "start_year": 1802,
+    "end_year": 1802,
+    "description": "Humphry Davy invents the arc lamp (exact date unclear; not practical as a light source until the invention of efficient electric generators)",
+    "name": "Arc lamp"
+  },
+  {
+    "start_year": 1804,
+    "end_year": 1804,
+    "description": "Friedrich Sertürner discovers morphine as the first active alkaloid extracted from the opium poppy plant",
+    "name": "Morphine"
+  },
+  {
+    "start_year": 1804,
+    "end_year": 1804,
+    "description": "Joseph Marie Jacquard develops his automated Jacquard loom",
+    "name": "Automated loom"
+  },
+  {
+    "start_year": 1804,
+    "end_year": 1804,
+    "description": "Richard Trevithick invents the steam locomotive",
+    "name": "Steam locomotive"
+  },
+  {
+    "start_year": 1804,
+    "end_year": 1804,
+    "description": "Hanaoka Seishū creates tsūsensan, the first modern general anesthetic",
+    "name": "Anesthetic"
+  },
+  {
+    "start_year": 1807,
+    "end_year": 1807,
+    "description": "Nicéphore Niépce invents  an early internal combustion engine capable of doing useful work",
+    "name": "Engine"
+  },
+  {
+    "start_year": 1807,
+    "end_year": 1807,
+    "description": "François Isaac de Rivaz designs the first automobile powered by an internal combustion engine fuelled by hydrogen",
+    "name": "Hydrogen-powered automobile"
+  },
+  {
+    "start_year": 1807,
+    "end_year": 1807,
+    "description": "Robert Fulton expands water transportation and trade with the workable steamboat",
+    "name": "Steamboat"
+  },
+  {
+    "start_year": 1810,
+    "end_year": 1810,
+    "description": "Nicolas Appert invents the canning process for food",
+    "name": "Canning"
+  },
+  {
+    "start_year": 1810,
+    "end_year": 1810,
+    "description": "Abraham-Louis Breguet creates the first wristwatch",
+    "name": "Wristwatch"
+  },
+  {
+    "start_year": 1811,
+    "end_year": 1811,
+    "description": "Friedrich Koenig invents the first powered printing press, which was also the first to use a cylinder",
+    "name": "Powered printing press"
+  },
+  {
+    "start_year": 1812,
+    "end_year": 1812,
+    "description": "William Reid Clanny pioneered the invention of the safety lamp which he improved in later years. Safety lamps based on Clanny's improved design were used until the adoption of electric lamps",
+    "name": "Safety lamp"
+  },
+  {
+    "start_year": 1814,
+    "end_year": 1814,
+    "description": "James Fox invents the modern planing machine, though Matthew Murray of Leeds and Richard Roberts of Manchester have also been credited at times with its invention",
+    "name": "Planing machine"
+  },
+  {
+    "start_year": 1816,
+    "end_year": 1816,
+    "description": "René Laennec  invents the first Stethoscope",
+    "name": "Stethoscope"
+  },
+  {
+    "start_year": 1816,
+    "end_year": 1816,
+    "description": "Francis Ronalds builds the first working electric telegraph using electrostatic means",
+    "name": "Electric telegraph"
+  },
+  {
+    "start_year": 1816,
+    "end_year": 1816,
+    "description": "Robert Stirling invents the Stirling engine",
+    "name": "Stirling engine"
+  },
+  {
+    "start_year": 1817,
+    "end_year": 1817,
+    "description": "Baron Karl von Drais invents the dandy horse, an early velocipede and precursor to the modern bicycle",
+    "name": "Dandy horse"
+  },
+  {
+    "start_year": 1818,
+    "end_year": 1818,
+    "description": "Marc Isambard Brunel invents the tunnelling shield",
+    "name": "Tunnelling shield"
+  },
+  {
+    "start_year": 1822,
+    "end_year": 1822,
+    "description": "Thomas Blanchard invents the pattern-tracing lathe (actually more like a shaper). The lathe can copy symmetrical shapes and is used for making gun stocks, and later, ax handles",
+    "name": "Pattern-tracing lathe"
+  },
+  {
+    "start_year": 1822,
+    "end_year": 1822,
+    "description": "Nicéphore Niépce invents Heliography, the first photographic process",
+    "name": "Heliography"
+  },
+  {
+    "start_year": 1822,
+    "end_year": 1822,
+    "description": "Charles Babbage, considered the \"father of the computer\", begins building the first programmable mechanical computer",
+    "name": "Mechanical computer"
+  },
+  {
+    "start_year": 1823,
+    "end_year": 1823,
+    "description": "Johann Wolfgang Döbereiner invents the first lighter",
+    "name": "A portable flame source"
+  },
+  {
+    "start_year": 1824,
+    "end_year": 1824,
+    "description": "Johann Nikolaus von Dreyse invents the bolt-action rifle",
+    "name": "Bolt-action rifle"
+  },
+  {
+    "start_year": 1824,
+    "end_year": 1824,
+    "description": "William Sturgeon invents the electromagnet",
+    "name": "Electromagnet"
+  },
+  {
+    "start_year": 1826,
+    "end_year": 1826,
+    "description": "John Walker invents the friction match",
+    "name": "Friction match"
+  },
+  {
+    "start_year": 1826,
+    "end_year": 1826,
+    "description": "James Sharp invents and goes on to manufacture the first practical gas stove",
+    "name": "Gas stove"
+  },
+  {
+    "start_year": 1828,
+    "end_year": 1828,
+    "description": "James Beaumont Neilson develops the hot blast process",
+    "name": "Coal gas production"
+  },
+  {
+    "start_year": 1828,
+    "end_year": 1828,
+    "description": "Patrick Bell invents the reaping machine",
+    "name": "Reaping machine"
+  },
+  {
+    "start_year": 1828,
+    "end_year": 1828,
+    "description": "Hungarian physicist Ányos Jedlik invents the first commutated rotary electromechanical machine with electromagnets",
+    "name": "Electric motor"
+  },
+  {
+    "start_year": 1829,
+    "end_year": 1829,
+    "description": "Louis Braille invents the Braille reading system for the blind",
+    "name": "Braille system"
+  },
+  {
+    "start_year": 1829,
+    "end_year": 1829,
+    "description": "William Mann invents the compound air compressor",
+    "name": "Air compressor"
+  },
+  {
+    "start_year": 1829,
+    "end_year": 1829,
+    "description": "Henry Robinson Palmer is awarded a patent for corrugated galvanised iron",
+    "name": "Corrugated iron"
+  },
+  {
+    "start_year": 1830,
+    "end_year": 1830,
+    "description": "Edwin Budding invents the lawn mower",
+    "name": "Lawn mower"
+  },
+  {
+    "start_year": 1831,
+    "end_year": 1831,
+    "description": "Michael Faraday invents a method of electromagnetic induction. It would be independently invented by Joseph Henry the following year. Faraday is credited with inventing the first electric generator called the Faraday disk",
+    "name": "Electric generator"
+  },
+  {
+    "start_year": 1833,
+    "end_year": 1833,
+    "description": ": Charles Babbage introduces his \"mechanical calculating machine\", the first mechanical computer",
+    "name": "Mechanical computer"
+  },
+  {
+    "start_year": 1834,
+    "end_year": 1834,
+    "description": "Moritz von Jacobi invents the first practical electric motor",
+    "name": "Electric motor"
+  },
+  {
+    "start_year": 1835,
+    "end_year": 1835,
+    "description": "Joseph Henry invents the electromechanical relay",
+    "name": "Electromechanical relay"
+  },
+  {
+    "start_year": 1837,
+    "end_year": 1837,
+    "description": "Samuel Morse invents Morse code",
+    "name": "Morse code"
+  },
+  {
+    "start_year": 1838,
+    "end_year": 1838,
+    "description": "Moritz von Jacobi invents electrotyping",
+    "name": "Electrotyping"
+  },
+  {
+    "start_year": 1839,
+    "end_year": 1839,
+    "description": "William Otis invents the steam shovel",
+    "name": "Steam shovel"
+  },
+  {
+    "start_year": 1839,
+    "end_year": 1839,
+    "description": "James Nasmyth invents the steam hammer",
+    "name": "Steam hammer"
+  },
+  {
+    "start_year": 1839,
+    "end_year": 1839,
+    "description": "Edmond Becquerel invents a method for the photovoltaic effect, effectively producing the first solar cell",
+    "name": "Solar cell"
+  },
+  {
+    "start_year": 1839,
+    "end_year": 1839,
+    "description": "Charles Goodyear invents vulcanized rubber",
+    "name": "Vulcanized rubber"
+  },
+  {
+    "start_year": 1839,
+    "end_year": 1839,
+    "description": "Louis Daguerre invents daguerreotype photography",
+    "name": "Daguerreotype photography"
+  },
+  {
+    "start_year": 1839,
+    "end_year": 1839,
+    "description": "Kirkpatrick Macmillan invents the first bicycle",
+    "name": "Bicycle"
+  },
+  {
+    "start_year": 1840,
+    "end_year": 1840,
+    "description": "John Herschel invents the blueprint",
+    "name": "Blueprint"
+  },
+  {
+    "start_year": 1841,
+    "end_year": 1841,
+    "description": "Alexander Bain devises a printing telegraph",
+    "name": "Printing telegraph"
+  },
+  {
+    "start_year": 1842,
+    "end_year": 1842,
+    "description": "William Robert Grove invents the first fuel cell",
+    "name": "Fuel cell"
+  },
+  {
+    "start_year": 1842,
+    "end_year": 1842,
+    "description": "John Bennet Lawes invents superphosphate, the first man-made fertilizer",
+    "name": "Superphosphate"
+  },
+  {
+    "start_year": 1844,
+    "end_year": 1844,
+    "description": "Friedrich Gottlob Keller and, independently, Charles Fenerty come up with the wood pulp method of paper production",
+    "name": "Paper production"
+  },
+  {
+    "start_year": 1844,
+    "end_year": 1844,
+    "description": "Francis Rynd invents the hypodermic needle",
+    "name": "Hypodermic needle"
+  },
+  {
+    "start_year": 1844,
+    "end_year": 1844,
+    "description": "Horace Wells successfully used nitrous oxide as an anesthesia",
+    "name": "Anesthesia"
+  },
+  {
+    "start_year": 1845,
+    "end_year": 1845,
+    "description": "Isaac Charles Johnson invents modern Portland cement",
+    "name": "Portland cement"
+  },
+  {
+    "start_year": 1846,
+    "end_year": 1846,
+    "description": "Henri-Joseph Maus invents the tunnel boring machine",
+    "name": "Tunnel boring machine"
+  },
+  {
+    "start_year": 1846,
+    "end_year": 1846,
+    "description": "Elias Howe received a patent for a sewing machine, the model for the Singer Sewing Machine",
+    "name": "Sewing machine"
+  },
+  {
+    "start_year": 1847,
+    "end_year": 1847,
+    "description": "Ascanio Sobrero invents nitroglycerin, the first explosive made that was stronger than black powder",
+    "name": "Nitroglycerin"
+  },
+  {
+    "start_year": 1848,
+    "end_year": 1848,
+    "description": "Jonathan J. Couch invents the pneumatic drill",
+    "name": "Pneumatic drill"
+  },
+  {
+    "start_year": 1848,
+    "end_year": 1848,
+    "description": "Linus Yale Sr. invents the first modern pin tumbler lock",
+    "name": "Pin tumbler lock"
+  },
+  {
+    "start_year": 1849,
+    "end_year": 1849,
+    "description": "Walter Hunt invents the first repeating rifle to use metallic cartridges (of his own design) and a spring-fed magazine",
+    "name": "Repeating rifle"
+  },
+  {
+    "start_year": 1849,
+    "end_year": 1849,
+    "description": "James B. Francis invents the Francis turbine",
+    "name": "Francis turbine"
+  },
+  {
+    "start_year": 1849,
+    "end_year": 1849,
+    "description": "Walter Hunt invents the safety pin",
+    "name": "Safety pin"
+  },
+  {
+    "start_year": 1850,
+    "end_year": 1850,
+    "description": "William Armstrong invents the hydraulic accumulator",
+    "name": "Hydraulic accumulator"
+  },
+  {
+    "start_year": 1851,
+    "end_year": 1851,
+    "description": "George Jennings offers the first public flush toilets, accessible for a penny per visit, and in 1852 receives a UK patent for the single piece, free standing, earthenware, trap plumed, flushing, water-closet",
+    "name": "Flush toilet"
+  },
+  {
+    "start_year": 1852,
+    "end_year": 1852,
+    "description": "Robert Bunsen is the first to use a chemical vapor deposition technique",
+    "name": "Chemical vapor deposition"
+  },
+  {
+    "start_year": 1852,
+    "end_year": 1852,
+    "description": "Elisha Otis invents the safety brake elevator",
+    "name": "Safety elevator"
+  },
+  {
+    "start_year": 1852,
+    "end_year": 1852,
+    "description": "Henri Giffard becomes the first person to make a manned, controlled and powered flight using a dirigible",
+    "name": "Dirigible engine"
+  },
+  {
+    "start_year": 1853,
+    "end_year": 1853,
+    "description": "François Coignet invents reinforced concrete",
+    "name": "Reinforced concrete"
+  },
+  {
+    "start_year": 1855,
+    "end_year": 1855,
+    "description": "James Clerk Maxwell invents the first practical method for color photography, whether chemical or electronic",
+    "name": "Color photography"
+  },
+  {
+    "start_year": 1855,
+    "end_year": 1855,
+    "description": "Henry Bessemer patents the Bessemer process for making steel, with improvements made by others over the following years",
+    "name": "Bessemer process"
+  },
+  {
+    "start_year": 1856,
+    "end_year": 1856,
+    "description": "Alexander Parkes invents parkesine, also known as celluloid, the first man-made plastic",
+    "name": "Plastic"
+  },
+  {
+    "start_year": 1856,
+    "end_year": 1856,
+    "description": "James Harrison produces the world's first practical ice making machine and refrigerator using the principle of vapour compression in Geelong, Australia",
+    "name": "Refrigeration system"
+  },
+  {
+    "start_year": 1856,
+    "end_year": 1856,
+    "description": "William Henry Perkin invents mauveine, the first synthetic dye",
+    "name": "Synthetic dye"
+  },
+  {
+    "start_year": 1857,
+    "end_year": 1857,
+    "description": "Heinrich Geissler invents the Geissler tube",
+    "name": "Geissler tube"
+  },
+  {
+    "start_year": 1857,
+    "end_year": 1857,
+    "description": "The phonautograph, the earliest known device for recording sound, is patented and invented by Frenchman Édouard-Léon Scott de Martinville",
+    "name": "Sound recording device"
+  },
+  {
+    "start_year": 1859,
+    "end_year": 1859,
+    "description": "Gaston Planté invents the lead acid battery, the first rechargeable battery",
+    "name": "Lead acid battery"
+  },
+  {
+    "start_year": 1860,
+    "end_year": 1860,
+    "description": "Joseph Swan produces carbon fibers",
+    "name": "Light bulb filament"
+  },
+  {
+    "start_year": 1862,
+    "end_year": 1862,
+    "description": "Richard Jordan Gatling invents the Gatling gun, the first multi-barrel rapid-fire gun",
+    "name": "Rapid-fire gun"
+  },
+  {
+    "start_year": 1864,
+    "end_year": 1864,
+    "description": "Louis Pasteur invents the pasteurization process",
+    "name": "Pasteurization"
+  },
+  {
+    "start_year": 1865,
+    "end_year": 1865,
+    "description": "Carl Wilhelm Siemens and Pierre-Émile Martin invent the Siemens-Martin process for making steel",
+    "name": "Steelmaking process"
+  },
+  {
+    "start_year": 1867,
+    "end_year": 1867,
+    "description": "Alfred Nobel invents dynamite, the first safely manageable explosive stronger than black powder",
+    "name": "Dynamite"
+  },
+  {
+    "start_year": 1867,
+    "end_year": 1867,
+    "description": "Lucien B. Smith invents barbed wire",
+    "name": "Barbed wire"
+  },
+  {
+    "start_year": 1872,
+    "end_year": 1872,
+    "description": "Polyvinyl chloride, more commonly known as vinyl, is synthesized by German chemist Eugen Baumann",
+    "name": "Plastic resin"
+  },
+  {
+    "start_year": 1872,
+    "end_year": 1872,
+    "description": "J. E. T. Woods and J. Clark invent stainless steel. Harry Brearley is the first to commercialize it",
+    "name": "Stainless steel"
+  },
+  {
+    "start_year": 1873,
+    "end_year": 1873,
+    "description": "Frederick Ransome invents the rotary kiln",
+    "name": "Rotary kiln"
+  },
+  {
+    "start_year": 1873,
+    "end_year": 1873,
+    "description": "William Crookes, a chemist, invents the Crookes radiometer as the by-product of some chemical research",
+    "name": "Radiometer"
+  },
+  {
+    "start_year": 1873,
+    "end_year": 1873,
+    "description": "Zénobe Gramme invents the first commercial electrical generator, the Gramme machine",
+    "name": "Electrical generator"
+  },
+  {
+    "start_year": 1874,
+    "end_year": 1874,
+    "description": "Gustave Trouvé invents the first metal detector",
+    "name": "Metal detector"
+  },
+  {
+    "start_year": 1874,
+    "end_year": 1874,
+    "description": "Ferdinand von Zeppelin invents the Zeppelin rigid airship",
+    "name": "Airship"
+  },
+  {
+    "start_year": 1875,
+    "end_year": 1875,
+    "description": "Fyodor Pirotsky invents the first electric tram near Saint Petersburg, Russia",
+    "name": "Electric tram"
+  },
+  {
+    "start_year": 1876,
+    "end_year": 1876,
+    "description": "Nicolaus August Otto invents the four-stroke cycle",
+    "name": "Four-stroke cycle"
+  },
+  {
+    "start_year": 1876,
+    "end_year": 1876,
+    "description": "Alexander Graham Bell has a patent granted for the telephone",
+    "name": "Telephone"
+  },
+  {
+    "start_year": 1877,
+    "end_year": 1877,
+    "description": "Thomas Edison invents the first working phonograph",
+    "name": "Phonograph"
+  },
+  {
+    "start_year": 1878,
+    "end_year": 1878,
+    "description": "Henry Fleuss is granted a patent for the first practical rebreather",
+    "name": "Rebreather"
+  },
+  {
+    "start_year": 1878,
+    "end_year": 1878,
+    "description": "Lester Allan Pelton invents the Pelton wheel, a type of water turbine",
+    "name": "Pelton wheel"
+  },
+  {
+    "start_year": 1879,
+    "end_year": 1879,
+    "description": "Joseph Swan and Thomas Edison both patent a functional incandescent light bulb",
+    "name": "Incandescent light bulb"
+  },
+  {
+    "start_year": 1881,
+    "end_year": 1881,
+    "description": "Nikolay Benardos presents carbon arc welding, the first practical arc welding method",
+    "name": "Carbon arc welding"
+  },
+  {
+    "start_year": 1884,
+    "end_year": 1884,
+    "description": "Hiram Maxim invents the recoil-operated Maxim gun, ushering in the age of semi- and fully automatic firearms",
+    "name": "Recoil-operated gun"
+  },
+  {
+    "start_year": 1884,
+    "end_year": 1884,
+    "description": "Paul Vieille invents Poudre B, the first smokeless powder for firearms",
+    "name": "Smokeless powder"
+  },
+  {
+    "start_year": 1884,
+    "end_year": 1884,
+    "description": "Sir Charles Parsons invents the modern steam turbine",
+    "name": "Steam turbine"
+  },
+  {
+    "start_year": 1884,
+    "end_year": 1884,
+    "description": "Hungarian engineers Károly Zipernowsky, Ottó Bláthy and Miksa Déri invent the closed core high efficiency transformer and the AC parallel power distribution",
+    "name": "Transformer and distribution system"
+  },
+  {
+    "start_year": 1885,
+    "end_year": 1885,
+    "description": "John Kemp Starley invents the modern safety bicycle",
+    "name": "Safety bicycle"
+  },
+  {
+    "start_year": 1886,
+    "end_year": 1886,
+    "description": "Carl Gassner invents the zinc–carbon battery, the first dry cell battery, making portable electronics practical",
+    "name": "Zinc-carbon battery"
+  },
+  {
+    "start_year": 1886,
+    "end_year": 1886,
+    "description": "Charles Martin Hall and independently Paul Héroult invent the Hall–Héroult process for economically producing aluminum in 1886",
+    "name": "Aluminum production process"
+  },
+  {
+    "start_year": 1886,
+    "end_year": 1886,
+    "description": "Karl Benz invents the first petrol or gasoline powered auto-mobile (car)",
+    "name": "Automobile"
+  },
+  {
+    "start_year": 1887,
+    "end_year": 1887,
+    "description": "Carl Josef Bayer invents the Bayer process for the production of alumina",
+    "name": "Bayer process"
+  },
+  {
+    "start_year": 1887,
+    "end_year": 1887,
+    "description": "James Blyth invents the first wind turbine used for generating electricity",
+    "name": "Wind turbine"
+  },
+  {
+    "start_year": 1887,
+    "end_year": 1887,
+    "description": "John Stewart MacArthur, working in collaboration with brothers Dr. Robert and Dr. William Forrest, develops the process of gold cyanidation",
+    "name": "Gold cyanidation process"
+  },
+  {
+    "start_year": 1888,
+    "end_year": 1888,
+    "description": "John J. Loud invents the ballpoint pen",
+    "name": "Ballpoint pen"
+  },
+  {
+    "start_year": 1888,
+    "end_year": 1888,
+    "description": "Thomas Edison and William Kennedy Dickson invent the Kinetoscope",
+    "name": "Kinetoscope"
+  },
+  {
+    "start_year": 1888,
+    "end_year": 1888,
+    "description": "The first practical pneumatic tire was made by Scotsman John Boyd Dunlop, the patent was from 1847 by Robert William Thomson",
+    "name": "Pneumatic tire"
+  },
+  {
+    "start_year": 1890,
+    "end_year": 1890,
+    "description": "Robert Gair invents the pre-cut cardboard box",
+    "name": "Cardboard box"
+  },
+  {
+    "start_year": 1891,
+    "end_year": 1891,
+    "description": "Whitcomb Judson invents the zipper",
+    "name": "Zipper"
+  },
+  {
+    "start_year": 1892,
+    "end_year": 1892,
+    "description": "Léon Bouly invents the cinematograph",
+    "name": "Motion picture camera"
+  },
+  {
+    "start_year": 1892,
+    "end_year": 1892,
+    "description": "Thomas Ahearn invents the electric oven",
+    "name": "Electric oven"
+  },
+  {
+    "start_year": 1892,
+    "end_year": 1892,
+    "description": ": John Froelich invented the gas-powered tractor",
+    "name": "Gas-powered tractor"
+  },
+  {
+    "start_year": 1893,
+    "end_year": 1893,
+    "description": "Rudolf Diesel invents the diesel engine (although Herbert Akroyd Stuart had experimented with compression ignition before Diesel)",
+    "name": "Diesel engine"
+  },
+  {
+    "start_year": 1893,
+    "end_year": 1893,
+    "description": "William Stewart Halsted, invents the rubber glove for his wife Caroline Hampton as he noticed her hands were affected by the daily surgeries she had performed. The gloves were intended to prevent medical staff from developing dermatitis from surgical chemicals",
+    "name": "Surgical gloves"
+  },
+  {
+    "start_year": 1895,
+    "end_year": 1895,
+    "description": "Guglielmo Marconi invents the radio, a system of wireless communication using radio waves",
+    "name": "Radio"
+  },
+  {
+    "start_year": 1895,
+    "end_year": 1895,
+    "description": "Wilhelm Conrad Röntgen invented the first radiograph (X-ray)",
+    "name": "X-ray"
+  },
+  {
+    "start_year": 1897,
+    "end_year": 1897,
+    "description": "Surgical masks made of cloth were developed in Europe by physicians Jan Mikulicz-Radecki at the University of Breslau and Paul Berger in Paris, as a result of increasing awareness of germ theory and the importance of antiseptic procedures in medicine",
+    "name": "Cloth masks"
+  },
+  {
+    "start_year": 1898,
+    "end_year": 1898,
+    "description": "Hans von Pechmann synthesizes polyethylene, now the most common plastic in the world",
+    "name": "Polyethylene"
+  },
+  {
+    "start_year": 1899,
+    "end_year": 1899,
+    "description": "Waldemar Jungner invents the rechargeable nickel-cadmium battery (NiCd) as well as the nickel-iron electric storage battery (NiFe) and the rechargeable alkaline silver-cadmium battery (AgCd)",
+    "name": "Rechargeable batteries"
+  },
+  {
+    "start_year": 1901,
+    "end_year": 1901,
+    "description": "The first motorized cleaner using suction, a powered \"vacuum cleaner\", is patented independently by Hubert Cecil Booth and David T. Kenney",
+    "name": "Vacuum cleaner"
+  },
+  {
+    "start_year": 1903,
+    "end_year": 1903,
+    "description": "The first successful gas turbine is invented by Ægidius Elling",
+    "name": "Gas turbine"
+  },
+  {
+    "start_year": 1903,
+    "end_year": 1903,
+    "description": "Édouard Bénédictus invents laminated glass",
+    "name": "Laminated glass"
+  },
+  {
+    "start_year": 1904,
+    "end_year": 1904,
+    "description": "The Fleming valve, the first vacuum tube and diode, is invented by John Ambrose Fleming",
+    "name": "Vacuum tube"
+  },
+  {
+    "start_year": 1907,
+    "end_year": 1907,
+    "description": "Leo Baekeland invents bakelite,  the first plastic made from synthetic components",
+    "name": "Bakelite"
+  },
+  {
+    "start_year": 1907,
+    "end_year": 1907,
+    "description": "The tuyères thermopropulsives",
+    "name": "Jet propulsion"
+  },
+  {
+    "start_year": 1908,
+    "end_year": 1908,
+    "description": "Cellophane is invented by Jacques E. Brandenberger",
+    "name": "Cellophane"
+  },
+  {
+    "start_year": 1909,
+    "end_year": 1909,
+    "description": "Fritz Haber invents the Haber process",
+    "name": "Nitrogen fixation"
+  },
+  {
+    "start_year": 1911,
+    "end_year": 1911,
+    "description": "The cloud chamber, the first particle detector, is invented by Charles Thomson Rees Wilson",
+    "name": "Particle detector"
+  },
+  {
+    "start_year": 1913,
+    "end_year": 1913,
+    "description": "The Bergius process is developed by Friedrich Bergius",
+    "name": "A gasification process"
+  },
+  {
+    "start_year": 1913,
+    "end_year": 1913,
+    "description": "The Kaplan turbine is invented by Viktor Kaplan",
+    "name": "Kaplan turbine"
+  },
+  {
+    "start_year": 1915,
+    "end_year": 1915,
+    "description": "Harry Brearley invents a process to create Martensitic stainless steel, initially labelled Rustless Steel, later marketed as Staybrite, and AISI Type 420",
+    "name": "Steelmaking process"
+  },
+  {
+    "start_year": 1915,
+    "end_year": 1915,
+    "description": "The first operational military tanks are designed in Great Britain and France. They are used in battle from 1916 and 1917 respectively. The designers in Great Britain are Walter Wilson and William Tritton and in France, Eugène Brillié. (Although it is known that vehicles incorporating at least some of the features of the tank were designed in a number of countries from 1903 onward, none reached a practical form.)",
+    "name": "Tank"
+  },
+  {
+    "start_year": 1916,
+    "end_year": 1916,
+    "description": "The Czochralski process, widely used for the production of single crystal silicon, is invented by Jan Czochralski",
+    "name": "Crystal growth method"
+  },
+  {
+    "start_year": 1917,
+    "end_year": 1917,
+    "description": "The crystal oscillator is invented by Alexander M. Nicolson using a crystal of Rochelle Salt although his priority was disputed by Walter Guyton Cady",
+    "name": "Electronic oscillator"
+  },
+  {
+    "start_year": 1925,
+    "end_year": 1925,
+    "description": "The Fischer–Tropsch process is developed by Franz Fischer and Hans Tropsch at the Kaiser-Wilhelm-Institut für Kohlenforschung",
+    "name": "A synthetic fuel process"
+  },
+  {
+    "start_year": 1926,
+    "end_year": 1926,
+    "description": "The Yagi-Uda Antenna or simply Yagi Antenna is invented by Shintaro Uda of Tohoku Imperial University, assisted by his colleague Hidetsugu Yagi. The Yagi Antenna was widely used during World War II. After the war they saw extensive development as home television antennas",
+    "name": "Antenna"
+  },
+  {
+    "start_year": 1926,
+    "end_year": 1926,
+    "description": "Robert H. Goddard launches the first liquid fueled rocket",
+    "name": "Liquid-fueled rocket"
+  },
+  {
+    "start_year": 1926,
+    "end_year": 1926,
+    "description": "Harry Ferguson, patents the Three-point hitch equipment linkage system for tractors",
+    "name": "Three-point hitch"
+  },
+  {
+    "start_year": 1926,
+    "end_year": 1926,
+    "description": "John Logie Baird demonstrates the world's first live working television system",
+    "name": "Television"
+  },
+  {
+    "start_year": 1927,
+    "end_year": 1927,
+    "description": "The quartz clock is invented by Warren Marrison and J.W. Horton at Bell Telephone Laboratories",
+    "name": "Quartz clock"
+  },
+  {
+    "start_year": 1928,
+    "end_year": 1928,
+    "description": "Penicillin is first observed to exude antibiotic substances by Nobel laureate Alexander Fleming. Development of medicinal penicillin is attributed to a team of medics and scientists including Howard Walter Florey, Ernst Chain and Norman Heatley",
+    "name": "Antibiotic medicine"
+  },
+  {
+    "start_year": 1928,
+    "end_year": 1928,
+    "description": "Frank Whittle formally submitted his ideas for a turbo-jet engine. In October 1929, he developed his ideas further",
+    "name": "Turbo-jet engine"
+  },
+  {
+    "start_year": 1928,
+    "end_year": 1928,
+    "description": "Philo Farnsworth demonstrates the first practical electronic television to the press",
+    "name": "Electronic television"
+  },
+  {
+    "start_year": 1929,
+    "end_year": 1929,
+    "description": "The ball screw is invented by Rudolph G. Boehm",
+    "name": "Ball screw"
+  },
+  {
+    "start_year": 1930,
+    "end_year": 1930,
+    "description": "The Supersonic combusting ramjet — Frank Whittle",
+    "name": "Ramjet engine"
+  },
+  {
+    "start_year": 1930,
+    "end_year": 1930,
+    "description": "The Phase-contrast microscopy is invented by Frits Zernike",
+    "name": "Phase-contrast microscopy"
+  },
+  {
+    "start_year": 1931,
+    "end_year": 1931,
+    "description": "The electron microscope is invented by Ernst Ruska",
+    "name": "Electron microscope"
+  },
+  {
+    "start_year": 1933,
+    "end_year": 1933,
+    "description": "FM radio is patented by inventor Edwin H. Armstrong",
+    "name": "FM radio"
+  },
+  {
+    "start_year": 1933,
+    "end_year": 1933,
+    "description": "Harry C. Jennings Sr. and Herbert Everest, both mechanical engineers, invented the first lightweight, steel, folding, portable wheelchair with their \"X-brace\" design",
+    "name": "Wheelchair"
+  },
+  {
+    "start_year": 1935,
+    "end_year": 1935,
+    "description": "Nylon, the first fully synthetic fiber is produced by Wallace Carothers while working at DuPont",
+    "name": "Nylon"
+  },
+  {
+    "start_year": 1938,
+    "end_year": 1938,
+    "description": "Z1, built by Konrad Zuse, is the first freely programmable computer in the world",
+    "name": "Computer"
+  },
+  {
+    "start_year": 1938,
+    "end_year": 1938,
+    "description": "Nuclear fission discovered in experiment by chemists Otto Hahn and Fritz Strassmann and physicists Lise Meitner and Otto Robert Frisch. The German nuclear energy project was based on this research. The Tube Alloys project and, subsequently, the Manhattan Project and the Soviet atomic bomb project were influenced by this research",
+    "name": "Nuclear fission"
+  },
+  {
+    "start_year": 1939,
+    "end_year": 1939,
+    "description": "G. S. Yunyev or Naum Gurvich invented the electric current defibrillator",
+    "name": "Defibrillator"
+  },
+  {
+    "start_year": 1939,
+    "end_year": 1939,
+    "description": ": John Vincent Atanasoff invented the first electronic digital computer",
+    "name": "Electronic computer"
+  },
+  {
+    "start_year": 1940,
+    "end_year": 1940,
+    "description": "Pu-239 isotope (isotope of plutonium)",
+    "name": "Nuclear weapon"
+  },
+  {
+    "start_year": 1940,
+    "end_year": 1940,
+    "description": "John Randall and Harry Boot would develop the high power, microwave generating, cavity magnetron, later applied to commercial Radar and Microwave oven appliances",
+    "name": "Cavity magnetron"
+  },
+  {
+    "start_year": 1941,
+    "end_year": 1941,
+    "description": "Polyester is invented by John Rex Whinfield and James Dickson",
+    "name": "Synthetic fiber"
+  },
+  {
+    "start_year": 1942,
+    "end_year": 1942,
+    "description": "The V-2 rocket, the world's first long range ballistic missile, developed by engineer Wernher von Braun",
+    "name": "V-2 rocket"
+  },
+  {
+    "start_year": 1942,
+    "end_year": 1942,
+    "description": ": Enrico Fermi developed the nuclear reactor and created the first controlled nuclear chain reaction",
+    "name": "Nuclear reactor"
+  },
+  {
+    "start_year": 1944,
+    "end_year": 1944,
+    "description": "The non-infectious viral vaccine is perfected by Dr. Jonas Salk and Thomas Francis",
+    "name": "Vaccine"
+  },
+  {
+    "start_year": 1945,
+    "end_year": 1945,
+    "description": "The atomic bomb is developed by the Manhattan Project and swiftly used in August 1945 in the atomic bombings of Hiroshima and Nagasaki",
+    "name": "Atomic bomb"
+  },
+  {
+    "start_year": 1945,
+    "end_year": 1945,
+    "description": "Percy Spencer, while employed at Raytheon, would patent a magnetron based microwave oven",
+    "name": "Microwave oven"
+  },
+  {
+    "start_year": 1945,
+    "end_year": 1945,
+    "description": "Willard Libby began his work on radiocarbon dating. He published his paper in 1946,",
+    "name": "Radiocarbon dating"
+  },
+  {
+    "start_year": 1946,
+    "end_year": 1946,
+    "description": "James Martin invents the ejector seat, inspired by the death of his friend and test pilot Captain Valentine Baker in an aeroplane crash in 1942",
+    "name": "Ejector seat"
+  },
+  {
+    "start_year": 1947,
+    "end_year": 1947,
+    "description": "Holography is invented by Dennis Gabor",
+    "name": "Holography"
+  },
+  {
+    "start_year": 1947,
+    "end_year": 1947,
+    "description": "Floyd Farris and J.B. Clark (Stanolind Oil and Gas Corporation) invents hydraulic fracturing technology",
+    "name": "Hydraulic fracturing"
+  },
+  {
+    "start_year": 1947,
+    "end_year": 1947,
+    "description": "The first transistor, a bipolar point-contact transistor, is invented by John Bardeen and Walter Brattain under the supervision of William Shockley at Bell Labs",
+    "name": "Transistor"
+  },
+  {
+    "start_year": 1948,
+    "end_year": 1948,
+    "description": "The first atomic clock is developed at the National Bureau of Standards",
+    "name": "Atomic clock"
+  },
+  {
+    "start_year": 1948,
+    "end_year": 1948,
+    "description": "Basic oxygen steelmaking is developed by Robert Durrer. The majority of steel manufactured in the world is produced using the basic oxygen furnace; in 2000, it accounted for 60% of global steel output",
+    "name": "Basic oxygen furnace"
+  },
+  {
+    "start_year": 1950,
+    "end_year": 1950,
+    "description": "Bertie the Brain, debatably the first video game, is displayed to the public at the Canadian National Exhibition",
+    "name": "Electronic game"
+  },
+  {
+    "start_year": 1950,
+    "end_year": 1950,
+    "description": "The Toroidal chamber with axial magnetic fields (the Tokamak) is developed by Igor E. Tamm and Andrei D. Sakharov",
+    "name": "Fusion device"
+  },
+  {
+    "start_year": 1952,
+    "end_year": 1952,
+    "description": "The float glass process is developed by Alastair Pilkington",
+    "name": "Float glass process"
+  },
+  {
+    "start_year": 1952,
+    "end_year": 1952,
+    "description": "The first thermonuclear weapon is developed",
+    "name": "Nuclear weapon"
+  },
+  {
+    "start_year": 1953,
+    "end_year": 1953,
+    "description": "The first video tape recorder, a helical scan recorder, is invented by Norikazu Sawazaki",
+    "name": "Video tape recorder"
+  },
+  {
+    "start_year": 1954,
+    "end_year": 1954,
+    "description": "Invention of the solar battery by Bell Telephone scientists, Calvin Souther Fuller, Daryl Chapin and Gerald Pearson capturing the Sun's power. First practical means of collecting energy from the Sun and turning it into a current of electricity",
+    "name": "Solar battery"
+  },
+  {
+    "start_year": 1955,
+    "end_year": 1955,
+    "description": "The hovercraft is patented by Christopher Cockerell",
+    "name": "Hovercraft"
+  },
+  {
+    "start_year": 1955,
+    "end_year": 1955,
+    "description": ": Jonas Salk received the license for his inactivated polio vaccine",
+    "name": "Polio vaccine"
+  },
+  {
+    "start_year": 1955,
+    "end_year": 1955,
+    "description": "The intermodal container is developed by Malcom McLean",
+    "name": "Intermodal container"
+  },
+  {
+    "start_year": 1956,
+    "end_year": 1956,
+    "description": "The hard disk drive is invented by IBM",
+    "name": "Hard disk drive"
+  },
+  {
+    "start_year": 1956,
+    "end_year": 1956,
+    "description": "The Logic Theorist computer program, the first \"artificial intelligence program\", was written and invented by Allen Newell, Herbert A. Simon, and Cliff Shaw",
+    "name": "A computer program"
+  },
+  {
+    "start_year": 1957,
+    "end_year": 1957,
+    "description": "The laser and optical amplifier are invented and named by Gordon Gould and Charles Townes. The laser and optical amplifier are foundational to powering the Internet",
+    "name": "Laser"
+  },
+  {
+    "start_year": 1957,
+    "end_year": 1957,
+    "description": "The first personal computer used by one person and controlled by a keyboard, the IBM 610, is invented by IBM",
+    "name": "Personal computer"
+  },
+  {
+    "start_year": 1957,
+    "end_year": 1957,
+    "description": "The first artificial satellite, Sputnik 1, is launched",
+    "name": "Satellite"
+  },
+  {
+    "start_year": 1959,
+    "end_year": 1959,
+    "description": "The MOSFET (MOS transistor) is invented by the Egyptian Mohamed Atalla and the Korean Dawon Kahng at Bell Labs. It is used in almost all modern electronic products. It was smaller, faster, more reliable and cheaper to manufacture than earlier bipolar transistors, leading to a revolution in computers, controls and communication",
+    "name": "MOSFET transistor"
+  },
+  {
+    "start_year": 1960,
+    "end_year": 1960,
+    "description": "The first functioning laser is invented by Theodore Maiman",
+    "name": "Laser"
+  },
+  {
+    "start_year": 1960,
+    "end_year": 1960,
+    "description": "First robotic exoskeleton",
+    "name": "Robotic suit"
+  },
+  {
+    "start_year": 1963,
+    "end_year": 1963,
+    "description": "The first electronic cigarette is created by Herbert A. Gilbert. Hon Lik is often credited with its invention as he developed the modern electronic cigarette and was the first to commercialize it",
+    "name": "Electronic cigarette"
+  },
+  {
+    "start_year": 1964,
+    "end_year": 1964,
+    "description": "Shinkansen, the first high-speed rail commercial passenger service",
+    "name": "High-speed rail"
+  },
+  {
+    "start_year": 1965,
+    "end_year": 1965,
+    "description": "Kevlar is invented by Stephanie Kwolek at DuPont",
+    "name": "Fiber material"
+  },
+  {
+    "start_year": 1967,
+    "end_year": 1967,
+    "description": "E. A. Johnson of the Royal Radar Establishment developed the capacitive touch display or touchscreen",
+    "name": "Touchscreen"
+  },
+  {
+    "start_year": 1969,
+    "end_year": 1969,
+    "description": "The NPL network followed by the ARPANET implement packet switching for data communication,",
+    "name": "Packet switching"
+  },
+  {
+    "start_year": 1970,
+    "end_year": 1970,
+    "description": "The pocket calculator is invented",
+    "name": "Calculator"
+  },
+  {
+    "start_year": 1971,
+    "end_year": 1971,
+    "description": "The first single-chip microprocessor, the Intel 4004, is invented. Its development was led by Federico Faggin, using his silicon-gate MOS technology. This led to the personal computer (PC) revolution",
+    "name": "Microprocessor"
+  },
+  {
+    "start_year": 1971,
+    "end_year": 1971,
+    "description": "The first space station, Salyut 1, is launched",
+    "name": "Space station"
+  },
+  {
+    "start_year": 1971,
+    "end_year": 1971,
+    "description": "IBM developed and released the world's first floppy disk and disk drive",
+    "name": "Floppy disk"
+  },
+  {
+    "start_year": 1972,
+    "end_year": 1972,
+    "description": "The first video game console, used primarily for playing video games on a TV, is the Magnavox Odyssey",
+    "name": "Magnavox Odyssey"
+  },
+  {
+    "start_year": 1972,
+    "end_year": 1972,
+    "description": ": Herbert Boyer and Stanley Cohen developed genetic modification when they successfully modified DNA",
+    "name": "Genetic engineering"
+  },
+  {
+    "start_year": 1973,
+    "end_year": 1973,
+    "description": "The first fiber optic communication systems were developed by Optelecom",
+    "name": "Fiber optics"
+  },
+  {
+    "start_year": 1973,
+    "end_year": 1973,
+    "description": "The first commercial graphical user interface is introduced in 1973 on the Xerox Alto. The modern GUI is later popularized by the Xerox Star and Apple Lisa",
+    "name": "Graphical user interface"
+  },
+  {
+    "start_year": 1973,
+    "end_year": 1973,
+    "description": "The first capacitive touchscreen is developed at CERN",
+    "name": "Capacitive touchscreen"
+  },
+  {
+    "start_year": 1974,
+    "end_year": 1974,
+    "description": "The Transmission Control Program is proposed by Vinton Cerf and Robert E. Kahn, building on the work of Louis Pouzin and other Internet pioneers, creating the basis for the modern Internet",
+    "name": "TCP/IP"
+  },
+  {
+    "start_year": 1974,
+    "end_year": 1974,
+    "description": "The lithium-ion battery is invented by M. Stanley Whittingham, and further developed in the 1980s and 1990s by John B. Goodenough, Rachid Yazami and Akira Yoshino. It has impacted modern consumer electronics and electric vehicles",
+    "name": "Lithium-ion battery"
+  },
+  {
+    "start_year": 1974,
+    "end_year": 1974,
+    "description": "The Rubik's cube is invented by Ernő Rubik which went on to be the best selling puzzle ever",
+    "name": "A twisty puzzle"
+  },
+  {
+    "start_year": 1975,
+    "end_year": 1975,
+    "description": "First general purpose home automation network technology, X10, was developed",
+    "name": "Home automation network"
+  },
+  {
+    "start_year": 1977,
+    "end_year": 1977,
+    "description": "Dr Walter Gilbert and Frederick Sanger invented a new DNA sequencing method for which they won the Nobel Prize",
+    "name": "DNA sequencing method"
+  },
+  {
+    "start_year": 1977,
+    "end_year": 1977,
+    "description": "The first self-driving car that did not rely upon rails or wires under the road is designed by the Tsukuba Mechanical Engineering Laboratory",
+    "name": "Autonomous vehicle"
+  },
+  {
+    "start_year": 1978,
+    "end_year": 1978,
+    "description": "The Global Positioning System (GPS) enters service. While not the first Satellite navigation system, it is the first to enter widespread civilian use",
+    "name": "Satellite navigation system"
+  },
+  {
+    "start_year": 978,
+    "end_year": 978,
+    "description": "1 Birth of the first child through in vitro fertilization (IVF), based on the research of  Patrick Steptoe and Robert Edwards",
+    "name": "In vitro fertilization"
+  },
+  {
+    "start_year": 1979,
+    "end_year": 1979,
+    "description": "The first handheld game console with interchangeable game cartridges, the Microvision is released",
+    "name": "Handheld game console"
+  },
+  {
+    "start_year": 1979,
+    "end_year": 1979,
+    "description": "Nippon Telegraph and Telephone (NTT) launched the first cellular network in Japan",
+    "name": "Cellular network"
+  },
+  {
+    "start_year": 1979,
+    "end_year": 1979,
+    "description": "Public dialup information, messaging and e-commerce services, were pioneered through CompuServe and RadioShack's MicroNET, and the UK's Post Office Telecommunications Prestel services",
+    "name": "Online services"
+  },
+  {
+    "start_year": 1980,
+    "end_year": 1980,
+    "description": "Flash memory (both NOR and NAND types) was invented by Fujio Masuoka while working for Toshiba. It was introduced to the public in 1984",
+    "name": "Flash memory"
+  },
+  {
+    "start_year": 1980,
+    "end_year": 1980,
+    "description": "Scientists Mark Skolnick, Ron Davis, Ray White, and David Botstein published their findings on a gene mapping tool using Restriction Fragment-length Polymorphisms (RFLP), that would have applications to identify heritable disorders, including some forms of cancer",
+    "name": "Gene mapping tool"
+  },
+  {
+    "start_year": 1981,
+    "end_year": 1981,
+    "description": "The first reusable spacecraft, the Space Shuttle undergoes test flights ahead of full operation in 1982",
+    "name": "Space Shuttle"
+  },
+  {
+    "start_year": 1981,
+    "end_year": 1981,
+    "description": "Kane Kramer develops the credit card-sized, IXI digital media player",
+    "name": "IXI player"
+  },
+  {
+    "start_year": 1981,
+    "end_year": 1981,
+    "description": "Televerket, a Swedish state-owned corporation, launched the Nordic Mobile Telephone (NMT) system",
+    "name": "Mobile phone network"
+  },
+  {
+    "start_year": 1981,
+    "end_year": 1981,
+    "description": "Comvik, a Swedish telecommunications company, launched the first commercial automatic cellular system. However, according to the Swedish Post and Telecom Authority, the company launched an unlicensed automatic system. Comvik didn't receive a license to operate until December 1981, two months after the NMT system was launched",
+    "name": "Cellular system"
+  },
+  {
+    "start_year": 1982,
+    "end_year": 1982,
+    "description": "A CD-ROM contains data accessible to, but not writable by, a computer for data storage and music playback. The 1985 Yellow Book standard developed by Sony and Philips adapted the format to hold any form of binary data",
+    "name": "Compact Disc-ROM"
+  },
+  {
+    "start_year": 1982,
+    "end_year": 1982,
+    "description": "Direct to home satellite television transmission, with the launch of Sky One service",
+    "name": "Satellite television"
+  },
+  {
+    "start_year": 1982,
+    "end_year": 1982,
+    "description": "The first laptop computer is launched, the 8/16-bit Epson HX-20",
+    "name": "Laptop computer"
+  },
+  {
+    "start_year": 1983,
+    "end_year": 1983,
+    "description": "Stereolithography is invented by Chuck Hull",
+    "name": "3D printing"
+  },
+  {
+    "start_year": 1983,
+    "end_year": 1983,
+    "description": "Ameritech, now known as AT&T, commercialized the Bell System (its cellular network) in Chicago, Ill",
+    "name": "Cellular network"
+  },
+  {
+    "start_year": 1984,
+    "end_year": 1984,
+    "description": "The first commercially available cell phone in the US, the DynaTAC 8000X, is created by Motorola",
+    "name": "Cell phone"
+  },
+  {
+    "start_year": 1984,
+    "end_year": 1984,
+    "description": "Chuck Hull patents the stereolithography (SLA) process, also known as 3D printing",
+    "name": "Stereolithography"
+  },
+  {
+    "start_year": 1984,
+    "end_year": 1984,
+    "description": "DNA profiling is pioneered by Alec Jeffreys",
+    "name": "DNA fingerprinting"
+  },
+  {
+    "start_year": 1986,
+    "end_year": 1986,
+    "description": "Technophone, a British mobile phone company, created the first pocket-sized cell phone, the Excell PCT105",
+    "name": "Excell PCT105"
+  },
+  {
+    "start_year": 1989,
+    "end_year": 1989,
+    "description": "Karlheinz Brandenburg would publish the audio compression algorithms that would be standardised as the: MPEG-1, layer 3 (mp3), and later the MPEG-2, layer 7 Advanced Audio Compression (AAC)",
+    "name": "Audio compression"
+  },
+  {
+    "start_year": 1989,
+    "end_year": 1989,
+    "description": "The World Wide Web is invented by computer scientist Tim Berners-Lee",
+    "name": "The World Wide Web"
+  },
+  {
+    "start_year": 1990,
+    "end_year": 1990,
+    "description": "The first search engine, \"Archie\", was created by Alan Emtage, Bill Heelan, and Peter J. Deutsch at McGill University",
+    "name": "Search engine"
+  },
+  {
+    "start_year": 1991,
+    "end_year": 1991,
+    "description": "The first commercial flash-based solid-state drive is launched by SunDisk",
+    "name": "Solid-state drive"
+  },
+  {
+    "start_year": 1991,
+    "end_year": 1991,
+    "description": "The first sim card is developed by Munich smart-card maker Giesecke & Devrient",
+    "name": "Smart card"
+  },
+  {
+    "start_year": 1994,
+    "end_year": 1994,
+    "description": "IBM Simon, the world's first smartphone, is developed by IBM. It had a touchscreen and the first built-in apps for a mobile device",
+    "name": "Smartphone"
+  },
+  {
+    "start_year": 1994,
+    "end_year": 1994,
+    "description": "First generation of Bluetooth is developed by Ericsson Mobile. A form of data communication on short distances between electronic devices",
+    "name": "Wireless technology"
+  },
+  {
+    "start_year": 1994,
+    "end_year": 1994,
+    "description": "A Tetris variant on the Hagenuk MT-2000 device becomes the first mobile game",
+    "name": "Digital game"
+  },
+  {
+    "start_year": 1995,
+    "end_year": 1995,
+    "description": "DVD is an optical disc storage format, invented and developed by Philips, Sony, Toshiba, and Panasonic. DVDs offer higher storage capacity than compact discs while having the same dimensions",
+    "name": "Optical disc format"
+  },
+  {
+    "start_year": 1996,
+    "end_year": 1996,
+    "description": "The Ciena Corporation, in partnership with Sprint, deployed the first commercial dense wavelength-division multiplexing system, which created the massive capacity of the Internet",
+    "name": "Dense WDM system"
+  },
+  {
+    "start_year": 1996,
+    "end_year": 1996,
+    "description": "Mobile web was first commercially offered in Finland on the Nokia 9000 Communicator phone, and it was also the first phone with texting",
+    "name": "Cellular internet"
+  },
+  {
+    "start_year": 1996,
+    "end_year": 1996,
+    "description": "Bolt and Six Degrees (1997) both become the first social media sites",
+    "name": "Social networking"
+  },
+  {
+    "start_year": 1996,
+    "end_year": 1996,
+    "description": "Myriad Genetics released the BRACAnalysis, the first commercial genetic test for assessing the risk of hereditary breast and ovarian cancer",
+    "name": "Genetic test"
+  },
+  {
+    "start_year": 1998,
+    "end_year": 1998,
+    "description": "The search engine Google, is launched",
+    "name": "Search engine"
+  },
+  {
+    "start_year": 1999,
+    "end_year": 1999,
+    "description": "The first capsule endoscopy was performed, after being invented in the mid-1990s by Gavriel Iddan",
+    "name": "Capsule endoscopy"
+  },
+  {
+    "start_year": 1999,
+    "end_year": 1999,
+    "description": "The first digital video recorder (DVR), the TiVo, is launched",
+    "name": "Digital video recorder"
+  },
+  {
+    "start_year": 1999,
+    "end_year": 1999,
+    "description": "NTT DoCoMo launches i-mode, the first integrated Online App store for mobile phones",
+    "name": "Mobile app store"
+  },
+  {
+    "start_year": 2001,
+    "end_year": 2001,
+    "description": "The Food and Drug Administration approved the first contraceptive patch",
+    "name": "Contraceptive patch"
+  },
+  {
+    "start_year": 2003,
+    "end_year": 2003,
+    "description": "Development of the Android operating system for mobile devices",
+    "name": "Operating system"
+  },
+  {
+    "start_year": 2004,
+    "end_year": 2004,
+    "description": "First podcast, invented by Adam Curry and Dave Wine",
+    "name": "Podcast"
+  },
+  {
+    "start_year": 2005,
+    "end_year": 2005,
+    "description": "YouTube, the first popular video-streaming site, was founded by Jawed Karim",
+    "name": "Video streaming"
+  },
+  {
+    "start_year": 2006,
+    "end_year": 2006,
+    "description": "Amazon pioneered cloud computing",
+    "name": "Cloud computing"
+  },
+  {
+    "start_year": 2007,
+    "end_year": 2007,
+    "description": "Apple Inc. released the iPhone",
+    "name": "Smartphone"
+  },
+  {
+    "start_year": 2007,
+    "end_year": 2007,
+    "description": "First Kindle e-reader introduced by Amazon",
+    "name": "E-reader"
+  },
+  {
+    "start_year": 2007,
+    "end_year": 2007,
+    "description": "Subscription video on demand first offered by Netflix and Hulu",
+    "name": "Streaming service"
+  },
+  {
+    "start_year": 2008,
+    "end_year": 2008,
+    "description": "Satoshi Nakamoto develops the first blockchain",
+    "name": "Blockchain"
+  },
+  {
+    "start_year": 2009,
+    "end_year": 2009,
+    "description": "The first quantum machine was created by Aaron D. O'Connell",
+    "name": "Quantum computer"
+  },
+  {
+    "start_year": 2010,
+    "end_year": 2010,
+    "description": "The first synthetic organism, Mycoplasma laboratorium is created by the J. Craig Venter Institute",
+    "name": "Synthetic organism"
+  },
+  {
+    "start_year": 2010,
+    "end_year": 2010,
+    "description": "Solid-state Lidar technology was introduced, replacing mechanical scanning with electronic beam steering",
+    "name": "Lidar"
+  },
+  {
+    "start_year": 2011,
+    "end_year": 2011,
+    "description": "Apple released Siri, the first major company's virtual assistant",
+    "name": "Virtual assistant"
+  },
+  {
+    "start_year": 2014,
+    "end_year": 2014,
+    "description": "Introduction of Pepper, the first commercial  humanoid robot",
+    "name": "Humanoid robot"
+  },
+  {
+    "start_year": 2014,
+    "end_year": 2014,
+    "description": "Introduction of the Amazon Echo alongside Amazon Alexa, introducing smart home technology to homes",
+    "name": "Voice assistant device"
+  },
+  {
+    "start_year": 2015,
+    "end_year": 2015,
+    "description": "Discovery of CRISPR gene editing method",
+    "name": "Gene editing"
+  },
+  {
+    "start_year": 2016,
+    "end_year": 2016,
+    "description": "First commercially available artificial pancreas",
+    "name": "Artificial pancreas"
+  },
+  {
+    "start_year": 2016,
+    "end_year": 2016,
+    "description": ": First successful launch of a multi-use rocket by SpaceX",
+    "name": "Reusable rocket"
+  },
+  {
+    "start_year": 2019,
+    "end_year": 2019,
+    "description": "IBM launches IBM Q System One, its first integrated quantum computing system for commercial use",
+    "name": "Quantum computer"
+  },
+  {
+    "start_year": 2019,
+    "end_year": 2019,
+    "description": "5G broadband cellular network technology introduced",
+    "name": "Cellular network"
+  },
+  {
+    "start_year": 2020,
+    "end_year": 2020,
+    "description": "The first MRNA vaccine to be approved by public health medicines regulators is co-developed by Pfizer and BioNTech for COVID-19, with the potential to treat other diseases and cancer",
+    "name": "mRNA vaccine"
+  },
+  {
+    "start_year": 2020,
+    "end_year": 2020,
+    "description": "OpenAI demonstrated an Artificial Intelligence model called GPT-3. The program was created to generate human-like responses when given prompts",
+    "name": "GPT-3"
+  },
+  {
+    "start_year": 2022,
+    "end_year": 2022,
+    "description": "ChatGPT is launched to the public, making it the first mainstream generative AI to be released",
+    "name": "Large language model"
+  }
+]
