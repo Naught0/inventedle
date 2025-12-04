@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:push": "prisma db push"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
@@ -26,7 +27,7 @@
     "jotai": "^2.10.0",
     "jsdom": "^25.0.1",
     "lucide-react": "^0.451.0",
-    "next": "^15.0.2",
+    "next": "^16.0.7",
     "ollama": "^0.5.9",
     "prisma": "^5.22.0",
     "react": "^19.0.0-rc-cae764ce-20241025",
