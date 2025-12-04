@@ -7,6 +7,7 @@ import { revalidatePath } from "next/cache";
 import Link from "next/link";
 
 async function getInvention(id: number) {
+  console.log(id);
   return await db.invention.findUniqueOrThrow({ where: { id } });
 }
 
@@ -25,6 +26,7 @@ async function getRemaining() {
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
+  params = await params;
   const invention = await getInvention(parseInt(params.id));
   return (
     <div className="flex w-full flex-col gap-3">
