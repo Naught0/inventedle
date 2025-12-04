@@ -1,6 +1,9 @@
 import { db } from "@/db";
 import { readFileSync, writeFileSync } from "fs";
 import ollama from "ollama";
+import pLimit from "p-limit";
+
+const limit = pLimit(3);
 
 async function populateNameFromDescription() {
   const inventions = JSON.parse(readFileSync("inventions.json").toString()) as {
@@ -8,32 +11,30 @@ async function populateNameFromDescription() {
     start_year: number;
     end_year?: number;
   }[];
-  const out = [];
-  for (const invention of inventions) {
-    const response = await ollama.chat({
-      model: "llama3.2:3b",
-      messages: [
-        {
-          role: "system",
-          content:
-            "Reply in as few words as possible while being accurate. Do not include years or dates in your reply. Do not include any information about time in your reply.",
-        },
-        {
-          role: "user",
-          content: `What is the invention being mentioned in the following sentence? ${invention.description}`,
-        },
-      ],
-    });
-    const summary = response.message.content;
-    out.push({ ...invention, name: summary });
-    console.log(
-      inventions.indexOf(invention) + 1,
-      "/",
-      inventions.length,
-      "-",
-      summary,
-    );
-  }
+  const out = await Promise.all(
+    inventions.map(async (i) => {
+      console.log(i.description);
+      return limit(async () => ({
+        ...i,
+        name: (
+          await ollama.chat({
+            model: "gemma3:4b",
+            messages: [
+              {
+                role: "system",
+                content:
+                  "Reply in as few words as possible while being accurate. Do not include years or dates in your reply. Do not include any information about time in your reply.",
+              },
+              {
+                role: "user",
+                content: `What is the invention being mentioned in the following sentence? ${i.description}. Your answer should be succinct as it will be used in a guessing game in which a user must guess the words or concepts described.`,
+              },
+            ],
+          })
+        ).message.content,
+      }));
+    }),
+  );
 
   writeFileSync("inventions_ai.json", JSON.stringify(out, undefined, 2));
 }
@@ -53,5 +54,6 @@ async function writeToDb() {
 }
 
 (async () => {
+  // await populateNameFromDescription();
   await writeToDb();
 })();
