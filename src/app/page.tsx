@@ -37,10 +37,10 @@ export default async function Page() {
                     className="bg-muted-foreground"
                   />
                   <Hyperlink
-                    href={invention.invention_link}
+                    href={invention.invention_link ?? invention.image_url}
                     className="inline-flex items-center gap-1"
                   >
-                    original
+                    source
                   </Hyperlink>
                 </div>
               )}

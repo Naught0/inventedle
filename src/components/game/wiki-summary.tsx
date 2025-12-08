@@ -1,9 +1,9 @@
 import { Hyperlink } from "../hyperlink";
-import { Invention } from "@prisma/client";
+import { InventionModel } from "@/db/prisma/generated/models";
 
-export function Summary({ invention }: { invention: Invention }) {
+export function Summary({ invention }: { invention: InventionModel }) {
   return (
-    <div className="flex flex-col gap-2">
+    <article className="flex flex-col gap-2">
       {invention.description}
       {invention.invention_link && (
         <Hyperlink
@@ -14,6 +14,6 @@ export function Summary({ invention }: { invention: Invention }) {
           Read more on Britannica®
         </Hyperlink>
       )}
-    </div>
+    </article>
   );
 }

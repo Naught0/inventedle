@@ -1,4 +1,4 @@
-import { Invention } from "@prisma/client";
+import { InventionModel } from "@/db/prisma/generated/models";
 import type { HotnessRules } from "./types";
 import { Hotness } from "./enum";
 import { defaultRules } from "./rules";
@@ -20,7 +20,7 @@ export function getRulesByYear(year: number) {
   return r.scale;
 }
 
-export function getGuessDistance(guess: number, invention: Invention) {
+export function getGuessDistance(guess: number, invention: InventionModel) {
   return guess - invention.year;
 }
 

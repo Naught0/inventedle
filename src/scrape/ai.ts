@@ -53,11 +53,11 @@ async function writeToDb() {
     inventor_link: string;
     name: string;
     invention_link: string;
-    year: string;
+    year: number;
     description: string;
   }[];
   for (const data of inventions) {
-    await db.invention.create({ data: { ...data, year: parseInt(data.year) } });
+    await db.invention.create({ data });
   }
 }
 

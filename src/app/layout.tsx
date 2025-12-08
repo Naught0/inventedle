@@ -39,18 +39,13 @@ export default function RootLayout({
               open source!
             </Hyperlink>
           </p>
-          <cite>
-            Burke, J. (2025, October 28). invention. Encyclopedia Britannica.
-            https://www.britannica.com/technology/invention-technology
-          </cite>
           <p>
-            images from{" "}
-            <Hyperlink href="https://commons.wikimedia.org/">
-              wikimedia commons
-            </Hyperlink>{" "}
-            and <Hyperlink href="https://pexels.com/">pexels</Hyperlink> where
-            noted
+            inventions retrieved from{" "}
+            <Hyperlink href="https://www.britannica.com">
+              encyclopedia britannica
+            </Hyperlink>
           </p>
+          <p>inventedle is in no way related to or endorsed by britannica</p>
         </footer>
       </body>
     </html>

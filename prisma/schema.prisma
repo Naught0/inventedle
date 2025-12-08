@@ -1,15 +1,10 @@
 generator client {
-  provider = "prisma-client-js"
-}
-
-generator zod {
-  provider = "zod-prisma-types"
-  output   = "../src/db/schema"
+  provider = "prisma-client"
+  output   = "../src/db/prisma/generated"
 }
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
 }
 
 model Invention {

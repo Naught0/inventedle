@@ -1,5 +1,5 @@
 "use client";
-import { Invention } from "@prisma/client";
+import { InventionModel } from "@/db/prisma/generated/models";
 import { createRef, useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
@@ -11,7 +11,7 @@ import { ShareScore } from "./share-score";
 import { formatYear } from "./utils";
 import { Summary } from "./wiki-summary";
 
-export function Game({ invention }: { invention: Invention }) {
+export function Game({ invention }: { invention: InventionModel }) {
   const [era, setEra] = useState<Era>(Era.CE);
   const [guesses, setGuesses] = useState<number[]>([]);
   const rules = getRulesByYear(invention.year);
@@ -57,10 +57,6 @@ export function Game({ invention }: { invention: Invention }) {
             guessDistances={guesses.map((g) => getGuessDistance(g, invention))}
             rules={rules}
           />
-          <article>
-            <strong>In {formatYear(invention.year)}</strong>{" "}
-          </article>
-
           <Summary invention={invention} />
         </div>
       ) : null}

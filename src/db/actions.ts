@@ -1,8 +1,8 @@
 "use server";
-import { Invention } from "@prisma/client";
+import { InventionModel } from "@/db/prisma/generated/models";
 import { db } from ".";
 
-export async function updateInvention(invention: Partial<Invention>) {
+export async function updateInvention(invention: Partial<InventionModel>) {
   return await db.invention.update({
     where: { id: invention.id },
     data: invention,
@@ -12,12 +12,13 @@ export async function updateInvention(invention: Partial<Invention>) {
 export async function getRandomInvention() {
   const ids = await db.invention.findMany({
     select: { id: true },
+    where: { image_url: { not: null } },
   });
   const { id } = ids[Math.floor(Math.random() * ids.length)];
   return (await db.invention.findUnique({ where: { id } }))!;
 }
 
-export async function getInventionOfTheDay(): Promise<Invention> {
+export async function getInventionOfTheDay(): Promise<InventionModel> {
   // return (await db.invention.findUnique({ where: { id: 328 } }))!;
   return await getRandomInvention();
   // const inventionId = await db

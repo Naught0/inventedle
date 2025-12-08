@@ -1,4 +1,4 @@
-import { Invention } from "@prisma/client";
+import { InventionModel } from "@/db/prisma/generated/models";
 import { ReactNode } from "react";
 import {
   PiArrowFatDownFill,
@@ -64,7 +64,7 @@ export function Guesses({
   showBlanks,
   ...props
 }: {
-  invention: Invention;
+  invention: InventionModel;
   guesses: number[];
   showBlanks?: boolean;
   totalAllowedGuesses: number;
