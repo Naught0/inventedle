@@ -3,6 +3,7 @@ const nextConfig = {
   images: {
     remotePatterns: [{ protocol: "https", hostname: "cdn.britannica.com" }],
   },
+  output: "standalone",
 };
 
 export default nextConfig;
