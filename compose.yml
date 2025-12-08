@@ -1,0 +1,8 @@
+services:
+  app:
+    build: .
+    image: inventedle:latest
+    ports:
+      - 3009:3000
+    env_file: .env
+    restart: unless-stopped
