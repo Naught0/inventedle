@@ -1,18 +1,17 @@
-import React from "react";
 import { Hyperlink } from "../hyperlink";
 import { Invention } from "@prisma/client";
 
-export function WikiSummary({ invention }: { invention: Invention }) {
+export function Summary({ invention }: { invention: Invention }) {
   return (
     <div className="flex flex-col gap-2">
-      <article dangerouslySetInnerHTML={{ __html: invention.wiki_summary! }} />
-      {invention.wiki_link && (
+      {invention.description}
+      {invention.invention_link && (
         <Hyperlink
-          href={invention.wiki_link}
+          href={invention.invention_link}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Read more on Wikipedia
+          Read more on Britannica®
         </Hyperlink>
       )}
     </div>

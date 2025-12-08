@@ -21,7 +21,7 @@ export function getRulesByYear(year: number) {
 }
 
 export function getGuessDistance(guess: number, invention: Invention) {
-  return guess - invention.start_year;
+  return guess - invention.year;
 }
 
 export function getHotness(distance: number, rules: HotnessRules) {

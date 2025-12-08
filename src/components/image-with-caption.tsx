@@ -1,5 +1,5 @@
 import Image, { ImageProps } from "next/image";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 export function ImageWithCaption({
   children,

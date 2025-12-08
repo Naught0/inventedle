@@ -75,7 +75,7 @@ export function Guesses({
         <Guess
           key={`${idx}${guess}`}
           guess={formatYear(guess)}
-          rules={getRulesByYear(props.invention.start_year)}
+          rules={getRulesByYear(props.invention.year)}
           guessDistance={getGuessDistance(guess, props.invention)}
         />
       ))}

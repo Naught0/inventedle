@@ -39,6 +39,10 @@ export default function RootLayout({
               open source!
             </Hyperlink>
           </p>
+          <cite>
+            Burke, J. (2025, October 28). invention. Encyclopedia Britannica.
+            https://www.britannica.com/technology/invention-technology
+          </cite>
           <p>
             images from{" "}
             <Hyperlink href="https://commons.wikimedia.org/">

@@ -9,13 +9,12 @@ import { Guesses } from "./guesses";
 import { getGuessDistance, getRulesByYear, guessIsCorrect } from "./logic";
 import { ShareScore } from "./share-score";
 import { formatYear } from "./utils";
-import { WikiSummary } from "./wiki-summary";
+import { Summary } from "./wiki-summary";
 
 export function Game({ invention }: { invention: Invention }) {
-  const isYearRange = invention.start_year !== invention.end_year;
   const [era, setEra] = useState<Era>(Era.CE);
   const [guesses, setGuesses] = useState<number[]>([]);
-  const rules = getRulesByYear(invention.start_year);
+  const rules = getRulesByYear(invention.year);
   const gameWon = guessIsCorrect(
     getGuessDistance(guesses.slice(-1)[0], invention),
     rules,
@@ -40,7 +39,7 @@ export function Game({ invention }: { invention: Invention }) {
         <div className="text-lg font-bold lg:text-2xl">
           You won! The year was{" "}
           <span className="text-primary underline underline-offset-8">
-            {formatYear(invention.start_year, true)}
+            {formatYear(invention.year, true)}
           </span>
         </div>
       )}
@@ -48,7 +47,7 @@ export function Game({ invention }: { invention: Invention }) {
         <div className="text-lg font-bold lg:text-2xl">
           You lost! The year was{" "}
           <span className="text-primary underline underline-offset-8">
-            {formatYear(invention.start_year, true)}
+            {formatYear(invention.year, true)}
           </span>
         </div>
       )}
@@ -59,15 +58,10 @@ export function Game({ invention }: { invention: Invention }) {
             rules={rules}
           />
           <article>
-            <strong>
-              {isYearRange ? "From" : "In"} {formatYear(invention.start_year)}
-              {isYearRange ? `to ${formatYear(invention.end_year!)}` : ""}
-              {": "}
-            </strong>
-            {invention.description}
+            <strong>In {formatYear(invention.year)}</strong>{" "}
           </article>
 
-          <WikiSummary invention={invention} />
+          <Summary invention={invention} />
         </div>
       ) : null}
       <Guesses
