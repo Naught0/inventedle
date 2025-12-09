@@ -49,14 +49,14 @@ body {
     --foreground: 20 10% 93%;
     --secondary-foreground: 20 10% 75%;
 
-    --primary: 330, 87%, 73%;
+    --primary: 330, 87%, 65%;
     --primary-foreground: 24 9.8% 4%;
     --primary-dark: 330 13% 7%;
 
     --status-success: 160, 50%, 40%;
-    --status-warning: 45, 60%, 55%;
-    --status-orange: 25, 70%, 53%;
-    --status-error: 349, 70%, 55%;
+    --status-warning: 45, 50%, 50%;
+    --status-orange: 25, 50%, 50%;
+    --status-error: 349, 50%, 40%;
 
     --card: 210 14.3% 4.1%;
     --card-foreground: 60 9.1% 97.8%;
