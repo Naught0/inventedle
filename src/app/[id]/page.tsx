@@ -4,6 +4,7 @@ import { ImageWithCaption } from "@/components/image-with-caption";
 import { Separator } from "@/components/ui/separator";
 import { db } from "@/db";
 import { getIOTD } from "@/db/actions";
+import { InventionOfTheDayModel } from "@/db/prisma/generated/models";
 import { redirect, RedirectType } from "next/navigation";
 
 export const dynamic = "force-dynamic";
@@ -18,9 +19,13 @@ export default async function Page({
     where: { id: parseInt(id) },
   });
   if (!iotd) {
-    const currentIotd = await getIOTD();
-    return redirect(`/${currentIotd?.id ?? ""}`, RedirectType.replace);
+    return redirect(`/`, RedirectType.replace);
   }
+
+  return <GamePage iotd={iotd} />;
+}
+
+export async function GamePage({ iotd }: { iotd: InventionOfTheDayModel }) {
   const invention = await db.invention.findUnique({
     where: { id: iotd.invention_id },
   });

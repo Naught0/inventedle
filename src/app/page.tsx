@@ -1,10 +1,12 @@
 import { createIOTD, getIOTD } from "@/db/actions";
-import { redirect, RedirectType } from "next/navigation";
+import { GamePage } from "./[id]/page";
+
+export const dynamic = "force-dynamic";
 
 export default async function Page() {
   let iotd = await getIOTD();
   if (!iotd) {
     iotd = await createIOTD();
   }
-  redirect(`/${iotd.id}`, RedirectType.push);
+  return <GamePage iotd={iotd} />;
 }
