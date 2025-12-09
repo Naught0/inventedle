@@ -9,7 +9,7 @@ import { Guesses } from "./guesses";
 import { getGuessDistance, getRulesByYear, guessIsCorrect } from "./logic";
 import { ShareScore } from "./share-score";
 import { formatYear } from "./utils";
-import { Summary } from "./wiki-summary";
+import { Summary } from "./summary";
 
 export function Game({ invention }: { invention: InventionModel }) {
   const [era, setEra] = useState<Era>(Era.CE);
@@ -34,7 +34,7 @@ export function Game({ invention }: { invention: InventionModel }) {
   );
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-3 lg:gap-6">
       {gameWon && (
         <div className="text-lg font-bold lg:text-2xl">
           You won! The year was{" "}
@@ -86,9 +86,13 @@ export function Game({ invention }: { invention: InventionModel }) {
                 className="text-foreground placeholder:text-text rounded-r-none"
                 name="guess"
                 type="number"
+                inputMode="numeric"
+                max={new Date().getFullYear() + 1}
                 disabled={gameOver}
                 placeholder={
-                  !gameOver ? `Guess (${guesses.length + 1} / 5)` : undefined
+                  !gameOver
+                    ? `Guess a year | (Guess ${guesses.length + 1} / 5)`
+                    : undefined
                 }
                 autoFocus
               />
