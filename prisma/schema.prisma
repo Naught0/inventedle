@@ -21,6 +21,15 @@ model Invention {
   @@map("inventions")
 }
 
+model InventionOfTheDay {
+  id           Int      @id @default(autoincrement())
+  invention_id Int
+  created_at   DateTime @default(now())
+
+  @@unique([invention_id, created_at])
+  @@index([invention_id])
+}
+
 model Score {
   id           Int      @id @default(autoincrement())
   invention_id Int?
