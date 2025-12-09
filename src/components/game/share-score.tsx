@@ -66,7 +66,7 @@ export function ShareScore(props: {
   const onClick = () => {
     const guesses = props.guessDistances.map(getEmoji);
     const pad = 5 - guesses.length;
-    const emojis = [...guesses, "◼️".repeat(pad)];
+    const emojis = [...guesses, "⬛ ".repeat(pad)];
     const winner =
       props.guessDistances.findIndex((d) => guessIsCorrect(d, props.rules)) + 1;
     const text = `Inventedle ${winner ? `${winner}/5` : "X/5"}\n\n${emojis.join(" ")}`;
