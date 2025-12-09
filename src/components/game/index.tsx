@@ -78,7 +78,7 @@ export function Game({ invention }: { invention: InventionModel }) {
           <div className="flex flex-grow flex-col gap-3">
             <div className="flex flex-row items-center gap-0">
               <Input
-                className="text-foreground placeholder:text-text bg-background rounded-r-none"
+                className="text-foreground placeholder:text-muted-foreground bg-background rounded-r-none"
                 name="guess"
                 type="number"
                 inputMode="numeric"

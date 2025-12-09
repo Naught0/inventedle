@@ -30,6 +30,9 @@ export default async function Page({
 
   return (
     <div className="flex w-full flex-col items-center gap-3 p-3 lg:gap-6">
+      <h2 className="text-muted-foreground text-center text-xl font-normal italic">
+        Inventedle #{iotd.id}
+      </h2>
       <h2 className="text-center text-3xl font-normal">
         <span className="text-far-red font-extrabold">{invention.name}</span>
       </h2>
