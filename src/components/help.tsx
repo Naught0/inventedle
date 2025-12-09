@@ -30,7 +30,11 @@ export function Help() {
           <DialogTitle>Game Rules</DialogTitle>
           <DialogDescription className="text-left text-base">
             <article className="prose prose-invert">
-              <p>The rules of the game depend on the year of the invention.</p>
+              <p>Guess the year of the invention.</p>
+              <p>
+                The range of accepted years depends on the year of the
+                invention.
+              </p>
               <p>
                 E.g. To win for inventions from the year 2000 onward, you must
                 guess the exact year to get it right. For an invention made in

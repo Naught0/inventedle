@@ -25,12 +25,12 @@ export function HelpTable({ rules }: { rules: GameRule[] }) {
           <tr>
             <th></th>
             <th colSpan={4} className="text-center">
-              Distance (years)
+              Years from Correct Answer
             </th>
           </tr>
           <tr>
             <th className="bg-background sticky left-0 px-2 py-3 text-left md:px-3">
-              <div className="inline-flex gap-2">Invention year</div>
+              <div className="inline-flex gap-2">Invention Year</div>
             </th>
             <th>
               <div className="inline-flex gap-2 px-2 md:px-3">
