@@ -15,14 +15,6 @@ import { HotnessRules } from "./types";
 import { Hotness } from "./enum";
 import { formatYear } from "./utils";
 
-export function GuessPlaceholder() {
-  return (
-    <li className="bg-secondary flex items-center gap-2 px-3 py-1 text-base font-bold lg:py-2 lg:text-xl">
-      <span className="invisible">Text</span>
-    </li>
-  );
-}
-
 export function Guess(props: {
   guess: ReactNode;
   guessDistance: number;
@@ -32,13 +24,13 @@ export function Guess(props: {
     const color = getHotness(props.guessDistance, props.rules);
     switch (color) {
       case Hotness.CORRECT:
-        return "bg-emerald-600";
+        return "bg-status-success";
       case Hotness.HOT:
-        return "bg-closeYellow";
+        return "bg-status-warning";
       case Hotness.WARM:
-        return "bg-orange-500";
+        return "bg-status-orange";
       case Hotness.COLD:
-        return "bg-destructive";
+        return "bg-status-error";
     }
   };
   const getIcon = () => {
@@ -52,7 +44,7 @@ export function Guess(props: {
   };
   return (
     <li
-      className={`flex items-center gap-2 px-3 py-1 text-base font-bold lg:py-2 lg:text-xl ${getBgClassName()}`}
+      className={`flex items-center gap-2 rounded px-6 py-3 text-xl font-bold lg:py-2 lg:text-2xl ${getBgClassName()}`}
     >
       <span className="text-base lg:text-2xl">{getIcon()}</span>
       {props.guess}
@@ -60,14 +52,10 @@ export function Guess(props: {
   );
 }
 export function Guesses({
-  totalAllowedGuesses,
-  showBlanks,
   ...props
 }: {
   invention: InventionModel;
   guesses: number[];
-  showBlanks?: boolean;
-  totalAllowedGuesses: number;
 }) {
   return (
     <ul className="flex flex-col gap-2">
@@ -79,14 +67,6 @@ export function Guesses({
           guessDistance={getGuessDistance(guess, props.invention)}
         />
       ))}
-      {showBlanks && (
-        <div className="hidden lg:contents">
-          {props.guesses.length < totalAllowedGuesses &&
-            [...Array(totalAllowedGuesses - props.guesses.length).keys()].map(
-              (idx) => <GuessPlaceholder key={idx} />,
-            )}
-        </div>
-      )}
     </ul>
   );
 }

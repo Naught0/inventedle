@@ -7,8 +7,8 @@ export function ImageWithCaption({
   ...props
 }: ImageProps & { children?: ReactNode }) {
   return (
-    <div className="flex flex-col items-center gap-2">
-      <div className="w-fit rounded bg-white p-2 drop-shadow-lg">
+    <div className="flex flex-col items-center gap-2 p-3 ounded w-full">
+      <div className="w-fit drop-shadow-lg">
         <Image alt={alt} {...props} />
       </div>
 

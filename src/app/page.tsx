@@ -10,14 +10,14 @@ export default async function Page() {
   const invention = await getInventionOfTheDay();
   return (
     <div className="flex w-full flex-col items-center gap-3 p-3 lg:gap-6">
-      <h2 className="text-center text-2xl md:text-3xl">
-        <span className="text-foreground font-extrabold">{invention.name}</span>
+      <h2 className="text-center text-3xl font-normal">
+        <span className="text-far-red font-extrabold">{invention.name}</span>
       </h2>
       <div className="grid w-full max-w-screen-sm grid-cols-1 flex-row flex-wrap justify-center gap-6 lg:max-w-screen-lg lg:grid-cols-2 lg:flex-nowrap lg:gap-9">
         {invention.image_url && (
           <div className="flex flex-1 flex-grow basis-1/2 flex-col">
             <ImageWithCaption
-              className="max-h-80 w-full max-w-[95vw] object-contain lg:max-h-[512px]"
+              className="max-h-80 w-full max-w-[95vw] rounded object-contain lg:max-h-[512px]"
               src={invention.image_url}
               alt={`${invention.name}`}
               width={1280}

@@ -60,12 +60,7 @@ export function Game({ invention }: { invention: InventionModel }) {
           <Summary invention={invention} />
         </div>
       ) : null}
-      <Guesses
-        totalAllowedGuesses={5}
-        invention={invention}
-        guesses={guesses}
-        showBlanks={!gameOver}
-      />
+      <Guesses invention={invention} guesses={guesses} />
       {!gameOver && (
         <form
           ref={formRef}
@@ -83,11 +78,11 @@ export function Game({ invention }: { invention: InventionModel }) {
           <div className="flex flex-grow flex-col gap-3">
             <div className="flex flex-row items-center gap-0">
               <Input
-                className="text-foreground placeholder:text-text rounded-r-none"
+                className="text-foreground placeholder:text-text bg-background rounded-r-none"
                 name="guess"
                 type="number"
                 inputMode="numeric"
-                max={new Date().getFullYear() + 1}
+                max={era === Era.CE ? new Date().getFullYear() + 1 : undefined}
                 disabled={gameOver}
                 placeholder={
                   !gameOver

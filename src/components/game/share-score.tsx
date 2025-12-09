@@ -16,7 +16,7 @@ import { BiSolidSquareRounded } from "react-icons/bi";
 function getClassName(hotness: Hotness, bgOrText: "bg" | "text" = "bg") {
   // These must be explicitcly in the code for tailwind to include them
   const classnames = {
-    bg: ["bg-emerald-600", "bg-closeYellow", "bg-orange-500", "bg-destructive"],
+    bg: ["bg-emerald-600", "bg-status-warning", "bg-status-orange", "bg-destructive"],
     text: [
       "text-emerald-600",
       "text-closeYellow",
@@ -69,7 +69,7 @@ export function ShareScore(props: {
     const emojis = [...guesses, "⬛ ".repeat(pad)];
     const winner =
       props.guessDistances.findIndex((d) => guessIsCorrect(d, props.rules)) + 1;
-    const text = `Inventedle ${winner ? `${winner}/5` : "X/5"}\n\n${emojis.join(" ")}`;
+    const text = `Inventedle ${winner ? `${winner}/5` : "X/5"}\n\n${emojis.join(" ")}\nhttps://inventedle.jamese.dev`;
     navigator.clipboard.writeText(text);
     setCopiedMessage(
       props.guessDistances.map((d, idx) => (
@@ -91,7 +91,8 @@ export function ShareScore(props: {
       <PopoverAnchor>
         <PopoverTrigger
           className={buttonVariants({
-            className: "w-full gap-1",
+            className: "gap-1 font-bold",
+            size: "xl",
           })}
           type="button"
           onClick={onClick}

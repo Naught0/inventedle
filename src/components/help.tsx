@@ -30,7 +30,9 @@ export function Help() {
           <DialogTitle>Game Rules</DialogTitle>
           <DialogDescription className="text-left text-base">
             <article className="prose prose-invert">
-              <p>Guess the year of the invention.</p>
+              <ol>
+                <li>Guess the year of the invention.</li>
+              </ol>
               <p>
                 The range of accepted years depends on the year of the
                 invention.
@@ -38,7 +40,7 @@ export function Help() {
               <p>
                 E.g. To win for inventions from the year 2000 onward, you must
                 guess the exact year to get it right. For an invention made in
-                1910, you would need to guess within 3 (three) years to win. The
+                1910, you would need to guess a year 1909-1911 to win. The
                 margin to win becomes more forgiving as you go farther back in
                 time.
               </p>

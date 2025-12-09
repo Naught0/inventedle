@@ -17,7 +17,7 @@ export const defaultRules: GameRule[] = [
   {
     yearStarting: 1900,
     scale: [
-      { maxDistance: 2, hotness: CORRECT },
+      { maxDistance: 1, hotness: CORRECT },
       { maxDistance: 10, hotness: HOT },
       { maxDistance: 15, hotness: WARM },
     ],
@@ -25,9 +25,9 @@ export const defaultRules: GameRule[] = [
   {
     yearStarting: 1500,
     scale: [
-      { maxDistance: 8, hotness: CORRECT },
-      { maxDistance: 20, hotness: HOT },
-      { maxDistance: 40, hotness: WARM },
+      { maxDistance: 5, hotness: CORRECT },
+      { maxDistance: 15, hotness: HOT },
+      { maxDistance: 30, hotness: WARM },
     ],
   },
   {

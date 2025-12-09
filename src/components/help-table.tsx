@@ -8,10 +8,10 @@ function Square({ className }: { className: string }) {
 
 const getBg = (idx: number) => {
   const colors = [
-    "bg-emerald-600/50",
-    "bg-yellow-600/50",
-    "bg-orange-500/50",
-    "bg-destructive/50",
+    "bg-status-success",
+    "bg-status-warning",
+    "bg-status-orange",
+    "bg-status-error",
   ];
 
   return colors[idx % colors.length];
@@ -34,25 +34,25 @@ export function HelpTable({ rules }: { rules: GameRule[] }) {
             </th>
             <th>
               <div className="inline-flex gap-2 px-2 md:px-3">
-                <Square className="bg-emerald-600" />
+                <Square className="bg-status-success" />
                 <span className="hidden md:inline"> Win</span>
               </div>
             </th>
             <th>
               <div className="inline-flex gap-2 px-2 md:px-3">
-                <Square className="bg-closeYellow" />
+                <Square className="bg-status-warning" />
                 <span className="hidden md:inline"> Close</span>
               </div>
             </th>
             <th>
               <div className="inline-flex gap-2 px-2 md:px-3">
-                <Square className="bg-orange-500" />
+                <Square className="bg-status-orange" />
                 <span className="hidden md:inline"> Warmer</span>
               </div>
             </th>
             <th>
               <div className="inline-flex gap-2 px-2 md:px-3">
-                <Square className="bg-destructive" />
+                <Square className="bg-status-error" />
                 <span className="hidden md:inline"> Far</span>
               </div>
             </th>

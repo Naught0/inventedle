@@ -8,7 +8,7 @@ export default function Logo() {
 
   return (
     <strong
-      className="inline-flex select-none border-b border-r border-white p-3 text-3xl lg:text-5xl"
+      className="inline-flex select-none border-b-2 border-r-2 border-white p-3 text-4xl lg:text-5xl"
       onMouseOver={() => setHovered(true)}
       onMouseOut={() => setHovered(false)}
     >
