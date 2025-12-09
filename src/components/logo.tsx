@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Dangle } from "./animations/dangle";
+import { MdLightbulb } from "react-icons/md";
 
 export default function Logo() {
   const [hovered, setHovered] = useState(false);
@@ -13,7 +14,10 @@ export default function Logo() {
     >
       <span>Invented</span>
       <Dangle isHovering={hovered}>
-        <span className="text-primary">le</span>
+        <span className="text-primary">
+          le{" "}
+          <MdLightbulb className="-ml-4 -mt-2 inline p-0 text-yellow-300 lg:-ml-8" />
+        </span>
       </Dangle>
     </strong>
   );
