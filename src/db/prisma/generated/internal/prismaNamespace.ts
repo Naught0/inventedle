@@ -16,10 +16,10 @@
  */
 
 import * as runtime from "@prisma/client/runtime/client"
-import type * as Prisma from "../models"
-import { type PrismaClient } from "./class"
+import type * as Prisma from "../models.ts"
+import { type PrismaClient } from "./class.ts"
 
-export type * from '../models'
+export type * from '../models.ts'
 
 export type DMMF = typeof runtime.DMMF
 
@@ -385,8 +385,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Invention: 'Invention',
+  InventionOfTheDay: 'InventionOfTheDay',
   Score: 'Score',
-  UsedInvention: 'UsedInvention',
   User: 'User'
 } as const
 
@@ -403,7 +403,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "invention" | "score" | "usedInvention" | "user"
+    modelProps: "invention" | "inventionOfTheDay" | "score" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -481,6 +481,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    InventionOfTheDay: {
+      payload: Prisma.$InventionOfTheDayPayload<ExtArgs>
+      fields: Prisma.InventionOfTheDayFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.InventionOfTheDayFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventionOfTheDayPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.InventionOfTheDayFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventionOfTheDayPayload>
+        }
+        findFirst: {
+          args: Prisma.InventionOfTheDayFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventionOfTheDayPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.InventionOfTheDayFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventionOfTheDayPayload>
+        }
+        findMany: {
+          args: Prisma.InventionOfTheDayFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventionOfTheDayPayload>[]
+        }
+        create: {
+          args: Prisma.InventionOfTheDayCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventionOfTheDayPayload>
+        }
+        createMany: {
+          args: Prisma.InventionOfTheDayCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.InventionOfTheDayCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventionOfTheDayPayload>[]
+        }
+        delete: {
+          args: Prisma.InventionOfTheDayDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventionOfTheDayPayload>
+        }
+        update: {
+          args: Prisma.InventionOfTheDayUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventionOfTheDayPayload>
+        }
+        deleteMany: {
+          args: Prisma.InventionOfTheDayDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.InventionOfTheDayUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.InventionOfTheDayUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventionOfTheDayPayload>[]
+        }
+        upsert: {
+          args: Prisma.InventionOfTheDayUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventionOfTheDayPayload>
+        }
+        aggregate: {
+          args: Prisma.InventionOfTheDayAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateInventionOfTheDay>
+        }
+        groupBy: {
+          args: Prisma.InventionOfTheDayGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InventionOfTheDayGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.InventionOfTheDayCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InventionOfTheDayCountAggregateOutputType> | number
+        }
+      }
+    }
     Score: {
       payload: Prisma.$ScorePayload<ExtArgs>
       fields: Prisma.ScoreFieldRefs
@@ -552,80 +626,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.ScoreCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.ScoreCountAggregateOutputType> | number
-        }
-      }
-    }
-    UsedInvention: {
-      payload: Prisma.$UsedInventionPayload<ExtArgs>
-      fields: Prisma.UsedInventionFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.UsedInventionFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsedInventionPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.UsedInventionFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsedInventionPayload>
-        }
-        findFirst: {
-          args: Prisma.UsedInventionFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsedInventionPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.UsedInventionFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsedInventionPayload>
-        }
-        findMany: {
-          args: Prisma.UsedInventionFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsedInventionPayload>[]
-        }
-        create: {
-          args: Prisma.UsedInventionCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsedInventionPayload>
-        }
-        createMany: {
-          args: Prisma.UsedInventionCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.UsedInventionCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsedInventionPayload>[]
-        }
-        delete: {
-          args: Prisma.UsedInventionDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsedInventionPayload>
-        }
-        update: {
-          args: Prisma.UsedInventionUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsedInventionPayload>
-        }
-        deleteMany: {
-          args: Prisma.UsedInventionDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.UsedInventionUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.UsedInventionUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsedInventionPayload>[]
-        }
-        upsert: {
-          args: Prisma.UsedInventionUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsedInventionPayload>
-        }
-        aggregate: {
-          args: Prisma.UsedInventionAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateUsedInvention>
-        }
-        groupBy: {
-          args: Prisma.UsedInventionGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.UsedInventionGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.UsedInventionCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.UsedInventionCountAggregateOutputType> | number
         }
       }
     }
@@ -754,6 +754,15 @@ export const InventionScalarFieldEnum = {
 export type InventionScalarFieldEnum = (typeof InventionScalarFieldEnum)[keyof typeof InventionScalarFieldEnum]
 
 
+export const InventionOfTheDayScalarFieldEnum = {
+  id: 'id',
+  invention_id: 'invention_id',
+  created_at: 'created_at'
+} as const
+
+export type InventionOfTheDayScalarFieldEnum = (typeof InventionOfTheDayScalarFieldEnum)[keyof typeof InventionOfTheDayScalarFieldEnum]
+
+
 export const ScoreScalarFieldEnum = {
   id: 'id',
   invention_id: 'invention_id',
@@ -761,16 +770,6 @@ export const ScoreScalarFieldEnum = {
 } as const
 
 export type ScoreScalarFieldEnum = (typeof ScoreScalarFieldEnum)[keyof typeof ScoreScalarFieldEnum]
-
-
-export const UsedInventionScalarFieldEnum = {
-  id: 'id',
-  invention_id: 'invention_id',
-  is_current: 'is_current',
-  used_at: 'used_at'
-} as const
-
-export type UsedInventionScalarFieldEnum = (typeof UsedInventionScalarFieldEnum)[keyof typeof UsedInventionScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -927,8 +926,8 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   invention?: Prisma.InventionOmit
+  inventionOfTheDay?: Prisma.InventionOfTheDayOmit
   score?: Prisma.ScoreOmit
-  usedInvention?: Prisma.UsedInventionOmit
   user?: Prisma.UserOmit
 }
 

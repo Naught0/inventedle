@@ -1,6 +1,9 @@
 "use server";
 import { InventionModel } from "@/db/prisma/generated/models";
 import { db } from ".";
+import { scheduleJob, RecurrenceRule } from "node-schedule";
+import { isSameDay, subMonths } from "date-fns";
+import { TZDate } from "@date-fns/tz";
 
 export async function updateInvention(invention: Partial<InventionModel>) {
   return await db.invention.update({
@@ -9,29 +12,47 @@ export async function updateInvention(invention: Partial<InventionModel>) {
   });
 }
 
-export async function getRandomInvention() {
+export async function getRandomInvention(excludeIds: number[] = []) {
   const ids = await db.invention.findMany({
     select: { id: true },
-    where: { image_url: { not: null } },
+    where: { image_url: { not: null }, id: { notIn: excludeIds } },
   });
   const { id } = ids[Math.floor(Math.random() * ids.length)];
   return (await db.invention.findUnique({ where: { id } }))!;
 }
 
-export async function getInventionOfTheDay(): Promise<InventionModel> {
-  // return (await db.invention.findUnique({ where: { id: 328 } }))!;
-  return await getRandomInvention();
-  // const inventionId = await db
-  //   .select()
-  //   .from(usedInventions)
-  //   .where(eq(usedInventions.is_current, 1))
-  //   .orderBy(desc(usedInventions.used_at))
-  //   .limit(1);
-  //
-  // const results = await db
-  //   .select()
-  //   .from(inventions)
-  //   .where(eq(inventions.id, inventionId[0].invention_id));
-  //
-  // return results[0];
+export async function getIOTD() {
+  const invention = await db.inventionOfTheDay.findFirst({
+    orderBy: { id: "desc" },
+  });
+  return invention;
+}
+
+export async function createIOTD() {
+  /// Creates an Invention of the Day unless one has already been created for today (EST)
+  const now = new TZDate(new Date(), "America/New_York");
+  const iotd = await getIOTD();
+
+  if (iotd && isSameDay(new TZDate(iotd.created_at, "America/New_York"), now)) {
+    throw new Error("IOTD already exists for today");
+  }
+
+  const avoidInventions = await db.inventionOfTheDay.findMany({
+    select: { invention_id: true },
+    distinct: ["invention_id"],
+    where: {
+      created_at: {
+        gt: subMonths(now, 2),
+      },
+    },
+  });
+  const invention = await getRandomInvention(
+    avoidInventions.map((i) => i.invention_id),
+  );
+  const newIotd = await db.inventionOfTheDay.create({
+    data: {
+      invention_id: invention.id,
+    },
+  });
+  return newIotd;
 }

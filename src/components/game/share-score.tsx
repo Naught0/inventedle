@@ -16,12 +16,17 @@ import { BiSolidSquareRounded } from "react-icons/bi";
 function getClassName(hotness: Hotness, bgOrText: "bg" | "text" = "bg") {
   // These must be explicitcly in the code for tailwind to include them
   const classnames = {
-    bg: ["bg-emerald-600", "bg-status-warning", "bg-status-orange", "bg-destructive"],
+    bg: [
+      "bg-emerald-600",
+      "bg-status-warning",
+      "bg-status-orange",
+      "bg-destructive",
+    ],
     text: [
-      "text-emerald-600",
-      "text-closeYellow",
-      "text-orange-500",
-      "text-destructive",
+      "text-status-success",
+      "text-status-warning",
+      "text-status-orange",
+      "text-status-error",
     ],
   };
   switch (hotness) {
@@ -101,8 +106,9 @@ export function ShareScore(props: {
         </PopoverTrigger>
       </PopoverAnchor>
 
-      <PopoverContent className="inline-flex w-fit items-center justify-center gap-2 bg-slate-200 px-4 text-center font-bold text-slate-900">
-        {copiedMessage}
+      <PopoverContent className="bg-secondary grid justify-center gap-2 px-4 text-center font-bold">
+        <div>Copied your results!</div>
+        <div className="inline-flex gap-1.5">{copiedMessage}</div>
       </PopoverContent>
     </Popover>
   );

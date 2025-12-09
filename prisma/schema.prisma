@@ -1,6 +1,9 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../src/db/prisma/generated"
+  provider               = "prisma-client"
+  output                 = "../src/db/prisma/generated"
+  moduleFormat           = "esm"
+  generatedFileExtension = "ts"
+  importFileExtension    = "ts"
 }
 
 datasource db {
@@ -28,6 +31,7 @@ model InventionOfTheDay {
 
   @@unique([invention_id, created_at])
   @@index([invention_id])
+  @@map("invention_of_the_day")
 }
 
 model Score {
@@ -36,15 +40,6 @@ model Score {
   created_at   DateTime @default(now())
 
   @@map("scores")
-}
-
-model UsedInvention {
-  id           Int      @id @default(autoincrement())
-  invention_id Int
-  is_current   Int      @default(1)
-  used_at      DateTime @default(now())
-
-  @@map("used_inventions")
 }
 
 model User {

@@ -17,8 +17,8 @@
 
 import * as runtime from "@prisma/client/runtime/index-browser"
 
-export type * from '../models'
-export type * from './prismaNamespace'
+export type * from '../models.ts'
+export type * from './prismaNamespace.ts'
 
 export const Decimal = runtime.Decimal
 
@@ -52,8 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Invention: 'Invention',
+  InventionOfTheDay: 'InventionOfTheDay',
   Score: 'Score',
-  UsedInvention: 'UsedInvention',
   User: 'User'
 } as const
 
@@ -85,6 +85,15 @@ export const InventionScalarFieldEnum = {
 export type InventionScalarFieldEnum = (typeof InventionScalarFieldEnum)[keyof typeof InventionScalarFieldEnum]
 
 
+export const InventionOfTheDayScalarFieldEnum = {
+  id: 'id',
+  invention_id: 'invention_id',
+  created_at: 'created_at'
+} as const
+
+export type InventionOfTheDayScalarFieldEnum = (typeof InventionOfTheDayScalarFieldEnum)[keyof typeof InventionOfTheDayScalarFieldEnum]
+
+
 export const ScoreScalarFieldEnum = {
   id: 'id',
   invention_id: 'invention_id',
@@ -92,16 +101,6 @@ export const ScoreScalarFieldEnum = {
 } as const
 
 export type ScoreScalarFieldEnum = (typeof ScoreScalarFieldEnum)[keyof typeof ScoreScalarFieldEnum]
-
-
-export const UsedInventionScalarFieldEnum = {
-  id: 'id',
-  invention_id: 'invention_id',
-  is_current: 'is_current',
-  used_at: 'used_at'
-} as const
-
-export type UsedInventionScalarFieldEnum = (typeof UsedInventionScalarFieldEnum)[keyof typeof UsedInventionScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {

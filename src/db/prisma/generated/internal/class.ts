@@ -12,7 +12,7 @@
  */
 
 import * as runtime from "@prisma/client/runtime/client"
-import type * as Prisma from "./prismaNamespace"
+import type * as Prisma from "./prismaNamespace.ts"
 
 
 const config: runtime.GetPrismaClientConfig = {
@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.1.0",
   "engineVersion": "ab635e6b9d606fa5c8fb8b1a7f909c3c3c1c98ba",
   "activeProvider": "sqlite",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/db/prisma/generated\"\n}\n\ngenerator zod {\n  provider = \"zod-prisma-types\"\n  output   = \"../src/db/schema\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n}\n\nmodel Invention {\n  id             Int      @id @default(autoincrement())\n  name           String?\n  year           Int\n  description    String\n  image_url      String?\n  created_at     DateTime @default(now())\n  inventor       String?\n  inventor_link  String?\n  invention_link String?\n\n  @@map(\"inventions\")\n}\n\nmodel Score {\n  id           Int      @id @default(autoincrement())\n  invention_id Int?\n  created_at   DateTime @default(now())\n\n  @@map(\"scores\")\n}\n\nmodel UsedInvention {\n  id           Int      @id @default(autoincrement())\n  invention_id Int\n  is_current   Int      @default(1)\n  used_at      DateTime @default(now())\n\n  @@map(\"used_inventions\")\n}\n\nmodel User {\n  id         Int      @id @default(autoincrement())\n  name       String?\n  created_at DateTime @default(now())\n\n  @@map(\"users\")\n}\n",
+  "inlineSchema": "generator client {\n  provider               = \"prisma-client\"\n  output                 = \"../src/db/prisma/generated\"\n  moduleFormat           = \"esm\"\n  generatedFileExtension = \"ts\"\n  importFileExtension    = \"ts\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n}\n\nmodel Invention {\n  id             Int      @id @default(autoincrement())\n  name           String?\n  year           Int\n  description    String\n  image_url      String?\n  created_at     DateTime @default(now())\n  inventor       String?\n  inventor_link  String?\n  invention_link String?\n\n  @@map(\"inventions\")\n}\n\nmodel InventionOfTheDay {\n  id           Int      @id @default(autoincrement())\n  invention_id Int\n  created_at   DateTime @default(now())\n\n  @@unique([invention_id, created_at])\n  @@index([invention_id])\n  @@map(\"invention_of_the_day\")\n}\n\nmodel Score {\n  id           Int      @id @default(autoincrement())\n  invention_id Int?\n  created_at   DateTime @default(now())\n\n  @@map(\"scores\")\n}\n\nmodel User {\n  id         Int      @id @default(autoincrement())\n  name       String?\n  created_at DateTime @default(now())\n\n  @@map(\"users\")\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Invention\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"year\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"image_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"inventor\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"inventor_link\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"invention_link\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":\"inventions\"},\"Score\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"invention_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"scores\"},\"UsedInvention\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"invention_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"is_current\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"used_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"used_inventions\"},\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"users\"}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Invention\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"year\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"image_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"inventor\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"inventor_link\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"invention_link\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":\"inventions\"},\"InventionOfTheDay\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"invention_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"invention_of_the_day\"},\"Score\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"invention_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"scores\"},\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"users\"}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -185,6 +185,16 @@ export interface PrismaClient<
   get invention(): Prisma.InventionDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
+   * `prisma.inventionOfTheDay`: Exposes CRUD operations for the **InventionOfTheDay** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more InventionOfTheDays
+    * const inventionOfTheDays = await prisma.inventionOfTheDay.findMany()
+    * ```
+    */
+  get inventionOfTheDay(): Prisma.InventionOfTheDayDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
    * `prisma.score`: Exposes CRUD operations for the **Score** model.
     * Example usage:
     * ```ts
@@ -193,16 +203,6 @@ export interface PrismaClient<
     * ```
     */
   get score(): Prisma.ScoreDelegate<ExtArgs, { omit: OmitOpts }>;
-
-  /**
-   * `prisma.usedInvention`: Exposes CRUD operations for the **UsedInvention** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more UsedInventions
-    * const usedInventions = await prisma.usedInvention.findMany()
-    * ```
-    */
-  get usedInvention(): Prisma.UsedInventionDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
