@@ -24,13 +24,13 @@ export function Guess(props: {
     const color = getHotness(props.guessDistance, props.rules);
     switch (color) {
       case Hotness.CORRECT:
-        return "bg-status-success";
+        return "bg-status-success text-status-success-foreground";
       case Hotness.HOT:
-        return "bg-status-warning";
+        return "bg-status-warning text-status-warning-foreground";
       case Hotness.WARM:
-        return "bg-status-orange";
+        return "bg-status-orange text-status-orange-foreground";
       case Hotness.COLD:
-        return "bg-status-error";
+        return "bg-status-error text-status-error-foreground";
     }
   };
   const getIcon = () => {
