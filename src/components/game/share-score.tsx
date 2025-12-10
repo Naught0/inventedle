@@ -52,6 +52,7 @@ function HotnessSquare({ hotness }: { hotness: Hotness }) {
 export function ShareScore(props: {
   guessDistances: number[];
   rules: HotnessRules;
+  iotdId: number;
 }) {
   const [showCopied, setShowCopied] = useState(false);
   const [copiedMessage, setCopiedMessage] = useState<ReactNode>();
@@ -74,7 +75,7 @@ export function ShareScore(props: {
     const emojis = [...guesses, "⬛ ".repeat(pad)];
     const winner =
       props.guessDistances.findIndex((d) => guessIsCorrect(d, props.rules)) + 1;
-    const text = `Inventedle ${winner ? `${winner}/5` : "X/5"}\n\n${emojis.join(" ")}\nhttps://inventedle.jamese.dev`;
+    const text = `Inventedle #${props.iotdId} ${winner ? `${winner}/5` : "X/5"}\n\n${emojis.join(" ")}`;
     navigator.clipboard.writeText(text);
     setCopiedMessage(
       props.guessDistances.map((d, idx) => (

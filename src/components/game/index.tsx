@@ -11,7 +11,13 @@ import { ShareScore } from "./share-score";
 import { formatYear } from "./utils";
 import { Summary } from "./summary";
 
-export function Game({ invention }: { invention: InventionModel }) {
+export function Game({
+  invention,
+  iotdId,
+}: {
+  invention: InventionModel;
+  iotdId: number;
+}) {
   const [era, setEra] = useState<Era>(Era.CE);
   const [guesses, setGuesses] = useState<number[]>([]);
   const rules = getRulesByYear(invention.year);
@@ -54,6 +60,7 @@ export function Game({ invention }: { invention: InventionModel }) {
       {gameOver ? (
         <div className="flex flex-col gap-3">
           <ShareScore
+            iotdId={iotdId}
             guessDistances={guesses.map((g) => getGuessDistance(g, invention))}
             rules={rules}
           />
