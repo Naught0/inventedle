@@ -11,8 +11,8 @@ const jbMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Inventle",
-  description: "the inventurous daily guessing game",
+  title: "Inventedle",
+  description: "The inventurous daily guessing game",
 };
 
 export default function RootLayout({
