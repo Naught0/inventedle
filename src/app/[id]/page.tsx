@@ -3,7 +3,6 @@ import { Hyperlink } from "@/components/hyperlink";
 import { ImageWithCaption } from "@/components/image-with-caption";
 import { Separator } from "@/components/ui/separator";
 import { db } from "@/db";
-import { getIOTD } from "@/db/actions";
 import { InventionOfTheDayModel } from "@/db/prisma/generated/models";
 import { redirect, RedirectType } from "next/navigation";
 
