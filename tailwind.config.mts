@@ -21,6 +21,10 @@ const config: Config = {
         "status-error": "hsla(var(--status-error))",
         "status-orange": "hsla(var(--status-orange))",
         "status-warning": "hsla(var(--status-warning))",
+        "status-warning-foreground": "hsla(var(--status-warning-foreground))",
+        "status-error-foreground": "hsla(var(--status-error-foreground))",
+        "status-orange-foreground": "hsla(var(--status-orange-foreground))",
+        "status-success-foreground": "hsla(var(--status-success-foreground))",
         "primary-dark": "hsla(var(--primary-dark))",
         card: {
           DEFAULT: "hsla(var(--card))",
