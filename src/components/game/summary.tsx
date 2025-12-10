@@ -4,7 +4,7 @@ import { InventionModel } from "@/db/prisma/generated/models";
 export function Summary({ invention }: { invention: InventionModel }) {
   return (
     <article className="flex flex-col gap-2">
-      <blockquote className="text-muted-foreground border-primary bg-primary/10 rounded-sm p-2.5">
+      <blockquote className="text-muted-foreground border-primary bg-primary/5 rounded-sm p-2.5">
         {invention.description}
       </blockquote>
       {invention.invention_link && (
