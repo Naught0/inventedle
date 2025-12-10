@@ -47,8 +47,8 @@ export default function RootLayout({
             </p>
             <div className="text-left">
               <p>inventions retrieved from:</p>
-              <ul className="ml-3 list-inside list-disc">
-                <li className="">
+              <ul className="ml-3.5 list-outside list-disc">
+                <li>
                   <Hyperlink href="https://www.britannica.com">
                     encyclopedia britannica®
                   </Hyperlink>
@@ -56,8 +56,8 @@ export default function RootLayout({
               </ul>
             </div>
             <p>
-              inventedle is in no way related to or endorsed by britannica® by
-              any other sources
+              inventedle is in no way related to or endorsed by britannica® or
+              by any other sources
             </p>
           </div>
         </footer>
