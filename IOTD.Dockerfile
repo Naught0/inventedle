@@ -1,4 +1,4 @@
-FROM node:lts-alpine AS base
+FROM oven/bun:1-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
