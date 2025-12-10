@@ -39,6 +39,7 @@ next-env.d.ts
 data.json
 *.db
 *.sqlite
-*.sqlite-wal
-*.sqlite-shm
-*.tar.gz
+*.*-wal
+*.*-shm
+*.gz
+*.tar
