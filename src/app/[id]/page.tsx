@@ -4,6 +4,7 @@ import { ImageWithCaption } from "@/components/image-with-caption";
 import { Separator } from "@/components/ui/separator";
 import { db } from "@/db";
 import { InventionOfTheDayModel } from "@/db/prisma/generated/models";
+import { isToday } from "date-fns";
 import { redirect, RedirectType } from "next/navigation";
 
 export const dynamic = "force-dynamic";
@@ -33,10 +34,18 @@ export async function GamePage({ iotd }: { iotd: InventionOfTheDayModel }) {
   }
 
   return (
-    <div className="flex w-full flex-col items-center gap-3 p-3 lg:gap-6">
-      <h2 className="text-muted-foreground text-center text-xl font-normal italic">
-        Inventedle #{iotd.id}
-      </h2>
+    <div className="flex w-full flex-col items-center gap-4 p-3 lg:gap-6">
+      <div className="grid gap-2 text-center lg:gap-3">
+        <h2 className="text-muted-foreground text-center text-2xl font-normal italic">
+          Inventedle #{iotd.id}
+        </h2>
+        <p>{iotd.created_at.toLocaleDateString()}</p>
+        {!isToday(iotd.created_at) && (
+          <Hyperlink href="/" target="">
+            Click here to view today&apos;s puzzle
+          </Hyperlink>
+        )}
+      </div>
       <h2 className="text-center text-3xl font-normal">
         <span className="text-far-red font-extrabold">{invention.name}</span>
       </h2>
@@ -72,7 +81,7 @@ export async function GamePage({ iotd }: { iotd: InventionOfTheDayModel }) {
             </ImageWithCaption>
           </div>
         )}
-        <Game invention={invention} />
+        <Game iotdId={iotd.id} invention={invention} />
       </div>
     </div>
   );
