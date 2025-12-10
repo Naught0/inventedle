@@ -1,8 +1,7 @@
 "use server";
 import { InventionModel } from "@/db/prisma/generated/models";
 import { db } from ".";
-import { scheduleJob, RecurrenceRule } from "node-schedule";
-import { isSameDay, subMonths } from "date-fns";
+import { isSameDay, startOfDay, subMonths } from "date-fns";
 import { TZDate } from "@date-fns/tz";
 
 export async function updateInvention(invention: Partial<InventionModel>) {
@@ -23,6 +22,11 @@ export async function getRandomInvention(excludeIds: number[] = []) {
 
 export async function getIOTD() {
   const invention = await db.inventionOfTheDay.findFirst({
+    where: {
+      created_at: {
+        gte: startOfDay(new TZDate(new Date(), "America/New_York")),
+      },
+    },
     orderBy: { id: "desc" },
   });
   return invention;
