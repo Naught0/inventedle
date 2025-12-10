@@ -50,20 +50,24 @@ body {
     --secondary-foreground: 20 10% 75%;
 
     --primary: 330, 87%, 69%;
-    --primary-foreground: 24 9.8% 89%;
+    --primary-foreground: 24 9.8% 3%;
     --primary-dark: 330 13% 7%;
 
-    --status-success: 160, 50%, 40%;
+    --status-success: 110, 75%, 25%;
+    --status-success-foreground: 110, 50%, 90%;
     --status-warning: 45, 50%, 50%;
-    --status-orange: 25, 50%, 50%;
+    --status-warning-foreground: 45, 50%, 3%;
+    --status-orange: 25, 50%, 45%;
+    --status-orange-foreground: 25, 30%, 97%;
     --status-error: 349, 50%, 40%;
+    --status-error-foreground: 349, 50%, 95%;
 
     --card: 210 14.3% 4.1%;
     --card-foreground: 60 9.1% 97.8%;
     --popover: 210 14.3% 4.1%;
     --popover-foreground: 60 9.1% 97.8%;
     --muted: 210 6.5% 15.1%;
-    --muted-foreground: 330 25% 78%;
+    --muted-foreground: 330 25% 86%;
     --accent: 210 20% 40%;
     --accent-foreground: 60 9.1% 97.8%;
     --destructive: 0 80% 50%;
