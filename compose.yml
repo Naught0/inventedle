@@ -6,3 +6,8 @@ services:
       - 127.0.0.1:3009:3000
     env_file: .env
     restart: unless-stopped
+  cron:
+    build:
+      dockerfile: IOTD.Dockerfile
+    restart: unless-stopped
+    env_file: .env
