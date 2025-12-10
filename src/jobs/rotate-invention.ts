@@ -8,6 +8,7 @@ async function rotateInvention() {
 
 (async () => {
   const rule = new RecurrenceRule();
+  rule.tz = "America/New_York";
   rule.hour = 0;
   rule.minute = 0;
   rule.second = 30;

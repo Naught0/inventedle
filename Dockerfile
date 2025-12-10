@@ -27,6 +27,7 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV TZ=America/New_York
 
 # Disable telemetry
 ENV NEXT_TELEMETRY_DISABLED=1
