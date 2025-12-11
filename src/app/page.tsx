@@ -11,7 +11,7 @@ export default async function Page() {
   const session = await auth.api.getSession({ headers: await headers() });
   let result = null;
   if (iotd && session) {
-    result = await db.gameResult.findFirst({
+    result = await db.result.findFirst({
       where: {
         user_id: session?.user.id,
         iotd_id: iotd.id,

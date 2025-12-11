@@ -29,8 +29,8 @@ export * from "./enums.ts"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Inventions
- * const inventions = await prisma.invention.findMany()
+ * // Fetch zero or more InventionOfTheDays
+ * const inventionOfTheDays = await prisma.inventionOfTheDay.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -40,35 +40,35 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
- * Model Invention
- * 
- */
-export type Invention = Prisma.InventionModel
-/**
  * Model InventionOfTheDay
  * 
  */
 export type InventionOfTheDay = Prisma.InventionOfTheDayModel
 /**
- * Model GameResult
+ * Model Invention
  * 
  */
-export type GameResult = Prisma.GameResultModel
+export type Invention = Prisma.InventionModel
 /**
- * Model User
+ * Model Result
  * 
  */
-export type User = Prisma.UserModel
+export type Result = Prisma.ResultModel
+/**
+ * Model Account
+ * 
+ */
+export type Account = Prisma.AccountModel
 /**
  * Model Session
  * 
  */
 export type Session = Prisma.SessionModel
 /**
- * Model Account
+ * Model User
  * 
  */
-export type Account = Prisma.AccountModel
+export type User = Prisma.UserModel
 /**
  * Model Verification
  * 

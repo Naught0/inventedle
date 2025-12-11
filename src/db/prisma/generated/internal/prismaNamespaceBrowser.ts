@@ -51,12 +51,12 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Invention: 'Invention',
   InventionOfTheDay: 'InventionOfTheDay',
-  GameResult: 'GameResult',
-  User: 'User',
-  Session: 'Session',
+  Invention: 'Invention',
+  Result: 'Result',
   Account: 'Account',
+  Session: 'Session',
+  User: 'User',
   Verification: 'Verification'
 } as const
 
@@ -71,6 +71,15 @@ export const TransactionIsolationLevel = {
 } as const
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const InventionOfTheDayScalarFieldEnum = {
+  id: 'id',
+  invention_id: 'invention_id',
+  created_at: 'created_at'
+} as const
+
+export type InventionOfTheDayScalarFieldEnum = (typeof InventionOfTheDayScalarFieldEnum)[keyof typeof InventionOfTheDayScalarFieldEnum]
 
 
 export const InventionScalarFieldEnum = {
@@ -88,16 +97,7 @@ export const InventionScalarFieldEnum = {
 export type InventionScalarFieldEnum = (typeof InventionScalarFieldEnum)[keyof typeof InventionScalarFieldEnum]
 
 
-export const InventionOfTheDayScalarFieldEnum = {
-  id: 'id',
-  invention_id: 'invention_id',
-  created_at: 'created_at'
-} as const
-
-export type InventionOfTheDayScalarFieldEnum = (typeof InventionOfTheDayScalarFieldEnum)[keyof typeof InventionOfTheDayScalarFieldEnum]
-
-
-export const GameResultScalarFieldEnum = {
+export const ResultScalarFieldEnum = {
   id: 'id',
   invention_id: 'invention_id',
   iotd_id: 'iotd_id',
@@ -105,38 +105,10 @@ export const GameResultScalarFieldEnum = {
   win: 'win',
   num_guesses: 'num_guesses',
   user_id: 'user_id',
-  created_at: 'created_at',
-  userId: 'userId'
+  created_at: 'created_at'
 } as const
 
-export type GameResultScalarFieldEnum = (typeof GameResultScalarFieldEnum)[keyof typeof GameResultScalarFieldEnum]
-
-
-export const UserScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  email: 'email',
-  emailVerified: 'emailVerified',
-  image: 'image',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
-
-export const SessionScalarFieldEnum = {
-  id: 'id',
-  expiresAt: 'expiresAt',
-  token: 'token',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  ipAddress: 'ipAddress',
-  userAgent: 'userAgent',
-  userId: 'userId'
-} as const
-
-export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+export type ResultScalarFieldEnum = (typeof ResultScalarFieldEnum)[keyof typeof ResultScalarFieldEnum]
 
 
 export const AccountScalarFieldEnum = {
@@ -156,6 +128,33 @@ export const AccountScalarFieldEnum = {
 } as const
 
 export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
+
+
+export const SessionScalarFieldEnum = {
+  id: 'id',
+  expiresAt: 'expiresAt',
+  token: 'token',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  userId: 'userId'
+} as const
+
+export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+
+
+export const UserScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  emailVerified: 'emailVerified',
+  image: 'image',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
 export const VerificationScalarFieldEnum = {

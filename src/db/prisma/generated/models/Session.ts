@@ -269,10 +269,10 @@ export type SessionCreateInput = {
   expiresAt: Date | string
   token: string
   createdAt?: Date | string
-  updatedAt?: Date | string
+  updatedAt: Date | string
   ipAddress?: string | null
   userAgent?: string | null
-  user: Prisma.UserCreateNestedOneWithoutSessionsInput
+  user: Prisma.UserCreateNestedOneWithoutSessionInput
 }
 
 export type SessionUncheckedCreateInput = {
@@ -280,7 +280,7 @@ export type SessionUncheckedCreateInput = {
   expiresAt: Date | string
   token: string
   createdAt?: Date | string
-  updatedAt?: Date | string
+  updatedAt: Date | string
   ipAddress?: string | null
   userAgent?: string | null
   userId: string
@@ -294,7 +294,7 @@ export type SessionUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user?: Prisma.UserUpdateOneRequiredWithoutSessionsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutSessionNestedInput
 }
 
 export type SessionUncheckedUpdateInput = {
@@ -313,7 +313,7 @@ export type SessionCreateManyInput = {
   expiresAt: Date | string
   token: string
   createdAt?: Date | string
-  updatedAt?: Date | string
+  updatedAt: Date | string
   ipAddress?: string | null
   userAgent?: string | null
   userId: string
@@ -338,16 +338,6 @@ export type SessionUncheckedUpdateManyInput = {
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-}
-
-export type SessionListRelationFilter = {
-  every?: Prisma.SessionWhereInput
-  some?: Prisma.SessionWhereInput
-  none?: Prisma.SessionWhereInput
-}
-
-export type SessionOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
 }
 
 export type SessionCountOrderByAggregateInput = {
@@ -381,6 +371,16 @@ export type SessionMinOrderByAggregateInput = {
   ipAddress?: Prisma.SortOrder
   userAgent?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+}
+
+export type SessionListRelationFilter = {
+  every?: Prisma.SessionWhereInput
+  some?: Prisma.SessionWhereInput
+  none?: Prisma.SessionWhereInput
+}
+
+export type SessionOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type SessionCreateNestedManyWithoutUserInput = {
@@ -430,7 +430,7 @@ export type SessionCreateWithoutUserInput = {
   expiresAt: Date | string
   token: string
   createdAt?: Date | string
-  updatedAt?: Date | string
+  updatedAt: Date | string
   ipAddress?: string | null
   userAgent?: string | null
 }
@@ -440,7 +440,7 @@ export type SessionUncheckedCreateWithoutUserInput = {
   expiresAt: Date | string
   token: string
   createdAt?: Date | string
-  updatedAt?: Date | string
+  updatedAt: Date | string
   ipAddress?: string | null
   userAgent?: string | null
 }
@@ -489,7 +489,7 @@ export type SessionCreateManyUserInput = {
   expiresAt: Date | string
   token: string
   createdAt?: Date | string
-  updatedAt?: Date | string
+  updatedAt: Date | string
   ipAddress?: string | null
   userAgent?: string | null
 }

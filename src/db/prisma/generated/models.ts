@@ -8,11 +8,11 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Invention.ts'
 export type * from './models/InventionOfTheDay.ts'
-export type * from './models/GameResult.ts'
-export type * from './models/User.ts'
-export type * from './models/Session.ts'
+export type * from './models/Invention.ts'
+export type * from './models/Result.ts'
 export type * from './models/Account.ts'
+export type * from './models/Session.ts'
+export type * from './models/User.ts'
 export type * from './models/Verification.ts'
 export type * from './commonInputTypes.ts'

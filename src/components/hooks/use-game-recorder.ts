@@ -1,9 +1,9 @@
-import { GameResultCreateWithoutUserInput } from "@/db/prisma/generated/models";
+import { ResultCreateWithoutUserInput } from "@/db/prisma/generated/models";
 import { useCallback, useEffect, useState } from "react";
 import { useImmer } from "use-immer";
 
 export type LocalGame = Omit<
-  GameResultCreateWithoutUserInput,
+  ResultCreateWithoutUserInput,
   "user_id" | "created_at" | "num_guesses" | "guesses" | "user"
 > & { guesses: number[] };
 
@@ -64,7 +64,7 @@ export function useGameRecorder({
   return { isLoggedIn, game, setGame, recordGuess, recordResult };
 }
 
-export async function recordGameResult(game: GameResultCreateWithoutUserInput) {
+export async function recordGameResult(game: ResultCreateWithoutUserInput) {
   return await (
     await fetch("/api/game/record-result", {
       method: "PUT",

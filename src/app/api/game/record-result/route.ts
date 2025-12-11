@@ -1,6 +1,6 @@
 import { LocalGame } from "@/components/hooks/use-game-recorder";
 import { db } from "@/db";
-import { GameResultCreateWithoutUserInput } from "@/db/prisma/generated/models";
+import { ResultCreateWithoutUserInput } from "@/db/prisma/generated/models";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
@@ -11,9 +11,9 @@ interface RecordResultRequest extends NextRequest {
 
 export async function upsertGameResult(
   user: NonNullable<Awaited<ReturnType<typeof auth.api.getSession>>>["user"],
-  data: GameResultCreateWithoutUserInput,
+  data: ResultCreateWithoutUserInput,
 ) {
-  return db.gameResult.upsert({
+  return db.result.upsert({
     where: {
       user_id_iotd_id: {
         user_id: user.id,

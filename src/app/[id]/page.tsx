@@ -5,7 +5,7 @@ import { ImageWithCaption } from "@/components/image-with-caption";
 import { Separator } from "@/components/ui/separator";
 import { db } from "@/db";
 import {
-  GameResultModel,
+  ResultModel,
   InventionOfTheDayModel,
 } from "@/db/prisma/generated/models";
 import { auth } from "@/lib/auth";
@@ -32,7 +32,7 @@ export default async function Page({
   async function fetchGameResult() {
     if (!session || !iotd) return;
 
-    return await db.gameResult.findFirst({
+    return await db.result.findFirst({
       where: {
         user_id: session?.user.id,
         iotd_id: iotd.id,
@@ -49,7 +49,7 @@ export async function GamePage({
   gameResult,
 }: {
   iotd: InventionOfTheDayModel;
-  gameResult?: GameResultModel | null;
+  gameResult?: ResultModel | null;
 }) {
   const invention = await db.invention.findUnique({
     where: { id: iotd.invention_id },
