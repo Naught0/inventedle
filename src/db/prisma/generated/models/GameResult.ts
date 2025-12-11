@@ -329,7 +329,7 @@ export type GameResultCreateInput = {
   num_guesses: number
   user_id?: string | null
   created_at?: Date | string
-  user?: Prisma.UserCreateNestedOneWithoutResultsInput
+  user?: Prisma.UserCreateNestedOneWithoutResultInput
 }
 
 export type GameResultUncheckedCreateInput = {
@@ -352,7 +352,7 @@ export type GameResultUpdateInput = {
   num_guesses?: Prisma.IntFieldUpdateOperationsInput | number
   user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneWithoutResultsNestedInput
+  user?: Prisma.UserUpdateOneWithoutResultNestedInput
 }
 
 export type GameResultUncheckedUpdateInput = {

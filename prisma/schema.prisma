@@ -1,13 +1,23 @@
 generator client {
   provider               = "prisma-client"
   output                 = "../src/db/prisma/generated"
-  moduleFormat           = "esm"
   generatedFileExtension = "ts"
   importFileExtension    = "ts"
+  moduleFormat           = "esm"
 }
 
 datasource db {
   provider = "sqlite"
+}
+
+model InventionOfTheDay {
+  id           Int      @id @default(autoincrement())
+  invention_id Int
+  created_at   DateTime @default(now())
+
+  @@unique([invention_id, created_at])
+  @@index([invention_id])
+  @@map("invention_of_the_day")
 }
 
 model Invention {
@@ -24,64 +34,21 @@ model Invention {
   @@map("inventions")
 }
 
-model InventionOfTheDay {
-  id           Int      @id @default(autoincrement())
-  invention_id Int
-  created_at   DateTime @default(now())
-
-  @@unique([invention_id, created_at])
-  @@index([invention_id])
-  @@map("invention_of_the_day")
-}
-
-model GameResult {
+model Result {
   id           Int      @id @default(autoincrement())
   invention_id Int
   iotd_id      Int
   guesses      Json
   win          Boolean
   num_guesses  Int
-  user_id      String?
+  user_id      String
   created_at   DateTime @default(now())
-  user         User?    @relation(fields: [userId], references: [id])
-  userId       String?
+  user         User     @relation(fields: [user_id], references: [id])
 
   @@unique([user_id, iotd_id])
-  @@index([user_id])
   @@index([invention_id])
+  @@index([user_id])
   @@map("result")
-}
-
-model User {
-  id            String       @id
-  name          String
-  email         String
-  emailVerified Boolean      @default(false)
-  image         String?
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
-  sessions      Session[]
-  accounts      Account[]
-  results       GameResult[]
-
-  @@unique([email])
-  @@map("user")
-}
-
-model Session {
-  id        String   @id
-  expiresAt DateTime
-  token     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  ipAddress String?
-  userAgent String?
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([token])
-  @@index([userId])
-  @@map("session")
 }
 
 model Account {
@@ -89,7 +56,6 @@ model Account {
   accountId             String
   providerId            String
   userId                String
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   accessToken           String?
   refreshToken          String?
   idToken               String?
@@ -98,10 +64,41 @@ model Account {
   scope                 String?
   password              String?
   createdAt             DateTime  @default(now())
-  updatedAt             DateTime  @updatedAt
+  updatedAt             DateTime
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@map("account")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("session")
+}
+
+model User {
+  id            String    @id
+  name          String
+  email         String    @unique
+  emailVerified Boolean   @default(false)
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime
+  account       Account[]
+  result        Result[]
+  session       Session[]
+
+  @@map("user")
 }
 
 model Verification {
@@ -110,7 +107,7 @@ model Verification {
   value      String
   expiresAt  DateTime
   createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  updatedAt  DateTime
 
   @@index([identifier])
   @@map("verification")
