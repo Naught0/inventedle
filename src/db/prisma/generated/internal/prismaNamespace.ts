@@ -386,7 +386,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Invention: 'Invention',
   InventionOfTheDay: 'InventionOfTheDay',
-  Score: 'Score',
+  GameResult: 'GameResult',
   User: 'User',
   Session: 'Session',
   Account: 'Account',
@@ -406,7 +406,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "invention" | "inventionOfTheDay" | "score" | "user" | "session" | "account" | "verification"
+    modelProps: "invention" | "inventionOfTheDay" | "gameResult" | "user" | "session" | "account" | "verification"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -558,77 +558,77 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Score: {
-      payload: Prisma.$ScorePayload<ExtArgs>
-      fields: Prisma.ScoreFieldRefs
+    GameResult: {
+      payload: Prisma.$GameResultPayload<ExtArgs>
+      fields: Prisma.GameResultFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.ScoreFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScorePayload> | null
+          args: Prisma.GameResultFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameResultPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.ScoreFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScorePayload>
+          args: Prisma.GameResultFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameResultPayload>
         }
         findFirst: {
-          args: Prisma.ScoreFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScorePayload> | null
+          args: Prisma.GameResultFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameResultPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.ScoreFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScorePayload>
+          args: Prisma.GameResultFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameResultPayload>
         }
         findMany: {
-          args: Prisma.ScoreFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScorePayload>[]
+          args: Prisma.GameResultFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameResultPayload>[]
         }
         create: {
-          args: Prisma.ScoreCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScorePayload>
+          args: Prisma.GameResultCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameResultPayload>
         }
         createMany: {
-          args: Prisma.ScoreCreateManyArgs<ExtArgs>
+          args: Prisma.GameResultCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.ScoreCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScorePayload>[]
+          args: Prisma.GameResultCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameResultPayload>[]
         }
         delete: {
-          args: Prisma.ScoreDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScorePayload>
+          args: Prisma.GameResultDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameResultPayload>
         }
         update: {
-          args: Prisma.ScoreUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScorePayload>
+          args: Prisma.GameResultUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameResultPayload>
         }
         deleteMany: {
-          args: Prisma.ScoreDeleteManyArgs<ExtArgs>
+          args: Prisma.GameResultDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.ScoreUpdateManyArgs<ExtArgs>
+          args: Prisma.GameResultUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.ScoreUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScorePayload>[]
+          args: Prisma.GameResultUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameResultPayload>[]
         }
         upsert: {
-          args: Prisma.ScoreUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScorePayload>
+          args: Prisma.GameResultUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameResultPayload>
         }
         aggregate: {
-          args: Prisma.ScoreAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateScore>
+          args: Prisma.GameResultAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGameResult>
         }
         groupBy: {
-          args: Prisma.ScoreGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ScoreGroupByOutputType>[]
+          args: Prisma.GameResultGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GameResultGroupByOutputType>[]
         }
         count: {
-          args: Prisma.ScoreCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ScoreCountAggregateOutputType> | number
+          args: Prisma.GameResultCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GameResultCountAggregateOutputType> | number
         }
       }
     }
@@ -988,13 +988,19 @@ export const InventionOfTheDayScalarFieldEnum = {
 export type InventionOfTheDayScalarFieldEnum = (typeof InventionOfTheDayScalarFieldEnum)[keyof typeof InventionOfTheDayScalarFieldEnum]
 
 
-export const ScoreScalarFieldEnum = {
+export const GameResultScalarFieldEnum = {
   id: 'id',
   invention_id: 'invention_id',
-  created_at: 'created_at'
+  iotd_id: 'iotd_id',
+  guesses: 'guesses',
+  win: 'win',
+  num_guesses: 'num_guesses',
+  user_id: 'user_id',
+  created_at: 'created_at',
+  userId: 'userId'
 } as const
 
-export type ScoreScalarFieldEnum = (typeof ScoreScalarFieldEnum)[keyof typeof ScoreScalarFieldEnum]
+export type GameResultScalarFieldEnum = (typeof GameResultScalarFieldEnum)[keyof typeof GameResultScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -1063,12 +1069,36 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const NullsOrder = {
   first: 'first',
   last: 'last'
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+export const QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+} as const
+
+export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
 
@@ -1095,6 +1125,20 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -1208,7 +1252,7 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   invention?: Prisma.InventionOmit
   inventionOfTheDay?: Prisma.InventionOfTheDayOmit
-  score?: Prisma.ScoreOmit
+  gameResult?: Prisma.GameResultOmit
   user?: Prisma.UserOmit
   session?: Prisma.SessionOmit
   account?: Prisma.AccountOmit

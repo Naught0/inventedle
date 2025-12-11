@@ -28,10 +28,10 @@ export type Invention = Prisma.InventionModel
  */
 export type InventionOfTheDay = Prisma.InventionOfTheDayModel
 /**
- * Model Score
+ * Model GameResult
  * 
  */
-export type Score = Prisma.ScoreModel
+export type GameResult = Prisma.GameResultModel
 /**
  * Model User
  * 

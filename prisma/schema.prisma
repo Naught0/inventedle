@@ -34,24 +34,35 @@ model InventionOfTheDay {
   @@map("invention_of_the_day")
 }
 
-model Score {
+model GameResult {
   id           Int      @id @default(autoincrement())
-  invention_id Int?
+  invention_id Int
+  iotd_id      Int
+  guesses      Json
+  win          Boolean
+  num_guesses  Int
+  user_id      String?
   created_at   DateTime @default(now())
+  user         User?    @relation(fields: [userId], references: [id])
+  userId       String?
 
-  @@map("scores")
+  @@unique([user_id, iotd_id])
+  @@index([user_id])
+  @@index([invention_id])
+  @@map("result")
 }
 
 model User {
-  id            String    @id
+  id            String       @id
   name          String
   email         String
-  emailVerified Boolean   @default(false)
+  emailVerified Boolean      @default(false)
   image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
   sessions      Session[]
   accounts      Account[]
+  results       GameResult[]
 
   @@unique([email])
   @@map("user")

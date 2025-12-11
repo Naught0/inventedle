@@ -10,7 +10,7 @@
  */
 export type * from './models/Invention.ts'
 export type * from './models/InventionOfTheDay.ts'
-export type * from './models/Score.ts'
+export type * from './models/GameResult.ts'
 export type * from './models/User.ts'
 export type * from './models/Session.ts'
 export type * from './models/Account.ts'

@@ -53,7 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Invention: 'Invention',
   InventionOfTheDay: 'InventionOfTheDay',
-  Score: 'Score',
+  GameResult: 'GameResult',
   User: 'User',
   Session: 'Session',
   Account: 'Account',
@@ -97,13 +97,19 @@ export const InventionOfTheDayScalarFieldEnum = {
 export type InventionOfTheDayScalarFieldEnum = (typeof InventionOfTheDayScalarFieldEnum)[keyof typeof InventionOfTheDayScalarFieldEnum]
 
 
-export const ScoreScalarFieldEnum = {
+export const GameResultScalarFieldEnum = {
   id: 'id',
   invention_id: 'invention_id',
-  created_at: 'created_at'
+  iotd_id: 'iotd_id',
+  guesses: 'guesses',
+  win: 'win',
+  num_guesses: 'num_guesses',
+  user_id: 'user_id',
+  created_at: 'created_at',
+  userId: 'userId'
 } as const
 
-export type ScoreScalarFieldEnum = (typeof ScoreScalarFieldEnum)[keyof typeof ScoreScalarFieldEnum]
+export type GameResultScalarFieldEnum = (typeof GameResultScalarFieldEnum)[keyof typeof GameResultScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -172,10 +178,34 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: 'JsonNull'
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const NullsOrder = {
   first: 'first',
   last: 'last'
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: 'DbNull',
+  JsonNull: 'JsonNull',
+  AnyNull: 'AnyNull'
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+export const QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+} as const
+
+export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
