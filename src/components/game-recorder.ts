@@ -25,7 +25,7 @@ export class LocalRecorder implements ResultRecorder {
     };
   }
 
-  private syncStorage() {
+  public syncStorage() {
     this.games[this.iotdId] = this.game;
     localStorage.setItem(this.storageKey, JSON.stringify(this.games));
     console.log(this.games);

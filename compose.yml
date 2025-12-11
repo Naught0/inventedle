@@ -5,6 +5,8 @@ services:
     ports:
       - 127.0.0.1:3009:3000
     env_file: .env
+    environment:
+      - NODE_ENV=production
     restart: unless-stopped
   cron:
     image: iotd-cron:latest

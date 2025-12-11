@@ -3,8 +3,13 @@ import { Hyperlink } from "@/components/hyperlink";
 import { ImageWithCaption } from "@/components/image-with-caption";
 import { Separator } from "@/components/ui/separator";
 import { db } from "@/db";
-import { InventionOfTheDayModel } from "@/db/prisma/generated/models";
+import {
+  GameResultModel,
+  InventionOfTheDayModel,
+} from "@/db/prisma/generated/models";
+import { auth } from "@/lib/auth";
 import { isToday } from "date-fns";
+import { headers } from "next/headers";
 import { redirect, RedirectType } from "next/navigation";
 
 export const dynamic = "force-dynamic";
@@ -22,10 +27,29 @@ export default async function Page({
     return redirect(`/`, RedirectType.replace);
   }
 
-  return <GamePage iotd={iotd} />;
+  const session = await auth.api.getSession({ headers: await headers() });
+  async function fetchGameResult() {
+    if (!session || !iotd) return;
+
+    return await db.gameResult.findFirst({
+      where: {
+        user_id: session?.user.id,
+        iotd_id: iotd.id,
+      },
+    });
+  }
+  const result = await fetchGameResult();
+
+  return <GamePage iotd={iotd} gameResult={result} />;
 }
 
-export async function GamePage({ iotd }: { iotd: InventionOfTheDayModel }) {
+export async function GamePage({
+  iotd,
+  gameResult,
+}: {
+  iotd: InventionOfTheDayModel;
+  gameResult?: GameResultModel | null;
+}) {
   const invention = await db.invention.findUnique({
     where: { id: iotd.invention_id },
   });
@@ -81,7 +105,7 @@ export async function GamePage({ iotd }: { iotd: InventionOfTheDayModel }) {
             </ImageWithCaption>
           </div>
         )}
-        <Game iotdId={iotd.id} invention={invention} />
+        <Game iotdId={iotd.id} invention={invention} gameResult={gameResult} />
       </div>
     </div>
   );

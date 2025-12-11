@@ -1,10 +1,8 @@
 "server-only";
-
-import { getRandomInvention } from "@/jobs/rotate-invention";
 import { TZDate } from "@date-fns/tz";
 import { isSameDay, subMonths } from "date-fns";
 import { db } from ".";
-import { getIOTD } from "./actions";
+import { getIOTD, getRandomInvention } from "./actions";
 
 export async function createIOTD() {
   /// Creates an Invention of the Day unless one has already been created for today (EST)

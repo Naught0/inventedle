@@ -1,8 +1,6 @@
-"use server";
 import { db } from ".";
 import { startOfDay } from "date-fns";
 import { TZDate } from "@date-fns/tz";
-import { createIOTD } from "./server-only";
 
 export async function getIOTD() {
   const iotd = await db.inventionOfTheDay.findFirst({
@@ -13,8 +11,14 @@ export async function getIOTD() {
     },
     orderBy: { id: "desc" },
   });
-  if (!iotd) {
-    return await createIOTD();
-  }
   return iotd;
+}
+
+export async function getRandomInvention(excludeIds: number[] = []) {
+  const ids = await db.invention.findMany({
+    select: { id: true },
+    where: { image_url: { not: null }, id: { notIn: excludeIds } },
+  });
+  const { id } = ids[Math.floor(Math.random() * ids.length)];
+  return (await db.invention.findUnique({ where: { id } }))!;
 }
