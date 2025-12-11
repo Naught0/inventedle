@@ -1,4 +1,5 @@
 import { Game } from "@/components/game";
+import { LocalGame } from "@/components/hooks/use-game-recorder";
 import { Hyperlink } from "@/components/hyperlink";
 import { ImageWithCaption } from "@/components/image-with-caption";
 import { Separator } from "@/components/ui/separator";
@@ -56,6 +57,12 @@ export async function GamePage({
   if (!invention) {
     throw new Error("Something has gone horribly wrong");
   }
+  const localGame: LocalGame = {
+    iotd_id: iotd.id,
+    invention_id: invention.id,
+    win: !!gameResult?.win,
+    guesses: (gameResult?.guesses ?? []) as number[],
+  };
 
   return (
     <div className="flex w-full flex-col items-center gap-4 lg:gap-6">
@@ -105,7 +112,11 @@ export async function GamePage({
             </ImageWithCaption>
           </div>
         )}
-        <Game iotdId={iotd.id} invention={invention} gameResult={gameResult} />
+        <Game
+          iotdId={iotd.id}
+          invention={invention}
+          gameResult={!!gameResult ? localGame : null}
+        />
       </div>
     </div>
   );

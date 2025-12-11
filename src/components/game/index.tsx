@@ -1,10 +1,6 @@
 "use client";
-import {
-  GameResultCreateInput,
-  GameResultModel,
-  InventionModel,
-} from "@/db/prisma/generated/models";
-import { createRef, useEffect, useState } from "react";
+import { InventionModel } from "@/db/prisma/generated/models";
+import { createRef, useEffect, useMemo, useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Era } from "./enum";
@@ -14,10 +10,28 @@ import { getGuessDistance, getRulesByYear, guessIsCorrect } from "./logic";
 import { ShareScore } from "./share-score";
 import { formatYear } from "./utils";
 import { Summary } from "./summary";
-import { LocalRecorder } from "../game-recorder";
+import {
+  getCurrentGameFromLocalStorage,
+  LocalGame,
+  useGameRecorder,
+} from "../hooks/use-game-recorder";
+import { useSession } from "@/lib/auth-client";
 
-// TODO: Sync the game state to localstorage better
-// Validate inputs so ppl can't cheat or end up in shitty states
+function getInitialGame({
+  isLoggedIn,
+  ...game
+}: LocalGame & { isLoggedIn: boolean }): LocalGame {
+  if (isLoggedIn) return game;
+
+  const localGame = getCurrentGameFromLocalStorage(game.iotd_id);
+  if (localGame) return localGame;
+  return {
+    iotd_id: game.iotd_id,
+    invention_id: game.invention_id,
+    win: false,
+    guesses: [],
+  };
+}
 
 export function Game({
   invention,
@@ -26,51 +40,40 @@ export function Game({
 }: {
   invention: InventionModel;
   iotdId: number;
-  gameResult?: GameResultModel | null;
+  gameResult?: LocalGame | null;
 }) {
-  const [gameRecorder, setGameRecorder] = useState<LocalRecorder>();
-  useEffect(
-    function setRecorder() {
-      setGameRecorder(new LocalRecorder(iotdId, invention.id));
-    },
-    [iotdId, invention],
-  );
-
-  if (gameResult && gameRecorder) {
-    console.log("GOT GAME RESULT", gameResult);
-    setGameRecorder((recorder) => {
-      recorder ??= new LocalRecorder(iotdId, invention.id);
-      recorder.game = {
-        guesses: gameResult.guesses as number[],
-        win: gameResult.win,
-        invention_id: invention.id,
-        iotd_id: iotdId,
-      };
-      recorder.syncStorage();
-
-      return recorder;
-    });
-  }
-  const mutate = async (game: GameResultCreateInput) =>
-    await (
-      await fetch("/api/game/record-result", {
-        method: "POST",
-        body: JSON.stringify(game),
-      })
-    ).json();
+  const { data, isPending } = useSession();
+  const isLoggedIn = !!data;
   const [era, setEra] = useState<Era>(Era.CE);
-  const [guesses, setGuesses] = useState<number[]>(
-    gameRecorder?.game?.guesses ?? (gameResult?.guesses as number[]) ?? [],
-  );
-  const [gameWon, setGameWon] = useState(
-    gameRecorder?.game.win ?? gameResult?.win ?? false,
-  );
-  const [gameOver, setGameOver] = useState(
-    (gameRecorder && gameRecorder.game.guesses.length >= 5) || gameWon,
-  );
-  const gameLost = !gameWon && gameOver;
   const rules = getRulesByYear(invention.year);
   const formRef = createRef<HTMLFormElement>();
+  const initGame: LocalGame = useMemo(() => {
+    return getInitialGame({
+      iotd_id: iotdId,
+      invention_id: invention.id,
+      win: !!gameResult?.win,
+      guesses: (gameResult?.guesses ?? []) as number[],
+      isLoggedIn,
+    });
+  }, [gameResult, iotdId, invention.id, isLoggedIn]);
+  const { game, setGame, recordGuess, recordResult } = useGameRecorder({
+    isLoggedIn,
+    iotdId,
+    inventionId: invention.id,
+  });
+  useEffect(
+    function setInitGame() {
+      if (isPending) return;
+
+      setGame(initGame);
+    },
+    [isPending, data],
+  );
+
+  const gameWon = game.win;
+  const gameLost = !game.win && game.guesses.length >= 5;
+  const gameOver = gameWon || gameLost;
+  const guesses = game.guesses;
 
   return (
     <div className="flex flex-col gap-3">
@@ -92,11 +95,15 @@ export function Game({
       )}
       {gameOver ? (
         <div className="flex flex-col gap-6">
-          <ShareScore
-            iotdId={iotdId}
-            guessDistances={guesses.map((g) => getGuessDistance(g, invention))}
-            rules={rules}
-          />
+          {guesses && (
+            <ShareScore
+              iotdId={iotdId}
+              guessDistances={guesses.map((g) =>
+                getGuessDistance(g, invention),
+              )}
+              rules={rules}
+            />
+          )}
           <Summary invention={invention} />
         </div>
       ) : null}
@@ -105,42 +112,23 @@ export function Game({
         <form
           ref={formRef}
           action={(data) => {
-            if (!gameRecorder) return;
-
             const factor = era === Era.CE ? 1 : -1;
             const guess =
               parseInt((data.get("guess") as string) ?? "") * factor;
 
             if (!isNaN(guess)) {
-              gameRecorder.recordGuess(guess);
-              setGuesses(gameRecorder.game.guesses);
+              recordGuess(guess);
             }
 
             const gameWon = guessIsCorrect(
-              getGuessDistance(
-                gameRecorder.game.guesses.slice(-1)[0],
-                invention,
-              ),
+              getGuessDistance(guess, invention),
               rules,
             );
 
-            let gameOver = false;
             if (gameWon) {
-              setGameWon(true);
-              setGameOver(true);
-              gameOver = true;
+              recordResult(gameWon);
             } else {
-              gameOver = gameRecorder.game.guesses.length >= 5;
-              setGameOver(gameOver);
-            }
-
-            if (gameOver) {
-              gameRecorder.record(gameWon);
-              mutate({
-                ...gameRecorder.game,
-                win: gameWon,
-                num_guesses: guesses.length,
-              });
+              recordResult(gameWon);
             }
 
             formRef.current?.reset();
@@ -154,7 +142,7 @@ export function Game({
                 type="number"
                 inputMode="numeric"
                 max={era === Era.CE ? new Date().getFullYear() + 1 : undefined}
-                disabled={gameOver}
+                disabled={isPending || gameOver}
                 placeholder={
                   !gameOver
                     ? `Guess a year | (Guess ${guesses.length + 1} / 5)`

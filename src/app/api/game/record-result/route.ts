@@ -1,6 +1,6 @@
-import { LocalGame } from "@/components/game-recorder";
+import { LocalGame } from "@/components/hooks/use-game-recorder";
 import { db } from "@/db";
-import { GameResultCreateInput } from "@/db/prisma/generated/models";
+import { GameResultCreateWithoutUserInput } from "@/db/prisma/generated/models";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
@@ -9,18 +9,29 @@ interface RecordResultRequest extends NextRequest {
   json(): Promise<LocalGame>;
 }
 
-export async function createGameResult(data: GameResultCreateInput) {
-  return db.gameResult.create({ data });
+export async function upsertGameResult(
+  user: NonNullable<Awaited<ReturnType<typeof auth.api.getSession>>>["user"],
+  data: GameResultCreateWithoutUserInput,
+) {
+  return db.gameResult.upsert({
+    where: {
+      user_id_iotd_id: {
+        user_id: user.id,
+        iotd_id: data.iotd_id,
+      },
+    },
+    create: { ...data, user_id: user.id },
+    update: data,
+  });
 }
 
-export async function POST(req: RecordResultRequest) {
+export async function PUT(req: RecordResultRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) throw new Error("Not authenticated");
+  if (!session) return new NextResponse("Unauthorized", { status: 401 });
 
   const data = await req.json();
-  const resp = await createGameResult({
+  const resp = await upsertGameResult(session.user, {
     ...data,
-    user_id: session.user.id,
     num_guesses: data.guesses.length,
   });
 
