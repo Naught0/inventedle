@@ -19,9 +19,9 @@ export function Help() {
       <DialogTrigger asChild>
         <Button
           variant={"link"}
-          className="inline-flex items-center gap-2 text-sm md:text-base"
+          className="inline-flex items-center gap-2 text-base"
         >
-          <PiQuestion />
+          <PiQuestion className="text-xl" strokeWidth={10} />
           <span>How to play</span>
         </Button>
       </DialogTrigger>

@@ -9,7 +9,7 @@ function Square({ className }: { className: string }) {
 const getBg = (idx: number) => {
   const colors = [
     "bg-status-success",
-    "bg-status-warning",
+    "bg-status-warning text-status-warning-foreground",
     "bg-status-orange",
     "bg-status-error",
   ];
@@ -77,13 +77,13 @@ export function HelpTable({ rules }: { rules: GameRule[] }) {
               </td>
               {rule.scale.map((hotnessRule, hIdx) => (
                 <td
-                  className={getBg(hIdx) + " px-2 md:px-3"}
+                  className={getBg(hIdx) + " px-2 font-bold md:px-3"}
                   key={hotnessRule.hotness}
                 >
                   {hotnessRule.maxDistance}
                 </td>
               ))}
-              <td className={getBg(3) + " px-2 md:px-3"} key={"far"}>
+              <td className={getBg(3) + " px-2 font-bold md:px-3"} key={"far"}>
                 &gt;{rule.scale[2].maxDistance}
               </td>
             </tr>

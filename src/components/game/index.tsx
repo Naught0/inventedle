@@ -40,7 +40,7 @@ export function Game({
   );
 
   return (
-    <div className="flex flex-col gap-3 lg:gap-6">
+    <div className="flex flex-col gap-3">
       {gameWon && (
         <div className="text-2xl font-bold">
           You won! The year was{" "}
@@ -58,7 +58,7 @@ export function Game({
         </div>
       )}
       {gameOver ? (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-6">
           <ShareScore
             iotdId={iotdId}
             guessDistances={guesses.map((g) => getGuessDistance(g, invention))}

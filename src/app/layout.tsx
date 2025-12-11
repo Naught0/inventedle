@@ -3,6 +3,7 @@ import { Nav } from "@/components/nav";
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { Help } from "@/components/help";
 
 const jbMono = JetBrains_Mono({
   weight: ["500", "800"],
@@ -26,10 +27,11 @@ export default function RootLayout({
         className={`bg-gradient dark ${jbMono.variable} font-mono antialiased`}
       >
         <Nav />
-        <main className="mb-12 flex min-h-[80vh] w-full flex-grow flex-col items-center gap-6 pb-12 font-sans">
-          <div className="flex w-full max-w-screen-lg flex-grow">
-            {children}
-          </div>
+        <main className="mb-12 flex min-h-[80vh] w-full flex-grow flex-col items-center gap-3 pb-12 font-sans">
+          <aside className="flex items-center justify-center">
+            <Help />
+          </aside>
+          <div className="flex w-full p-3 lg:max-w-screen-lg">{children}</div>
         </main>
         <footer>
           <div className="-mb-1 w-full">

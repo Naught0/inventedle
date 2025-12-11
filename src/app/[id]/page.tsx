@@ -34,14 +34,12 @@ export async function GamePage({ iotd }: { iotd: InventionOfTheDayModel }) {
   }
 
   return (
-    <div className="flex w-full flex-col items-center gap-4 p-3 lg:gap-6">
+    <div className="flex w-full flex-col items-center gap-4 lg:gap-6">
       <div className="grid gap-2 text-center lg:gap-3">
-        <h2 className="text-center text-2xl font-normal italic">
+        <h2 className="text-center text-2xl font-bold">
           Inventedle #{iotd.id}
         </h2>
-        <p className="text-muted-foreground italic">
-          {iotd.created_at.toLocaleDateString()}
-        </p>
+        <p className="text-xl">{iotd.created_at.toLocaleDateString()}</p>
         {!isToday(iotd.created_at) && (
           <Hyperlink href="/" target="" className="italic">
             Click here for today&apos;s puzzle

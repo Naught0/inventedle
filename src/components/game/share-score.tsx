@@ -1,5 +1,5 @@
 "use client";
-import { PiCopyFill } from "react-icons/pi";
+import { PiCopyFill, PiShareFatFill, PiShareFill } from "react-icons/pi";
 import { getHotness, guessIsCorrect } from "./logic";
 import {
   Popover,
@@ -11,7 +11,7 @@ import { ReactNode, useState } from "react";
 import { buttonVariants } from "../ui/button";
 import { HotnessRules } from "./types";
 import { Hotness } from "./enum";
-import { BiSolidSquareRounded } from "react-icons/bi";
+import { BiShare, BiSolidSquareRounded } from "react-icons/bi";
 
 function getClassName(hotness: Hotness, bgOrText: "bg" | "text" = "bg") {
   // These must be explicitcly in the code for tailwind to include them
@@ -97,13 +97,14 @@ export function ShareScore(props: {
       <PopoverAnchor>
         <PopoverTrigger
           className={buttonVariants({
-            className: "gap-1 font-bold",
+            className: "gap-2 font-bold",
             size: "xl",
           })}
           type="button"
           onClick={onClick}
         >
-          Share <PiCopyFill />
+          <PiShareFatFill strokeWidth={15} />
+          Share
         </PopoverTrigger>
       </PopoverAnchor>
 

@@ -1,5 +1,15 @@
-import { createIOTD } from "@/db/actions";
+import { db } from "@/db";
+import { createIOTD } from "@/db/server-only";
 import { scheduleJob, RecurrenceRule } from "node-schedule";
+
+export async function getRandomInvention(excludeIds: number[] = []) {
+  const ids = await db.invention.findMany({
+    select: { id: true },
+    where: { image_url: { not: null }, id: { notIn: excludeIds } },
+  });
+  const { id } = ids[Math.floor(Math.random() * ids.length)];
+  return (await db.invention.findUnique({ where: { id } }))!;
+}
 
 async function rotateInvention() {
   const iotd = await createIOTD();
