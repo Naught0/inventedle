@@ -16,7 +16,6 @@ import {
   LocalGame,
 } from "../hooks/use-game-recorder";
 import { useSession } from "@/lib/auth-client";
-import { GuessStatsChart } from "../charts/guess-stats-chart";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useImmer } from "use-immer";
 
@@ -79,13 +78,15 @@ function Wrapped({
   useEffect(
     function syncGameState() {
       if (!gameOver || !syncEnabled) return;
-      recordGame(game, !isLoggedIn);
+      recordGame(game, !isLoggedIn).then(() => {
+        setSyncEnabled(false);
+      });
     },
     [game, gameOver, isLoggedIn, syncEnabled],
   );
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 lg:gap-6">
       {gameWon && (
         <div className="text-2xl font-bold">
           You won! The year was{" "}
@@ -161,7 +162,6 @@ function Wrapped({
           </div>
         </form>
       )}
-      <GuessStatsChart numGuesses={[4, 5, 10, 3, 3, 8]} />
     </div>
   );
 }
