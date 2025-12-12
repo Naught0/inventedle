@@ -12,5 +12,10 @@ export const auth = betterAuth({
       clientSecret: process.env.BA_DISCORD_CLIENT_SECRET as string,
       scope: ["identify"],
     },
+    google: {
+      clientId: process.env.BA_GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.BA_GOOGLE_CLIENT_SECRET as string,
+      scope: ["email", "profile"],
+    },
   },
 });

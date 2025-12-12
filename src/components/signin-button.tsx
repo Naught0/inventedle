@@ -10,7 +10,7 @@ import {
 } from "./ui/popover";
 import { PiChartBarFill, PiSignInFill, PiSignOutBold } from "react-icons/pi";
 import { CgSpinnerAlt } from "react-icons/cg";
-import { BiLogoDiscordAlt } from "react-icons/bi";
+import { BiLogoDiscordAlt, BiLogoGoogle } from "react-icons/bi";
 
 function MenuItem({ children }: { children: React.ReactNode }) {
   return (
@@ -46,16 +46,27 @@ function Menu({ signedIn }: { signedIn: boolean }) {
     );
   } else {
     children.push(
-      <Button
-        key="discord-sign-in"
-        variant="ghost"
-        onClick={() => signIn.social({ provider: "discord" })}
-      >
-        <span className="inline-flex items-center gap-3 font-normal">
-          <BiLogoDiscordAlt className="text-3xl" />
-          Discord
-        </span>
-      </Button>,
+      <MenuItem key="discord-sign-in">
+        <Button
+          variant="ghost"
+          onClick={() => signIn.social({ provider: "discord" })}
+        >
+          <span className="inline-flex items-center gap-3 font-normal">
+            <BiLogoDiscordAlt className="text-3xl" />
+            Discord
+          </span>
+        </Button>
+      </MenuItem>,
+      <MenuItem key="google-sign-in">
+        <Button
+          variant="ghost"
+          onClick={() => signIn.social({ provider: "google" })}
+        >
+          <span className="inline-flex items-center gap-3 font-normal">
+            <BiLogoGoogle className="text-3xl" /> Google
+          </span>
+        </Button>
+      </MenuItem>,
     );
   }
   return <ul className="h-full w-full px-6 py-3">{children}</ul>;
