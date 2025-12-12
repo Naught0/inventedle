@@ -45,6 +45,7 @@ export type ResultMinAggregateOutputType = {
   invention_id: number | null
   iotd_id: number | null
   win: boolean | null
+  ip_address: string | null
   num_guesses: number | null
   user_id: string | null
   created_at: Date | null
@@ -55,6 +56,7 @@ export type ResultMaxAggregateOutputType = {
   invention_id: number | null
   iotd_id: number | null
   win: boolean | null
+  ip_address: string | null
   num_guesses: number | null
   user_id: string | null
   created_at: Date | null
@@ -66,6 +68,7 @@ export type ResultCountAggregateOutputType = {
   iotd_id: number
   guesses: number
   win: number
+  ip_address: number
   num_guesses: number
   user_id: number
   created_at: number
@@ -92,6 +95,7 @@ export type ResultMinAggregateInputType = {
   invention_id?: true
   iotd_id?: true
   win?: true
+  ip_address?: true
   num_guesses?: true
   user_id?: true
   created_at?: true
@@ -102,6 +106,7 @@ export type ResultMaxAggregateInputType = {
   invention_id?: true
   iotd_id?: true
   win?: true
+  ip_address?: true
   num_guesses?: true
   user_id?: true
   created_at?: true
@@ -113,6 +118,7 @@ export type ResultCountAggregateInputType = {
   iotd_id?: true
   guesses?: true
   win?: true
+  ip_address?: true
   num_guesses?: true
   user_id?: true
   created_at?: true
@@ -211,8 +217,9 @@ export type ResultGroupByOutputType = {
   iotd_id: number
   guesses: runtime.JsonValue
   win: boolean
+  ip_address: string | null
   num_guesses: number
-  user_id: string
+  user_id: string | null
   created_at: Date
   _count: ResultCountAggregateOutputType | null
   _avg: ResultAvgAggregateOutputType | null
@@ -245,10 +252,11 @@ export type ResultWhereInput = {
   iotd_id?: Prisma.IntFilter<"Result"> | number
   guesses?: Prisma.JsonFilter<"Result">
   win?: Prisma.BoolFilter<"Result"> | boolean
+  ip_address?: Prisma.StringNullableFilter<"Result"> | string | null
   num_guesses?: Prisma.IntFilter<"Result"> | number
-  user_id?: Prisma.StringFilter<"Result"> | string
+  user_id?: Prisma.StringNullableFilter<"Result"> | string | null
   created_at?: Prisma.DateTimeFilter<"Result"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type ResultOrderByWithRelationInput = {
@@ -257,8 +265,9 @@ export type ResultOrderByWithRelationInput = {
   iotd_id?: Prisma.SortOrder
   guesses?: Prisma.SortOrder
   win?: Prisma.SortOrder
+  ip_address?: Prisma.SortOrderInput | Prisma.SortOrder
   num_guesses?: Prisma.SortOrder
-  user_id?: Prisma.SortOrder
+  user_id?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
 }
@@ -266,6 +275,7 @@ export type ResultOrderByWithRelationInput = {
 export type ResultWhereUniqueInput = Prisma.AtLeast<{
   id?: number
   user_id_iotd_id?: Prisma.ResultUser_idIotd_idCompoundUniqueInput
+  ip_address_iotd_id?: Prisma.ResultIp_addressIotd_idCompoundUniqueInput
   AND?: Prisma.ResultWhereInput | Prisma.ResultWhereInput[]
   OR?: Prisma.ResultWhereInput[]
   NOT?: Prisma.ResultWhereInput | Prisma.ResultWhereInput[]
@@ -273,11 +283,12 @@ export type ResultWhereUniqueInput = Prisma.AtLeast<{
   iotd_id?: Prisma.IntFilter<"Result"> | number
   guesses?: Prisma.JsonFilter<"Result">
   win?: Prisma.BoolFilter<"Result"> | boolean
+  ip_address?: Prisma.StringNullableFilter<"Result"> | string | null
   num_guesses?: Prisma.IntFilter<"Result"> | number
-  user_id?: Prisma.StringFilter<"Result"> | string
+  user_id?: Prisma.StringNullableFilter<"Result"> | string | null
   created_at?: Prisma.DateTimeFilter<"Result"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-}, "id" | "user_id_iotd_id">
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+}, "id" | "user_id_iotd_id" | "ip_address_iotd_id">
 
 export type ResultOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -285,8 +296,9 @@ export type ResultOrderByWithAggregationInput = {
   iotd_id?: Prisma.SortOrder
   guesses?: Prisma.SortOrder
   win?: Prisma.SortOrder
+  ip_address?: Prisma.SortOrderInput | Prisma.SortOrder
   num_guesses?: Prisma.SortOrder
-  user_id?: Prisma.SortOrder
+  user_id?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   _count?: Prisma.ResultCountOrderByAggregateInput
   _avg?: Prisma.ResultAvgOrderByAggregateInput
@@ -304,8 +316,9 @@ export type ResultScalarWhereWithAggregatesInput = {
   iotd_id?: Prisma.IntWithAggregatesFilter<"Result"> | number
   guesses?: Prisma.JsonWithAggregatesFilter<"Result">
   win?: Prisma.BoolWithAggregatesFilter<"Result"> | boolean
+  ip_address?: Prisma.StringNullableWithAggregatesFilter<"Result"> | string | null
   num_guesses?: Prisma.IntWithAggregatesFilter<"Result"> | number
-  user_id?: Prisma.StringWithAggregatesFilter<"Result"> | string
+  user_id?: Prisma.StringNullableWithAggregatesFilter<"Result"> | string | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Result"> | Date | string
 }
 
@@ -314,9 +327,10 @@ export type ResultCreateInput = {
   iotd_id: number
   guesses: Prisma.JsonNullValueInput | runtime.InputJsonValue
   win: boolean
+  ip_address?: string | null
   num_guesses: number
   created_at?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutResultInput
+  user?: Prisma.UserCreateNestedOneWithoutResultInput
 }
 
 export type ResultUncheckedCreateInput = {
@@ -325,8 +339,9 @@ export type ResultUncheckedCreateInput = {
   iotd_id: number
   guesses: Prisma.JsonNullValueInput | runtime.InputJsonValue
   win: boolean
+  ip_address?: string | null
   num_guesses: number
-  user_id: string
+  user_id?: string | null
   created_at?: Date | string
 }
 
@@ -335,9 +350,10 @@ export type ResultUpdateInput = {
   iotd_id?: Prisma.IntFieldUpdateOperationsInput | number
   guesses?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   win?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ip_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   num_guesses?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutResultNestedInput
+  user?: Prisma.UserUpdateOneWithoutResultNestedInput
 }
 
 export type ResultUncheckedUpdateInput = {
@@ -346,8 +362,9 @@ export type ResultUncheckedUpdateInput = {
   iotd_id?: Prisma.IntFieldUpdateOperationsInput | number
   guesses?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   win?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ip_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   num_guesses?: Prisma.IntFieldUpdateOperationsInput | number
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -357,8 +374,9 @@ export type ResultCreateManyInput = {
   iotd_id: number
   guesses: Prisma.JsonNullValueInput | runtime.InputJsonValue
   win: boolean
+  ip_address?: string | null
   num_guesses: number
-  user_id: string
+  user_id?: string | null
   created_at?: Date | string
 }
 
@@ -367,6 +385,7 @@ export type ResultUpdateManyMutationInput = {
   iotd_id?: Prisma.IntFieldUpdateOperationsInput | number
   guesses?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   win?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ip_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   num_guesses?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -377,13 +396,19 @@ export type ResultUncheckedUpdateManyInput = {
   iotd_id?: Prisma.IntFieldUpdateOperationsInput | number
   guesses?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   win?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ip_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   num_guesses?: Prisma.IntFieldUpdateOperationsInput | number
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ResultUser_idIotd_idCompoundUniqueInput = {
   user_id: string
+  iotd_id: number
+}
+
+export type ResultIp_addressIotd_idCompoundUniqueInput = {
+  ip_address: string
   iotd_id: number
 }
 
@@ -393,6 +418,7 @@ export type ResultCountOrderByAggregateInput = {
   iotd_id?: Prisma.SortOrder
   guesses?: Prisma.SortOrder
   win?: Prisma.SortOrder
+  ip_address?: Prisma.SortOrder
   num_guesses?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
@@ -410,6 +436,7 @@ export type ResultMaxOrderByAggregateInput = {
   invention_id?: Prisma.SortOrder
   iotd_id?: Prisma.SortOrder
   win?: Prisma.SortOrder
+  ip_address?: Prisma.SortOrder
   num_guesses?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
@@ -420,6 +447,7 @@ export type ResultMinOrderByAggregateInput = {
   invention_id?: Prisma.SortOrder
   iotd_id?: Prisma.SortOrder
   win?: Prisma.SortOrder
+  ip_address?: Prisma.SortOrder
   num_guesses?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
@@ -493,6 +521,7 @@ export type ResultCreateWithoutUserInput = {
   iotd_id: number
   guesses: Prisma.JsonNullValueInput | runtime.InputJsonValue
   win: boolean
+  ip_address?: string | null
   num_guesses: number
   created_at?: Date | string
 }
@@ -503,6 +532,7 @@ export type ResultUncheckedCreateWithoutUserInput = {
   iotd_id: number
   guesses: Prisma.JsonNullValueInput | runtime.InputJsonValue
   win: boolean
+  ip_address?: string | null
   num_guesses: number
   created_at?: Date | string
 }
@@ -541,8 +571,9 @@ export type ResultScalarWhereInput = {
   iotd_id?: Prisma.IntFilter<"Result"> | number
   guesses?: Prisma.JsonFilter<"Result">
   win?: Prisma.BoolFilter<"Result"> | boolean
+  ip_address?: Prisma.StringNullableFilter<"Result"> | string | null
   num_guesses?: Prisma.IntFilter<"Result"> | number
-  user_id?: Prisma.StringFilter<"Result"> | string
+  user_id?: Prisma.StringNullableFilter<"Result"> | string | null
   created_at?: Prisma.DateTimeFilter<"Result"> | Date | string
 }
 
@@ -552,6 +583,7 @@ export type ResultCreateManyUserInput = {
   iotd_id: number
   guesses: Prisma.JsonNullValueInput | runtime.InputJsonValue
   win: boolean
+  ip_address?: string | null
   num_guesses: number
   created_at?: Date | string
 }
@@ -561,6 +593,7 @@ export type ResultUpdateWithoutUserInput = {
   iotd_id?: Prisma.IntFieldUpdateOperationsInput | number
   guesses?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   win?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ip_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   num_guesses?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -571,6 +604,7 @@ export type ResultUncheckedUpdateWithoutUserInput = {
   iotd_id?: Prisma.IntFieldUpdateOperationsInput | number
   guesses?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   win?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ip_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   num_guesses?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -581,6 +615,7 @@ export type ResultUncheckedUpdateManyWithoutUserInput = {
   iotd_id?: Prisma.IntFieldUpdateOperationsInput | number
   guesses?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   win?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  ip_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   num_guesses?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -593,10 +628,11 @@ export type ResultSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   iotd_id?: boolean
   guesses?: boolean
   win?: boolean
+  ip_address?: boolean
   num_guesses?: boolean
   user_id?: boolean
   created_at?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.Result$userArgs<ExtArgs>
 }, ExtArgs["result"]["result"]>
 
 export type ResultSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -605,10 +641,11 @@ export type ResultSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   iotd_id?: boolean
   guesses?: boolean
   win?: boolean
+  ip_address?: boolean
   num_guesses?: boolean
   user_id?: boolean
   created_at?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.Result$userArgs<ExtArgs>
 }, ExtArgs["result"]["result"]>
 
 export type ResultSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -617,10 +654,11 @@ export type ResultSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   iotd_id?: boolean
   guesses?: boolean
   win?: boolean
+  ip_address?: boolean
   num_guesses?: boolean
   user_id?: boolean
   created_at?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.Result$userArgs<ExtArgs>
 }, ExtArgs["result"]["result"]>
 
 export type ResultSelectScalar = {
@@ -629,26 +667,27 @@ export type ResultSelectScalar = {
   iotd_id?: boolean
   guesses?: boolean
   win?: boolean
+  ip_address?: boolean
   num_guesses?: boolean
   user_id?: boolean
   created_at?: boolean
 }
 
-export type ResultOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "invention_id" | "iotd_id" | "guesses" | "win" | "num_guesses" | "user_id" | "created_at", ExtArgs["result"]["result"]>
+export type ResultOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "invention_id" | "iotd_id" | "guesses" | "win" | "ip_address" | "num_guesses" | "user_id" | "created_at", ExtArgs["result"]["result"]>
 export type ResultInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.Result$userArgs<ExtArgs>
 }
 export type ResultIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.Result$userArgs<ExtArgs>
 }
 export type ResultIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.Result$userArgs<ExtArgs>
 }
 
 export type $ResultPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Result"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -656,8 +695,9 @@ export type $ResultPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     iotd_id: number
     guesses: runtime.JsonValue
     win: boolean
+    ip_address: string | null
     num_guesses: number
-    user_id: string
+    user_id: string | null
     created_at: Date
   }, ExtArgs["result"]["result"]>
   composites: {}
@@ -1053,7 +1093,7 @@ readonly fields: ResultFieldRefs;
  */
 export interface Prisma__ResultClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.Result$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Result$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1088,6 +1128,7 @@ export interface ResultFieldRefs {
   readonly iotd_id: Prisma.FieldRef<"Result", 'Int'>
   readonly guesses: Prisma.FieldRef<"Result", 'Json'>
   readonly win: Prisma.FieldRef<"Result", 'Boolean'>
+  readonly ip_address: Prisma.FieldRef<"Result", 'String'>
   readonly num_guesses: Prisma.FieldRef<"Result", 'Int'>
   readonly user_id: Prisma.FieldRef<"Result", 'String'>
   readonly created_at: Prisma.FieldRef<"Result", 'DateTime'>
@@ -1482,6 +1523,25 @@ export type ResultDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Results to delete.
    */
   limit?: number
+}
+
+/**
+ * Result.user
+ */
+export type Result$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

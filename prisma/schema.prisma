@@ -47,6 +47,7 @@ model Result {
   user         User?    @relation(fields: [user_id], references: [id])
 
   @@unique([user_id, iotd_id])
+  @@unique([ip_address, iotd_id])
   @@index([invention_id])
   @@index([user_id])
   @@index([ip_address])

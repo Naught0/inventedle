@@ -340,6 +340,11 @@ export type UserUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
+}
+
 export type UserScalarRelationFilter = {
   is?: Prisma.UserWhereInput
   isNot?: Prisma.UserWhereInput
@@ -381,10 +386,12 @@ export type UserCreateNestedOneWithoutResultInput = {
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutResultNestedInput = {
+export type UserUpdateOneWithoutResultNestedInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutResultInput, Prisma.UserUncheckedCreateWithoutResultInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutResultInput
   upsert?: Prisma.UserUpsertWithoutResultInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutResultInput, Prisma.UserUpdateWithoutResultInput>, Prisma.UserUncheckedUpdateWithoutResultInput>
 }

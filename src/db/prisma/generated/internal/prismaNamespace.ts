@@ -994,6 +994,7 @@ export const ResultScalarFieldEnum = {
   iotd_id: 'iotd_id',
   guesses: 'guesses',
   win: 'win',
+  ip_address: 'ip_address',
   num_guesses: 'num_guesses',
   user_id: 'user_id',
   created_at: 'created_at'
