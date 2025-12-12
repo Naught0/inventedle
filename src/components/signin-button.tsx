@@ -91,16 +91,16 @@ export function SigninButton({ loading = false }: { loading?: boolean }) {
               <Image
                 alt="profile picture"
                 src={data?.user.image}
-                className="rounded-full"
+                className="rounded-full py-0.5"
                 width={48}
                 height={48}
               />
             )}
             {!signedIn && isLoading && (
-              <CgSpinnerAlt className="text-primary mx-10 my-1 h-12 w-12 animate-spin text-4xl" />
+              <CgSpinnerAlt className="text-primary mx-9 my-0.5 h-12 w-12 animate-spin text-4xl" />
             )}
             {!isLoading && !data && (
-              <span className="inline-flex items-center gap-2">
+              <span className="inline-flex items-center gap-2 py-3">
                 <PiSignInFill className="text-2xl" strokeWidth={15} /> Sign in
               </span>
             )}
