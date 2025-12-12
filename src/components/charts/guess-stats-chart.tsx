@@ -9,15 +9,22 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
-export function GuessStatsChart({ numGuesses }: { numGuesses: number[] }) {
-  ChartJS.register(
-    ArcElement,
-    Tooltip,
-    Legend,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-  );
+ChartJS.register(
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+);
+
+const labels = ["1", "2", "3", "4", "5", "X"];
+
+export function GuessStatsChart({
+  numGuesses,
+}: {
+  numGuesses?: Record<string, number>;
+}) {
   return (
     <div className="grid w-full">
       <h4 className="text-center text-lg">Global Stats</h4>
@@ -41,7 +48,13 @@ export function GuessStatsChart({ numGuesses }: { numGuesses: number[] }) {
             },
             x: {
               ticks: {
-                display: false,
+                color: "#aaa",
+                stepSize: 1,
+                font: {
+                  family: "JetBrains Mono",
+                  size: 16,
+                  weight: "bolder",
+                },
               },
               grid: {
                 display: false,
@@ -51,12 +64,14 @@ export function GuessStatsChart({ numGuesses }: { numGuesses: number[] }) {
           plugins: { legend: { display: false }, tooltip: { enabled: false } },
         }}
         data={{
-          labels: ["1", "2", "3", "4", "5", "😬"],
+          labels,
           datasets: [
             {
               borderRadius: 5,
               label: "Number of Guesses",
-              data: Object.values(numGuesses),
+              data: labels.map(
+                (l) => numGuesses?.[l as keyof typeof numGuesses] ?? 0,
+              ),
               backgroundColor: "#f56bb0",
             },
           ],

@@ -1,4 +1,5 @@
 "use client";
+import { Activity } from "react";
 import { InventionModel } from "@/db/prisma/generated/models";
 import { createRef, useEffect, useMemo, useState } from "react";
 import { Button } from "../ui/button";
@@ -16,8 +17,13 @@ import {
   LocalGame,
 } from "../hooks/use-game-recorder";
 import { useSession } from "@/lib/auth-client";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
 import { useImmer } from "use-immer";
+import { GuessStatsChart } from "../charts/guess-stats-chart";
 
 const queryClient = new QueryClient();
 
@@ -75,11 +81,20 @@ function Wrapped({
   const gameLost = !game.win && game.guesses.length >= 5;
   const gameOver = gameWon || gameLost;
 
+  const { data: iotdStatsData, refetch: refetchIotdStats } = useQuery<
+    Record<string, number>
+  >({
+    queryKey: ["iotdStats", iotdId],
+    queryFn: () => makeIotdStatsRequest(iotdId),
+  });
+
   useEffect(
     function syncGameState() {
       if (!gameOver || !syncEnabled) return;
+
       recordGame(game, !isLoggedIn).then(() => {
         setSyncEnabled(false);
+        refetchIotdStats();
       });
     },
     [game, gameOver, isLoggedIn, syncEnabled],
@@ -162,6 +177,15 @@ function Wrapped({
           </div>
         </form>
       )}
+      <Activity mode={gameOver && !!iotdStatsData ? "visible" : "hidden"}>
+        <GuessStatsChart numGuesses={iotdStatsData} />
+      </Activity>
     </div>
   );
+}
+
+async function makeIotdStatsRequest(iotdId: number) {
+  return (await (
+    await fetch(`/api/game/${iotdId}/stats`, { method: "GET" })
+  ).json()) as Record<string, number>;
 }
