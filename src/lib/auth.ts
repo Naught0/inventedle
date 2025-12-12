@@ -6,6 +6,13 @@ export const auth = betterAuth({
   database: prismaAdapter(db, {
     provider: "sqlite",
   }),
+  account: {
+    accountLinking: {
+      trustedProviders: ["discord", "google", "github"],
+      updateUserInfoOnLink: true,
+      allowDifferentEmails: false,
+    },
+  },
   socialProviders: {
     discord: {
       clientId: process.env.BA_DISCORD_CLIENT_ID as string,
