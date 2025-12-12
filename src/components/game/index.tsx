@@ -23,7 +23,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import { useImmer } from "use-immer";
-import { GuessStatsChart } from "../charts/guess-stats-chart";
+// import { GuessStatsChart } from "../charts/guess-stats-chart";
 
 const queryClient = new QueryClient();
 
@@ -177,9 +177,9 @@ function Wrapped({
           </div>
         </form>
       )}
-      <Activity mode={gameOver && !!iotdStatsData ? "visible" : "hidden"}>
-        <GuessStatsChart numGuesses={iotdStatsData} />
-      </Activity>
+      {/* <Activity mode={gameOver && !!iotdStatsData ? "visible" : "hidden"}> */}
+      {/*   <GuessStatsChart numGuesses={iotdStatsData} /> */}
+      {/* </Activity> */}
     </div>
   );
 }
