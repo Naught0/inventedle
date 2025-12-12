@@ -40,7 +40,7 @@ function getInitialGame({
 export function Game(params: Parameters<typeof Wrapped>[0]) {
   return (
     <QueryClientProvider client={queryClient}>
-      <Wrapped {...params} />;
+      <Wrapped {...params} />
     </QueryClientProvider>
   );
 }
