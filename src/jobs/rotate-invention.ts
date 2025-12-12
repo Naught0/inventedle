@@ -2,7 +2,10 @@ import { createIOTD } from "@/db/server-only";
 import { scheduleJob, RecurrenceRule } from "node-schedule";
 
 (async () => {
-  await createIOTD();
+  try {
+    await createIOTD();
+  } catch {}
+
   const rule = new RecurrenceRule();
   rule.tz = "America/New_York";
   rule.hour = 0;
