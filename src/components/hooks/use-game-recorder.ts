@@ -1,7 +1,4 @@
 import { ResultCreateWithoutUserInput } from "@/db/prisma/generated/models";
-import { useCallback } from "react";
-import { useImmer } from "use-immer";
-import { useMutation } from "@tanstack/react-query";
 
 export type LocalGame = Omit<
   ResultCreateWithoutUserInput,
@@ -10,82 +7,14 @@ export type LocalGame = Omit<
 
 const localStorageKeyBase = "inventedle-game-result";
 
-export function useGameRecorder({
-  iotdId,
-  inventionId,
-  isLoggedIn,
-}: {
-  iotdId: number;
-  inventionId: number;
-  isLoggedIn: boolean;
-}) {
-  const localStorageKey = `${localStorageKeyBase}-${iotdId}`;
-  const { mutate: mutateResult, isPending } = useMutation({
-    mutationFn: async ({
-      params,
-    }: {
-      params: {
-        game: Parameters<typeof recordGameResult>[0];
-        anonymous: Parameters<typeof recordGameResult>[1];
-      };
-    }) => await recordGameResult(params.game, params.anonymous),
-  });
-  const [game, setGame] = useImmer<LocalGame>({
-    iotd_id: iotdId,
-    invention_id: inventionId,
-    guesses: [],
-    win: false,
-  });
-
-  const syncLocalStorage = useCallback(
-    () => localStorage.setItem(localStorageKey, JSON.stringify(game)),
-    [localStorageKey, game],
-  );
-
-  async function recordGuess(guess: number) {
-    setGame((draft) => {
-      draft.guesses.push(guess);
-    });
+export async function recordGame(game: LocalGame, anonymous = false) {
+  if (anonymous) {
+    localStorage.setItem(
+      `${localStorageKeyBase}-${game.iotd_id}`,
+      JSON.stringify(game),
+    );
   }
 
-  const submitResult = useCallback(() => {
-    if (isPending) return;
-
-    if (isLoggedIn) {
-      mutateResult({
-        params: {
-          game: { ...game, num_guesses: game.guesses.length },
-          anonymous: false,
-        },
-      });
-    } else {
-      syncLocalStorage();
-      mutateResult({
-        params: {
-          game: { ...game, num_guesses: game.guesses.length },
-          anonymous: true,
-        },
-      });
-    }
-  }, [isPending, isLoggedIn, mutateResult, syncLocalStorage]);
-
-  const recordResult = useCallback(
-    async function (gameWon: boolean) {
-      setGame((game) => {
-        game.win = gameWon;
-      });
-      submitResult();
-    },
-    [setGame, submitResult],
-  );
-
-  return { isLoggedIn, game, setGame, recordGuess, recordResult };
-}
-
-export async function recordGameResult(
-  game: ResultCreateWithoutUserInput,
-  anonymous = false,
-) {
   return await (
     await fetch(
       anonymous
@@ -102,5 +31,5 @@ export async function recordGameResult(
 export function getCurrentGameFromLocalStorage(iotdId: number) {
   if (typeof window === "undefined") return null;
   const game = localStorage.getItem(`${localStorageKeyBase}-${iotdId}`);
-  return game ? JSON.parse(game) : null;
+  return game ? (JSON.parse(game) as LocalGame) : null;
 }

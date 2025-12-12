@@ -12,30 +12,15 @@ import { formatYear } from "./utils";
 import { Summary } from "./summary";
 import {
   getCurrentGameFromLocalStorage,
+  recordGame,
   LocalGame,
-  useGameRecorder,
 } from "../hooks/use-game-recorder";
 import { useSession } from "@/lib/auth-client";
 import { GuessStatsChart } from "../charts/guess-stats-chart";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useImmer } from "use-immer";
 
 const queryClient = new QueryClient();
-
-function getInitialGame({
-  isLoggedIn,
-  ...game
-}: LocalGame & { isLoggedIn: boolean }): LocalGame {
-  if (isLoggedIn) return game;
-
-  const localGame = getCurrentGameFromLocalStorage(game.iotd_id);
-  if (localGame) return localGame;
-  return {
-    iotd_id: game.iotd_id,
-    invention_id: game.invention_id,
-    win: false,
-    guesses: [],
-  };
-}
 
 export function Game(params: Parameters<typeof Wrapped>[0]) {
   return (
@@ -59,33 +44,45 @@ function Wrapped({
   const [era, setEra] = useState<Era>(Era.CE);
   const rules = getRulesByYear(invention.year);
   const formRef = createRef<HTMLFormElement>();
-  const initGame: LocalGame = useMemo(() => {
-    return getInitialGame({
-      iotd_id: iotdId,
-      invention_id: invention.id,
-      win: !!gameResult?.win,
-      guesses: (gameResult?.guesses ?? []) as number[],
-      isLoggedIn,
-    });
-  }, [gameResult, iotdId, invention.id, isLoggedIn]);
-  const { game, setGame, recordGuess, recordResult } = useGameRecorder({
-    isLoggedIn,
-    iotdId,
-    inventionId: invention.id,
-  });
+  const localGameCached = useMemo(
+    () => getCurrentGameFromLocalStorage(iotdId),
+    [iotdId],
+  );
+  const [guesses, setGuesses] = useImmer<number[]>([]);
   useEffect(
-    function setInitGame() {
-      if (isPending) return;
-
-      setGame(initGame);
+    function initGuesses() {
+      const g =
+        (isLoggedIn ? gameResult?.guesses : localGameCached?.guesses) ?? [];
+      setGuesses(() => [...g]);
     },
-    [isPending, data],
+    [gameResult, localGameCached, isLoggedIn, setGuesses],
   );
 
+  const [syncEnabled, setSyncEnabled] = useState(false);
+  const game = useMemo<LocalGame>(() => {
+    const g = {
+      ...gameResult,
+      guesses,
+      win: guessIsCorrect(
+        getGuessDistance(guesses.slice(-1)[0], invention),
+        getRulesByYear(invention.year),
+      ),
+      iotd_id: iotdId,
+      invention_id: invention.id,
+    };
+    return g;
+  }, [gameResult, guesses, invention, iotdId]);
   const gameWon = game.win;
   const gameLost = !game.win && game.guesses.length >= 5;
   const gameOver = gameWon || gameLost;
-  const guesses = game.guesses;
+
+  useEffect(
+    function syncGameState() {
+      if (!gameOver || !syncEnabled) return;
+      recordGame(game, !isLoggedIn);
+    },
+    [game, gameOver, isLoggedIn, syncEnabled],
+  );
 
   return (
     <div className="flex flex-col gap-3">
@@ -129,22 +126,12 @@ function Wrapped({
               parseInt((data.get("guess") as string) ?? "") * factor;
 
             if (!isNaN(guess)) {
-              recordGuess(guess);
-            } else {
-              return;
-            }
+              setGuesses((g) => {
+                g.push(guess);
+              });
+            } else return;
 
-            const gameWon = guessIsCorrect(
-              getGuessDistance(guess, invention),
-              rules,
-            );
-
-            if (gameWon) {
-              recordResult(gameWon);
-            } else {
-              recordResult(gameWon);
-            }
-
+            setSyncEnabled(true);
             formRef.current?.reset();
           }}
         >
