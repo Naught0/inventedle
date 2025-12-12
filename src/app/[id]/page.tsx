@@ -110,7 +110,7 @@ export async function GamePage({
           )}
         </p>
       </div>
-      <h2 className="text-center text-3xl font-normal">
+      <h2 className="text-center text-3xl font-normal lg:text-4xl">
         <span className="text-far-red font-extrabold">{invention.name}</span>
       </h2>
       <Game
