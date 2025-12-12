@@ -7,6 +7,7 @@ import {
   LinearScale,
   BarElement,
 } from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
@@ -16,28 +17,39 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   BarElement,
+  ChartDataLabels,
 );
 
 const labels = ["1", "2", "3", "4", "5", "X"];
+
+function getPercentOfTotal(num: number, numGuesses: Record<string, number>) {
+  const total = Object.values(numGuesses).reduce((a, b) => a + b, 0);
+  return (num / total) * 100;
+}
 
 export function GuessStatsChart({
   numGuesses,
 }: {
   numGuesses?: Record<string, number>;
 }) {
+  if (!numGuesses) return null;
+
   return (
-    <div className="grid w-full">
-      <h4 className="text-center text-lg">Global Stats</h4>
+    <div className="bg-accent grid h-full w-full max-w-screen-sm rounded-lg p-3">
+      <h4 className="text-accent-foreground text-center text-xl font-bold">
+        Global Stats
+      </h4>
       <Bar
+        plugins={[ChartDataLabels]}
         options={{
           indexAxis: "y",
           responsive: true,
           scales: {
             y: {
-              grid: {
-                display: false,
-              },
+              grid: { display: false },
+              border: { display: false },
               ticks: {
+                z: 1,
                 color: "#aaa",
                 font: {
                   family: "JetBrains Mono",
@@ -47,7 +59,11 @@ export function GuessStatsChart({
               },
             },
             x: {
+              grid: { display: false },
+              border: { display: false },
               ticks: {
+                display: false,
+                z: 1,
                 color: "#aaa",
                 stepSize: 1,
                 font: {
@@ -56,26 +72,47 @@ export function GuessStatsChart({
                   weight: "bolder",
                 },
               },
-              grid: {
-                display: false,
+            },
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: { enabled: false },
+            datalabels: {
+              formatter(value) {
+                if (value === 0) {
+                  return "0";
+                }
+                return `${value} (${getPercentOfTotal(
+                  value,
+                  numGuesses,
+                ).toFixed()}%)`;
+              },
+              color: "#2e2e2e",
+              align: "center",
+              font: {
+                family: "JetBrains Mono",
+                size: 16,
+                weight: "bolder",
               },
             },
           },
-          plugins: { legend: { display: false }, tooltip: { enabled: false } },
         }}
         data={{
           labels,
           datasets: [
             {
-              borderRadius: 5,
+              borderRadius: 4,
               label: "Number of Guesses",
               data: labels.map(
                 (l) => numGuesses?.[l as keyof typeof numGuesses] ?? 0,
               ),
               backgroundColor: "#f56bb0",
+              maxBarThickness: 35,
+              minBarLength: 25,
             },
           ],
         }}
+        className="h-96"
       />
     </div>
   );

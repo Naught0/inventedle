@@ -24,6 +24,9 @@ import {
 } from "@tanstack/react-query";
 import { useImmer } from "use-immer";
 import { GuessStatsChart } from "../charts/guess-stats-chart";
+import { Separator } from "@radix-ui/react-separator";
+import { Hyperlink } from "../hyperlink";
+import { ImageWithCaption } from "../image-with-caption";
 
 const queryClient = new QueryClient();
 
@@ -101,82 +104,123 @@ function Wrapped({
   );
 
   return (
-    <div className="flex flex-col gap-3 lg:gap-6">
-      {gameWon && (
-        <div className="text-2xl font-bold">
-          You won! The year was{" "}
-          <span className="text-primary underline underline-offset-8">
-            {formatYear(invention.year, true)}
-          </span>
-        </div>
-      )}
-      {gameLost && (
-        <div className="text-2xl font-bold">
-          You lost! The year was{" "}
-          <span className="text-primary underline underline-offset-8">
-            {formatYear(invention.year, true)}
-          </span>
-        </div>
-      )}
-      {gameOver ? (
-        <div className="flex flex-col gap-6">
-          {guesses && (
-            <ShareScore
-              iotdId={iotdId}
-              guessDistances={guesses.map((g) =>
-                getGuessDistance(g, invention),
+    <div className="flex w-full max-w-screen-lg flex-col items-center justify-center gap-6 lg:gap-12">
+      <div className="grid w-full grid-cols-1 gap-3 lg:grid-cols-2 lg:gap-6">
+        {invention.image_url && (
+          <div className="flex flex-1 flex-grow basis-1/2 flex-col gap-3 lg:gap-6">
+            <ImageWithCaption
+              className="max-h-80 w-full max-w-[95vw] rounded-lg object-contain lg:max-h-[512px]"
+              src={invention.image_url}
+              alt={`${invention.name}`}
+              width={1280}
+              height={720}
+              preload
+            >
+              {invention.image_url && (
+                <div className="inline-flex h-4 items-center gap-1.5">
+                  <span>
+                    image from{" "}
+                    {new URL(invention.image_url).hostname.split(".")[1]}
+                  </span>
+                  <Separator
+                    orientation="vertical"
+                    className="bg-muted-foreground"
+                  />
+                  <Hyperlink
+                    href={invention.invention_link ?? invention.image_url}
+                    className="inline-flex items-center gap-1"
+                  >
+                    source
+                  </Hyperlink>
+                </div>
               )}
-              rules={rules}
-            />
-          )}
-          <Summary invention={invention} />
-        </div>
-      ) : null}
-      <Guesses invention={invention} guesses={guesses} />
-      {!gameOver && (
-        <form
-          ref={formRef}
-          action={(data) => {
-            const factor = era === Era.CE ? 1 : -1;
-            const guess =
-              parseInt((data.get("guess") as string) ?? "") * factor;
-
-            if (!isNaN(guess)) {
-              setGuesses((g) => {
-                g.push(guess);
-              });
-            } else return;
-
-            setSyncEnabled(true);
-            formRef.current?.reset();
-          }}
-        >
-          <div className="flex flex-grow flex-col gap-3">
-            <div className="flex flex-row items-center gap-0">
-              <Input
-                className="text-foreground placeholder:text-muted-foreground bg-background rounded-r-none"
-                name="guess"
-                type="number"
-                inputMode="numeric"
-                max={era === Era.CE ? new Date().getFullYear() + 1 : undefined}
-                disabled={isPending || gameOver}
-                placeholder={
-                  !gameOver
-                    ? `Guess a year | (Guess ${guesses.length + 1} / 5)`
-                    : undefined
-                }
-                autoFocus
-              />
-              <EraSelect value={era} onChange={setEra} disabled={gameOver} />
-            </div>
-            <div>
-              <Button size="xl" type="submit" disabled={gameOver}>
-                Guess
-              </Button>
-            </div>
+            </ImageWithCaption>
           </div>
-        </form>
-      )}
+        )}
+        <div className="flex flex-col gap-3 lg:gap-6">
+          {gameWon && (
+            <div className="text-2xl font-bold">
+              You won! The year was{" "}
+              <span className="text-primary underline underline-offset-8">
+                {formatYear(invention.year, true)}
+              </span>
+            </div>
+          )}
+          {gameLost && (
+            <div className="text-2xl font-bold">
+              You lost! The year was{" "}
+              <span className="text-primary underline underline-offset-8">
+                {formatYear(invention.year, true)}
+              </span>
+            </div>
+          )}
+          {gameOver ? (
+            <div className="flex flex-col gap-6">
+              {guesses && (
+                <ShareScore
+                  iotdId={iotdId}
+                  guessDistances={guesses.map((g) =>
+                    getGuessDistance(g, invention),
+                  )}
+                  rules={rules}
+                />
+              )}
+              <Summary invention={invention} />
+            </div>
+          ) : null}
+          <Guesses invention={invention} guesses={guesses} />
+          {!gameOver && (
+            <form
+              ref={formRef}
+              action={(data) => {
+                const factor = era === Era.CE ? 1 : -1;
+                const guess =
+                  parseInt((data.get("guess") as string) ?? "") * factor;
+
+                if (!isNaN(guess)) {
+                  setGuesses((g) => {
+                    g.push(guess);
+                  });
+                } else return;
+
+                setSyncEnabled(true);
+                formRef.current?.reset();
+              }}
+            >
+              <div className="flex flex-grow flex-col gap-3">
+                <div className="flex flex-row items-center gap-0">
+                  <Input
+                    className="text-foreground placeholder:text-muted-foreground bg-background rounded-r-none"
+                    name="guess"
+                    type="number"
+                    inputMode="numeric"
+                    max={
+                      era === Era.CE ? new Date().getFullYear() + 1 : undefined
+                    }
+                    disabled={isPending || gameOver}
+                    placeholder={
+                      !gameOver
+                        ? `Guess a year | (Guess ${guesses.length + 1} / 5)`
+                        : undefined
+                    }
+                    autoFocus
+                  />
+                  <EraSelect
+                    value={era}
+                    onChange={setEra}
+                    disabled={gameOver}
+                  />
+                </div>
+                <div>
+                  <Button size="xl" type="submit" disabled={gameOver}>
+                    Guess
+                  </Button>
+                </div>
+              </div>
+            </form>
+          )}
+        </div>
+      </div>
       <Activity mode={gameOver && !!iotdStatsData ? "visible" : "hidden"}>
         <GuessStatsChart numGuesses={iotdStatsData} />
       </Activity>

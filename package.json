@@ -28,6 +28,7 @@
     "@types/react-dom": "^19.2.3",
     "better-auth": "^1.4.6",
     "chart.js": "^4.5.1",
+    "chartjs-plugin-datalabels": "^2.2.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
