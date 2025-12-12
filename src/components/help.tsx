@@ -39,10 +39,8 @@ export function Help() {
               </p>
               <p>
                 E.g. To win for inventions from the year 2000 onward, you must
-                guess the exact year to get it right. For an invention made in
-                1910, you would need to guess a year 1909-1911 to win. The
-                margin to win becomes more forgiving as you go farther back in
-                time.
+                guess within one year to get it right. The margin to win becomes
+                more forgiving as you go farther back in time.
               </p>
               <p>Find all the rules in the table below.</p>
             </article>
