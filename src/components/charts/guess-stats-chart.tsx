@@ -9,11 +9,7 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
-export function GuessStatsChart({
-  numGuesses,
-}: {
-  numGuesses: Record<string, number>;
-}) {
+export function GuessStatsChart({ numGuesses }: { numGuesses: number[] }) {
   ChartJS.register(
     ArcElement,
     Tooltip,
@@ -55,7 +51,7 @@ export function GuessStatsChart({
           plugins: { legend: { display: false }, tooltip: { enabled: false } },
         }}
         data={{
-          labels: Object.keys(numGuesses),
+          labels: ["1", "2", "3", "4", "5", "😬"],
           datasets: [
             {
               borderRadius: 5,
