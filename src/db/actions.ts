@@ -26,14 +26,16 @@ export async function getRandomInvention(excludeIds: number[] = []) {
 export async function getIOTDStats(iotdId: number) {
   const res = await db.result.groupBy({
     by: ["num_guesses"],
-    _count: {
-      _all: true,
-    },
+    _count: { _all: true },
     where: {
       iotd_id: iotdId,
     },
   });
 
+  // low to high
   res.sort((a, b) => a.num_guesses - b.num_guesses);
-  return res.map((r) => r._count._all);
+  const stats = Object.fromEntries(
+    res.map((r) => [r.num_guesses, r._count._all]),
+  );
+  return stats;
 }
