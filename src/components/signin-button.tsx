@@ -14,7 +14,7 @@ import { BiLogoDiscordAlt, BiLogoGoogle } from "react-icons/bi";
 
 function MenuItem({ children }: { children: React.ReactNode }) {
   return (
-    <li className="border-muted-foreground border-white py-2 odd:border-b">
+    <li className="border-muted-foreground w-full border-white py-2 odd:border-b">
       {children}
     </li>
   );
@@ -49,6 +49,7 @@ function Menu({ signedIn }: { signedIn: boolean }) {
       <MenuItem key="discord-sign-in">
         <Button
           variant="ghost"
+          className="w-full"
           onClick={() => signIn.social({ provider: "discord" })}
         >
           <span className="inline-flex items-center gap-3 font-normal">
@@ -60,6 +61,7 @@ function Menu({ signedIn }: { signedIn: boolean }) {
       <MenuItem key="google-sign-in">
         <Button
           variant="ghost"
+          className="w-full"
           onClick={() => signIn.social({ provider: "google" })}
         >
           <span className="inline-flex items-center gap-3 font-normal">
