@@ -41,13 +41,13 @@ export function HelpTable({ rules }: { rules: GameRule[] }) {
             <th>
               <div className="inline-flex gap-2 px-2 md:px-3">
                 <Square className="bg-status-warning" />
-                <span className="hidden md:inline"> Close</span>
+                <span className="hidden md:inline"> Almost</span>
               </div>
             </th>
             <th>
               <div className="inline-flex gap-2 px-2 md:px-3">
                 <Square className="bg-status-orange" />
-                <span className="hidden md:inline"> Warmer</span>
+                <span className="hidden md:inline"> Closer</span>
               </div>
             </th>
             <th>

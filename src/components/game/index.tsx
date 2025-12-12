@@ -86,14 +86,6 @@ function Wrapped({
   const gameLost = !game.win && game.guesses.length >= 5;
   const gameOver = gameWon || gameLost;
   const guesses = game.guesses;
-  useEffect(
-    function syncResult() {
-      if (gameWon || gameLost) {
-        recordResult(gameWon);
-      }
-    },
-    [gameWon, gameLost],
-  );
 
   return (
     <div className="flex flex-col gap-3">
@@ -138,6 +130,8 @@ function Wrapped({
 
             if (!isNaN(guess)) {
               recordGuess(guess);
+            } else {
+              return;
             }
 
             const gameWon = guessIsCorrect(

@@ -1,5 +1,5 @@
 import { ResultCreateWithoutUserInput } from "@/db/prisma/generated/models";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import { useImmer } from "use-immer";
 import { useMutation } from "@tanstack/react-query";
 
@@ -43,8 +43,8 @@ export function useGameRecorder({
   );
 
   async function recordGuess(guess: number) {
-    setGame((game) => {
-      game.guesses.push(guess);
+    setGame((draft) => {
+      draft.guesses.push(guess);
     });
   }
 
