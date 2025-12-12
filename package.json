@@ -32,7 +32,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.3",
-    "framer-motion": "^11.11.11",
+    "framer-motion": "^12.23.26",
     "immer": "^11.0.1",
     "isomorphic-dompurify": "^2.16.0",
     "jotai": "^2.10.0",
