@@ -1,6 +1,7 @@
 import { ResultCreateWithoutUserInput } from "@/db/prisma/generated/models";
 import { useCallback, useEffect, useState } from "react";
 import { useImmer } from "use-immer";
+import { useMutation } from "@tanstack/react-query";
 
 export type LocalGame = Omit<
   ResultCreateWithoutUserInput,
@@ -19,13 +20,22 @@ export function useGameRecorder({
   isLoggedIn: boolean;
 }) {
   const localStorageKey = `${localStorageKeyBase}-${iotdId}`;
+  const { mutate: mutateResult, isPending } = useMutation({
+    mutationFn: async ({
+      params,
+    }: {
+      params: {
+        game: Parameters<typeof recordGameResult>[0];
+        anonymous: Parameters<typeof recordGameResult>[1];
+      };
+    }) => await recordGameResult(params.game, params.anonymous),
+  });
   const [game, setGame] = useImmer<LocalGame>({
     iotd_id: iotdId,
     invention_id: inventionId,
     guesses: [],
     win: false,
   });
-  const [syncEnabled, setSyncEnabled] = useState(false);
 
   const syncLocalStorage = useCallback(
     () => localStorage.setItem(localStorageKey, JSON.stringify(game)),
@@ -36,32 +46,38 @@ export function useGameRecorder({
     setGame((game) => {
       game.guesses.push(guess);
     });
-    setSyncEnabled(true);
   }
-  useEffect(
-    function syncGameResults() {
-      if (!syncEnabled) return;
-      (async () => {
-        if (isLoggedIn) {
-          await recordGameResult({ ...game, num_guesses: game.guesses.length });
-        } else {
-          syncLocalStorage();
-          await recordGameResult(
-            { ...game, num_guesses: game.guesses.length },
-            true,
-          );
-        }
-      })();
-    },
-    [isLoggedIn, game, syncEnabled, syncLocalStorage],
-  );
 
-  async function recordResult(gameWon: boolean) {
-    setGame((game) => {
-      game.win = gameWon;
-    });
-    setSyncEnabled(true);
-  }
+  const submitResult = useCallback(() => {
+    if (isPending) return;
+
+    if (isLoggedIn) {
+      mutateResult({
+        params: {
+          game: { ...game, num_guesses: game.guesses.length },
+          anonymous: false,
+        },
+      });
+    } else {
+      syncLocalStorage();
+      mutateResult({
+        params: {
+          game: { ...game, num_guesses: game.guesses.length },
+          anonymous: true,
+        },
+      });
+    }
+  }, [isPending, isLoggedIn, mutateResult, syncLocalStorage]);
+
+  const recordResult = useCallback(
+    async function (gameWon: boolean) {
+      setGame((game) => {
+        game.win = gameWon;
+      });
+      submitResult();
+    },
+    [setGame, submitResult],
+  );
 
   return { isLoggedIn, game, setGame, recordGuess, recordResult };
 }

@@ -16,6 +16,10 @@ import {
   useGameRecorder,
 } from "../hooks/use-game-recorder";
 import { useSession } from "@/lib/auth-client";
+import { GuessStatsChart } from "../charts/guess-stats-chart";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function getInitialGame({
   isLoggedIn,
@@ -33,7 +37,15 @@ function getInitialGame({
   };
 }
 
-export function Game({
+export function Game(params: Parameters<typeof Wrapped>[0]) {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Wrapped {...params} />;
+    </QueryClientProvider>
+  );
+}
+
+function Wrapped({
   invention,
   iotdId,
   gameResult,
@@ -74,6 +86,14 @@ export function Game({
   const gameLost = !game.win && game.guesses.length >= 5;
   const gameOver = gameWon || gameLost;
   const guesses = game.guesses;
+  useEffect(
+    function syncResult() {
+      if (gameWon || gameLost) {
+        recordResult(gameWon);
+      }
+    },
+    [gameWon, gameLost],
+  );
 
   return (
     <div className="flex flex-col gap-3">
@@ -160,6 +180,7 @@ export function Game({
           </div>
         </form>
       )}
+      <GuessStatsChart numGuesses={[4, 5, 10, 3, 3, 8]} />
     </div>
   );
 }
