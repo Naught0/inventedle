@@ -10,9 +10,28 @@ interface RecordResultRequest extends NextRequest {
 }
 
 export async function upsertGameResult(
-  user: NonNullable<Awaited<ReturnType<typeof auth.api.getSession>>>["user"],
+  user:
+    | NonNullable<Awaited<ReturnType<typeof auth.api.getSession>>>["user"]
+    | null,
   data: ResultCreateWithoutUserInput,
 ) {
+  if (!user) {
+    if (data.ip_address)
+      return db.result.upsert({
+        where: {
+          ip_address_iotd_id: {
+            ip_address: data.ip_address,
+            iotd_id: data.iotd_id,
+          },
+        },
+        create: data,
+        update: data,
+      });
+    else throw new Error("User nor ip address supplied.");
+  }
+
+  if (!user) throw new Error("User not supplied");
+
   return db.result.upsert({
     where: {
       user_id_iotd_id: {

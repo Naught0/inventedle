@@ -43,11 +43,13 @@ export function useGameRecorder({
       if (!syncEnabled) return;
       (async () => {
         if (isLoggedIn) {
-          console.log("Syncing game to cloud", game);
           await recordGameResult({ ...game, num_guesses: game.guesses.length });
         } else {
-          console.log("Syncing game to local storage", game);
           syncLocalStorage();
+          await recordGameResult(
+            { ...game, num_guesses: game.guesses.length },
+            true,
+          );
         }
       })();
     },
@@ -64,12 +66,20 @@ export function useGameRecorder({
   return { isLoggedIn, game, setGame, recordGuess, recordResult };
 }
 
-export async function recordGameResult(game: ResultCreateWithoutUserInput) {
+export async function recordGameResult(
+  game: ResultCreateWithoutUserInput,
+  anonymous = false,
+) {
   return await (
-    await fetch("/api/game/record-result", {
-      method: "PUT",
-      body: JSON.stringify(game),
-    })
+    await fetch(
+      anonymous
+        ? "/api/game/record-anonymous-result"
+        : "/api/game/record-result",
+      {
+        method: "PUT",
+        body: JSON.stringify(game),
+      },
+    )
   ).json();
 }
 
