@@ -58,21 +58,23 @@ export async function createIOTD() {
   return newIotd;
 }
 
-export async function getUserStats(userId: string) {
-  return await getStats({ userId });
+export type Stats = Record<"1" | "2" | "3" | "4" | "5" | "X", number>;
+
+export async function getUserGameStats(userId: string) {
+  return await getGuessStats({ userId });
 }
 
 export async function getIOTDStats(iotdId: number) {
-  return await getStats({ iotdId });
+  return await getGuessStats({ iotdId });
 }
 
-async function getStats({
+async function getGuessStats({
   iotdId,
   userId,
 }: {
   iotdId?: number;
   userId?: string;
-}) {
+}): Promise<Stats> {
   const wins = await db.result.groupBy({
     by: ["num_guesses"],
     _count: { _all: true },
@@ -90,7 +92,7 @@ async function getStats({
   wins.sort((a, b) => a.num_guesses - b.num_guesses);
   const stats = Object.fromEntries(
     wins.map((r) => [r.num_guesses, r._count._all]),
-  );
+  ) as Stats;
   stats["X"] = losses;
   return stats;
 }

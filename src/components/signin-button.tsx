@@ -1,6 +1,6 @@
 "use client";
 import { signIn, signOut, useSession } from "@/lib/auth-client";
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import Image from "next/image";
 import {
   Popover,
@@ -11,6 +11,7 @@ import {
 import { PiChartBarFill, PiSignInFill, PiSignOutBold } from "react-icons/pi";
 import { CgSpinnerAlt } from "react-icons/cg";
 import { BiLogoDiscordAlt, BiLogoGoogle } from "react-icons/bi";
+import Link from "next/link";
 
 function MenuItem({ children }: { children: React.ReactNode }) {
   return (
@@ -35,13 +36,17 @@ function Menu({ signedIn }: { signedIn: boolean }) {
         </Button>
       </MenuItem>,
       <MenuItem key="sign in">
-        <Button
-          variant="ghost"
-          className="inline-flex w-full items-center gap-2"
+        <Link
+          className={buttonVariants({
+            variant: "ghost",
+            className: "inline-flex w-full items-center gap-2",
+          })}
+          href={"/stats"}
+          prefetch={false}
         >
           <PiChartBarFill className="text-xl" />
           Stats
-        </Button>
+        </Link>
       </MenuItem>,
     );
   } else {

@@ -1,4 +1,4 @@
-import { getUserStats } from "@/db/server-only";
+import { getUserGameStats } from "@/db/server-only";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { NextRequest } from "next/server";
@@ -16,5 +16,5 @@ export async function GET(
   // TODO: OR if session.user.hasPublicProfile, return the response or something
   if (session.user.id !== id) return new Response(null, { status: 404 });
 
-  return new Response(JSON.stringify(await getUserStats(id)));
+  return new Response(JSON.stringify(await getUserGameStats(id)));
 }
