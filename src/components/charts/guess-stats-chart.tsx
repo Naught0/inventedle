@@ -35,7 +35,7 @@ export function GuessStatsChart({
   if (!numGuesses) return null;
 
   return (
-    <div className="bg-accent grid h-full w-full max-w-screen-sm rounded-lg p-3">
+    <div className="bg-accent grid h-96 w-full max-w-screen-sm rounded-lg p-3">
       <h4 className="text-accent-foreground text-center text-xl font-bold">
         Global Stats
       </h4>
@@ -80,18 +80,24 @@ export function GuessStatsChart({
             datalabels: {
               formatter(value) {
                 if (value === 0) {
-                  return "0";
+                  return "";
                 }
                 return `${value} (${getPercentOfTotal(
                   value,
                   numGuesses,
                 ).toFixed()}%)`;
               },
-              color: "#2e2e2e",
+              color: (props) => {
+                const value = props.dataset.data[props.dataIndex];
+                if (value === 0) {
+                  return "#cfcfcf";
+                }
+                return "#2e2e2e";
+              },
               align: "center",
               font: {
                 family: "JetBrains Mono",
-                size: 16,
+                size: 15,
                 weight: "bolder",
               },
             },
@@ -106,13 +112,19 @@ export function GuessStatsChart({
               data: labels.map(
                 (l) => numGuesses?.[l as keyof typeof numGuesses] ?? 0,
               ),
-              backgroundColor: "#f56bb0",
-              maxBarThickness: 35,
-              minBarLength: 25,
+              backgroundColor: (props) => {
+                const value = props.dataset.data[props.dataIndex];
+                if (value === 0) {
+                  return "hsl(333 16% 21%)";
+                }
+                return "#f56bb0";
+              },
+              maxBarThickness: 45,
+              barThickness: "flex",
+              minBarLength: 80,
             },
           ],
         }}
-        className="h-96"
       />
     </div>
   );
