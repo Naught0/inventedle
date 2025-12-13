@@ -57,3 +57,40 @@ export async function createIOTD() {
   });
   return newIotd;
 }
+
+export async function getUserStats(userId: string) {
+  return await getStats({ userId });
+}
+
+export async function getIOTDStats(iotdId: number) {
+  return await getStats({ iotdId });
+}
+
+async function getStats({
+  iotdId,
+  userId,
+}: {
+  iotdId?: number;
+  userId?: string;
+}) {
+  const wins = await db.result.groupBy({
+    by: ["num_guesses"],
+    _count: { _all: true },
+    where: {
+      user_id: userId,
+      iotd_id: iotdId,
+      win: true,
+    },
+  });
+  const losses = await db.result.count({
+    where: { win: false, iotd_id: iotdId, user_id: userId },
+  });
+
+  // low to high
+  wins.sort((a, b) => a.num_guesses - b.num_guesses);
+  const stats = Object.fromEntries(
+    wins.map((r) => [r.num_guesses, r._count._all]),
+  );
+  stats["X"] = losses;
+  return stats;
+}

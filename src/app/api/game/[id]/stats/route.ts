@@ -1,4 +1,4 @@
-import { getIOTDStats } from "@/db/actions";
+import { getIOTDStats } from "@/db/server-only";
 import { NextRequest } from "next/server";
 
 export async function GET(
@@ -6,6 +6,8 @@ export async function GET(
   ctx: RouteContext<"/api/game/[id]/stats">,
 ) {
   const params = await ctx.params;
+  if (!params?.id) return new Response(null, { status: 400 });
+
   const stats = await getIOTDStats(parseInt(params.id));
   return new Response(JSON.stringify(stats));
 }
