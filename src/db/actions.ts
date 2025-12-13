@@ -24,18 +24,23 @@ export async function getRandomInvention(excludeIds: number[] = []) {
 }
 
 export async function getIOTDStats(iotdId: number) {
-  const res = await db.result.groupBy({
+  const wins = await db.result.groupBy({
     by: ["num_guesses"],
     _count: { _all: true },
     where: {
       iotd_id: iotdId,
+      win: true,
     },
+  });
+  const losses = await db.result.count({
+    where: { win: false, iotd_id: iotdId },
   });
 
   // low to high
-  res.sort((a, b) => a.num_guesses - b.num_guesses);
+  wins.sort((a, b) => a.num_guesses - b.num_guesses);
   const stats = Object.fromEntries(
-    res.map((r) => [r.num_guesses, r._count._all]),
+    wins.map((r) => [r.num_guesses, r._count._all]),
   );
+  stats["X"] = losses;
   return stats;
 }
