@@ -8,6 +8,8 @@ TODO:
 - [ ] stats page
 - [ ] user settings
     - [ ] ability to set profile to public to share stats (defaults to private)
+    - [ ] GDPR/Delete account and data
+- [ ] Privacy policy (GDPR etc)
 - [ ] Embeds/meta tags
 - [ ] Logo/favicon
 - [ ] Loading states
