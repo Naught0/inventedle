@@ -19,7 +19,7 @@ export function UserStats({
     "5": 0,
     X: 0,
   };
-  const totalGames = Object.keys(stats).length;
+  const totalGames = Object.values(stats).reduce((a, b) => a + b, 0);
   const totalWins = getTotalWins(stats);
   const totalLosses = stats["X"];
   return (
