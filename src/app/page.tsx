@@ -6,6 +6,8 @@ import { Suspense } from "react";
 import { LoadingGame } from "@/components/loading";
 import { GamePage } from "@/components/game-page";
 
+export const dynamic = "force-dynamic";
+
 export default async function Page() {
   const iotd = await getIOTD();
   const session = await auth.api.getSession({ headers: await headers() });
