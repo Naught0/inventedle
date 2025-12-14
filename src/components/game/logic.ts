@@ -3,9 +3,6 @@ import type { HotnessRules } from "./types";
 import { Hotness } from "./enum";
 import { defaultRules } from "./rules";
 
-export const CORRECT_IF_WITHIN_YEARS = 10;
-export const CLOSE_IF_WITHIN_YEARS = 100;
-
 const COLD = Hotness.COLD;
 
 export function getRulesByYear(year: number) {
