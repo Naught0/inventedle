@@ -30,7 +30,7 @@ import { ImageWithCaption } from "../image-with-caption";
 
 const queryClient = new QueryClient();
 
-export function Game(params: Parameters<typeof Wrapped>[0]) {
+export default function Game(params: Parameters<typeof Wrapped>[0]) {
   return (
     <QueryClientProvider client={queryClient}>
       <Wrapped {...params} />
@@ -110,7 +110,7 @@ function Wrapped({
           {invention.image_url && (
             <div className="flex flex-1 basis-1/2 flex-col justify-start gap-3 rounded-lg lg:gap-6">
               <ImageWithCaption
-                className="max-h-[512px] max-w-[512px] rounded-lg object-fill"
+                className="max-h-[512px] max-w-full rounded-lg"
                 src={invention.image_url}
                 alt={`${invention.name}`}
               >
@@ -232,3 +232,5 @@ async function makeIotdStatsRequest(iotdId: number) {
     await fetch(`/api/game/${iotdId}/stats`, { method: "GET" })
   ).json()) as Record<string, number>;
 }
+
+export { Game };
