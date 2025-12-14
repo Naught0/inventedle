@@ -116,6 +116,13 @@ export function GuessStatsChart({
                 data: labels.map(
                   (l) => numGuesses?.[l as keyof typeof numGuesses] ?? 0,
                 ),
+                hoverBackgroundColor(ctx) {
+                  const value = ctx.dataset.data[ctx.dataIndex];
+                  if (value === 0) {
+                    return "hsl(333 16% 21%)";
+                  }
+                  return "hsl(333 77% 60%)";
+                },
                 backgroundColor: (props) => {
                   const value = props.dataset.data[props.dataIndex];
                   if (value === 0) {
