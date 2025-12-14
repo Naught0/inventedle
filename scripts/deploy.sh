@@ -3,11 +3,11 @@
 set -eo pipefail
 
 transferApp() {
-  scp inventedle.tar.gz qtbot:~/inventedle
+  scp inventedle.tar.gz qtbot:~/inventedle && rm inventedle.tar.gz
 }
 
 transferCron() {
-  scp iotd-cron.tar.gz qtbot:~/inventedle
+  scp iotd-cron.tar.gz qtbot:~/inventedle && rm iotd-cron.tar.gz
 }
 
 loadApp() {
