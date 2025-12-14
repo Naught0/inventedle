@@ -85,7 +85,12 @@ async function getGuessStats({
     },
   });
   const losses = await db.result.count({
-    where: { win: false, iotd_id: iotdId, user_id: userId },
+    where: {
+      win: false,
+      iotd_id: iotdId,
+      user_id: userId,
+      num_guesses: { gte: 5 },
+    },
   });
 
   // low to high
