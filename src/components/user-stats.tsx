@@ -62,17 +62,19 @@ function getTotalWins(stats: Stats) {
 function calculateTotalGuesses(stats: Stats, winOnly = false) {
   let totalGuesses = 0;
   for (const key in stats) {
-    if (key === "X") {
-      if (winOnly) continue;
+    if (key === "X" && stats[key]) {
       totalGuesses += 5;
     } else {
-      totalGuesses += Number(key) * stats[key as keyof typeof stats];
+      const by = Number(key) * stats[key as keyof typeof stats];
+      totalGuesses += by;
     }
+
+    console.log("total guesses", totalGuesses);
   }
   return totalGuesses;
 }
 
-function calculateAverageGuesses(stats: Stats): number {
+function calculateAverageGuesses(stats: Stats): string {
   const data = Object.fromEntries(
     Object.entries(stats).filter(([k, v]) => k !== "X" && v > 0),
   );
@@ -92,10 +94,12 @@ function calculateAverageGuesses(stats: Stats): number {
   }, 0);
 
   if (totalGamesPlayed === 0) {
-    return 0;
+    return "0";
   }
 
   const average = totalGuessProduct / totalGamesPlayed;
 
-  return average;
+  return Intl.NumberFormat(undefined, { maximumFractionDigits: 2 }).format(
+    average,
+  );
 }
