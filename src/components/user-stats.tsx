@@ -11,14 +11,9 @@ export function UserStats({
   session?: Awaited<ReturnType<typeof auth.api.getSession>>;
   serverStats?: Stats;
 }) {
-  const stats: Stats = serverStats ?? {
-    "1": 0,
-    "2": 0,
-    "3": 0,
-    "4": 0,
-    "5": 0,
-    X: 0,
-  };
+  const stats = serverStats;
+  if (!stats) return null;
+
   const totalGames = Object.values(stats).reduce((a, b) => a + b, 0);
   const totalWins = getTotalWins(stats);
   const totalLosses = stats["X"];
@@ -59,17 +54,15 @@ function getTotalWins(stats: Stats) {
     .reduce((a, b) => a + b[1], 0);
 }
 
-function calculateTotalGuesses(stats: Stats, winOnly = false) {
+function calculateTotalGuesses(stats: Stats) {
   let totalGuesses = 0;
   for (const key in stats) {
-    if (key === "X" && stats[key]) {
+    if (key === "X") {
       totalGuesses += 5 * stats[key];
     } else {
       const by = Number(key) * stats[key as keyof typeof stats];
       totalGuesses += by;
     }
-
-    console.log("total guesses", totalGuesses);
   }
   return totalGuesses;
 }
