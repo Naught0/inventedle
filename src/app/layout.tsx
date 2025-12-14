@@ -31,7 +31,7 @@ export default function RootLayout({
           <aside className="flex items-center justify-center">
             <Help />
           </aside>
-          <div className="flex w-full max-w-screen-sm items-center lg:max-w-screen-lg">
+          <div className="flex w-full max-w-screen-sm items-center justify-center lg:max-w-screen-lg">
             {children}
           </div>
         </main>
