@@ -10,6 +10,7 @@ export async function getIOTD() {
       },
     },
     orderBy: { id: "desc" },
+    include: { invention: true },
   });
   return iotd;
 }
