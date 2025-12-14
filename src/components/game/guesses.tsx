@@ -5,6 +5,7 @@ import {
   PiArrowFatUpFill,
   PiCheckFatFill,
 } from "react-icons/pi";
+import { IoMdArrowUp, IoMdArrowDown } from "react-icons/io";
 import {
   getGuessDistance,
   getHotness,
@@ -36,18 +37,42 @@ export function Guess(props: {
   const getIcon = () => {
     if (guessIsCorrect(props.guessDistance, props.rules)) {
       return <PiCheckFatFill />;
-    } else if (props.guessDistance > 0) {
-      return <PiArrowFatDownFill />;
-    } else {
-      return <PiArrowFatUpFill />;
     }
+    const hotnessFactor: Map<Hotness, number> = new Map([
+      [Hotness.HOT, 1],
+      [Hotness.WARM, 2],
+      [Hotness.COLD, 3],
+    ]);
+    const hotness = getHotness(props.guessDistance, props.rules);
+    const factor = hotnessFactor.get(hotness);
+    if (!factor) {
+      console.error("Unknown hotness factor", hotness);
+    }
+    const arrows = Array.from({ length: factor! }).map((_, idx) =>
+      props.guessDistance > 0 ? (
+        <IoMdArrowDown
+          key={`${idx}-${hotness}`}
+          className="-ml-1"
+          strokeWidth={20}
+        />
+      ) : (
+        <IoMdArrowUp
+          key={`${idx}-${hotness}`}
+          className="-ml-1"
+          strokeWidth={20}
+        />
+      ),
+    );
+
+    return <div className="flex">{arrows}</div>;
   };
+
   return (
     <li
       className={`flex items-center gap-2 rounded px-6 py-3 text-xl font-bold lg:py-2 lg:text-2xl ${getBgClassName()}`}
     >
-      <span className="text-base lg:text-2xl">{getIcon()}</span>
       {props.guess}
+      <span className="text-xl lg:text-3xl">{getIcon()}</span>
     </li>
   );
 }
