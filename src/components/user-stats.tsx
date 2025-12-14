@@ -63,10 +63,10 @@ function calculateTotalGuesses(stats: Stats, winOnly = false) {
   let totalGuesses = 0;
   for (const key in stats) {
     if (key === "X" && stats[key]) {
-      totalGuesses += 5;
+      totalGuesses += 5 * stats[key];
     } else {
       const by = Number(key) * stats[key as keyof typeof stats];
-      totalGuesses += by * 5;
+      totalGuesses += by;
     }
 
     console.log("total guesses", totalGuesses);
