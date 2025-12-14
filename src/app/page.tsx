@@ -1,12 +1,10 @@
 import { getIOTD } from "@/db/actions";
-import { GamePage } from "./[id]/page";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { db } from "@/db";
 import { Suspense } from "react";
 import { LoadingGame } from "@/components/loading";
-
-export const dynamic = "force-dynamic";
+import { GamePage } from "@/components/game-page";
 
 export default async function Page() {
   const iotd = await getIOTD();

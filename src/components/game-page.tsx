@@ -1,5 +1,4 @@
 "use client";
-import { db } from "@/db";
 import {
   InventionModel,
   InventionOfTheDayModel,
@@ -10,20 +9,21 @@ import { isSameDay, isToday } from "date-fns";
 import Link from "next/link";
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
 import { cn } from "@/lib/utils";
-import { Game } from "./game";
 import { LocalGame } from "./hooks/use-game-recorder";
 import { Hyperlink } from "./hyperlink";
 import { Button } from "./ui/button";
+import dynamic from "next/dynamic";
+
+const Game = dynamic(() => import("./game/index"), { ssr: false });
 
 export function GamePage({
   iotd,
   gameResult,
-  invention,
 }: {
-  iotd: InventionOfTheDayModel;
+  iotd: InventionOfTheDayModel & { invention: InventionModel };
   gameResult?: ResultModel | null;
-  invention: InventionModel;
 }) {
+  const { invention } = iotd;
   if (!invention) {
     throw new Error("Something has gone horribly wrong");
   }
