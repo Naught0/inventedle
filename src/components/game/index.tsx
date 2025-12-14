@@ -110,10 +110,9 @@ function Wrapped({
           {invention.image_url && (
             <div className="flex flex-1 basis-1/2 flex-col justify-start gap-3 rounded-lg lg:gap-6">
               <ImageWithCaption
-                className="max-h-[512px] w-auto max-w-[512px] rounded-lg"
+                className="max-h-[512px] w-full max-w-[512px] rounded-lg"
                 src={invention.image_url}
                 alt={`${invention.name}`}
-                preload
               >
                 {invention.image_url && (
                   <div className="inline-flex h-4 items-center gap-1.5">
