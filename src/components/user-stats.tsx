@@ -54,7 +54,9 @@ export function UserStats({
 }
 
 function getTotalWins(stats: Stats) {
-  return Object.keys(stats).filter((k) => k !== "X").length;
+  return Object.entries(stats)
+    .filter(([k]) => k !== "X")
+    .reduce((a, b) => a + b[1], 0);
 }
 
 function calculateTotalGuesses(stats: Stats, winOnly = false) {
