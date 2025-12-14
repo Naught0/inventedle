@@ -14,6 +14,7 @@ export default async function Page({
   const { id } = await params;
   const iotd = await db.inventionOfTheDay.findUnique({
     where: { id: parseInt(id) },
+    include: { invention: true },
   });
   if (!iotd) {
     return redirect(`/`, RedirectType.replace);
