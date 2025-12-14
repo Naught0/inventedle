@@ -204,12 +204,14 @@ export type InventionOfTheDayWhereInput = {
   id?: Prisma.IntFilter<"InventionOfTheDay"> | number
   invention_id?: Prisma.IntFilter<"InventionOfTheDay"> | number
   created_at?: Prisma.DateTimeFilter<"InventionOfTheDay"> | Date | string
+  invention?: Prisma.XOR<Prisma.InventionScalarRelationFilter, Prisma.InventionWhereInput>
 }
 
 export type InventionOfTheDayOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   invention_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
+  invention?: Prisma.InventionOrderByWithRelationInput
 }
 
 export type InventionOfTheDayWhereUniqueInput = Prisma.AtLeast<{
@@ -220,6 +222,7 @@ export type InventionOfTheDayWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.InventionOfTheDayWhereInput | Prisma.InventionOfTheDayWhereInput[]
   invention_id?: Prisma.IntFilter<"InventionOfTheDay"> | number
   created_at?: Prisma.DateTimeFilter<"InventionOfTheDay"> | Date | string
+  invention?: Prisma.XOR<Prisma.InventionScalarRelationFilter, Prisma.InventionWhereInput>
 }, "id" | "invention_id_created_at">
 
 export type InventionOfTheDayOrderByWithAggregationInput = {
@@ -243,8 +246,8 @@ export type InventionOfTheDayScalarWhereWithAggregatesInput = {
 }
 
 export type InventionOfTheDayCreateInput = {
-  invention_id: number
   created_at?: Date | string
+  invention: Prisma.InventionCreateNestedOneWithoutInventionOfTheDaysInput
 }
 
 export type InventionOfTheDayUncheckedCreateInput = {
@@ -254,8 +257,8 @@ export type InventionOfTheDayUncheckedCreateInput = {
 }
 
 export type InventionOfTheDayUpdateInput = {
-  invention_id?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invention?: Prisma.InventionUpdateOneRequiredWithoutInventionOfTheDaysNestedInput
 }
 
 export type InventionOfTheDayUncheckedUpdateInput = {
@@ -271,7 +274,6 @@ export type InventionOfTheDayCreateManyInput = {
 }
 
 export type InventionOfTheDayUpdateManyMutationInput = {
-  invention_id?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -314,6 +316,20 @@ export type InventionOfTheDaySumOrderByAggregateInput = {
   invention_id?: Prisma.SortOrder
 }
 
+export type InventionOfTheDayListRelationFilter = {
+  every?: Prisma.InventionOfTheDayWhereInput
+  some?: Prisma.InventionOfTheDayWhereInput
+  none?: Prisma.InventionOfTheDayWhereInput
+}
+
+export type InventionOfTheDayOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -322,8 +338,108 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
+export type InventionOfTheDayCreateNestedManyWithoutInventionInput = {
+  create?: Prisma.XOR<Prisma.InventionOfTheDayCreateWithoutInventionInput, Prisma.InventionOfTheDayUncheckedCreateWithoutInventionInput> | Prisma.InventionOfTheDayCreateWithoutInventionInput[] | Prisma.InventionOfTheDayUncheckedCreateWithoutInventionInput[]
+  connectOrCreate?: Prisma.InventionOfTheDayCreateOrConnectWithoutInventionInput | Prisma.InventionOfTheDayCreateOrConnectWithoutInventionInput[]
+  createMany?: Prisma.InventionOfTheDayCreateManyInventionInputEnvelope
+  connect?: Prisma.InventionOfTheDayWhereUniqueInput | Prisma.InventionOfTheDayWhereUniqueInput[]
+}
+
+export type InventionOfTheDayUncheckedCreateNestedManyWithoutInventionInput = {
+  create?: Prisma.XOR<Prisma.InventionOfTheDayCreateWithoutInventionInput, Prisma.InventionOfTheDayUncheckedCreateWithoutInventionInput> | Prisma.InventionOfTheDayCreateWithoutInventionInput[] | Prisma.InventionOfTheDayUncheckedCreateWithoutInventionInput[]
+  connectOrCreate?: Prisma.InventionOfTheDayCreateOrConnectWithoutInventionInput | Prisma.InventionOfTheDayCreateOrConnectWithoutInventionInput[]
+  createMany?: Prisma.InventionOfTheDayCreateManyInventionInputEnvelope
+  connect?: Prisma.InventionOfTheDayWhereUniqueInput | Prisma.InventionOfTheDayWhereUniqueInput[]
+}
+
+export type InventionOfTheDayUpdateManyWithoutInventionNestedInput = {
+  create?: Prisma.XOR<Prisma.InventionOfTheDayCreateWithoutInventionInput, Prisma.InventionOfTheDayUncheckedCreateWithoutInventionInput> | Prisma.InventionOfTheDayCreateWithoutInventionInput[] | Prisma.InventionOfTheDayUncheckedCreateWithoutInventionInput[]
+  connectOrCreate?: Prisma.InventionOfTheDayCreateOrConnectWithoutInventionInput | Prisma.InventionOfTheDayCreateOrConnectWithoutInventionInput[]
+  upsert?: Prisma.InventionOfTheDayUpsertWithWhereUniqueWithoutInventionInput | Prisma.InventionOfTheDayUpsertWithWhereUniqueWithoutInventionInput[]
+  createMany?: Prisma.InventionOfTheDayCreateManyInventionInputEnvelope
+  set?: Prisma.InventionOfTheDayWhereUniqueInput | Prisma.InventionOfTheDayWhereUniqueInput[]
+  disconnect?: Prisma.InventionOfTheDayWhereUniqueInput | Prisma.InventionOfTheDayWhereUniqueInput[]
+  delete?: Prisma.InventionOfTheDayWhereUniqueInput | Prisma.InventionOfTheDayWhereUniqueInput[]
+  connect?: Prisma.InventionOfTheDayWhereUniqueInput | Prisma.InventionOfTheDayWhereUniqueInput[]
+  update?: Prisma.InventionOfTheDayUpdateWithWhereUniqueWithoutInventionInput | Prisma.InventionOfTheDayUpdateWithWhereUniqueWithoutInventionInput[]
+  updateMany?: Prisma.InventionOfTheDayUpdateManyWithWhereWithoutInventionInput | Prisma.InventionOfTheDayUpdateManyWithWhereWithoutInventionInput[]
+  deleteMany?: Prisma.InventionOfTheDayScalarWhereInput | Prisma.InventionOfTheDayScalarWhereInput[]
+}
+
+export type InventionOfTheDayUncheckedUpdateManyWithoutInventionNestedInput = {
+  create?: Prisma.XOR<Prisma.InventionOfTheDayCreateWithoutInventionInput, Prisma.InventionOfTheDayUncheckedCreateWithoutInventionInput> | Prisma.InventionOfTheDayCreateWithoutInventionInput[] | Prisma.InventionOfTheDayUncheckedCreateWithoutInventionInput[]
+  connectOrCreate?: Prisma.InventionOfTheDayCreateOrConnectWithoutInventionInput | Prisma.InventionOfTheDayCreateOrConnectWithoutInventionInput[]
+  upsert?: Prisma.InventionOfTheDayUpsertWithWhereUniqueWithoutInventionInput | Prisma.InventionOfTheDayUpsertWithWhereUniqueWithoutInventionInput[]
+  createMany?: Prisma.InventionOfTheDayCreateManyInventionInputEnvelope
+  set?: Prisma.InventionOfTheDayWhereUniqueInput | Prisma.InventionOfTheDayWhereUniqueInput[]
+  disconnect?: Prisma.InventionOfTheDayWhereUniqueInput | Prisma.InventionOfTheDayWhereUniqueInput[]
+  delete?: Prisma.InventionOfTheDayWhereUniqueInput | Prisma.InventionOfTheDayWhereUniqueInput[]
+  connect?: Prisma.InventionOfTheDayWhereUniqueInput | Prisma.InventionOfTheDayWhereUniqueInput[]
+  update?: Prisma.InventionOfTheDayUpdateWithWhereUniqueWithoutInventionInput | Prisma.InventionOfTheDayUpdateWithWhereUniqueWithoutInventionInput[]
+  updateMany?: Prisma.InventionOfTheDayUpdateManyWithWhereWithoutInventionInput | Prisma.InventionOfTheDayUpdateManyWithWhereWithoutInventionInput[]
+  deleteMany?: Prisma.InventionOfTheDayScalarWhereInput | Prisma.InventionOfTheDayScalarWhereInput[]
+}
+
+export type InventionOfTheDayCreateWithoutInventionInput = {
+  created_at?: Date | string
+}
+
+export type InventionOfTheDayUncheckedCreateWithoutInventionInput = {
+  id?: number
+  created_at?: Date | string
+}
+
+export type InventionOfTheDayCreateOrConnectWithoutInventionInput = {
+  where: Prisma.InventionOfTheDayWhereUniqueInput
+  create: Prisma.XOR<Prisma.InventionOfTheDayCreateWithoutInventionInput, Prisma.InventionOfTheDayUncheckedCreateWithoutInventionInput>
+}
+
+export type InventionOfTheDayCreateManyInventionInputEnvelope = {
+  data: Prisma.InventionOfTheDayCreateManyInventionInput | Prisma.InventionOfTheDayCreateManyInventionInput[]
+}
+
+export type InventionOfTheDayUpsertWithWhereUniqueWithoutInventionInput = {
+  where: Prisma.InventionOfTheDayWhereUniqueInput
+  update: Prisma.XOR<Prisma.InventionOfTheDayUpdateWithoutInventionInput, Prisma.InventionOfTheDayUncheckedUpdateWithoutInventionInput>
+  create: Prisma.XOR<Prisma.InventionOfTheDayCreateWithoutInventionInput, Prisma.InventionOfTheDayUncheckedCreateWithoutInventionInput>
+}
+
+export type InventionOfTheDayUpdateWithWhereUniqueWithoutInventionInput = {
+  where: Prisma.InventionOfTheDayWhereUniqueInput
+  data: Prisma.XOR<Prisma.InventionOfTheDayUpdateWithoutInventionInput, Prisma.InventionOfTheDayUncheckedUpdateWithoutInventionInput>
+}
+
+export type InventionOfTheDayUpdateManyWithWhereWithoutInventionInput = {
+  where: Prisma.InventionOfTheDayScalarWhereInput
+  data: Prisma.XOR<Prisma.InventionOfTheDayUpdateManyMutationInput, Prisma.InventionOfTheDayUncheckedUpdateManyWithoutInventionInput>
+}
+
+export type InventionOfTheDayScalarWhereInput = {
+  AND?: Prisma.InventionOfTheDayScalarWhereInput | Prisma.InventionOfTheDayScalarWhereInput[]
+  OR?: Prisma.InventionOfTheDayScalarWhereInput[]
+  NOT?: Prisma.InventionOfTheDayScalarWhereInput | Prisma.InventionOfTheDayScalarWhereInput[]
+  id?: Prisma.IntFilter<"InventionOfTheDay"> | number
+  invention_id?: Prisma.IntFilter<"InventionOfTheDay"> | number
+  created_at?: Prisma.DateTimeFilter<"InventionOfTheDay"> | Date | string
+}
+
+export type InventionOfTheDayCreateManyInventionInput = {
+  id?: number
+  created_at?: Date | string
+}
+
+export type InventionOfTheDayUpdateWithoutInventionInput = {
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type InventionOfTheDayUncheckedUpdateWithoutInventionInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type InventionOfTheDayUncheckedUpdateManyWithoutInventionInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -332,18 +448,21 @@ export type InventionOfTheDaySelect<ExtArgs extends runtime.Types.Extensions.Int
   id?: boolean
   invention_id?: boolean
   created_at?: boolean
+  invention?: boolean | Prisma.InventionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["inventionOfTheDay"]>
 
 export type InventionOfTheDaySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   invention_id?: boolean
   created_at?: boolean
+  invention?: boolean | Prisma.InventionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["inventionOfTheDay"]>
 
 export type InventionOfTheDaySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   invention_id?: boolean
   created_at?: boolean
+  invention?: boolean | Prisma.InventionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["inventionOfTheDay"]>
 
 export type InventionOfTheDaySelectScalar = {
@@ -353,10 +472,21 @@ export type InventionOfTheDaySelectScalar = {
 }
 
 export type InventionOfTheDayOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "invention_id" | "created_at", ExtArgs["result"]["inventionOfTheDay"]>
+export type InventionOfTheDayInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  invention?: boolean | Prisma.InventionDefaultArgs<ExtArgs>
+}
+export type InventionOfTheDayIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  invention?: boolean | Prisma.InventionDefaultArgs<ExtArgs>
+}
+export type InventionOfTheDayIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  invention?: boolean | Prisma.InventionDefaultArgs<ExtArgs>
+}
 
 export type $InventionOfTheDayPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "InventionOfTheDay"
-  objects: {}
+  objects: {
+    invention: Prisma.$InventionPayload<ExtArgs>
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     invention_id: number
@@ -755,6 +885,7 @@ readonly fields: InventionOfTheDayFieldRefs;
  */
 export interface Prisma__InventionOfTheDayClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  invention<T extends Prisma.InventionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InventionDefaultArgs<ExtArgs>>): Prisma.Prisma__InventionClient<runtime.Types.Result.GetResult<Prisma.$InventionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -804,6 +935,10 @@ export type InventionOfTheDayFindUniqueArgs<ExtArgs extends runtime.Types.Extens
    */
   omit?: Prisma.InventionOfTheDayOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InventionOfTheDayInclude<ExtArgs> | null
+  /**
    * Filter, which InventionOfTheDay to fetch.
    */
   where: Prisma.InventionOfTheDayWhereUniqueInput
@@ -822,6 +957,10 @@ export type InventionOfTheDayFindUniqueOrThrowArgs<ExtArgs extends runtime.Types
    */
   omit?: Prisma.InventionOfTheDayOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InventionOfTheDayInclude<ExtArgs> | null
+  /**
    * Filter, which InventionOfTheDay to fetch.
    */
   where: Prisma.InventionOfTheDayWhereUniqueInput
@@ -839,6 +978,10 @@ export type InventionOfTheDayFindFirstArgs<ExtArgs extends runtime.Types.Extensi
    * Omit specific fields from the InventionOfTheDay
    */
   omit?: Prisma.InventionOfTheDayOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InventionOfTheDayInclude<ExtArgs> | null
   /**
    * Filter, which InventionOfTheDay to fetch.
    */
@@ -888,6 +1031,10 @@ export type InventionOfTheDayFindFirstOrThrowArgs<ExtArgs extends runtime.Types.
    */
   omit?: Prisma.InventionOfTheDayOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InventionOfTheDayInclude<ExtArgs> | null
+  /**
    * Filter, which InventionOfTheDay to fetch.
    */
   where?: Prisma.InventionOfTheDayWhereInput
@@ -936,6 +1083,10 @@ export type InventionOfTheDayFindManyArgs<ExtArgs extends runtime.Types.Extensio
    */
   omit?: Prisma.InventionOfTheDayOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InventionOfTheDayInclude<ExtArgs> | null
+  /**
    * Filter, which InventionOfTheDays to fetch.
    */
   where?: Prisma.InventionOfTheDayWhereInput
@@ -979,6 +1130,10 @@ export type InventionOfTheDayCreateArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.InventionOfTheDayOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InventionOfTheDayInclude<ExtArgs> | null
+  /**
    * The data needed to create a InventionOfTheDay.
    */
   data: Prisma.XOR<Prisma.InventionOfTheDayCreateInput, Prisma.InventionOfTheDayUncheckedCreateInput>
@@ -1010,6 +1165,10 @@ export type InventionOfTheDayCreateManyAndReturnArgs<ExtArgs extends runtime.Typ
    * The data used to create many InventionOfTheDays.
    */
   data: Prisma.InventionOfTheDayCreateManyInput | Prisma.InventionOfTheDayCreateManyInput[]
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InventionOfTheDayIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1024,6 +1183,10 @@ export type InventionOfTheDayUpdateArgs<ExtArgs extends runtime.Types.Extensions
    * Omit specific fields from the InventionOfTheDay
    */
   omit?: Prisma.InventionOfTheDayOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InventionOfTheDayInclude<ExtArgs> | null
   /**
    * The data needed to update a InventionOfTheDay.
    */
@@ -1076,6 +1239,10 @@ export type InventionOfTheDayUpdateManyAndReturnArgs<ExtArgs extends runtime.Typ
    * Limit how many InventionOfTheDays to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InventionOfTheDayIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1090,6 +1257,10 @@ export type InventionOfTheDayUpsertArgs<ExtArgs extends runtime.Types.Extensions
    * Omit specific fields from the InventionOfTheDay
    */
   omit?: Prisma.InventionOfTheDayOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InventionOfTheDayInclude<ExtArgs> | null
   /**
    * The filter to search for the InventionOfTheDay to update in case it exists.
    */
@@ -1116,6 +1287,10 @@ export type InventionOfTheDayDeleteArgs<ExtArgs extends runtime.Types.Extensions
    * Omit specific fields from the InventionOfTheDay
    */
   omit?: Prisma.InventionOfTheDayOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InventionOfTheDayInclude<ExtArgs> | null
   /**
    * Filter which InventionOfTheDay to delete.
    */
@@ -1148,4 +1323,8 @@ export type InventionOfTheDayDefaultArgs<ExtArgs extends runtime.Types.Extension
    * Omit specific fields from the InventionOfTheDay
    */
   omit?: Prisma.InventionOfTheDayOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InventionOfTheDayInclude<ExtArgs> | null
 }

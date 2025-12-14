@@ -11,9 +11,10 @@ datasource db {
 }
 
 model InventionOfTheDay {
-  id           Int      @id @default(autoincrement())
+  id           Int       @id @default(autoincrement())
   invention_id Int
-  created_at   DateTime @default(now())
+  created_at   DateTime  @default(now())
+  invention    Invention @relation(fields: [invention_id], references: [id])
 
   @@unique([invention_id, created_at])
   @@index([invention_id])
@@ -21,15 +22,16 @@ model InventionOfTheDay {
 }
 
 model Invention {
-  id             Int      @id @default(autoincrement())
-  name           String?
-  year           Int
-  description    String
-  image_url      String?
-  created_at     DateTime @default(now())
-  inventor       String?
-  inventor_link  String?
-  invention_link String?
+  id                 Int                 @id @default(autoincrement())
+  name               String?
+  year               Int
+  description        String
+  image_url          String?
+  created_at         DateTime            @default(now())
+  inventor           String?
+  inventor_link      String?
+  invention_link     String?
+  inventionOfTheDays InventionOfTheDay[]
 
   @@map("inventions")
 }
