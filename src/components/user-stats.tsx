@@ -24,11 +24,11 @@ export function UserStats({
   const totalLosses = stats["X"];
   return (
     <main className="flex w-full flex-col items-center justify-center">
-      <h2 className="text-accent-foreground mb-6 text-3xl font-bold lg:mb-8">
+      <h2 className="text-accent-foreground mb-6 w-full text-center text-3xl font-bold lg:mb-8">
         {!session ? "Local" : `${session.user.name}'s`} Stats
       </h2>
       <div className="my-3 flex flex-col items-center gap-3">
-        <div className="flex flex-col gap-3">
+        <div className="flex w-full flex-col gap-3">
           <div className="flex flex-grow flex-wrap justify-center gap-3">
             <StatCard title={"Games"}>
               <span>{totalWins}W</span>/<span>{totalLosses}L</span>
