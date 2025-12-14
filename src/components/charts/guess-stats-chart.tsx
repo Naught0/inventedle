@@ -54,10 +54,10 @@ export function GuessStatsChart({
                 border: { display: false },
                 ticks: {
                   z: 1,
-                  color: "#aaa",
+                  color: "#bbb",
                   font: {
                     family: "JetBrains Mono",
-                    size: 16,
+                    size: 18,
                     weight: "bolder",
                   },
                 },
@@ -68,11 +68,11 @@ export function GuessStatsChart({
                 ticks: {
                   display: false,
                   z: 1,
-                  color: "#aaa",
+                  color: "#bbb",
                   stepSize: 1,
                   font: {
                     family: "JetBrains Mono",
-                    size: 16,
+                    size: 18,
                     weight: "bolder",
                   },
                 },
@@ -87,21 +87,15 @@ export function GuessStatsChart({
                   if (value === 0) {
                     return "";
                   }
-                  return `${value} (${getPercentOfTotal(
+                  return `${value}(${getPercentOfTotal(
                     value,
                     numGuesses,
                   ).toFixed()}%)`;
                 },
-                color: (props) => {
-                  const value = props.dataset.data[props.dataIndex];
-                  if (value === 0) {
-                    return "#cfcfcf";
-                  }
-                  return "#2e2e2e";
-                },
+                color: "hsl(330 80% 97%)",
                 font: {
                   family: "JetBrains Mono",
-                  size: 15,
+                  size: 16,
                   weight: "bolder",
                 },
               },
@@ -131,7 +125,7 @@ export function GuessStatsChart({
                   return "#f56bb0";
                 },
                 maxBarThickness: 50,
-                minBarLength: 80,
+                minBarLength: 55,
               },
             ],
           }}

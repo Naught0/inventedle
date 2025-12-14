@@ -54,13 +54,13 @@ body {
     --primary-dark: 330 13% 7%;
 
     --status-success: 157, 41%, 30%;
-    --status-success-foreground: 110, 50%, 90%;
+    --status-success-foreground: 157, 80%, 85%;
     --status-warning: 40, 64%, 54%;
     --status-warning-foreground: 45, 50%, 3%;
     --status-orange: 18, 69%, 49%;
-    --status-orange-foreground: 25, 30%, 97%;
+    --status-orange-foreground: 18, 50%, 95%;
     --status-error: 348, 69%, 39%;
-    --status-error-foreground: 349, 50%, 95%;
+    --status-error-foreground: 349, 50%, 90%;
 
     --card: 210 14.3% 4.1%;
     --card-foreground: 60 9.1% 97.8%;
