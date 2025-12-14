@@ -93,12 +93,15 @@ function Wrapped({
 
   useEffect(
     function syncGameState() {
-      if (!gameOver || !syncEnabled) return;
-
-      recordGame(game, !isLoggedIn).then(() => {
-        setSyncEnabled(false);
-        refetchIotdStats();
-      });
+      if (!syncEnabled) return;
+      if (gameOver) {
+        recordGame(game, !isLoggedIn).then(() => {
+          setSyncEnabled(false);
+          refetchIotdStats();
+        });
+        return;
+      }
+      recordGame(game, !isLoggedIn);
     },
     [game, gameOver, isLoggedIn, syncEnabled],
   );
