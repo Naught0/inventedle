@@ -1,16 +1,16 @@
-import Image, { ImageProps } from "next/image";
+import { cn } from "@/lib/utils";
+import { ImageProps } from "next/image";
 import { ReactNode } from "react";
 
 export function ImageWithCaption({
   children,
   alt,
+  className,
   ...props
 }: ImageProps & { children?: ReactNode }) {
   return (
-    <div className="flex w-full flex-col items-center gap-2">
-      <div className="w-fit drop-shadow-lg">
-        <Image alt={alt} {...props} />
-      </div>
+    <div className="flex w-full flex-col items-center justify-center gap-2">
+      <img className={cn("rounded-lg", className)} alt={alt} {...props} />
 
       {children && (
         <div className="text-muted-foreground contents text-xs lg:text-sm">

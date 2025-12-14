@@ -37,7 +37,7 @@ export function GuessStatsChart({
   if (!numGuesses) return null;
 
   return (
-    <div className="bg-accent grid w-full rounded-lg p-3 lg:p-5">
+    <div className="bg-accent grid w-full max-w-screen-sm rounded-lg p-3 lg:p-5">
       <h4 className="text-center text-xl font-extralight uppercase">{title}</h4>
       <div className="relative max-h-[300px] w-full">
         <Bar
@@ -45,7 +45,7 @@ export function GuessStatsChart({
           plugins={[ChartDataLabels]}
           height={400}
           options={{
-            maintainAspectRatio: true,
+            maintainAspectRatio: false,
             responsive: true,
             indexAxis: "y",
             scales: {

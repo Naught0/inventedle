@@ -27,11 +27,13 @@ export default function RootLayout({
         className={`bg-gradient dark ${jbMono.variable} font-mono antialiased`}
       >
         <Nav />
-        <main className="mb-12 flex min-h-[80vh] w-full flex-grow flex-col items-center gap-3 p-3 pb-12 font-sans">
+        <main className="mb-12 flex w-full flex-col items-center gap-3 p-3 pb-12 font-sans">
           <aside className="flex items-center justify-center">
             <Help />
           </aside>
-          <div className="flex w-full lg:max-w-screen-lg">{children}</div>
+          <div className="flex w-full max-w-screen-sm items-center lg:max-w-screen-lg">
+            {children}
+          </div>
         </main>
         <footer>
           <div className="-mb-1 w-full">

@@ -86,7 +86,7 @@ export function SigninButton({ loading = false }: { loading?: boolean }) {
 
   return (
     <Popover>
-      <PopoverAnchor className="mx-3">
+      <PopoverAnchor>
         <PopoverTrigger asChild>
           <Button
             variant={"outline"}
