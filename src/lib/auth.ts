@@ -6,6 +6,12 @@ export const auth = betterAuth({
   database: prismaAdapter(db, {
     provider: "sqlite",
   }),
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 60 * 60 * 24 * 7,
+    },
+  },
   account: {
     accountLinking: {
       trustedProviders: ["discord", "google", "github"],
@@ -26,3 +32,7 @@ export const auth = betterAuth({
     },
   },
 });
+
+export async function getServerSession() {
+  return auth.api.getSession();
+}
