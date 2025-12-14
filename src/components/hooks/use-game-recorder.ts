@@ -7,25 +7,24 @@ export type LocalGame = Omit<
 
 const localStorageKeyBase = "inventedle-game-result";
 
-export async function recordGame(game: LocalGame, anonymous = false) {
-  if (anonymous) {
-    localStorage.setItem(
-      `${localStorageKeyBase}-${game.iotd_id}`,
-      JSON.stringify(game),
-    );
-  }
+export function recordGameToLocalStorage(game: LocalGame) {
+  localStorage.setItem(
+    `${localStorageKeyBase}-${game.iotd_id}`,
+    JSON.stringify(game),
+  );
+}
 
-  return await (
-    await fetch(
-      anonymous
-        ? "/api/game/record-anonymous-result"
-        : "/api/game/record-result",
-      {
-        method: "PUT",
-        body: JSON.stringify(game),
-      },
-    )
-  ).json();
+export async function recordGame(
+  game: LocalGame,
+  anonymous = false,
+): Promise<void> {
+  await fetch(
+    anonymous ? "/api/game/record-anonymous-result" : "/api/game/record-result",
+    {
+      method: "PUT",
+      body: JSON.stringify(game),
+    },
+  );
 }
 
 export function getCurrentGameFromLocalStorage(iotdId: number) {

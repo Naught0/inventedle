@@ -15,6 +15,7 @@ import {
   getCurrentGameFromLocalStorage,
   recordGame,
   LocalGame,
+  recordGameToLocalStorage,
 } from "../hooks/use-game-recorder";
 import { useSession } from "@/lib/auth-client";
 import {
@@ -101,7 +102,8 @@ function Wrapped({
         });
         return;
       }
-      recordGame(game, !isLoggedIn);
+      if (isLoggedIn) recordGame(game);
+      else recordGameToLocalStorage(game);
     },
     [game, gameOver, isLoggedIn, syncEnabled],
   );

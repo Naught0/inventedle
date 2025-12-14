@@ -1,10 +1,5 @@
 import { InventionModel } from "@/db/prisma/generated/models";
 import { ReactNode } from "react";
-import {
-  PiArrowFatDownFill,
-  PiArrowFatUpFill,
-  PiCheckFatFill,
-} from "react-icons/pi";
 import { IoMdArrowUp, IoMdArrowDown, IoMdCheckmark } from "react-icons/io";
 import {
   getGuessDistance,

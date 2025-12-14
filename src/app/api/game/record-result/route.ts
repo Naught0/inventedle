@@ -17,16 +17,13 @@ export async function upsertGameResult(
 ) {
   if (!user) {
     if (data.ip_address)
-      return db.result.upsert({
-        where: {
-          ip_address_iotd_id: {
-            ip_address: data.ip_address,
-            iotd_id: data.iotd_id,
-          },
-        },
-        create: data,
-        update: data,
-      });
+      try {
+        return await db.result.create({
+          data,
+        });
+      } catch {
+        return console.log("Ignoring result from duplicate IP.");
+      }
     else throw new Error("User nor ip address supplied.");
   }
 
