@@ -3,6 +3,8 @@ import { GamePage } from "./[id]/page";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { db } from "@/db";
+import { Suspense } from "react";
+import { LoadingGame } from "@/components/loading";
 
 export const dynamic = "force-dynamic";
 
@@ -19,5 +21,9 @@ export default async function Page() {
     });
   }
 
-  return iotd && <GamePage iotd={iotd} gameResult={result} />;
+  return (
+    <Suspense fallback={<LoadingGame />}>
+      {iotd && <GamePage iotd={iotd} gameResult={result} />}
+    </Suspense>
+  );
 }

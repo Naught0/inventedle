@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function Loading() {
+export function LoadingGame() {
   return (
     <div className="flex w-full max-w-md flex-col items-center justify-center gap-6 lg:max-w-screen-lg lg:gap-6">
       <div className="flex flex-col items-center gap-3">
