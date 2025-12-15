@@ -49,7 +49,7 @@ export function GamePage({
             variant="link"
             asChild
           >
-            <Link href={`/${prevId}`}>
+            <Link href={`/${prevId}`} prefetch>
               <PiCaretLeftBold className="text-2xl" strokeWidth={30} />
               <span className="sr-only">previous puzzle</span>
             </Link>
@@ -62,7 +62,7 @@ export function GamePage({
             variant="link"
             asChild
           >
-            <Link href={`/${nextId}`}>
+            <Link href={`/${nextId}`} prefetch>
               <PiCaretRightBold className="text-2xl" strokeWidth={30} />
               <span className="sr-only">next puzzle</span>
             </Link>
