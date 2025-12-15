@@ -12,6 +12,7 @@ import { useSession } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { useForm, useStore } from "@tanstack/react-form";
 import { useEffect, useState } from "react";
+import { CgSpinner } from "react-icons/cg";
 
 function FormField({
   children,
@@ -31,7 +32,7 @@ const defaultValues = {
 };
 
 export function UserSettingsForm() {
-  const { data: session, refetch } = useSession();
+  const { data: session, refetch, isRefetching } = useSession();
   const form = useForm({
     asyncDebounceMs: 1000,
     defaultValues: session?.user ?? defaultValues,
@@ -84,15 +85,23 @@ export function UserSettingsForm() {
     <form action={form.handleSubmit} className="w-full">
       <Stack className="w-full gap-3">
         <Stack>
-          <SectionHeading>Profile</SectionHeading>
+          <SectionHeading>Privacy</SectionHeading>
           <form.Field name={"isPublic"}>
             {(field) => {
               return (
-                <Stack className="bg-accent rounded-lg p-3">
+                <Stack className="bg-accent relative rounded-lg p-3">
+                  {isRefetching && (
+                    <div className="absolute bottom-0 left-0 right-0 top-0 flex h-full w-full items-center justify-center rounded-lg bg-black/30">
+                      <CgSpinner className="animate-spin text-4xl" />
+                    </div>
+                  )}
                   <Label className="inline-flex items-baseline justify-start gap-2">
                     <Checkbox
                       checked={field.state.value}
-                      onCheckedChange={(e) => field.handleChange(e === true)}
+                      onCheckedChange={(e) => {
+                        field.handleChange(e === true);
+                        form.handleSubmit();
+                      }}
                       name={field.name}
                       id={field.name}
                     />
@@ -103,12 +112,12 @@ export function UserSettingsForm() {
                         <strong>
                           {session?.user.isPublic ? "IS" : "IS NOT"}
                         </strong>{" "}
-                        visible to other users
+                        visible to everyone
                       </span>
                     </Stack>
                   </Label>
-                  {field.state.value && session?.user && (
-                    <>
+                  {field.state.value && session?.user?.isPublic && (
+                    <div>
                       <p className="text-muted-foreground text-sm">
                         Your profile link:
                       </p>
@@ -123,12 +132,13 @@ export function UserSettingsForm() {
                           {`${window.location.origin}/stats/${session.user.id}`}
                         </Hyperlink>
                       </p>
-                    </>
+                    </div>
                   )}
                 </Stack>
               );
             }}
           </form.Field>
+          <SectionHeading>Profile</SectionHeading>
           <form.Field
             name="name"
             validators={{
