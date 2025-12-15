@@ -1,21 +1,19 @@
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
+import { UserStats } from "@/components/user-stats";
+import { db } from "@/db";
+import { getUserGameStats } from "@/db/server-only";
 import { notFound } from "next/navigation";
-
-export const dynamic = "force-dynamic";
 
 export default async function Page({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ userId: string }>;
 }) {
-  const { id } = await params;
-  const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) notFound();
+  const { userId } = await params;
+  const user = await db.user.findUnique({ where: { id: userId } });
+  if (!user?.isPublic) notFound();
 
-  return (
-    <div>
-      <h1>Stats</h1>
-    </div>
-  );
+  const stats = await getUserGameStats(userId);
+  if (!stats) notFound();
+
+  return <UserStats user={user} stats={stats} />;
 }
