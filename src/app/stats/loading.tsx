@@ -2,11 +2,13 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Loading() {
   return (
-    <main className="flex w-full max-w-screen-md flex-col items-center justify-start gap-8">
-      <Skeleton className="h-32 w-32 rounded-full" />
-      <Skeleton className="h-12 w-72 max-w-full sm:w-96" />
+    <main className="flex w-full max-w-screen-md flex-col items-center justify-start gap-6">
+      <div className="flex flex-col items-center gap-2">
+        <Skeleton className="h-32 w-32 rounded-full" />
+        <Skeleton className="h-12 w-72 max-w-full sm:w-96" />
+      </div>
       <div className="flex w-full flex-col items-center gap-3">
-        <div className="flex w-full flex-wrap justify-center gap-6">
+        <div className="flex w-full flex-wrap justify-center gap-3">
           {Array.from({ length: 4 }).map((_, i) => (
             <Skeleton
               key={i}
@@ -14,7 +16,7 @@ export default function Loading() {
             />
           ))}
         </div>
-        <Skeleton className="h-96 w-[512px] max-w-full" />
+        <Skeleton className="h-[360px] w-full max-w-[512px]" />
       </div>
     </main>
   );
