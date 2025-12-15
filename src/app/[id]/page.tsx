@@ -3,8 +3,16 @@ import { db } from "@/db";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect, RedirectType } from "next/navigation";
+import { generateIOTDMeta } from "@/db/server-only";
 
 export const dynamic = "force-dynamic";
+
+async function meta({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  return await generateIOTDMeta(parseInt(id));
+}
+
+export const generateMetadata = meta;
 
 export default async function Page({
   params,

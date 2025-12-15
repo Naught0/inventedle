@@ -1,8 +1,9 @@
 "server-only";
 import { TZDate } from "@date-fns/tz";
-import { isSameDay, subMonths } from "date-fns";
+import { format, isSameDay, subMonths } from "date-fns";
 import { db } from ".";
 import { getIOTD, getRandomInvention } from "./actions";
+import { type Metadata } from "next";
 
 /**
  * Creates an Invention of the Day unless one has already been created for today (EST)
@@ -100,4 +101,31 @@ async function getGuessStats({
   ) as Stats;
   stats["X"] = losses;
   return stats;
+}
+
+export async function generateIOTDMeta(iotdId?: number): Promise<Metadata> {
+  const iotd = iotdId
+    ? await db.inventionOfTheDay.findUnique({
+        where: { id: iotdId },
+        include: { invention: true },
+      })
+    : await getIOTD();
+  const title = `Inventedle${iotd?.id ? ` #${iotd.id}` : ""}`;
+  const description = "The inventurous daily guessing game";
+  const imageUrl = iotd?.invention.image_url;
+  const images = imageUrl ? [{ url: imageUrl }] : [];
+  return {
+    title,
+    description,
+    openGraph: {
+      releaseDate: iotd?.created_at
+        ? format(new TZDate(iotd?.created_at, "America/New_York"), "yyyy-MM-dd")
+        : "today",
+      title,
+      description,
+      url: `https://inventedle.jamese.dev${iotd?.id ? `/${iotd.id}` : ""}`,
+      siteName: "Inventedle",
+      images,
+    },
+  };
 }
