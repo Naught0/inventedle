@@ -98,6 +98,7 @@ function Wrapped({
       if (gameOver) {
         recordGame(game, !isLoggedIn).then(() => {
           setSyncEnabled(false);
+          recordGameToLocalStorage(game);
           refetchIotdStats();
         });
         return;
@@ -105,7 +106,7 @@ function Wrapped({
       if (isLoggedIn) recordGame(game);
       else recordGameToLocalStorage(game);
     },
-    [game, gameOver, isLoggedIn, syncEnabled],
+    [game, gameOver, isLoggedIn, syncEnabled, refetchIotdStats],
   );
 
   return (
