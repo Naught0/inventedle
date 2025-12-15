@@ -1,17 +1,18 @@
 "use client";
-import type { auth } from "@/lib/auth";
+import type { SessionWithUser } from "@/lib/auth";
 import { GuessStatsChart } from "./charts/guess-stats-chart";
 import { StatCard } from "./ui/stat-card";
 import type { Stats } from "@/db/server-only";
+import { Stack } from "./ui/stack";
+import Image from "next/image";
 
 export function UserStats({
-  session,
-  serverStats,
+  user,
+  stats,
 }: {
-  session?: Awaited<ReturnType<typeof auth.api.getSession>>;
-  serverStats?: Stats;
+  user?: SessionWithUser["user"];
+  stats?: Stats;
 }) {
-  const stats = serverStats;
   if (!stats) return null;
 
   const totalGames = Object.values(stats).reduce((a, b) => a + b, 0);
@@ -19,9 +20,20 @@ export function UserStats({
   const totalLosses = stats["X"];
   return (
     <main className="flex w-full flex-col items-center justify-center">
-      <h2 className="text-accent-foreground mb-6 w-full text-center text-3xl font-bold lg:mb-8">
-        {!session ? "Local" : `${session.user.name}'s`} Stats
-      </h2>
+      <Stack className="mb-6 flex-col items-center gap-1">
+        {user?.image && (
+          <Image
+            alt="profile picture"
+            src={user.image}
+            className="rounded-full"
+            height={128}
+            width={128}
+          />
+        )}
+        <h2 className="text-accent-foreground w-full text-center text-3xl font-bold">
+          {!user ? "Local" : `${user.name}'s`} Stats
+        </h2>
+      </Stack>
       <div className="my-3 flex flex-col items-center gap-3">
         <div className="flex w-full flex-col gap-3">
           <div className="flex flex-grow flex-wrap justify-center gap-3">
@@ -42,7 +54,7 @@ export function UserStats({
             </StatCard>
           </div>
         </div>
-        <GuessStatsChart title={"Game Results"} numGuesses={serverStats} />
+        <GuessStatsChart title={"Game Results"} numGuesses={stats} />
       </div>
     </main>
   );
