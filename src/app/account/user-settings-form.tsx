@@ -206,7 +206,7 @@ function Wrapped({
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <div className="my-6 flex flex-grow flex-col items-start gap-6">
+    <div className="my-3 flex flex-grow flex-col items-start gap-3">
       <h3 className="text-2xl font-extralight">{children}</h3>
       <Separator className="bg-status-error-foreground/40" />
     </div>
