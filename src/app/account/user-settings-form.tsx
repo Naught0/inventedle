@@ -134,9 +134,9 @@ export function UserSettingsForm() {
             validators={{
               onChange: ({ value }) =>
                 value.length > 50
-                  ? "Too long (<50 chars)"
+                  ? "Too long"
                   : value.length < 2
-                    ? "Too short (>2 chars)"
+                    ? "Too short"
                     : undefined,
             }}
           >
@@ -153,9 +153,13 @@ export function UserSettingsForm() {
                     onChange={(e) => field.handleChange(e.target.value)}
                     value={field.state.value ?? ""}
                   />
-                  {!field.state.meta.isValid && (
+                  {!field.state.meta.isValid ? (
                     <p className="text-sm text-red-500">
                       {field.state.meta.errors.join(", ")}
+                    </p>
+                  ) : (
+                    <p className="text-muted-foreground align-middle text-xs">
+                      (2-50 chars)
                     </p>
                   )}
                 </FormField>
