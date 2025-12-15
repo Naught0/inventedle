@@ -1,18 +1,13 @@
 import { db } from "@/db";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
+import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/headers";
+import { headers } from "next/headers";
 
 export const auth = betterAuth({
   database: prismaAdapter(db, {
     provider: "sqlite",
   }),
-  session: {
-    cookieCache: {
-      enabled: true,
-      maxAge: 60 * 60 * 24 * 7,
-    },
-    expiresIn: 60 * 60 * 24 * 7,
-  },
   account: {
     accountLinking: {
       trustedProviders: ["discord", "google", "github"],
@@ -34,6 +29,15 @@ export const auth = betterAuth({
   },
 });
 
-export async function getServerSession() {
-  return auth.api.getSession();
+export type SessionWithUser = Awaited<ReturnType<typeof getServerSession>>;
+
+export async function getServerSession(
+  params?: Omit<Parameters<typeof auth.api.getSession>[0], "headers"> & {
+    headers?: ReadonlyHeaders;
+  },
+) {
+  return auth.api.getSession({
+    ...params,
+    headers: params?.headers ?? (await headers()),
+  });
 }
