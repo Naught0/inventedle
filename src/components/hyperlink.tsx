@@ -12,14 +12,17 @@ export function Hyperlink({
   return (
     <a
       className={cn(
-        "hover:text-primary text-muted-foreground inline-flex items-center underline-offset-4 transition-colors hover:underline",
+        "hover:text-primary text-muted-foreground inline-flex items-center truncate text-wrap break-all underline-offset-4 transition-colors hover:underline",
         className,
       )}
       rel={rel ?? "noopener noreferrer"}
       target={target ?? "_blank"}
       {...props}
     >
-      {children} <PiArrowUpRight className="text-lg" />
+      <span>
+        {children}
+        <PiArrowUpRight className="inline text-lg" />
+      </span>
     </a>
   );
 }

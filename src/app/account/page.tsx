@@ -9,7 +9,7 @@ export default async function Page() {
   if (!session) notFound();
 
   return (
-    <div className="flex w-full max-w-96 flex-col">
+    <div className="flex w-full max-w-screen-sm flex-col">
       <h1 className="mb-6 text-center text-3xl font-bold">Settings</h1>
       <UserSettingsForm />
     </div>
