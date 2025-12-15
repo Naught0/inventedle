@@ -50,7 +50,7 @@ function Menu({ signedIn }: { signedIn: boolean }) {
             variant: "ghost",
             className: "inline-flex w-full items-center gap-2",
           })}
-          href={"/account"}
+          href={"/profile"}
           prefetch={false}
         >
           <PiUserGearFill className="text-2xl" />

@@ -42,7 +42,7 @@ export function UserSettingsForm() {
         image,
         isPublic,
       });
-      refetch();
+      refetch({ query: { disableCookieCache: true } });
     },
   });
   useEffect(
