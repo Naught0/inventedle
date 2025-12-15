@@ -55,7 +55,9 @@ export default async function Page({
   if (!user) notFound();
 
   const session = await getServerSession();
-  if (!user?.isPublic && !(session?.user.id !== user.id)) notFound();
+  if (session?.user.id !== userId) {
+    if (!user.isPublic) notFound();
+  }
 
   const stats = await getUserGameStats(userId);
   if (!stats) notFound();
