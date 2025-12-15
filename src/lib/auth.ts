@@ -8,6 +8,11 @@ export const auth = betterAuth({
   database: prismaAdapter(db, {
     provider: "sqlite",
   }),
+  session: {
+    cookieCache: {
+      enabled: true,
+    },
+  },
   user: {
     additionalFields: {
       isPublic: {
