@@ -34,7 +34,7 @@ export function UserSettingsForm() {
   const { data: session, refetch } = useSession();
   const form = useForm({
     asyncDebounceMs: 1000,
-    defaultValues,
+    defaultValues: session?.user ?? defaultValues,
     onSubmit: async ({ value: { isPublic, name, image, id } }) => {
       await updateUser({
         id,
