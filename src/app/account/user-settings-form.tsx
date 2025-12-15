@@ -1,6 +1,8 @@
 "use client";
+import { Hyperlink } from "@/components/hyperlink";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { CopyButton } from "@/components/ui/copy-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
@@ -63,7 +65,9 @@ export function UserSettingsForm() {
 
   const imageUrl = useStore(form.store, (state) => state.values.image);
   const [lastImageUrl, setLastImageUrl] = useState(
-    typeof window !== "undefined" ? sessionStorage.getItem("userImageUrl") : "",
+    typeof window !== "undefined"
+      ? (sessionStorage.getItem("userImageUrl") ?? "")
+      : "",
   );
 
   useEffect(
@@ -84,15 +88,44 @@ export function UserSettingsForm() {
           <form.Field name={"isPublic"}>
             {(field) => {
               return (
-                <Label className="inline-flex items-center justify-start gap-2">
-                  <Checkbox
-                    checked={field.state.value}
-                    onCheckedChange={(e) => field.handleChange(e === true)}
-                    name={field.name}
-                    id={field.name}
-                  />
-                  Public profile
-                </Label>
+                <Stack className="bg-accent rounded-lg p-3">
+                  <Label className="inline-flex items-baseline justify-start gap-2">
+                    <Checkbox
+                      checked={field.state.value}
+                      onCheckedChange={(e) => field.handleChange(e === true)}
+                      name={field.name}
+                      id={field.name}
+                    />
+                    <Stack className="gap-0">
+                      <span>Public profile</span>
+                      <span className="text-muted-foreground text-sm font-normal">
+                        Your profile{" "}
+                        <strong>
+                          {session?.user.isPublic ? "IS" : "IS NOT"}
+                        </strong>{" "}
+                        visible to other users
+                      </span>
+                    </Stack>
+                  </Label>
+                  {field.state.value && session?.user && (
+                    <>
+                      <p className="text-muted-foreground text-sm">
+                        Your profile link:
+                      </p>
+                      <p className="inline-flex gap-2">
+                        <CopyButton
+                          value={`${window.location.origin}/stats/${session.user.id}`}
+                        />
+                        <Hyperlink
+                          className="max-w-full text-sm"
+                          href={`/stats/${session.user.id}`}
+                        >
+                          {`${window.location.origin}/stats/${session.user.id}`}
+                        </Hyperlink>
+                      </p>
+                    </>
+                  )}
+                </Stack>
               );
             }}
           </form.Field>
