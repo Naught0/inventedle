@@ -8,6 +8,15 @@ export const auth = betterAuth({
   database: prismaAdapter(db, {
     provider: "sqlite",
   }),
+  user: {
+    additionalFields: {
+      isPublic: {
+        type: "boolean",
+        default: false,
+        input: true,
+      },
+    },
+  },
   account: {
     accountLinking: {
       trustedProviders: ["discord", "google", "github"],
@@ -29,7 +38,7 @@ export const auth = betterAuth({
   },
 });
 
-export type SessionWithUser = Awaited<ReturnType<typeof getServerSession>>;
+export type SessionWithUser = typeof auth.$Infer.Session;
 
 export async function getServerSession(
   params?: Omit<Parameters<typeof auth.api.getSession>[0], "headers"> & {

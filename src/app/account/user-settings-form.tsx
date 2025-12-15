@@ -1,11 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Stack } from "@/components/ui/stack";
 import { updateUser } from "@/db/server-actions";
-import { SessionWithUser } from "@/lib/auth";
 import { useSession } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { useForm, useStore } from "@tanstack/react-form";
@@ -21,37 +21,49 @@ function FormField({
   return <Stack className={cn("gap-1", className)}>{children}</Stack>;
 }
 
-export function UserSettingsForm() {
-  const { data: initData, refetch } = useSession();
-  if (!initData?.user) return null;
+const defaultValues = {
+  isPublic: false,
+  name: "",
+  image: "",
+  id: "",
+};
 
-  return <Wrapped defaultValues={initData.user} refetch={refetch} />;
-}
-function Wrapped({
-  defaultValues,
-  refetch,
-}: {
-  defaultValues: NonNullable<SessionWithUser>["user"];
-  refetch: () => void;
-}) {
+export function UserSettingsForm() {
+  const { data: session, refetch } = useSession();
   const form = useForm({
+    asyncDebounceMs: 1000,
     defaultValues,
-    onSubmit: async ({ value: { name, image, id } }) => {
-      const resp = await updateUser({
+    onSubmit: async ({ value: { isPublic, name, image, id } }) => {
+      await updateUser({
         id,
         name,
         image,
+        isPublic,
       });
-      if (!resp) return;
-
       refetch();
-      return resp;
     },
   });
-  const imageUrl = useStore(form.store, (state) => state.values.image);
+  useEffect(
+    function hydrateForm() {
+      if (!session?.user) return;
+      const user = session.user;
 
+      form.reset(
+        {
+          id: user.id,
+          image: user.image ?? "",
+          name: user.name,
+          isPublic: user.isPublic,
+        },
+        { keepDefaultValues: true },
+      );
+    },
+    [session?.user, form],
+  );
+
+  const imageUrl = useStore(form.store, (state) => state.values.image);
   const [lastImageUrl, setLastImageUrl] = useState(
-    sessionStorage.getItem("userImageUrl"),
+    typeof window !== "undefined" ? sessionStorage.getItem("userImageUrl") : "",
   );
 
   useEffect(
@@ -69,6 +81,21 @@ function Wrapped({
       <Stack className="w-full gap-3">
         <Stack>
           <SectionHeading>Profile</SectionHeading>
+          <form.Field name={"isPublic"}>
+            {(field) => {
+              return (
+                <Label className="inline-flex items-center justify-start gap-2">
+                  <Checkbox
+                    checked={field.state.value}
+                    onCheckedChange={(e) => field.handleChange(e === true)}
+                    name={field.name}
+                    id={field.name}
+                  />
+                  Public profile
+                </Label>
+              );
+            }}
+          </form.Field>
           <form.Field
             name="name"
             validators={{
@@ -91,7 +118,7 @@ function Wrapped({
                     id={field.name}
                     onBlur={field.handleBlur}
                     onChange={(e) => field.handleChange(e.target.value)}
-                    value={field.state.value}
+                    value={field.state.value ?? ""}
                   />
                   {!field.state.meta.isValid && (
                     <p className="text-sm text-red-500">
@@ -171,6 +198,7 @@ function Wrapped({
                     <Button
                       size="lg"
                       type="reset"
+                      className="w-fit"
                       variant="outline"
                       onClick={() =>
                         form.reset(undefined, { keepDefaultValues: true })
@@ -193,7 +221,7 @@ function Wrapped({
               className="w-fit"
               variant="destructive"
               type="button"
-              onClick={() => window.alert("delete machine broke")}
+              onClick={() => window.alert("Doesn't work yet")}
             >
               Delete
             </Button>
