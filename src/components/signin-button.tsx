@@ -8,14 +8,20 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "./ui/popover";
-import { PiChartBarFill, PiSignInFill, PiSignOutBold } from "react-icons/pi";
+import {
+  PiChartBarFill,
+  PiSignInFill,
+  PiSignOutBold,
+  PiUserGearFill,
+} from "react-icons/pi";
 import { CgSpinnerAlt } from "react-icons/cg";
 import { BiLogoDiscordAlt, BiLogoGoogle } from "react-icons/bi";
 import Link from "next/link";
+import { Stack } from "./ui/stack";
 
 function MenuItem({ children }: { children: React.ReactNode }) {
   return (
-    <li className="border-muted-foreground w-full border-white py-2 odd:border-b">
+    <li className="border-muted-foreground menu-item w-full border-white py-2">
       {children}
     </li>
   );
@@ -25,17 +31,7 @@ function Menu({ signedIn }: { signedIn: boolean }) {
   const children = [];
   if (signedIn) {
     children.push(
-      <MenuItem key="sign-out">
-        <Button
-          variant="ghost"
-          className="inline-flex w-full items-center gap-2"
-          onClick={() => void signOut()}
-        >
-          <PiSignOutBold strokeWidth={20} className="text-xl" />
-          Sign out
-        </Button>
-      </MenuItem>,
-      <MenuItem key="sign in">
+      <MenuItem key="stats">
         <Link
           className={buttonVariants({
             variant: "ghost",
@@ -44,9 +40,32 @@ function Menu({ signedIn }: { signedIn: boolean }) {
           href={"/stats"}
           prefetch={false}
         >
-          <PiChartBarFill className="text-xl" />
+          <PiChartBarFill className="text-2xl" />
           Stats
         </Link>
+      </MenuItem>,
+      <MenuItem key="account">
+        <Link
+          className={buttonVariants({
+            variant: "ghost",
+            className: "inline-flex w-full items-center gap-2",
+          })}
+          href={"/account"}
+          prefetch={false}
+        >
+          <PiUserGearFill className="text-2xl" />
+          Account
+        </Link>
+      </MenuItem>,
+      <MenuItem key="sign-out">
+        <Button
+          variant="ghost"
+          className="inline-flex w-full items-center gap-2"
+          onClick={() => void signOut()}
+        >
+          <PiSignOutBold className="text-2xl" />
+          Sign out
+        </Button>
       </MenuItem>,
     );
   } else {
@@ -110,9 +129,14 @@ export function SigninButton({ loading = false }: { loading?: boolean }) {
               </span>
             )}
             {signedIn && (
-              <span className="text-muted-foreground text-sm">
-                @{data.user.name}
-              </span>
+              <Stack className="gap-0">
+                <span className="text-muted-foreground/20 text-xs">
+                  signed in as
+                </span>
+                <span className="text-muted-foreground max-w-36 overflow-hidden text-ellipsis text-sm lg:max-w-20">
+                  {data.user.name}
+                </span>
+              </Stack>
             )}
           </Button>
         </PopoverTrigger>

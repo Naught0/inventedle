@@ -50,7 +50,7 @@ body {
     --secondary-foreground: 20 10% 75%;
 
     --primary: 330, 87%, 69%;
-    --primary-foreground: 24 9.8% 3%;
+    --primary-foreground: 330, 50%, 18%;
     --primary-dark: 330 13% 7%;
 
     --status-success: 157, 41%, 30%;
@@ -101,5 +101,9 @@ body {
     background: hsl(var(--background))
       radial-gradient(hsl(var(--secondary)), hsl(var(--background)) 87%)
       no-repeat;
+  }
+
+  .menu-item:not(:last-child) {
+    @apply border-b-accent-foreground border-b;
   }
 }
