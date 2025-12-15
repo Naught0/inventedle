@@ -7,10 +7,12 @@ TODO:
 - [ ] Add hint/tip/make-obvious how the bc/ad toggle works
 - [x] stats page
 - [ ] user settings
-    - [ ] ability to set profile to public to share stats (defaults to private)
+    - [x] ability to set profile to public to share stats (defaults to private)
     - [ ] GDPR/Delete account and data
 - [ ] Privacy policy (GDPR etc)
 - [ ] Embeds/meta tags
+    - [ ] for user stats
+    - [ ] for puzzle
 - [ ] Logo/favicon
 - [x] Loading states
 - [ ] CI/CD pipeline
