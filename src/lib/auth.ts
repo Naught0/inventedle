@@ -8,6 +8,9 @@ export const auth = betterAuth({
   database: prismaAdapter(db, {
     provider: "sqlite",
   }),
+  trustedOrigins: process.env.BETTER_AUTH_TRUSTED_ORIGINS?.split(
+    ",",
+  ) as string[],
   session: {
     cookieCache: {
       enabled: true,
