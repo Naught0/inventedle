@@ -18,6 +18,7 @@ import { CgSpinnerAlt } from "react-icons/cg";
 import { BiLogoDiscordAlt, BiLogoGoogle } from "react-icons/bi";
 import Link from "next/link";
 import { Stack } from "./ui/stack";
+import { useEffect, useState } from "react";
 
 function MenuItem({ children }: { children: React.ReactNode }) {
   return (
@@ -29,6 +30,12 @@ function MenuItem({ children }: { children: React.ReactNode }) {
 
 function Menu({ signedIn }: { signedIn: boolean }) {
   const children = [];
+  const [callbackURL, setCallbackUrl] = useState<string>();
+  useEffect(() => {
+    console.log("callback url", window.location.href);
+    setCallbackUrl(window.location.href);
+  }, []);
+
   if (signedIn) {
     children.push(
       <MenuItem key="stats">
@@ -77,7 +84,7 @@ function Menu({ signedIn }: { signedIn: boolean }) {
           onClick={() =>
             signIn.social({
               provider: "discord",
-              callbackURL: window.location.href,
+              callbackURL,
             })
           }
         >
@@ -94,7 +101,7 @@ function Menu({ signedIn }: { signedIn: boolean }) {
           onClick={() =>
             signIn.social({
               provider: "google",
-              callbackURL: window.location.href,
+              callbackURL,
             })
           }
         >
