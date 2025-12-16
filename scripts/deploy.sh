@@ -11,11 +11,11 @@ transferCron() {
 }
 
 loadApp() {
-  ssh qtbot "cd ~/inventedle && docker load < inventedle.tar.gz && docker compose up app -d"
+  ssh qtbot "cd ~/inventedle && docker tag inventedle:latest inventedle:rollback && docker load < inventedle.tar.gz && docker compose up app -d"
 }
 
 loadCron() {
-  ssh qtbot "cd ~/inventedle && docker load < iotd-cron.tar.gz && docker compose up cron -d"
+  ssh qtbot "cd ~/inventedle && docker tag iotd-cron:latest iotd-cron:rollback && docker load < iotd-cron.tar.gz && docker compose up cron -d"
 }
 
 main() {
