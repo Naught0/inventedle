@@ -19,7 +19,7 @@ COPY . .
 # Learn more here: https://nextjs.org/telemetry
 # Disable telemetry during the build
 ENV NEXT_TELEMETRY_DISABLED=1
-ENV NODE_ENV=production
+ENV DOCKER_BUILDING=1
 
 RUN bun run build
 
@@ -27,7 +27,8 @@ RUN bun run build
 FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV=production
+ARG NODE_ENV
+ENV NODE_ENV=${NODE_ENV:-production}
 ENV TZ=America/New_York
 
 # Disable telemetry
