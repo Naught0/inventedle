@@ -53,7 +53,7 @@ export function UserStats({
             </Stack>
           ) : (
             <CopyButton
-              value={window.location.href}
+              value={typeof window !== "undefined" ? window.location.href : ""}
               className="inline-flex w-fit items-center gap-2"
               icon={<PiShareFatFill />}
             >
