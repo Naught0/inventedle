@@ -16,11 +16,11 @@ export function Nav() {
           <span className="text-base italic lg:text-xl">
             the inventurous daily guessing game
           </span>
-          <Suspense fallback={<SigninButton loading={true} />}>
-            <div className="lg:hidden">
+          <div className="lg:hidden">
+            <Suspense fallback={<SigninButton loading={true} />}>
               <SigninButton />
-            </div>
-          </Suspense>
+            </Suspense>
+          </div>
         </div>
       </div>
     </nav>
