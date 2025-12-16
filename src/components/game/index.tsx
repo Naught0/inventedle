@@ -18,18 +18,13 @@ import {
   recordGameToLocalStorage,
 } from "../hooks/use-game-recorder";
 import { useSession } from "@/lib/auth-client";
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from "@tanstack/react-query";
+import { QueryClientProvider, useQuery } from "@tanstack/react-query";
 import { useImmer } from "use-immer";
 import { GuessStatsChart } from "../charts/guess-stats-chart";
 import { Separator } from "@radix-ui/react-separator";
 import { Hyperlink } from "../hyperlink";
 import { ImageWithCaption } from "../image-with-caption";
-
-const queryClient = new QueryClient();
+import { queryClient } from "../hooks/query";
 
 export default function Game(params: Parameters<typeof Wrapped>[0]) {
   return (
