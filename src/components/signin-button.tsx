@@ -28,7 +28,7 @@ function MenuItem({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Menu({ signedIn }: { signedIn: boolean }) {
+function Menu({ signedIn, userId }: { signedIn: boolean; userId?: string }) {
   const children = [];
   const [callbackURL, setCallbackUrl] = useState<string>();
   useEffect(() => {
@@ -44,7 +44,7 @@ function Menu({ signedIn }: { signedIn: boolean }) {
             variant: "ghost",
             className: "inline-flex w-full items-center gap-2",
           })}
-          href={"/stats"}
+          href={`/stats/${userId}`}
           prefetch={false}
         >
           <PiChartBarFill className="text-2xl" />
@@ -119,6 +119,7 @@ export function SigninButton({ loading = false }: { loading?: boolean }) {
   const { data, isPending } = useSession();
   const isLoading = isPending || loading;
   const signedIn = !!data;
+  const userId = data?.user?.id;
 
   return (
     <Popover>
@@ -159,7 +160,7 @@ export function SigninButton({ loading = false }: { loading?: boolean }) {
         </PopoverTrigger>
       </PopoverAnchor>
       <PopoverContent className="bg-accent m-3 border-0 p-0 shadow shadow-black">
-        <Menu signedIn={signedIn} />
+        <Menu userId={userId} signedIn={signedIn} />
       </PopoverContent>
     </Popover>
   );
