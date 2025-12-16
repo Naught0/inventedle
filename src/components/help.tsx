@@ -29,8 +29,8 @@ export function Help() {
         <DialogHeader>
           <DialogTitle>Game Rules</DialogTitle>
           <DialogDescription className="text-left text-base">
-            <article className="prose prose-invert">
-              <ol>
+            <article className="flex flex-col gap-2.5 py-3">
+              <ol className="list-inside list-decimal">
                 <li>Guess the year of the invention.</li>
               </ol>
               <p>
