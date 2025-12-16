@@ -6,7 +6,6 @@ import type { Stats } from "@/db/server-only";
 import { Stack } from "./ui/stack";
 import Image from "next/image";
 import { Hyperlink } from "./hyperlink";
-import { Button } from "./ui/button";
 import { PiShareFatFill } from "react-icons/pi";
 import { CopyButton } from "./ui/copy-button";
 
