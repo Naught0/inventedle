@@ -1,5 +1,5 @@
 "use client";
-import { PiCopyFill, PiShareFatFill, PiShareFill } from "react-icons/pi";
+import { PiShareFatFill } from "react-icons/pi";
 import { getHotness, guessIsCorrect } from "./logic";
 import {
   Popover,
@@ -11,7 +11,7 @@ import { ReactNode, useState } from "react";
 import { buttonVariants } from "../ui/button";
 import { HotnessRules } from "./types";
 import { Hotness } from "./enum";
-import { BiShare, BiSolidSquareRounded } from "react-icons/bi";
+import { BiSolidSquareRounded } from "react-icons/bi";
 
 function getClassName(hotness: Hotness, bgOrText: "bg" | "text" = "bg") {
   // These must be explicitcly in the code for tailwind to include them
