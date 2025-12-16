@@ -14,6 +14,10 @@ const jbMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Inventedle",
   description: "The inventurous daily guessing game",
+  icons: {
+    icon: { href: "/favicon.ico", url: "/favicon.ico" },
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
