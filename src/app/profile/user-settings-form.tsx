@@ -121,8 +121,10 @@ export function UserSettingsForm() {
                       <p className="text-muted-foreground text-sm">
                         Your profile link:
                       </p>
-                      <p className="inline-flex gap-2">
+                      <p className="inline-flex gap-1">
                         <CopyButton
+                          className="text-muted-foreground hover:text-foreground size-8 p-0"
+                          variant="ghost"
                           value={`${window.location.origin}/stats/${session.user.id}`}
                         />
                         <Hyperlink

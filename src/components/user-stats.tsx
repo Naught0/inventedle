@@ -5,13 +5,19 @@ import { StatCard } from "./ui/stat-card";
 import type { Stats } from "@/db/server-only";
 import { Stack } from "./ui/stack";
 import Image from "next/image";
+import { Hyperlink } from "./hyperlink";
+import { Button } from "./ui/button";
+import { PiShareFatFill } from "react-icons/pi";
+import { CopyButton } from "./ui/copy-button";
 
 export function UserStats({
   user,
   stats,
+  showPrivateUserBanner,
 }: {
   user?: SessionWithUser["user"];
   stats?: Stats;
+  showPrivateUserBanner?: boolean;
 }) {
   if (!stats) return null;
 
@@ -30,9 +36,32 @@ export function UserStats({
             width={128}
           />
         )}
-        <h2 className="text-accent-foreground w-full text-center text-3xl font-bold">
-          {!user ? "Local" : `${user.name}'s`} Stats
-        </h2>
+        <Stack className="items-center gap-3">
+          <h2 className="text-accent-foreground w-full text-center text-3xl font-bold">
+            {!user ? "Local" : `${user.name}'s`} Stats
+          </h2>
+          {showPrivateUserBanner ? (
+            <Stack className="text-muted-foreground text-center text-sm">
+              <p className="text-muted-foreground text-sm">
+                Only you can see this page
+              </p>
+              <p>
+                <Hyperlink href="/profile">
+                  If you want to share your stats, change your privacy settings{" "}
+                  here
+                </Hyperlink>
+              </p>
+            </Stack>
+          ) : (
+            <CopyButton
+              value={window.location.href}
+              className="inline-flex w-fit items-center gap-2"
+              icon={<PiShareFatFill />}
+            >
+              Share stats
+            </CopyButton>
+          )}
+        </Stack>
       </Stack>
       <div className="my-3 flex flex-col items-center gap-3">
         <div className="flex w-full flex-col gap-3">

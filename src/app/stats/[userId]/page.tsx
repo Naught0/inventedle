@@ -62,5 +62,11 @@ export default async function Page({
   const stats = await getUserGameStats(userId);
   if (!stats) notFound();
 
-  return <UserStats user={user} stats={stats} />;
+  return (
+    <UserStats
+      user={user}
+      stats={stats}
+      showPrivateUserBanner={session?.user.id === user.id && !user.isPublic}
+    />
+  );
 }

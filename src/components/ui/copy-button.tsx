@@ -1,15 +1,21 @@
 import { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 import { PiCopy } from "react-icons/pi";
-import { Button } from "./button";
+import { Button, ButtonProps } from "./button";
+import { cn } from "@/lib/utils";
 
 export function CopyButton({
   children,
   value,
+  className,
+  icon,
+  ...buttonProps
 }: {
+  icon?: React.ReactNode;
   children?: React.ReactNode;
   value: string;
-}) {
+  className?: string;
+} & ButtonProps) {
   const [copied, setCopied] = useState(false);
   function copyToClipboard() {
     navigator.clipboard.writeText(value);
@@ -20,11 +26,11 @@ export function CopyButton({
     <Popover open={copied} onOpenChange={setCopied}>
       <PopoverTrigger asChild>
         <Button
-          className="text-muted-foreground hover:text-foreground size-10 p-0"
+          className={cn(className)}
           onClick={copyToClipboard}
-          variant="ghost"
+          {...buttonProps}
         >
-          <PiCopy />
+          {icon ?? <PiCopy />}
           {children}
         </Button>
       </PopoverTrigger>
