@@ -74,7 +74,12 @@ function Menu({ signedIn }: { signedIn: boolean }) {
         <Button
           variant="ghost"
           className="w-full"
-          onClick={() => signIn.social({ provider: "discord" })}
+          onClick={() =>
+            signIn.social({
+              provider: "discord",
+              callbackURL: window.location.href,
+            })
+          }
         >
           <span className="inline-flex items-center gap-3 font-normal">
             <BiLogoDiscordAlt className="text-3xl" />
@@ -86,7 +91,12 @@ function Menu({ signedIn }: { signedIn: boolean }) {
         <Button
           variant="ghost"
           className="w-full"
-          onClick={() => signIn.social({ provider: "google" })}
+          onClick={() =>
+            signIn.social({
+              provider: "google",
+              callbackURL: window.location.href,
+            })
+          }
         >
           <span className="inline-flex items-center gap-3 font-normal">
             <BiLogoGoogle className="text-3xl" /> Google
