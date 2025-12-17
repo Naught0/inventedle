@@ -92,17 +92,19 @@ model Session {
 }
 
 model User {
-  id            String    @id
-  name          String
-  email         String    @unique
-  emailVerified Boolean   @default(false)
-  image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime
-  isPublic      Boolean   @default(false)
-  account       Account[]
-  result        Result[]
-  session       Session[]
+  id                     String       @id
+  name                   String
+  email                  String       @unique
+  emailVerified          Boolean      @default(false)
+  image                  String?
+  createdAt              DateTime     @default(now())
+  updatedAt              DateTime     @updatedAt
+  isPublic               Boolean      @default(false)
+  account                Account[]
+  result                 Result[]
+  session                Session[]
+  friendRequestsSent     Friendship[] @relation("SentRequests")
+  friendRequestsReceived Friendship[] @relation("ReceivedRequests")
 
   @@map("user")
 }
@@ -117,4 +119,22 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+enum FriendStatus {
+  PENDING
+  ACCEPTED
+}
+
+model Friendship {
+  id          String       @id @default(cuid())
+  requester   User         @relation("SentRequests", fields: [requesterId], references: [id])
+  requesterId String
+  recipient   User         @relation("ReceivedRequests", fields: [recipientId], references: [id])
+  recipientId String
+  status      FriendStatus @default(PENDING)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@unique([requesterId, recipientId])
 }
