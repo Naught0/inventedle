@@ -74,3 +74,8 @@ export type User = Prisma.UserModel
  * 
  */
 export type Verification = Prisma.VerificationModel
+/**
+ * Model Friendship
+ * 
+ */
+export type Friendship = Prisma.FriendshipModel
