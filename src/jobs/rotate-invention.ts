@@ -10,7 +10,7 @@ import { scheduleJob, RecurrenceRule } from "node-schedule";
   rule.tz = "America/New_York";
   rule.hour = 0;
   rule.minute = 0;
-  rule.second = 30;
+  rule.second = 5;
   console.log(
     `Scheduling rotateInvention for ${rule.nextInvocationDate(new Date())}`,
   );
