@@ -45,7 +45,7 @@ function Menu({ signedIn, userId }: { signedIn: boolean; userId?: string }) {
           Stats
         </Link>
       </MenuItem>,
-      <MenuItem key="settings">
+      <MenuItem key="profile">
         <Link
           className={buttonVariants({
             variant: "ghost",
@@ -55,7 +55,7 @@ function Menu({ signedIn, userId }: { signedIn: boolean; userId?: string }) {
           prefetch={false}
         >
           <PiUserGearFill className="text-2xl" />
-          Settings
+          Profile
         </Link>
       </MenuItem>,
       <MenuItem key="sign-out">
