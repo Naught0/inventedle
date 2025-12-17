@@ -58,12 +58,24 @@ export default async function Page({
   if (session?.user.id !== userId) {
     if (!user.isPublic) notFound();
   }
+  const friendRequest = session?.user.id
+    ? await db.friendship.findUnique({
+        where: {
+          requesterId_recipientId: {
+            requesterId: session?.user.id,
+            recipientId: user.id,
+          },
+        },
+      })
+    : null;
 
   const stats = await getUserGameStats(userId);
   if (!stats) notFound();
 
   return (
     <UserStats
+      loginSession={session}
+      friendRequest={friendRequest}
       user={user}
       stats={stats}
       showPrivateUserBanner={session?.user.id === user.id && !user.isPublic}

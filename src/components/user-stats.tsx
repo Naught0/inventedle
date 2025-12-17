@@ -8,18 +8,21 @@ import Image from "next/image";
 import { Hyperlink } from "./hyperlink";
 import { PiShareFatFill } from "react-icons/pi";
 import { CopyButton } from "./ui/copy-button";
-import { AddAsFriendButton } from "./add-as-friend-button";
+import { FriendshipModel } from "@/db/prisma/generated/models";
+import { FriendButton } from "./friend-button";
 
 export function UserStats({
   user,
   stats,
   showPrivateUserBanner,
-  showAddFriendButton,
+  loginSession,
+  friendRequest,
 }: {
   user?: SessionWithUser["user"];
   stats?: Stats;
   showPrivateUserBanner?: boolean;
-  showAddFriendButton?: boolean;
+  loginSession?: SessionWithUser | null;
+  friendRequest?: FriendshipModel | null;
 }) {
   if (!stats) return null;
 
@@ -65,8 +68,8 @@ export function UserStats({
               >
                 Share stats
               </CopyButton>
-              {showAddFriendButton && user?.id && (
-                <AddAsFriendButton recipientId={user.id} />
+              {!!loginSession && user?.id && (
+                <FriendButton request={friendRequest} recipientId={user.id} />
               )}
             </Stack>
           )}
