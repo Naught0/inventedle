@@ -8,15 +8,18 @@ import Image from "next/image";
 import { Hyperlink } from "./hyperlink";
 import { PiShareFatFill } from "react-icons/pi";
 import { CopyButton } from "./ui/copy-button";
+import { AddAsFriendButton } from "./add-as-friend-button";
 
 export function UserStats({
   user,
   stats,
   showPrivateUserBanner,
+  showAddFriendButton,
 }: {
   user?: SessionWithUser["user"];
   stats?: Stats;
   showPrivateUserBanner?: boolean;
+  showAddFriendButton?: boolean;
 }) {
   if (!stats) return null;
 
@@ -52,13 +55,20 @@ export function UserStats({
               </p>
             </Stack>
           ) : (
-            <CopyButton
-              value={typeof window !== "undefined" ? window.location.href : ""}
-              className="inline-flex w-fit items-center gap-2"
-              icon={<PiShareFatFill />}
-            >
-              Share stats
-            </CopyButton>
+            <Stack className="flex-col-reverse flex-wrap items-center justify-center gap-3 md:flex-row">
+              <CopyButton
+                value={
+                  typeof window !== "undefined" ? window.location.href : ""
+                }
+                className="inline-flex w-fit items-center gap-2"
+                icon={<PiShareFatFill />}
+              >
+                Share stats
+              </CopyButton>
+              {showAddFriendButton && user?.id && (
+                <AddAsFriendButton recipientId={user.id} />
+              )}
+            </Stack>
           )}
         </Stack>
       </Stack>

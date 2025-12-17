@@ -67,6 +67,7 @@ export default async function Page({
       user={user}
       stats={stats}
       showPrivateUserBanner={session?.user.id === user.id && !user.isPublic}
+      showAddFriendButton={session?.user.id !== user.id}
     />
   );
 }
