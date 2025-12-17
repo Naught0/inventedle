@@ -124,6 +124,7 @@ model Verification {
 enum FriendStatus {
   PENDING
   ACCEPTED
+  REJECTED
 }
 
 model Friendship {
