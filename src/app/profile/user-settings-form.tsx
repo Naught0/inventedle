@@ -85,7 +85,7 @@ export function UserSettingsForm() {
   return (
     <form action={form.handleSubmit} className="w-full">
       <Stack className="w-full gap-3">
-        <Stack>
+        <Stack className="mt-12">
           <SectionHeading>Privacy</SectionHeading>
           <form.Field name={"isPublic"}>
             {(field) => {
