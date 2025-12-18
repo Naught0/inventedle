@@ -138,4 +138,5 @@ model Friendship {
   updatedAt   DateTime     @updatedAt
 
   @@unique([requesterId, recipientId])
+  @@map("friendship")
 }
