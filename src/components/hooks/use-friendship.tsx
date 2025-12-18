@@ -1,10 +1,11 @@
 "use client";
+import { FriendStatus } from "@/db/prisma/generated/enums";
 import { getFriendStatus, type getFriendship } from "@/db/server-only";
 import { useQuery } from "@tanstack/react-query";
 import { parse } from "superjson";
 
 export function useFriendship({ userId }: { userId?: string | null }) {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["friendship", userId],
     queryFn: async () => {
       const data = await fetchAllFriendships();
@@ -16,20 +17,27 @@ export function useFriendship({ userId }: { userId?: string | null }) {
     data?.filter((f) => f.status === "ACCEPTED"),
     userId,
   );
-  const pending = processFriends(
+  const incoming = processFriends(
     data?.filter((f) => f.recipient.id === userId && f.status === "PENDING"),
     userId,
   );
   const outgoing = processFriends(
-    data?.filter((f) => f.requester.id === userId && f.status === "PENDING"),
+    data?.filter(
+      (f) =>
+        f.requester.id === userId && ["PENDING", "REJECTED"].includes(f.status),
+    ),
     userId,
   );
 
   return {
     friends,
-    pending,
+    incoming,
     outgoing,
     isLoading,
+    refetch,
+    deleteFriend,
+    acceptFriend,
+    rejectFriend,
   };
 }
 
@@ -47,10 +55,6 @@ export function useFriend({
       const data = await fetchFriendshipStatus(friendId);
       return data;
     },
-    throwOnError(error, query) {
-      console.error(error);
-      return false;
-    },
   });
 
   return { friend: data, isPending, refetch };
@@ -66,6 +70,7 @@ function processFriends(
     if (f.recipient.id !== userId) {
       return {
         ...f.recipient,
+        friendshipId: f.id,
         createdAt: f.createdAt,
         status: f.status,
       };
@@ -73,6 +78,7 @@ function processFriends(
 
     return {
       ...f.requester,
+      friendshipId: f.id,
       createdAt: f.createdAt,
       status: f.status,
     };
@@ -96,8 +102,32 @@ export async function fetchFriendshipStatus(recipientId: string) {
   return parsed;
 }
 
+export async function deleteFriend(friendshipId: string) {
+  return await fetch(`/api/user/friendship?id=${friendshipId}`, {
+    method: "DELETE",
+  });
+}
+
+export async function rejectFriend(friendshipId: string) {
+  return await updateFriend(friendshipId, "REJECTED");
+}
+
+export async function acceptFriend(friendshipId: string) {
+  return await updateFriend(friendshipId, "ACCEPTED");
+}
+
+export async function updateFriend(friendshipId: string, status: FriendStatus) {
+  return await fetch(
+    `/api/user/friendship?id=${friendshipId}&status=${status}`,
+    {
+      method: "PUT",
+    },
+  );
+}
+
 export type Friendships = Awaited<ReturnType<typeof getFriendship>>;
 export type Friend = Friendships[number]["recipient"] & {
+  friendshipId: string;
   createdAt: Date;
   status: Friendships[number]["status"];
 };

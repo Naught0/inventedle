@@ -6,36 +6,86 @@ import { LoadingOverlay } from "@/components/ui/loading-overlay";
 import { Stack } from "@/components/ui/stack";
 import Image from "next/image";
 import { PropsWithChildren } from "react";
+import { format } from "date-fns";
+import { Button } from "@/components/ui/button";
 
 export function FriendsSection({ session }: { session: SessionWithUser }) {
-  const { outgoing, pending, friends, isLoading } = useFriendship({
+  const {
+    outgoing,
+    incoming,
+    friends,
+    isLoading,
+    refetch,
+    deleteFriend,
+    acceptFriend,
+    rejectFriend,
+  } = useFriendship({
     userId: session?.user.id,
   });
 
   return (
     <>
       <SectionHeading>Friends</SectionHeading>
-      <div className="relative flex w-full flex-col items-start gap-6 px-1 py-3">
+      <div className="relative flex w-full flex-col items-start gap-6 py-3">
         {isLoading && <LoadingOverlay />}
         <Section>
-          <h3 className="text-xl font-bold">Sent</h3>
+          <h3 className="mb-2 text-xl font-bold">Sent</h3>
           {outgoing.map((f) => (
-            <Friend key={f.id} data={f}></Friend>
+            <Friend key={f.id} data={f}>
+              <Button
+                size={"sm"}
+                onClick={() => {
+                  deleteFriend(f.friendshipId);
+                  refetch();
+                }}
+              >
+                Cancel
+              </Button>
+            </Friend>
           ))}
         </Section>
         <Section>
-          <h3 className="text-xl font-bold">Incoming</h3>
-          {pending.map((f) => (
-            <Friend key={f.id} data={f}></Friend>
+          <h3 className="mb-2 text-xl font-bold">Incoming</h3>
+          {incoming.map((f) => (
+            <Friend key={f.id} data={f}>
+              <Stack className="gap-1" horizontal>
+                <Button
+                  size={"sm"}
+                  onClick={() => {
+                    acceptFriend(f.friendshipId).then(() => refetch());
+                  }}
+                >
+                  Accept
+                </Button>
+                <Button
+                  size={"sm"}
+                  onClick={() => {
+                    rejectFriend(f.friendshipId).then(() => refetch());
+                  }}
+                >
+                  Decline
+                </Button>
+              </Stack>
+            </Friend>
           ))}
         </Section>
         <Section>
-          <h3 className="text-xl font-bold">
+          <h3 className="mb-2 text-xl font-bold">
             Friends {friends?.length ? `(${friends.length})` : ""}
-            {friends.map((f) => (
-              <Friend key={f.id} data={f}></Friend>
-            ))}
           </h3>
+          {friends.map((f) => (
+            <Friend key={f.id} data={f}>
+              <Button
+                size={"sm"}
+                onClick={() => {
+                  deleteFriend(f.friendshipId);
+                  refetch();
+                }}
+              >
+                Remove
+              </Button>
+            </Friend>
+          ))}
         </Section>
       </div>
     </>
@@ -46,9 +96,18 @@ function Section({ children }: PropsWithChildren) {
   return <div className="flex w-full flex-grow flex-col gap-2">{children}</div>;
 }
 
-export function Friend({ data }: { data: Friend; children?: React.ReactNode }) {
+export function Friend({
+  data,
+  children,
+}: {
+  data: Friend;
+  children?: React.ReactNode;
+}) {
   return (
-    <Stack className="items-center" horizontal>
+    <Stack
+      className="bg-accent w-fit flex-wrap items-center gap-3 rounded-md px-4 py-2 text-sm"
+      horizontal
+    >
       {data.image && (
         <Image
           src={data.image}
@@ -58,9 +117,14 @@ export function Friend({ data }: { data: Friend; children?: React.ReactNode }) {
           className="rounded-full"
         />
       )}
-      <span>{data.name}</span>
-      <span>{data.status === "ACCEPTED" ? "since" : "at"}</span>
-      <time>{typeof data.createdAt}</time>
+      <div className="flex flex-col">
+        <span>{data.name}</span>
+        <time className="text-muted-foreground text-xs italic">
+          <span>{data.status === "ACCEPTED" ? "since " : "on "}</span>
+          {format(data.createdAt, "yyyy-MM-dd")}
+        </time>
+      </div>
+      {children}
     </Stack>
   );
 }
