@@ -68,9 +68,9 @@ export function UserStats({
               >
                 Share stats
               </CopyButton>
-              {!!loginSession && user?.id && (
-                <FriendButton request={friendRequest} recipientId={user.id} />
-              )}
+              {!!loginSession &&
+                user?.id !== loginSession.user.id &&
+                user?.id && <FriendButton recipientId={user.id} />}
             </Stack>
           )}
         </Stack>
