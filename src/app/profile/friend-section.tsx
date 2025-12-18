@@ -8,6 +8,7 @@ import Image from "next/image";
 import { PropsWithChildren } from "react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
+import { RefreshCw } from "lucide-react";
 
 export function FriendsSection({ session }: { session: SessionWithUser }) {
   const {
@@ -25,7 +26,22 @@ export function FriendsSection({ session }: { session: SessionWithUser }) {
 
   return (
     <>
-      <SectionHeading>Friends</SectionHeading>
+      <SectionHeading>
+        Friends
+        <Button
+          title={"Refresh friends"}
+          aria-label={"Refresh friends"}
+          variant={"link"}
+          size={"icon"}
+          type="button"
+          onClick={() => refetch()}
+        >
+          <RefreshCw
+            size={18}
+            className={isLoading ? "animate-spin" : "hover:animate-spin"}
+          />
+        </Button>
+      </SectionHeading>
       <div className="relative flex w-full flex-col items-start gap-6 py-3">
         {isLoading && <LoadingOverlay />}
         <Section>
