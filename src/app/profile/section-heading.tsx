@@ -1,5 +1,5 @@
+import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { Separator } from "@radix-ui/react-separator";
 
 export function SectionHeading({
   children,
@@ -9,7 +9,7 @@ export function SectionHeading({
   className?: string;
 }) {
   return (
-    <div className="my-3 flex flex-grow flex-col items-start gap-3">
+    <div className="flex w-full flex-grow flex-col items-start gap-3">
       <h3 className={cn("text-2xl font-extralight", className)}>{children}</h3>
       <Separator className="bg-status-error-foreground/40" />
     </div>
