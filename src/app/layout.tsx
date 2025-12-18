@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Help } from "@/components/help";
+import { QueryContext } from "@/components/hooks/query";
 
 const jbMono = JetBrains_Mono({
   weight: ["500", "800"],
@@ -36,7 +37,7 @@ export default function RootLayout({
             <Help />
           </aside>
           <div className="flex min-h-[50vh] w-full max-w-screen-sm justify-center lg:max-w-screen-lg">
-            {children}
+            <QueryContext>{children}</QueryContext>
           </div>
         </main>
         <footer>

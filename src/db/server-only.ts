@@ -168,3 +168,20 @@ export async function getFriendship(userId: string) {
     },
   });
 }
+
+export async function getFriendStatus(userId: string, friendId: string) {
+  return await db.friendship.findFirst({
+    where: {
+      OR: [
+        {
+          recipientId: userId,
+          requesterId: friendId,
+        },
+        {
+          recipientId: friendId,
+          requesterId: userId,
+        },
+      ],
+    },
+  });
+}

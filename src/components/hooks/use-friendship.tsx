@@ -1,13 +1,13 @@
 "use client";
-import { type getFriendship } from "@/db/server-only";
+import { getFriendStatus, type getFriendship } from "@/db/server-only";
 import { useQuery } from "@tanstack/react-query";
 import { parse } from "superjson";
 
 export function useFriendship({ userId }: { userId?: string | null }) {
   const { data, isLoading } = useQuery({
-    queryKey: ["friendship"],
+    queryKey: ["friendship", userId],
     queryFn: async () => {
-      const data = await fetchFriendship();
+      const data = await fetchAllFriendships();
       return data;
     },
     enabled: !!userId,
@@ -33,6 +33,29 @@ export function useFriendship({ userId }: { userId?: string | null }) {
   };
 }
 
+export function useFriend({
+  friendId,
+  enabled,
+}: {
+  friendId: string;
+  enabled?: boolean;
+}) {
+  const { data, isPending, refetch } = useQuery({
+    enabled,
+    queryKey: ["useFriend", friendId],
+    queryFn: async () => {
+      const data = await fetchFriendshipStatus(friendId);
+      return data;
+    },
+    throwOnError(error, query) {
+      console.error(error);
+      return false;
+    },
+  });
+
+  return { friend: data, isPending, refetch };
+}
+
 function processFriends(
   friendships: Friendships | undefined,
   userId: string | null | undefined,
@@ -56,13 +79,21 @@ function processFriends(
   });
 }
 
-export async function fetchFriendship() {
+export async function fetchAllFriendships() {
   const resp = await (
     await fetch(`/api/user/friendship`, { method: "GET" })
   ).text();
 
   const parsed = parse(resp);
   return parsed as Friendships;
+}
+
+export async function fetchFriendshipStatus(recipientId: string) {
+  const resp = await (
+    await fetch(`/api/user/${recipientId}/friend-status`, { method: "GET" })
+  ).text();
+  const parsed = parse<ReturnType<typeof getFriendStatus>>(resp);
+  return parsed;
 }
 
 export type Friendships = Awaited<ReturnType<typeof getFriendship>>;

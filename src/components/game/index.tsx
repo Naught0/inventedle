@@ -18,23 +18,14 @@ import {
   recordGameToLocalStorage,
 } from "../hooks/use-game-recorder";
 import { useSession } from "@/lib/auth-client";
-import { QueryClientProvider, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useImmer } from "use-immer";
 import { GuessStatsChart } from "../charts/guess-stats-chart";
 import { Separator } from "@radix-ui/react-separator";
 import { Hyperlink } from "../hyperlink";
 import { ImageWithCaption } from "../image-with-caption";
-import { queryClient } from "../hooks/query";
 
-export default function Game(params: Parameters<typeof Wrapped>[0]) {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <Wrapped {...params} />
-    </QueryClientProvider>
-  );
-}
-
-function Wrapped({
+export default function Game({
   invention,
   iotdId,
   gameResult,

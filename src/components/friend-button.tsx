@@ -3,36 +3,36 @@ import { useActionState } from "react";
 import { Button } from "./ui/button";
 import { makeFriendRequest } from "@/db/server-actions";
 import { PiUserPlusFill } from "react-icons/pi";
-import { FriendshipModel } from "@/db/prisma/generated/models";
+import { useFriend } from "./hooks/use-friendship";
+import { format } from "date-fns";
+import { Stack } from "./ui/stack";
 
-// TODO: Persist disabled button if already requested
-// TODO: Remove button if already friends
-export function FriendButton({
-  recipientId,
-  request,
-}: {
-  recipientId: string;
-  request?: FriendshipModel | null;
-}) {
+export function FriendButton({ recipientId }: { recipientId: string }) {
+  const { friend, refetch } = useFriend({ friendId: recipientId });
   const [, submit, submitting] = useActionState(async () => {
-    if (request) return;
-
-    try {
-      await makeFriendRequest({ recipientId });
-      alert("Friend request sent!");
-    } catch {
-      console.error("Unable to send friend request");
-    }
+    await makeFriendRequest({ recipientId });
+    await refetch();
   }, undefined);
-
+  const [_, remove, removing] = useActionState(async () => {
+    await fetch(`/api/user/${recipientId}/friend`, { method: "DELETE" });
+    await refetch();
+  });
   return (
     <form action={submit}>
-      <Button variant="link" isLoading={submitting} disabled={!!request}>
-        <PiUserPlusFill className="text-2xl" />
-        {["PENDING", "REJECTED"].includes(request?.status ?? "")
-          ? "Requested"
-          : "Add friend"}
-      </Button>
+      {friend?.status !== "ACCEPTED" && (
+        <Button variant="link" isLoading={submitting} disabled={!!friend}>
+          <PiUserPlusFill className="text-2xl" />
+          {friend?.status === "PENDING" ? "Pending" : "Add Friend"}
+        </Button>
+      )}
+      {friend?.status === "ACCEPTED" && (
+        <Stack>
+          Friends since {format(friend.createdAt, "yyyy-MM-dd")}
+          <Button type="button" variant="link" isLoading={submitting}>
+            remove friend
+          </Button>
+        </Stack>
+      )}
     </form>
   );
 }
