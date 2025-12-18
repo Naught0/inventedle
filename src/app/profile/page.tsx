@@ -10,7 +10,6 @@ export default async function Page() {
 
   return (
     <div className="flex w-full max-w-screen-sm flex-col">
-      <h1 className="mb-6 text-center text-3xl font-bold">Settings</h1>
       <UserSettingsForm />
     </div>
   );
