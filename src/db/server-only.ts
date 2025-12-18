@@ -129,3 +129,42 @@ export async function generateIOTDMeta(iotdId?: number): Promise<Metadata> {
     },
   };
 }
+
+export async function getFriendship(userId: string) {
+  if (!userId) return [];
+
+  return await db.friendship.findMany({
+    where: {
+      OR: [
+        {
+          recipientId: userId,
+        },
+        {
+          requesterId: userId,
+        },
+      ],
+    },
+    include: {
+      recipient: {
+        select: {
+          id: true,
+          name: true,
+          image: true,
+          isPublic: true,
+        },
+      },
+      requester: {
+        select: {
+          id: true,
+          name: true,
+          image: true,
+          isPublic: true,
+        },
+      },
+    },
+    omit: {
+      recipientId: true,
+      requesterId: true,
+    },
+  });
+}
