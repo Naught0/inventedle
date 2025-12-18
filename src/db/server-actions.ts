@@ -35,24 +35,3 @@ export async function makeFriendRequest({
     },
   });
 }
-
-export async function acceptFriendRequest({
-  requesterId,
-}: {
-  requesterId: string;
-}) {
-  const session = await getServerSession();
-  if (!session) throw new Error("User not authenticated");
-
-  return await db.friendship.update({
-    where: {
-      requesterId_recipientId: {
-        recipientId: session.user.id,
-        requesterId,
-      },
-    },
-    data: {
-      status: "ACCEPTED",
-    },
-  });
-}
