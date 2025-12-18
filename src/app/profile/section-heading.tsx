@@ -1,5 +1,5 @@
+import { cn } from "@/lib/utils";
 import { Separator } from "@radix-ui/react-separator";
-import { cn } from "better-auth/dist/index-BZSqJoCN.mjs";
 
 export function SectionHeading({
   children,
