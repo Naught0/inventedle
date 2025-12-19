@@ -118,21 +118,11 @@ export function FriendsGuessChart({
 function FriendTooltip({
   active,
   payload,
-  label,
 }: TooltipContentProps<string, string>) {
   const people = payload.flatMap((p) => p.payload.friends);
   if (active && payload && payload.length && people.length) {
     return (
       <div className="bg-primary-dark flex h-fit w-full min-w-48 max-w-72 flex-col gap-2 rounded-md p-3 shadow">
-        <span className="text-center font-bold">
-          {label === "X" ? (
-            "Missed"
-          ) : (
-            <span>
-              {label} Guess{label !== "1" ? "es" : ""}
-            </span>
-          )}
-        </span>
         {people.map((p) => (
           <div className="inline-flex items-center gap-2" key={p.id}>
             <FriendBubble data={p} />
