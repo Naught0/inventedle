@@ -227,7 +227,7 @@ export default function Game({
       </div>
       <Activity mode={gameOver && !!iotdStatsData ? "visible" : "hidden"}>
         <p className="text-2xl font-bold">Stats</p>
-        <div className="flex w-full flex-wrap justify-center gap-3 lg:flex-nowrap">
+        <div className="flex w-full max-w-md flex-wrap justify-center gap-3 lg:max-w-full lg:flex-nowrap">
           <FriendsGuessChart data={friendIOTDStats} />
           <GuessStatsChart numGuesses={iotdStatsData} />
         </div>
