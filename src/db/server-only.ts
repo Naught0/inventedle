@@ -95,11 +95,18 @@ async function getGuessStats({
     },
   });
 
-  // low to high
-  wins.sort((a, b) => a.num_guesses - b.num_guesses);
-  const stats = Object.fromEntries(
-    wins.map((r) => [r.num_guesses, r._count._all]),
-  ) as Stats;
+  const stats: Record<"1" | "2" | "3" | "4" | "5" | "X", number> = {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    X: 0,
+  };
+
+  for (const w of wins) {
+    stats[w.num_guesses.toString() as keyof Stats] = w._count._all;
+  }
   stats["X"] = losses;
   return stats;
 }
@@ -191,33 +198,30 @@ export async function getIOTDFriendStats(iotdId: number, userId: string) {
   const iotd = await db.inventionOfTheDay.findUnique({ where: { id: iotdId } });
   if (!iotd) throw new Error("IOTD not found");
 
-  // FIXME: Make this return only friends
-  // const user = await db.user.findUnique({
-  //   where: { id: userId },
-  //   include: {
-  //     friendRequestsReceived: {
-  //       include: {
-  //         requester: { select: { id: true, image: true, name: true } },
-  //       },
-  //     },
-  //     friendRequestsSent: {
-  //       include: {
-  //         recipient: { select: { id: true, image: true, name: true } },
-  //       },
-  //     },
-  //   },
-  // });
-  // if (!user) throw new Error("User not found");
-  // const friends = [
-  //   ...user.friendRequestsSent
-  //     .filter((f) => f.status === "ACCEPTED")
-  //     .map((f) => f.recipient),
-  //   ...user.friendRequestsReceived
-  //     .filter((f) => f.status === "ACCEPTED")
-  //     .map((f) => f.requester),
-  // ];
-
-  const friends = await db.user.findMany();
+  const user = await db.user.findUnique({
+    where: { id: userId },
+    include: {
+      friendRequestsReceived: {
+        include: {
+          requester: { select: { id: true, image: true, name: true } },
+        },
+      },
+      friendRequestsSent: {
+        include: {
+          recipient: { select: { id: true, image: true, name: true } },
+        },
+      },
+    },
+  });
+  if (!user) throw new Error("User not found");
+  const friends = [
+    ...user.friendRequestsSent
+      .filter((f) => f.status === "ACCEPTED")
+      .map((f) => f.recipient),
+    ...user.friendRequestsReceived
+      .filter((f) => f.status === "ACCEPTED")
+      .map((f) => f.requester),
+  ];
 
   const results = await db.result.findMany({
     select: {
