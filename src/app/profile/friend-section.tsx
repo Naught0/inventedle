@@ -9,6 +9,7 @@ import { PropsWithChildren } from "react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { RefreshCw } from "lucide-react";
+import { PiXBold } from "react-icons/pi";
 
 export function FriendsSection({ session }: { session: SessionWithUser }) {
   const {
@@ -93,12 +94,13 @@ export function FriendsSection({ session }: { session: SessionWithUser }) {
             <Friend key={f.id} data={f}>
               <Button
                 size={"sm"}
+                className="aspect-square rounded-md"
                 onClick={() => {
                   deleteFriend(f.friendshipId);
                   refetch();
                 }}
               >
-                Remove
+                <PiXBold strokeWidth={20} />
               </Button>
             </Friend>
           ))}
