@@ -5,6 +5,9 @@ import {
   YAxis,
   LabelList,
   ResponsiveContainer,
+  LabelProps,
+  Tooltip,
+  TooltipContentProps,
 } from "recharts";
 import { ChartContainer } from "./chart-container";
 import { FriendGuessChartResults } from "@/db/server-only";
@@ -12,6 +15,7 @@ import Image from "next/image";
 import { Stack } from "../ui/stack";
 import { Popover, PopoverTrigger } from "../ui/popover";
 import { PopoverArrow, PopoverContent } from "@radix-ui/react-popover";
+import { useState } from "react";
 
 export function FriendsGuessChartAlt({
   data,
@@ -51,13 +55,13 @@ export function FriendsGuessChart({
     label,
     value: result.length,
     barLabel: result.length
-      ? `${result.length} (${((result.length / totalResults) * 100).toFixed(2)}%)`
+      ? `${result.length}(${((result.length / totalResults) * 100).toFixed(0)}%)`
       : "",
     friends: result.map((r) => r.user),
   }));
   return (
     <ChartContainer title={"Friend Stats"}>
-      <ResponsiveContainer className={"pr-12"}>
+      <ResponsiveContainer>
         <BarChart
           layout="vertical"
           margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
@@ -82,27 +86,22 @@ export function FriendsGuessChart({
             padding={{ left: 0, right: 0 }}
             hide
           />
+          <Tooltip
+            cursor={false}
+            animationDuration={100}
+            content={FriendTooltip}
+          />
           <Bar
             dataKey="value"
             fill="#f56bb0"
             activeBar={{ fill: "hsl(333, 78%, 60%)" }}
             radius={[0, 5, 5, 0]}
           >
-            {chartData.map((d) => (
-              <div key={d.label} className="flex items-center gap-2">
-                <LabelList
-                  position="outside"
-                  className="fill-foreground font-bold"
-                  content={
-                    <FriendBubble
-                      data={
-                        d.friends[0] ?? { id: "", name: "Test", image: null }
-                      }
-                    />
-                  }
-                />
-              </div>
-            ))}
+            <LabelList
+              dataKey="friends"
+              className="fill-foreground z-10 font-bold"
+              content={(props) => <FriendBubbleLabel {...props} />}
+            />
             <LabelList
               position="insideRight"
               dataKey="barLabel"
@@ -115,37 +114,75 @@ export function FriendsGuessChart({
   );
 }
 
-function renderFriendBubbles({
-  friends,
-}: {
-  friends: FriendGuessChartResults[string][number]["user"][];
-}) {
-  return (
-    <div className="flex items-center gap-2">
-      {friends
-        .filter((f) => !!f)
-        .map((f) => (
-          <div key={f.id} className="flex items-center gap-2">
-            {f.image ? (
-              <FriendBubble data={f} />
-            ) : (
-              <PlaceholderImage name={f.name} />
-            )}
+function FriendTooltip({
+  active,
+  payload,
+  label,
+}: TooltipContentProps<string, string>) {
+  const people = payload.flatMap((p) => p.payload.friends);
+  if (active && payload && payload.length && people.length) {
+    return (
+      <div className="bg-primary-dark flex h-fit w-full min-w-48 max-w-72 flex-col gap-2 rounded-md p-3 shadow">
+        <span className="font-bold">
+          {label === "X" ? (
+            "Missed"
+          ) : (
+            <span>
+              {label} Guess{label !== "1" ? "es" : ""}
+            </span>
+          )}
+        </span>
+        {people.map((p) => (
+          <div className="inline-flex items-center gap-2" key={p.id}>
+            <FriendBubble data={p} />
+            {p.name}
           </div>
         ))}
-    </div>
+      </div>
+    );
+  }
+  return null;
+}
+
+function FriendBubbleLabel({
+  value,
+  ...props
+}: LabelProps & {
+  value: FriendGuessChartResults[string][number]["user"][];
+}) {
+  return (
+    <foreignObject
+      x={props.x}
+      y={props.y}
+      width={props.width}
+      height={props.height}
+    >
+      <div className="fade-in flex w-full items-center justify-start px-1.5 py-1">
+        {value
+          .filter((f) => !!f)
+          .slice(0, 5)
+          .map((f) => (
+            <span key={f.id} className="-mr-4">
+              <FriendBubble data={f} />
+            </span>
+          ))}
+      </div>
+    </foreignObject>
   );
 }
 
-function FriendBubble({
-  data,
-}: {
-  data: NonNullable<FriendGuessChartResults[string][number]["user"]>;
-}) {
+type StatFriend = NonNullable<FriendGuessChartResults[string][number]["user"]>;
+
+function FriendBubble({ data }: { data: StatFriend }) {
+  const [open, setOpen] = useState(false);
   return (
-    <Popover>
+    <Popover open={open}>
       <PopoverTrigger>
-        <div className="flex items-center gap-2">
+        <div
+          className="flex items-center gap-2"
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => setOpen(false)}
+        >
           {data.image ? (
             <Image
               src={data.image}
