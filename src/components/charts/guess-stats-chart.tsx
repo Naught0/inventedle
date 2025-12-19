@@ -31,7 +31,7 @@ function getPercentOfTotal(num: number, numGuesses: Record<string, number>) {
 
 export function GuessStatsChart({
   numGuesses,
-  title = "Global stats",
+  title = "Global",
 }: {
   numGuesses?: Record<string, number>;
   title?: string;
