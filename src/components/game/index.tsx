@@ -24,6 +24,7 @@ import { GuessStatsChart } from "../charts/guess-stats-chart";
 import { Separator } from "@radix-ui/react-separator";
 import { Hyperlink } from "../hyperlink";
 import { ImageWithCaption } from "../image-with-caption";
+import SimpleBarChart from "../charts/friends-guess-chart";
 
 export default function Game({
   invention,
@@ -214,6 +215,7 @@ export default function Game({
       </div>
       <Activity mode={gameOver && !!iotdStatsData ? "visible" : "hidden"}>
         <GuessStatsChart numGuesses={iotdStatsData} />
+        <SimpleBarChart />
       </Activity>
     </div>
   );
