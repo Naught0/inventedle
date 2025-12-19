@@ -4,6 +4,7 @@ import { format, isSameDay, subMonths } from "date-fns";
 import { db } from ".";
 import { getIOTD, getRandomInvention } from "./actions";
 import { type Metadata } from "next";
+import { FriendshipModel, ResultModel } from "./prisma/generated/models";
 
 /**
  * Creates an Invention of the Day unless one has already been created for today (EST)
@@ -184,4 +185,66 @@ export async function getFriendStatus(userId: string, friendId: string) {
       ],
     },
   });
+}
+
+export async function getIOTDFriendStats(iotdId: number, userId: string) {
+  const iotd = await db.inventionOfTheDay.findUnique({ where: { id: iotdId } });
+  if (!iotd) throw new Error("IOTD not found");
+
+  const user = await db.user.findUnique({
+    where: { id: userId },
+    include: {
+      friendRequestsReceived: {
+        include: {
+          requester: { select: { id: true, image: true, name: true } },
+        },
+      },
+      friendRequestsSent: {
+        include: {
+          recipient: { select: { id: true, image: true, name: true } },
+        },
+      },
+    },
+  });
+  if (!user) throw new Error("User not found");
+  const friends = [
+    ...user.friendRequestsSent
+      .filter((f) => f.status === "ACCEPTED")
+      .map((f) => f.recipient),
+    ...user.friendRequestsReceived
+      .filter((f) => f.status === "ACCEPTED")
+      .map((f) => f.requester),
+  ];
+
+  const results = await db.result.findMany({
+    where: {
+      user_id: {
+        in: friends.map((f) => f.id),
+      },
+    },
+  });
+  return results.reduce(
+    (acc, val) => {
+      if (!val.win && val.num_guesses >= 5) {
+        acc["X"].push(val);
+        return acc;
+      }
+      acc[val.num_guesses.toString()].push(val);
+      return acc;
+    },
+    {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      X: [],
+    } as Record<string, ResultModel[]>,
+  );
+}
+
+function getFriendFromFriendship(userId: string, friendship: FriendshipModel) {
+  if (friendship.recipientId === userId) return friendship.requester;
+  if (friendship.requesterId === userId) return friendship.recipient;
+  return null;
 }
