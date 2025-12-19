@@ -24,7 +24,8 @@ import { GuessStatsChart } from "../charts/guess-stats-chart";
 import { Separator } from "@radix-ui/react-separator";
 import { Hyperlink } from "../hyperlink";
 import { ImageWithCaption } from "../image-with-caption";
-import { SimpleBarChart } from "../charts/friends-guess-chart";
+import { FriendsGuessChart } from "../charts/friends-guess-chart";
+import type { FriendGuessChartResults } from "@/db/server-only";
 
 export default function Game({
   invention,
@@ -80,10 +81,11 @@ export default function Game({
     enabled: gameOver,
   });
 
-  const { data: friendIOTDStats, refetch: refetchFriendIOTDStats} = useQuery(
-    {queryKey: ["friendIOTDStats", iotdId], queryFn: () => }
-
-  )
+  const { data: friendIOTDStats, refetch: refetchFriendIOTDStats } = useQuery({
+    queryKey: ["friendIOTDStats", iotdId],
+    queryFn: () => makeIotdFriendStatsRequest(iotdId),
+    enabled: gameOver,
+  });
 
   useEffect(
     function syncGameState() {
@@ -220,7 +222,7 @@ export default function Game({
         </div>
       </div>
       <Activity mode={gameOver && !!iotdStatsData ? "visible" : "hidden"}>
-        <SimpleBarChart />
+        <FriendsGuessChart data={friendIOTDStats} />
         <GuessStatsChart numGuesses={iotdStatsData} />
       </Activity>
     </div>
@@ -236,7 +238,7 @@ async function makeIotdStatsRequest(iotdId: number) {
 async function makeIotdFriendStatsRequest(iotdId: number) {
   return (await (
     await fetch(`/api/game/${iotdId}/stats/friends`, { method: "GET" })
-  ).json()) as Record<string, number>;
+  ).json()) as FriendGuessChartResults;
 }
 
 export { Game };
