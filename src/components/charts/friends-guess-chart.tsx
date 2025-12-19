@@ -13,8 +13,6 @@ import { ChartContainer } from "./chart-container";
 import { FriendGuessChartResults } from "@/db/server-only";
 import Image from "next/image";
 import { Stack } from "../ui/stack";
-import { Popover, PopoverTrigger } from "../ui/popover";
-import { PopoverArrow, PopoverContent } from "@radix-ui/react-popover";
 import { useState } from "react";
 
 export function FriendsGuessChartAlt({
