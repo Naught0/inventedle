@@ -10,6 +10,7 @@ import {
 } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Bar } from "react-chartjs-2";
+import { ChartContainer } from "./chart-container";
 
 ChartJS.register(
   ArcElement,
@@ -38,8 +39,7 @@ export function GuessStatsChart({
   if (!numGuesses) return null;
 
   return (
-    <div className="bg-accent grid max-w-full rounded-lg p-3 lg:p-5">
-      <h4 className="text-center text-xl font-extralight uppercase">{title}</h4>
+    <ChartContainer title={title}>
       <div className="relative max-h-[300px] w-full">
         <Bar
           className="w-[512px] max-w-full"
@@ -132,6 +132,6 @@ export function GuessStatsChart({
           }}
         />
       </div>
-    </div>
+    </ChartContainer>
   );
 }
