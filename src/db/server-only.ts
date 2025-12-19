@@ -4,7 +4,7 @@ import { format, isSameDay, subMonths } from "date-fns";
 import { db } from ".";
 import { getIOTD, getRandomInvention } from "./actions";
 import { type Metadata } from "next";
-import { FriendshipModel, ResultModel } from "./prisma/generated/models";
+import { FriendshipModel, ResultGetPayload } from "./prisma/generated/models";
 
 /**
  * Creates an Invention of the Day unless one has already been created for today (EST)
@@ -220,11 +220,27 @@ export async function getIOTDFriendStats(iotdId: number, userId: string) {
   const friends = await db.user.findMany();
 
   const results = await db.result.findMany({
-    where: {
-      iotd_id: iotdId,
-      user_id: {
-        in: friends.map((f) => f.id),
+    select: {
+      id: true,
+      num_guesses: true,
+      win: true,
+      user: {
+        select: {
+          id: true,
+          name: true,
+          image: true,
+        },
       },
+    },
+    where: {
+      AND: [
+        { iotd_id: iotdId },
+        {
+          user_id: {
+            in: friends.map((f) => f.id),
+          },
+        },
+      ],
     },
   });
   return results.reduce(
@@ -243,9 +259,29 @@ export async function getIOTDFriendStats(iotdId: number, userId: string) {
       "4": [],
       "5": [],
       X: [],
-    } as Record<string, ResultModel[]>,
+    } as Record<
+      string,
+      ResultGetPayload<{
+        select: {
+          id: true;
+          num_guesses: true;
+          win: true;
+          user: {
+            select: {
+              id: true;
+              name: true;
+              image: true;
+            };
+          };
+        };
+      }>[]
+    >,
   );
 }
+
+export type FriendGuessChartResults = Awaited<
+  ReturnType<typeof getIOTDFriendStats>
+>;
 
 function getFriendFromFriendship(userId: string, friendship: FriendshipModel) {
   if (friendship.recipientId === userId) return friendship.requester;
