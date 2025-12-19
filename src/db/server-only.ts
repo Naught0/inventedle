@@ -191,33 +191,37 @@ export async function getIOTDFriendStats(iotdId: number, userId: string) {
   const iotd = await db.inventionOfTheDay.findUnique({ where: { id: iotdId } });
   if (!iotd) throw new Error("IOTD not found");
 
-  const user = await db.user.findUnique({
-    where: { id: userId },
-    include: {
-      friendRequestsReceived: {
-        include: {
-          requester: { select: { id: true, image: true, name: true } },
-        },
-      },
-      friendRequestsSent: {
-        include: {
-          recipient: { select: { id: true, image: true, name: true } },
-        },
-      },
-    },
-  });
-  if (!user) throw new Error("User not found");
-  const friends = [
-    ...user.friendRequestsSent
-      .filter((f) => f.status === "ACCEPTED")
-      .map((f) => f.recipient),
-    ...user.friendRequestsReceived
-      .filter((f) => f.status === "ACCEPTED")
-      .map((f) => f.requester),
-  ];
+  // FIXME: Make this return only friends
+  // const user = await db.user.findUnique({
+  //   where: { id: userId },
+  //   include: {
+  //     friendRequestsReceived: {
+  //       include: {
+  //         requester: { select: { id: true, image: true, name: true } },
+  //       },
+  //     },
+  //     friendRequestsSent: {
+  //       include: {
+  //         recipient: { select: { id: true, image: true, name: true } },
+  //       },
+  //     },
+  //   },
+  // });
+  // if (!user) throw new Error("User not found");
+  // const friends = [
+  //   ...user.friendRequestsSent
+  //     .filter((f) => f.status === "ACCEPTED")
+  //     .map((f) => f.recipient),
+  //   ...user.friendRequestsReceived
+  //     .filter((f) => f.status === "ACCEPTED")
+  //     .map((f) => f.requester),
+  // ];
+
+  const friends = await db.user.findMany();
 
   const results = await db.result.findMany({
     where: {
+      iotd_id: iotdId,
       user_id: {
         in: friends.map((f) => f.id),
       },

@@ -8,7 +8,7 @@ import {
 } from "recharts";
 import { ChartContainer } from "./chart-container";
 
-const SimpleBarChart = () => {
+export function SimpleBarChart() {
   return (
     <ChartContainer title={"Friend Stats"}>
       <ResponsiveContainer className={"w-[512px]"}>
@@ -50,6 +50,4 @@ const SimpleBarChart = () => {
       </ResponsiveContainer>
     </ChartContainer>
   );
-};
-
-export default SimpleBarChart;
+}
