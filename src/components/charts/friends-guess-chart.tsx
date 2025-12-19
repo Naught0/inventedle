@@ -60,7 +60,7 @@ export function FriendsGuessChart({
     friends: result.map((r) => r.user),
   }));
   return (
-    <ChartContainer title={"Friend Stats"}>
+    <ChartContainer title={"Friends"}>
       <ResponsiveContainer>
         <BarChart
           layout="vertical"
@@ -90,6 +90,7 @@ export function FriendsGuessChart({
             cursor={false}
             animationDuration={100}
             content={FriendTooltip}
+            allowEscapeViewBox={{ x: false, y: true }}
           />
           <Bar
             dataKey="value"
@@ -98,9 +99,9 @@ export function FriendsGuessChart({
             radius={[0, 5, 5, 0]}
           >
             <LabelList
-              dataKey="friends"
-              className="fill-foreground z-10 font-bold"
-              content={(props) => <FriendBubbleLabel {...props} />}
+              dataKey={(data) => data.friends}
+              className="fill-foreground font-bold"
+              content={<FriendBubbleLabel />}
             />
             <LabelList
               position="insideRight"
@@ -123,7 +124,7 @@ function FriendTooltip({
   if (active && payload && payload.length && people.length) {
     return (
       <div className="bg-primary-dark flex h-fit w-full min-w-48 max-w-72 flex-col gap-2 rounded-md p-3 shadow">
-        <span className="font-bold">
+        <span className="text-center font-bold">
           {label === "X" ? (
             "Missed"
           ) : (
@@ -144,25 +145,29 @@ function FriendTooltip({
   return null;
 }
 
-function FriendBubbleLabel({
-  value,
-  ...props
-}: LabelProps & {
+type FriendBubbleLabelProps = LabelProps & {
   value: FriendGuessChartResults[string][number]["user"][];
-}) {
+};
+function FriendBubbleLabel({ value, ...props }: FriendBubbleLabelProps) {
+  const [hover, setHover] = useState(false);
   return (
     <foreignObject
       x={props.x}
       y={props.y}
       width={props.width}
       height={props.height}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
     >
       <div className="fade-in flex w-full items-center justify-start px-1.5 py-1">
         {value
           .filter((f) => !!f)
           .slice(0, 5)
           .map((f) => (
-            <span key={f.id} className="-mr-4">
+            <span
+              key={f.id}
+              className={`transition-all ${hover ? "mr-0.5" : "-mr-4"}`}
+            >
               <FriendBubble data={f} />
             </span>
           ))}
@@ -174,40 +179,27 @@ function FriendBubbleLabel({
 type StatFriend = NonNullable<FriendGuessChartResults[string][number]["user"]>;
 
 function FriendBubble({ data }: { data: StatFriend }) {
-  const [open, setOpen] = useState(false);
   return (
-    <Popover open={open}>
-      <PopoverTrigger>
-        <div
-          className="flex items-center gap-2"
-          onMouseEnter={() => setOpen(true)}
-          onMouseLeave={() => setOpen(false)}
-        >
-          {data.image ? (
-            <Image
-              src={data.image}
-              width={32}
-              height={32}
-              alt={`${data.name} profile picture`}
-              className="border-foreground rounded-full border-2 shadow"
-            />
-          ) : (
-            <PlaceholderImage name={data.name} />
-          )}
-        </div>
-      </PopoverTrigger>
-      <PopoverContent className="bg-primary-dark rounded-md px-4 py-2">
-        <PopoverArrow />
-        {data.name}
-      </PopoverContent>
-    </Popover>
+    <div className="flex items-center gap-2">
+      {data.image ? (
+        <Image
+          src={data.image}
+          width={32}
+          height={32}
+          alt={`${data.name} profile picture`}
+          className="border-foreground rounded-full border-2 shadow-md"
+        />
+      ) : (
+        <PlaceholderImage name={data.name} />
+      )}
+    </div>
   );
 }
 
 function PlaceholderImage({ name }: { name: string }) {
   return (
-    <div className="border-primary-foreground bg-primary text-primary-foreground flex size-4 items-center justify-center gap-2 rounded-full">
-      <span>{name[0].toUpperCase()}</span>
+    <div className="text-primary-foreground flex size-8 items-center justify-center rounded-full border-2 border-white bg-blue-300">
+      <span className="font-extrabold">{name[0].toUpperCase()}</span>
     </div>
   );
 }
