@@ -286,9 +286,3 @@ export async function getIOTDFriendStats(iotdId: number, userId: string) {
 export type FriendGuessChartResults = Awaited<
   ReturnType<typeof getIOTDFriendStats>
 >;
-
-function getFriendFromFriendship(userId: string, friendship: FriendshipModel) {
-  if (friendship.recipientId === userId) return friendship.requester;
-  if (friendship.requesterId === userId) return friendship.recipient;
-  return null;
-}
