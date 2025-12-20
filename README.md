@@ -19,8 +19,9 @@ TODO:
 - [x] Loading states
 - [ ] CI/CD pipeline
 - [ ] page transitions/animation fadein (all css?)
-- [ ] friends & privacy levels  
-    - [ ] public
-    - [ ] friends only
+- [x] friends & privacy levels  
+    - [x] public
+    - [x] friends only
     - [ ] none
 - [ ] Manually go thru wiki for inventions for variety
+- [ ] Sidebar for easier access to friends/friend code in footer
