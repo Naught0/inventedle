@@ -1,5 +1,5 @@
 "use client";
-import { signIn, signOut, useSession } from "@/lib/auth-client";
+import { signOut, useSession } from "@/lib/auth-client";
 import { Button, buttonVariants } from "./ui/button";
 import Image from "next/image";
 import {
@@ -15,7 +15,6 @@ import {
   PiUserGearFill,
 } from "react-icons/pi";
 import { CgSpinnerAlt } from "react-icons/cg";
-import { BiLogoDiscordAlt, BiLogoGoogle } from "react-icons/bi";
 import Link from "next/link";
 import { Stack } from "./ui/stack";
 import { useRouter } from "next/navigation";
