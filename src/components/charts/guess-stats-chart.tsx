@@ -1,27 +1,6 @@
 "use client";
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-} from "chart.js";
-import ChartDataLabels from "chartjs-plugin-datalabels";
-import { Bar } from "react-chartjs-2";
-
-ChartJS.register(
-  ArcElement,
-  Tooltip,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  ChartDataLabels,
-);
-
-const labels = ["1", "2", "3", "4", "5", "X"];
+import { Bar, BarChart, YAxis, XAxis, Tooltip, LabelList } from "recharts";
+import { ChartContainer } from "./chart-container";
 
 function getPercentOfTotal(num: number, numGuesses: Record<string, number>) {
   const total = Object.values(numGuesses).reduce((a, b) => a + b, 0);
@@ -30,7 +9,7 @@ function getPercentOfTotal(num: number, numGuesses: Record<string, number>) {
 
 export function GuessStatsChart({
   numGuesses,
-  title = "Global stats",
+  title = "Global",
 }: {
   numGuesses?: Record<string, number>;
   title?: string;
@@ -38,100 +17,50 @@ export function GuessStatsChart({
   if (!numGuesses) return null;
 
   return (
-    <div className="bg-accent grid max-w-full rounded-lg p-3 lg:p-5">
-      <h4 className="text-center text-xl font-extralight uppercase">{title}</h4>
-      <div className="relative max-h-[300px] w-full">
-        <Bar
-          className="w-[512px] max-w-full"
-          plugins={[ChartDataLabels]}
-          height={400}
-          options={{
-            maintainAspectRatio: false,
-            responsive: true,
-            indexAxis: "y",
-            scales: {
-              y: {
-                grid: { display: false },
-                border: { display: false },
-                ticks: {
-                  z: 1,
-                  color: "#bbb",
-                  font: {
-                    family: "JetBrains Mono",
-                    size: 18,
-                    weight: "bolder",
-                  },
-                },
-              },
-              x: {
-                grid: { display: false },
-                border: { display: false },
-                ticks: {
-                  display: false,
-                  z: 1,
-                  color: "#bbb",
-                  stepSize: 1,
-                  font: {
-                    family: "JetBrains Mono",
-                    size: 18,
-                    weight: "bolder",
-                  },
-                },
-              },
-            },
-            plugins: {
-              legend: { display: false },
-              tooltip: { enabled: false },
-              datalabels: {
-                clamp: true,
-                formatter(value) {
-                  if (value === 0) {
-                    return "";
-                  }
-                  return `${value}(${getPercentOfTotal(
-                    value,
-                    numGuesses,
-                  ).toFixed()}%)`;
-                },
-                color: "hsl(330 80% 97%)",
-                font: {
-                  family: "JetBrains Mono",
-                  size: 16,
-                  weight: "bolder",
-                },
-              },
-            },
-          }}
-          data={{
-            labels,
-            datasets: [
-              {
-                borderRadius: 4,
-                label: "Number of Guesses",
-                data: labels.map(
-                  (l) => numGuesses?.[l as keyof typeof numGuesses] ?? 0,
-                ),
-                hoverBackgroundColor(ctx) {
-                  const value = ctx.dataset.data[ctx.dataIndex];
-                  if (value === 0) {
-                    return "hsl(333 16% 21%)";
-                  }
-                  return "hsl(333 77% 60%)";
-                },
-                backgroundColor: (props) => {
-                  const value = props.dataset.data[props.dataIndex];
-                  if (value === 0) {
-                    return "hsl(333 16% 21%)";
-                  }
-                  return "#f56bb0";
-                },
-                maxBarThickness: 50,
-                minBarLength: 55,
-              },
-            ],
-          }}
+    <ChartContainer title={title}>
+      <BarChart
+        layout="vertical"
+        margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
+        width="100%"
+        height="100%"
+        data={Object.entries(numGuesses).map(([label, value]) => ({
+          label,
+          value,
+          barLabel:
+            value !== 0
+              ? `${value} (${getPercentOfTotal(value, numGuesses).toFixed(0)}%)`
+              : "",
+        }))}
+      >
+        <YAxis
+          type="category"
+          dataKey="label"
+          tick={{ fill: "#eee" }}
+          fontSize={18}
+          tickLine={false}
+          axisLine={false}
+          tickMargin={10}
+          padding={{ top: 0, bottom: 0 }}
         />
-      </div>
-    </div>
+        <XAxis
+          type="number"
+          dataKey={"value"}
+          padding={{ left: 0, right: 0 }}
+          hide
+        />
+        <Bar
+          dataKey="value"
+          fill="#f56bb0"
+          activeBar={{ fill: "hsl(333, 78%, 60%)" }}
+          radius={[0, 5, 5, 0]}
+        >
+          <LabelList
+            position="insideRight"
+            dataKey="barLabel"
+            className="fill-foreground font-bold"
+          />
+        </Bar>
+      </BarChart>
+    </ChartContainer>
   );
 }

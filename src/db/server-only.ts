@@ -4,6 +4,7 @@ import { format, isSameDay, subMonths } from "date-fns";
 import { db } from ".";
 import { getIOTD, getRandomInvention } from "./actions";
 import { type Metadata } from "next";
+import { FriendshipModel, ResultGetPayload } from "./prisma/generated/models";
 
 /**
  * Creates an Invention of the Day unless one has already been created for today (EST)
@@ -94,11 +95,18 @@ async function getGuessStats({
     },
   });
 
-  // low to high
-  wins.sort((a, b) => a.num_guesses - b.num_guesses);
-  const stats = Object.fromEntries(
-    wins.map((r) => [r.num_guesses, r._count._all]),
-  ) as Stats;
+  const stats: Record<"1" | "2" | "3" | "4" | "5" | "X", number> = {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    X: 0,
+  };
+
+  for (const w of wins) {
+    stats[w.num_guesses.toString() as keyof Stats] = w._count._all;
+  }
   stats["X"] = losses;
   return stats;
 }
@@ -129,3 +137,152 @@ export async function generateIOTDMeta(iotdId?: number): Promise<Metadata> {
     },
   };
 }
+
+export async function getFriendship(userId: string) {
+  if (!userId) return [];
+
+  return await db.friendship.findMany({
+    where: {
+      OR: [
+        {
+          recipientId: userId,
+        },
+        {
+          requesterId: userId,
+        },
+      ],
+    },
+    include: {
+      recipient: {
+        select: {
+          id: true,
+          name: true,
+          image: true,
+          isPublic: true,
+        },
+      },
+      requester: {
+        select: {
+          id: true,
+          name: true,
+          image: true,
+          isPublic: true,
+        },
+      },
+    },
+    omit: {
+      recipientId: true,
+      requesterId: true,
+    },
+  });
+}
+
+export async function getFriendStatus(userId: string, friendId: string) {
+  return await db.friendship.findFirst({
+    where: {
+      OR: [
+        {
+          recipientId: userId,
+          requesterId: friendId,
+        },
+        {
+          recipientId: friendId,
+          requesterId: userId,
+        },
+      ],
+    },
+  });
+}
+
+export async function getIOTDFriendStats(iotdId: number, userId: string) {
+  const iotd = await db.inventionOfTheDay.findUnique({ where: { id: iotdId } });
+  if (!iotd) throw new Error("IOTD not found");
+
+  const user = await db.user.findUnique({
+    where: { id: userId },
+    include: {
+      friendRequestsReceived: {
+        include: {
+          requester: { select: { id: true, image: true, name: true } },
+        },
+      },
+      friendRequestsSent: {
+        include: {
+          recipient: { select: { id: true, image: true, name: true } },
+        },
+      },
+    },
+  });
+  if (!user) throw new Error("User not found");
+  const friends = [
+    ...user.friendRequestsSent
+      .filter((f) => f.status === "ACCEPTED")
+      .map((f) => f.recipient),
+    ...user.friendRequestsReceived
+      .filter((f) => f.status === "ACCEPTED")
+      .map((f) => f.requester),
+  ];
+
+  const results = await db.result.findMany({
+    select: {
+      id: true,
+      num_guesses: true,
+      win: true,
+      user: {
+        select: {
+          id: true,
+          name: true,
+          image: true,
+        },
+      },
+    },
+    where: {
+      AND: [
+        { iotd_id: iotdId },
+        {
+          user_id: {
+            in: friends.map((f) => f.id),
+          },
+        },
+      ],
+    },
+  });
+  return results.reduce(
+    (acc, val) => {
+      if (!val.win && val.num_guesses >= 5) {
+        acc["X"].push(val);
+        return acc;
+      }
+      acc[val.num_guesses.toString()].push(val);
+      return acc;
+    },
+    {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      X: [],
+    } as Record<
+      string,
+      ResultGetPayload<{
+        select: {
+          id: true;
+          num_guesses: true;
+          win: true;
+          user: {
+            select: {
+              id: true;
+              name: true;
+              image: true;
+            };
+          };
+        };
+      }>[]
+    >,
+  );
+}
+
+export type FriendGuessChartResults = Awaited<
+  ReturnType<typeof getIOTDFriendStats>
+>;

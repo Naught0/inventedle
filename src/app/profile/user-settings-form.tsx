@@ -5,14 +5,15 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { CopyButton } from "@/components/ui/copy-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 import { Stack } from "@/components/ui/stack";
 import { updateUser } from "@/db/server-actions";
 import { useSession } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { useForm, useStore } from "@tanstack/react-form";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CgSpinner } from "react-icons/cg";
+import { SectionHeading } from "./section-heading";
 
 function FormField({
   children,
@@ -84,7 +85,7 @@ export function UserSettingsForm() {
   return (
     <form action={form.handleSubmit} className="w-full">
       <Stack className="w-full gap-3">
-        <Stack>
+        <Stack className="mt-12">
           <SectionHeading>Privacy</SectionHeading>
           <form.Field name={"isPublic"}>
             {(field) => {
@@ -184,9 +185,12 @@ export function UserSettingsForm() {
               return (
                 <FormField className="flex items-center rounded-lg">
                   {field.state.value && (
-                    <img
+                    <Image
                       src={field.state.value}
                       className="w-36 rounded-full shadow shadow-black"
+                      alt="profile picture"
+                      width={144}
+                      height={144}
                     />
                   )}
                   <Stack horizontal>
@@ -278,14 +282,5 @@ export function UserSettingsForm() {
         </Stack>
       </Stack>
     </form>
-  );
-}
-
-function SectionHeading({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="my-3 flex flex-grow flex-col items-start gap-3">
-      <h3 className="text-2xl font-extralight">{children}</h3>
-      <Separator className="bg-status-error-foreground/40" />
-    </div>
   );
 }

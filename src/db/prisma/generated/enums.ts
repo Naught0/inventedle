@@ -11,7 +11,8 @@
 
 export const FriendStatus = {
   PENDING: 'PENDING',
-  ACCEPTED: 'ACCEPTED'
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED'
 } as const
 
 export type FriendStatus = (typeof FriendStatus)[keyof typeof FriendStatus]
