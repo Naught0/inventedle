@@ -10,6 +10,8 @@ import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { RefreshCw } from "lucide-react";
 import { PiXBold } from "react-icons/pi";
+import Link from "next/link";
+import { Hyperlink } from "@/components/hyperlink";
 
 export function FriendsSection({ session }: { session: SessionWithUser }) {
   const {
@@ -136,7 +138,9 @@ export function Friend({
         />
       )}
       <div className="flex flex-col">
-        <span>{data.name}</span>
+        <Hyperlink href={`/stats/${data.id}`}>
+          <span>{data.name}</span>
+        </Hyperlink>
         <time className="text-muted-foreground text-xs italic">
           <span>{data.status === "ACCEPTED" ? "since " : "on "}</span>
           {format(data.createdAt, "yyyy-MM-dd")}
