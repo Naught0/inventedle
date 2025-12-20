@@ -55,9 +55,42 @@ export default async function Page({
   if (!user) notFound();
 
   const session = await getServerSession();
-  if (session?.user.id !== userId) {
-    if (!user.isPublic) notFound();
+  let isFriends = false;
+
+  if (session) {
+    const friends = await db.user.findUnique({
+      where: {
+        id: session.user.id,
+      },
+      select: {
+        friendRequestsSent: {
+          select: { recipientId: true },
+          where: {
+            status: "ACCEPTED",
+          },
+        },
+        friendRequestsReceived: {
+          select: { requesterId: true },
+          where: {
+            status: "ACCEPTED",
+          },
+        },
+      },
+    });
+
+    const ids = [
+      ...(friends?.friendRequestsSent.map((f) => f.recipientId) ?? []),
+      ...(friends?.friendRequestsReceived.map((f) => f.requesterId) ?? []),
+    ];
+
+    if (ids.includes(userId)) {
+      isFriends = true;
+    }
   }
+  if (session?.user.id !== userId) {
+    if (!user.isPublic && !isFriends) notFound();
+  }
+
   const friendRequest = session?.user.id
     ? await db.friendship.findUnique({
         where: {
