@@ -1,5 +1,5 @@
 "use client";
-import { Bar, BarChart, YAxis, XAxis, Tooltip, LabelList } from "recharts";
+import { Bar, BarChart, YAxis, XAxis, LabelList } from "recharts";
 import { ChartContainer } from "./chart-container";
 
 function getPercentOfTotal(num: number, numGuesses: Record<string, number>) {

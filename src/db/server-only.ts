@@ -4,7 +4,7 @@ import { format, isSameDay, subMonths } from "date-fns";
 import { db } from ".";
 import { getIOTD, getRandomInvention } from "./actions";
 import { type Metadata } from "next";
-import { FriendshipModel, ResultGetPayload } from "./prisma/generated/models";
+import { ResultGetPayload } from "./prisma/generated/models";
 
 /**
  * Creates an Invention of the Day unless one has already been created for today (EST)
