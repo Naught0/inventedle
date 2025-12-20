@@ -6,11 +6,11 @@ import { LoadingOverlay } from "@/components/ui/loading-overlay";
 import { Stack } from "@/components/ui/stack";
 import Image from "next/image";
 import { PropsWithChildren } from "react";
-import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { RefreshCw } from "lucide-react";
 import { PiXBold } from "react-icons/pi";
 import { Hyperlink } from "@/components/hyperlink";
+import { Separator } from "@/components/ui/separator";
 
 export function FriendsSection({ session }: { session: SessionWithUser }) {
   const {
@@ -93,15 +93,19 @@ export function FriendsSection({ session }: { session: SessionWithUser }) {
           </h3>
           {friends.map((f) => (
             <Friend key={f.id} data={f}>
+              <Separator orientation="vertical" className="h-6" />
               <Button
+                variant={"link"}
                 size={"sm"}
-                className="aspect-square rounded-md"
+                className="rounded-md p-0"
                 onClick={() => {
+                  if (!confirm(`Break up with ${f.name}?`)) return;
+
                   deleteFriend(f.friendshipId);
                   refetch();
                 }}
               >
-                <PiXBold strokeWidth={20} />
+                <PiXBold className="text-base" strokeWidth={15} />
               </Button>
             </Friend>
           ))}
@@ -133,17 +137,13 @@ export function Friend({
           width={32}
           height={32}
           alt={`${data.name} profile picture`}
-          className="rounded-full"
+          className="size-8 rounded-full"
         />
       )}
       <div className="flex flex-col">
         <Hyperlink href={`/stats/${data.id}`}>
           <span>{data.name}</span>
         </Hyperlink>
-        <time className="text-muted-foreground text-xs italic">
-          <span>{data.status === "ACCEPTED" ? "since " : "on "}</span>
-          {format(data.createdAt, "yyyy-MM-dd")}
-        </time>
       </div>
       {children}
     </Stack>
