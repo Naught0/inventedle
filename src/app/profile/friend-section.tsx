@@ -11,6 +11,7 @@ import { RefreshCw } from "lucide-react";
 import { PiXBold } from "react-icons/pi";
 import { Hyperlink } from "@/components/hyperlink";
 import { Separator } from "@/components/ui/separator";
+import { CopyButton } from "@/components/ui/copy-button";
 
 export function FriendsSection({ session }: { session: SessionWithUser }) {
   const {
@@ -25,27 +26,61 @@ export function FriendsSection({ session }: { session: SessionWithUser }) {
   } = useFriendship({
     userId: session?.user.id,
   });
+  const addFriendLink = `${window.location.origin}/add-friend/${session?.user.id}`;
 
   return (
     <>
-      <SectionHeading>
-        Friends
-        <Button
-          title={"Refresh friends"}
-          aria-label={"Refresh friends"}
-          variant={"link"}
-          size={"icon"}
-          type="button"
-          onClick={() => refetch()}
-        >
-          <RefreshCw
-            size={18}
-            className={isLoading ? "animate-spin" : "hover:animate-spin"}
+      <Stack>
+        <SectionHeading>
+          Friends
+          <Button
+            title={"Refresh friends"}
+            aria-label={"Refresh friends"}
+            variant={"link"}
+            size={"icon"}
+            type="button"
+            onClick={() => refetch()}
+          >
+            <RefreshCw
+              size={18}
+              className={isLoading ? "animate-spin" : "hover:animate-spin"}
+            />
+          </Button>
+        </SectionHeading>
+        <span className="inline-flex items-center">
+          <span className="ml-2 text-xs">Friend link:</span>
+          <CopyButton
+            value={addFriendLink}
+            variant={"ghost"}
+            className="p-1.5"
           />
-        </Button>
-      </SectionHeading>
+          <Hyperlink className="text-xs" href={addFriendLink}>
+            /{addFriendLink.split("/").slice(-2).join("/")}
+          </Hyperlink>
+        </span>
+      </Stack>
       <div className="relative flex w-full flex-col items-start gap-6 py-3">
         {isLoading && <LoadingOverlay />}
+        <Section>
+          {friends.map((f) => (
+            <Friend key={f.id} data={f}>
+              <Separator orientation="vertical" className="h-6" />
+              <Button
+                variant={"link"}
+                size={"sm"}
+                className="rounded-md p-0"
+                onClick={() => {
+                  if (!confirm(`Break up with ${f.name}?`)) return;
+
+                  deleteFriend(f.friendshipId);
+                  refetch();
+                }}
+              >
+                <PiXBold className="text-base" strokeWidth={15} />
+              </Button>
+            </Friend>
+          ))}
+        </Section>
         <Section>
           <h3 className="mb-2 text-xl font-bold">Sent</h3>
           {outgoing.map((f) => (
@@ -84,29 +119,6 @@ export function FriendsSection({ session }: { session: SessionWithUser }) {
                   Decline
                 </Button>
               </Stack>
-            </Friend>
-          ))}
-        </Section>
-        <Section>
-          <h3 className="mb-2 text-xl font-bold">
-            Friends {friends?.length ? `(${friends.length})` : ""}
-          </h3>
-          {friends.map((f) => (
-            <Friend key={f.id} data={f}>
-              <Separator orientation="vertical" className="h-6" />
-              <Button
-                variant={"link"}
-                size={"sm"}
-                className="rounded-md p-0"
-                onClick={() => {
-                  if (!confirm(`Break up with ${f.name}?`)) return;
-
-                  deleteFriend(f.friendshipId);
-                  refetch();
-                }}
-              >
-                <PiXBold className="text-base" strokeWidth={15} />
-              </Button>
             </Friend>
           ))}
         </Section>

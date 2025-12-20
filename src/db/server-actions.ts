@@ -2,6 +2,7 @@
 import { auth, getServerSession, SessionWithUser } from "@/lib/auth";
 import { headers as nextHeaders } from "next/headers";
 import { db } from ".";
+import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/headers";
 
 export async function updateUser(
   user: Pick<
@@ -19,19 +20,25 @@ export async function updateUser(
 
 export async function makeFriendRequest({
   recipientId,
+  headers,
 }: {
   recipientId: string;
+  headers?: ReadonlyHeaders;
 }) {
-  const session = await getServerSession();
+  const session = await getServerSession({ headers });
   if (!session) throw new Error("User not authenticated");
   if (session.user.id === recipientId)
     throw new Error("You can't friend yourself.");
 
-  return await db.friendship.create({
-    data: {
-      recipientId,
-      requesterId: session.user.id,
-      status: "PENDING",
-    },
-  });
+  try {
+    return await db.friendship.create({
+      data: {
+        recipientId,
+        requesterId: session.user.id,
+        status: "PENDING",
+      },
+    });
+  } catch {
+    throw new Error("Error adding friend :(");
+  }
 }

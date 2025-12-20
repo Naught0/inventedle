@@ -96,7 +96,7 @@ export function UserSettingsForm() {
                       <CgSpinner className="animate-spin text-4xl" />
                     </div>
                   )}
-                  <Label className="inline-flex items-baseline justify-start gap-2">
+                  <Label className="inline-flex items-center justify-start gap-2">
                     <Checkbox
                       checked={field.state.value}
                       onCheckedChange={(e) => {
@@ -109,11 +109,10 @@ export function UserSettingsForm() {
                     <Stack className="gap-0">
                       <span>Public profile</span>
                       <span className="text-muted-foreground text-sm font-normal">
-                        Your profile{" "}
-                        <strong>
-                          {session?.user.isPublic ? "IS" : "IS NOT"}
-                        </strong>{" "}
-                        visible to everyone
+                        Your profile is visible to{" "}
+                        <span className="underline underline-offset-4">
+                          {session?.user.isPublic ? "everyone" : "friends only"}
+                        </span>
                       </span>
                     </Stack>
                   </Label>

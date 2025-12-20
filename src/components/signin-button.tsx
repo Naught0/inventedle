@@ -18,6 +18,9 @@ import { CgSpinnerAlt } from "react-icons/cg";
 import { BiLogoDiscordAlt, BiLogoGoogle } from "react-icons/bi";
 import Link from "next/link";
 import { Stack } from "./ui/stack";
+import { useRouter } from "next/navigation";
+import { DiscordButton } from "./ui/discord-button";
+import { GoogleButton } from "./ui/google-button";
 
 function MenuItem({ children }: { children: React.ReactNode }) {
   return (
@@ -29,6 +32,7 @@ function MenuItem({ children }: { children: React.ReactNode }) {
 
 function Menu({ signedIn, userId }: { signedIn: boolean; userId?: string }) {
   const children = [];
+  const router = useRouter();
 
   if (signedIn) {
     children.push(
@@ -62,7 +66,10 @@ function Menu({ signedIn, userId }: { signedIn: boolean; userId?: string }) {
         <Button
           variant="ghost"
           className="inline-flex w-full items-center gap-2"
-          onClick={() => void signOut()}
+          onClick={() => {
+            void signOut();
+            router.push("/");
+          }}
         >
           <PiSignOutBold className="text-2xl" />
           Sign out
@@ -72,35 +79,10 @@ function Menu({ signedIn, userId }: { signedIn: boolean; userId?: string }) {
   } else {
     children.push(
       <MenuItem key="discord-sign-in">
-        <Button
-          variant="ghost"
-          className="w-full"
-          onClick={() =>
-            signIn.social({
-              provider: "discord",
-            })
-          }
-        >
-          <span className="inline-flex items-center gap-3 font-normal">
-            <BiLogoDiscordAlt className="text-3xl" />
-            Discord
-          </span>
-        </Button>
+        <DiscordButton />
       </MenuItem>,
       <MenuItem key="google-sign-in">
-        <Button
-          variant="ghost"
-          className="w-full"
-          onClick={() =>
-            signIn.social({
-              provider: "google",
-            })
-          }
-        >
-          <span className="inline-flex items-center gap-3 font-normal">
-            <BiLogoGoogle className="text-3xl" /> Google
-          </span>
-        </Button>
+        <GoogleButton />
       </MenuItem>,
     );
   }
