@@ -10,7 +10,6 @@ import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { RefreshCw } from "lucide-react";
 import { PiXBold } from "react-icons/pi";
-import Link from "next/link";
 import { Hyperlink } from "@/components/hyperlink";
 
 export function FriendsSection({ session }: { session: SessionWithUser }) {
