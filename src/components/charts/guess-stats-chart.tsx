@@ -28,13 +28,15 @@ export function GuessStatsChart({
       <ResponsiveContainer>
         <BarChart
           layout="vertical"
-          margin={{ top: 10, right: 5, left: 5, bottom: 5 }}
+          margin={{ top: 10, bottom: 0, right: 0, left: 0 }}
+          width="100%"
+          height="100%"
           data={Object.entries(numGuesses).map(([label, value]) => ({
             label,
             value,
             barLabel:
               value !== 0
-                ? `${value} (${getPercentOfTotal(value, numGuesses).toFixed(0)}%)`
+                ? `${value}(${getPercentOfTotal(value, numGuesses).toFixed(0)}%)`
                 : "",
           }))}
           responsive
