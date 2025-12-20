@@ -64,8 +64,9 @@ export function UserStats({
                 }
                 className="inline-flex w-fit items-center gap-2"
                 icon={<PiShareFatFill />}
+                variant={"link"}
               >
-                Share stats
+                Share
               </CopyButton>
               {!!loginSession &&
                 user?.id !== loginSession.user.id &&
