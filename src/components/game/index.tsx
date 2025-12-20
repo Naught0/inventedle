@@ -228,7 +228,9 @@ export default function Game({
       <Activity mode={gameOver && !!iotdStatsData ? "visible" : "hidden"}>
         <p className="text-2xl font-bold">Stats</p>
         <div className="flex w-full max-w-md flex-wrap justify-center gap-3 lg:max-w-full lg:flex-nowrap">
-          <FriendsGuessChart data={friendIOTDStats} />
+          {Object.values(friendIOTDStats ?? {}).every((f) => f.length) && (
+            <FriendsGuessChart data={friendIOTDStats} />
+          )}
           <GuessStatsChart numGuesses={iotdStatsData} />
         </div>
       </Activity>
