@@ -16,7 +16,6 @@ export function UserStats({
   stats,
   showPrivateUserBanner,
   loginSession,
-  friendRequest,
 }: {
   user?: SessionWithUser["user"];
   stats?: Stats;
