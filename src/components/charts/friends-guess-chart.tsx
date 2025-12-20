@@ -133,10 +133,8 @@ function FriendTooltip({
   return null;
 }
 
-type FriendBubbleLabelProps = LabelProps & {
-  value: FriendGuessChartResults[string][number]["user"][];
-};
-function FriendBubbleLabel({ value, ...props }: FriendBubbleLabelProps) {
+function FriendBubbleLabel(props: LabelProps) {
+  const value = props.value as unknown as StatFriend[];
   const [hover, setHover] = useState(false);
   return (
     <foreignObject
