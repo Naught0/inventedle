@@ -19,9 +19,9 @@ export function Hyperlink({
       target={target ?? "_blank"}
       {...props}
     >
-      <span>
+      <span className={className}>
         {children}
-        <PiArrowUpRight className="inline text-lg" />
+        <PiArrowUpRight className="inline" />
       </span>
     </a>
   );
