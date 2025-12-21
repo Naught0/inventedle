@@ -1,4 +1,4 @@
-import { getIOTDStats } from "@/db/server-only";
+import { getIOTDStats } from "@/actions/server-only";
 import { NextRequest } from "next/server";
 
 export async function GET(

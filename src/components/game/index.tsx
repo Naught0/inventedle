@@ -25,7 +25,7 @@ import { Separator } from "@radix-ui/react-separator";
 import { Hyperlink } from "../hyperlink";
 import { ImageWithCaption } from "../image-with-caption";
 import { FriendsGuessChart } from "../charts/friends-guess-chart";
-import type { FriendGuessChartResults } from "@/db/server-only";
+import type { FriendGuessChartResults } from "@/actions/server-only";
 
 export default function Game({
   invention,

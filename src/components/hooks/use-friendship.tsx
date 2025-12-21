@@ -1,6 +1,6 @@
 "use client";
 import { FriendStatus } from "@/db/prisma/generated/enums";
-import { getFriendStatus, type getFriendship } from "@/db/server-only";
+import { getFriendStatus, type getFriendship } from "@/actions/server-only";
 import { useQuery } from "@tanstack/react-query";
 import { parse } from "superjson";
 

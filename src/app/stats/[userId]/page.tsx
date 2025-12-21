@@ -1,6 +1,6 @@
 import { UserStats } from "@/components/user-stats";
 import { db } from "@/db";
-import { getUserGameStats } from "@/db/server-only";
+import { getUserGameStats } from "@/actions/server-only";
 import { getServerSession } from "@/lib/auth";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";

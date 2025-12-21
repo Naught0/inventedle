@@ -1,11 +1,14 @@
 "server-only";
+import { db } from "@/db";
+import { getIOTD, getRandomInvention } from "@/db/actions";
+import {
+  FriendshipGetPayload,
+  FriendshipInclude,
+  ResultGetPayload,
+} from "@/db/prisma/generated/models";
 import { TZDate } from "@date-fns/tz";
 import { format, isSameDay, subMonths } from "date-fns";
-import { db } from ".";
-import { getIOTD, getRandomInvention } from "./actions";
-import { type Metadata } from "next";
-import { ResultGetPayload } from "./prisma/generated/models";
-
+import { Metadata } from "next";
 /**
  * Creates an Invention of the Day unless one has already been created for today (EST)
  *

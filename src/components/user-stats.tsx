@@ -2,7 +2,7 @@
 import type { SessionWithUser } from "@/lib/auth";
 import { GuessStatsChart } from "./charts/guess-stats-chart";
 import { StatCard } from "./ui/stat-card";
-import type { Stats } from "@/db/server-only";
+import type { Stats } from "@/actions/server-only";
 import { Stack } from "./ui/stack";
 import Image from "next/image";
 import { Hyperlink } from "./hyperlink";

@@ -1,4 +1,4 @@
-import { getIOTDFriendStats } from "@/db/server-only";
+import { getIOTDFriendStats } from "@/actions/server-only";
 import { getServerSession } from "@/lib/auth";
 import { NextRequest } from "next/server";
 

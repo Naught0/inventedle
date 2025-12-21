@@ -5,7 +5,7 @@ import { db } from "@/db";
 import { Suspense } from "react";
 import { LoadingGame } from "@/components/loading";
 import { GamePage } from "@/components/game-page";
-import { generateIOTDMeta } from "@/db/server-only";
+import { generateIOTDMeta } from "@/actions/server-only";
 
 export const dynamic = "force-dynamic";
 

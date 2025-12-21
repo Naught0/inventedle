@@ -1,8 +1,10 @@
 "use server";
 import { auth, getServerSession, SessionWithUser } from "@/lib/auth";
 import { headers as nextHeaders } from "next/headers";
-import { db } from ".";
+import { db } from "@/db";
 import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/headers";
+import { getFriendStatus } from "@/actions/server-only";
+import { updateFriendStatus } from "@/actions/server-only/friendship";
 
 export async function updateUser(
   user: Pick<
@@ -26,9 +28,25 @@ export async function makeFriendRequest({
   headers?: ReadonlyHeaders;
 }) {
   const session = await getServerSession({ headers });
-  if (!session) throw new Error("User not authenticated");
+  if (!session) return { error: true, message: "You must be signed in." };
   if (session.user.id === recipientId)
-    throw new Error("You can't friend yourself.");
+    return { error: true, message: "You can't friend yourself." };
+
+  const friendStatus = await getFriendStatus(session.user.id, recipientId);
+
+  if (friendStatus) {
+    switch (friendStatus.status) {
+      case "PENDING":
+        if (friendStatus.recipientId === session.user.id) {
+          return await updateFriendStatus(friendStatus.id, "ACCEPTED");
+        }
+        break;
+      case "ACCEPTED":
+        return { error: true, message: "You're already friends (:" };
+      default:
+        break;
+    }
+  }
 
   try {
     return await db.friendship.create({
@@ -38,7 +56,8 @@ export async function makeFriendRequest({
         status: "PENDING",
       },
     });
-  } catch {
-    throw new Error("Error adding friend :(");
+  } catch (e) {
+    console.error(e);
+    return { error: true, message: "Friend request failed" };
   }
 }

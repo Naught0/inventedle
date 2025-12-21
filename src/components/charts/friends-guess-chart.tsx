@@ -10,7 +10,7 @@ import {
   TooltipContentProps,
 } from "recharts";
 import { ChartContainer } from "./chart-container";
-import { FriendGuessChartResults } from "@/db/server-only";
+import { FriendGuessChartResults } from "@/actions/server-only";
 import Image from "next/image";
 import { Stack } from "../ui/stack";
 import { useState } from "react";

@@ -3,7 +3,7 @@ import { db } from "@/db";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect, RedirectType } from "next/navigation";
-import { generateIOTDMeta } from "@/db/server-only";
+import { generateIOTDMeta } from "@/actions/server-only";
 
 export const dynamic = "force-dynamic";
 

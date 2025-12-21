@@ -1,4 +1,4 @@
-import { createIOTD } from "@/db/server-only";
+import { createIOTD } from "@/actions/server-only";
 import { scheduleJob, RecurrenceRule } from "node-schedule";
 
 (async () => {

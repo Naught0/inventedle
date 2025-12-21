@@ -1,4 +1,4 @@
-import { getFriendStatus } from "@/db/server-only";
+import { getFriendStatus } from "@/actions/server-only";
 import { getServerSession } from "@/lib/auth";
 import { NextRequest } from "next/server";
 import { stringify } from "superjson";
@@ -11,6 +11,6 @@ export async function GET(
   const session = await getServerSession();
   if (!session) return new Response(JSON.stringify(null), { status: 401 });
 
-  const friendStatus = await getFriendStatus(userId, session?.user.id);
+  const friendStatus = await getFriendStatus(userId, session.user.id);
   return new Response(stringify(friendStatus), { status: 200 });
 }
