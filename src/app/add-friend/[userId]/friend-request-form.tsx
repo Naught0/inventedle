@@ -6,6 +6,7 @@ import { useActionState } from "react";
 import { Stack } from "@/components/ui/stack";
 import { Hyperlink } from "@/components/hyperlink";
 import { UserModel } from "@/db/prisma/generated/models";
+import Image from "next/image";
 
 export function FriendRequestForm({
   user,
@@ -46,6 +47,15 @@ export function FriendRequestForm({
   return (
     <form action={formAction}>
       <Stack className="gap-6" center>
+        {user.image && (
+          <Image
+            src={user.image}
+            width={128}
+            height={128}
+            alt={`${user.name} profile picture`}
+            className="border-muted-foreground rounded-full border-2"
+          />
+        )}
         <h2 className="text-center text-3xl">{title}</h2>
         <Button
           type="submit"
