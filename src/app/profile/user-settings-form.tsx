@@ -1,12 +1,10 @@
 "use client";
-import { Hyperlink } from "@/components/hyperlink";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { CopyButton } from "@/components/ui/copy-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Stack } from "@/components/ui/stack";
-import { updateUser } from "@/db/server-actions";
+import { updateUser } from "@/actions/server-actions";
 import { useSession } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { useForm, useStore } from "@tanstack/react-form";
@@ -14,6 +12,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CgSpinner } from "react-icons/cg";
 import { SectionHeading } from "./section-heading";
+import { CopyInput } from "@/components/ui/copy-input";
 
 function FormField({
   children,
@@ -90,50 +89,48 @@ export function UserSettingsForm() {
           <form.Field name={"isPublic"}>
             {(field) => {
               return (
-                <Stack className="bg-accent relative rounded-lg p-3">
-                  {isRefetching && (
-                    <div className="absolute bottom-0 left-0 right-0 top-0 flex h-full w-full items-center justify-center rounded-lg bg-black/30">
-                      <CgSpinner className="animate-spin text-4xl" />
-                    </div>
-                  )}
-                  <Label className="inline-flex items-center justify-start gap-2">
-                    <Checkbox
-                      checked={field.state.value}
-                      onCheckedChange={(e) => {
-                        field.handleChange(e === true);
-                        form.handleSubmit();
-                      }}
-                      name={field.name}
-                      id={field.name}
-                    />
-                    <Stack className="gap-0">
-                      <span>Public profile</span>
-                      <span className="text-muted-foreground text-sm font-normal">
-                        Your profile is visible to{" "}
-                        <span className="underline underline-offset-4">
-                          {session?.user.isPublic ? "everyone" : "friends only"}
+                <Stack>
+                  <Stack className="bg-accent relative rounded-lg p-3">
+                    {isRefetching && (
+                      <div className="absolute bottom-0 left-0 right-0 top-0 flex h-full w-full items-center justify-center rounded-lg bg-black/30">
+                        <CgSpinner className="animate-spin text-4xl" />
+                      </div>
+                    )}
+                    <Label className="inline-flex items-center justify-start gap-2">
+                      <Checkbox
+                        checked={field.state.value}
+                        onCheckedChange={(e) => {
+                          field.handleChange(e === true);
+                          form.handleSubmit();
+                        }}
+                        name={field.name}
+                        id={field.name}
+                      />
+                      <Stack className="gap-0">
+                        <span>Public profile</span>
+                        <span className="text-muted-foreground text-sm font-normal">
+                          Your profile is visible to{" "}
+                          <span className="underline underline-offset-4">
+                            {session?.user.isPublic
+                              ? "everyone"
+                              : "friends only"}
+                          </span>
                         </span>
-                      </span>
-                    </Stack>
-                  </Label>
+                      </Stack>
+                    </Label>
+                  </Stack>
                   {field.state.value && session?.user?.isPublic && (
                     <div>
-                      <p className="text-muted-foreground text-sm">
+                      <p className="text-muted-foreground">
                         Your profile link:
                       </p>
-                      <p className="inline-flex gap-1">
-                        <CopyButton
-                          className="text-muted-foreground hover:text-foreground size-8 p-0"
-                          variant="ghost"
-                          value={`${window.location.origin}/stats/${session.user.id}`}
-                        />
-                        <Hyperlink
-                          className="max-w-full text-sm"
-                          href={`/stats/${session.user.id}`}
-                        >
-                          {`${window.location.origin}/stats/${session.user.id}`}
-                        </Hyperlink>
-                      </p>
+                      <CopyInput
+                        value={
+                          typeof window !== "undefined"
+                            ? `${window.location.origin}/stats/${session.user.id}`
+                            : ""
+                        }
+                      />
                     </div>
                   )}
                 </Stack>
@@ -217,6 +214,7 @@ export function UserSettingsForm() {
                   <Stack className="w-full gap-1">
                     <Label>Image url</Label>
                     <Input
+                      className="text-xs lg:text-sm"
                       name={field.name}
                       id={field.name}
                       value={field.state.value ?? ""}
@@ -237,10 +235,9 @@ export function UserSettingsForm() {
             {([canSubmit, isSubmitting, isDirty]) => {
               return (
                 <FormField>
-                  <Stack horizontal>
+                  <Stack className="flex-wrap" horizontal>
                     <Button
                       size="lg"
-                      className="w-fit"
                       type="submit"
                       disabled={!canSubmit || !isDirty}
                       isLoading={isSubmitting}
@@ -250,7 +247,6 @@ export function UserSettingsForm() {
                     <Button
                       size="lg"
                       type="reset"
-                      className="w-fit"
                       variant="outline"
                       onClick={() =>
                         form.reset(undefined, { keepDefaultValues: true })
