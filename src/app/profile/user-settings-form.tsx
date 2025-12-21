@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { CgSpinner } from "react-icons/cg";
 import { SectionHeading } from "./section-heading";
 import { CopyInput } from "@/components/ui/copy-input";
+import { SessionWithUser } from "@/lib/auth";
 
 function FormField({
   children,
@@ -80,6 +81,7 @@ export function UserSettingsForm() {
     },
     [imageUrl],
   );
+  if (!session) return null;
 
   return (
     <form action={form.handleSubmit} className="w-full">
@@ -111,7 +113,7 @@ export function UserSettingsForm() {
                         <span className="text-muted-foreground text-sm font-normal">
                           Your profile is visible to{" "}
                           <span className="underline underline-offset-4">
-                            {session?.user.isPublic
+                            {session.user.isPublic
                               ? "everyone"
                               : "friends only"}
                           </span>
@@ -119,20 +121,19 @@ export function UserSettingsForm() {
                       </Stack>
                     </Label>
                   </Stack>
-                  {field.state.value && session?.user?.isPublic && (
-                    <div>
-                      <p className="text-muted-foreground">
-                        Your profile link:
-                      </p>
-                      <CopyInput
-                        value={
-                          typeof window !== "undefined"
-                            ? `${window.location.origin}/stats/${session.user.id}`
-                            : ""
-                        }
-                      />
-                    </div>
-                  )}
+                  <Stack className="gap-1">
+                    <p>Stats link</p>
+                    <p className="text-muted-foreground text-sm">
+                      Share your win ratio, average guesses, and more
+                    </p>
+                    <CopyInput
+                      value={
+                        typeof window !== "undefined"
+                          ? `${window.location.origin}/stats/${session.user.id}`
+                          : ""
+                      }
+                    />
+                  </Stack>
                 </Stack>
               );
             }}

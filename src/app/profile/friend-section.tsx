@@ -50,33 +50,37 @@ export function FriendsSection({ session }: { session: SessionWithUser }) {
             />
           </Button>
         </SectionHeading>
-        <Stack className="gap-0">
-          <p>Friend link:</p>
-          <p className="text-xs"></p>
+        <Stack className="gap-1">
+          <p>Friend link</p>
+          <p className="text-muted-foreground text-sm">
+            Send this link to friends so they can easily add you
+          </p>
           <CopyInput value={addFriendLink} />
         </Stack>
       </Stack>
-      <div className="relative flex w-full flex-col items-start gap-4 py-3">
+      <div className="relative mt-3 flex w-full flex-col items-start gap-4 py-3">
         {isLoading && <LoadingOverlay />}
         <Section>
-          {friends.map((f) => (
-            <Friend key={f.id} data={f}>
-              <Separator orientation="vertical" className="h-6" />
-              <Button
-                variant={"link"}
-                size={"sm"}
-                className="rounded-md p-0"
-                onClick={() => {
-                  if (!confirm(`Break up with ${f.name}?`)) return;
+          <Stack className="flex-wrap" horizontal>
+            {friends.map((f) => (
+              <Friend key={f.id} data={f}>
+                <Separator orientation="vertical" className="h-6" />
+                <Button
+                  variant={"link"}
+                  size={"sm"}
+                  className="rounded-md p-0"
+                  onClick={() => {
+                    if (!confirm(`Break up with ${f.name}?`)) return;
 
-                  deleteFriend(f.friendshipId);
-                  refetch();
-                }}
-              >
-                <PiXBold className="text-base" strokeWidth={15} />
-              </Button>
-            </Friend>
-          ))}
+                    deleteFriend(f.friendshipId);
+                    refetch();
+                  }}
+                >
+                  <PiXBold className="text-base" strokeWidth={15} />
+                </Button>
+              </Friend>
+            ))}
+          </Stack>
         </Section>
         <Section>
           <h3 className="mb-2 text-xl font-bold">Sent</h3>
@@ -137,23 +141,25 @@ export function Friend({
 }) {
   return (
     <Stack
-      className="bg-accent w-fit flex-wrap items-center gap-3 rounded-md px-4 py-2 text-sm"
+      className="bg-accent items-center gap-3 rounded-md px-4 py-2 text-sm"
       horizontal
     >
-      {data.image && (
-        <Image
-          src={data.image}
-          width={32}
-          height={32}
-          alt={`${data.name} profile picture`}
-          className="size-8 rounded-full"
-        />
-      )}
-      <div className="flex flex-col">
-        <Hyperlink href={`/stats/${data.id}`}>
-          <span>{data.name}</span>
-        </Hyperlink>
-      </div>
+      <Stack horizontal center>
+        {data.image && (
+          <Image
+            src={data.image}
+            width={32}
+            height={32}
+            alt={`${data.name} profile picture`}
+            className="border-muted-foreground size-8 rounded-full border-2"
+          />
+        )}
+        <div className="flex flex-col">
+          <Hyperlink href={`/stats/${data.id}`} className="whitespace-nowrap">
+            <span>{data.name}</span>
+          </Hyperlink>
+        </div>
+      </Stack>
       {children}
     </Stack>
   );
