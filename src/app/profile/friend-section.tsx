@@ -11,7 +11,7 @@ import { RefreshCw } from "lucide-react";
 import { PiXBold } from "react-icons/pi";
 import { Hyperlink } from "@/components/hyperlink";
 import { Separator } from "@/components/ui/separator";
-import { CopyButton } from "@/components/ui/copy-button";
+import { CopyInput } from "@/components/ui/copy-input";
 
 export function FriendsSection({ session }: { session: SessionWithUser }) {
   const {
@@ -26,11 +26,14 @@ export function FriendsSection({ session }: { session: SessionWithUser }) {
   } = useFriendship({
     userId: session?.user.id,
   });
-  const addFriendLink = `${window.location.origin}/add-friend/${session?.user.id}`;
+  const addFriendLink =
+    typeof window !== "undefined"
+      ? `${window.location.origin}/add-friend/${session?.user.id}`
+      : "";
 
   return (
     <>
-      <Stack>
+      <Stack className="gap-1">
         <SectionHeading>
           Friends
           <Button
@@ -47,19 +50,13 @@ export function FriendsSection({ session }: { session: SessionWithUser }) {
             />
           </Button>
         </SectionHeading>
-        <span className="inline-flex items-center">
-          <span className="ml-2 text-xs">Friend link:</span>
-          <CopyButton
-            value={addFriendLink}
-            variant={"ghost"}
-            className="p-1.5"
-          />
-          <Hyperlink className="text-xs" href={addFriendLink}>
-            /{addFriendLink.split("/").slice(-2).join("/")}
-          </Hyperlink>
-        </span>
+        <Stack className="gap-0">
+          <p>Friend link:</p>
+          <p className="text-xs"></p>
+          <CopyInput value={addFriendLink} />
+        </Stack>
       </Stack>
-      <div className="relative flex w-full flex-col items-start gap-6 py-3">
+      <div className="relative flex w-full flex-col items-start gap-4 py-3">
         {isLoading && <LoadingOverlay />}
         <Section>
           {friends.map((f) => (
