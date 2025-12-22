@@ -50,11 +50,13 @@ export function GuessStatsChart({
             axisLine={false}
             tickMargin={10}
             padding={{ top: 0, bottom: 0 }}
+            width={32}
           />
           <XAxis
             type="number"
             dataKey={"value"}
             padding={{ left: 0, right: 0 }}
+            domain={[0, (dataMax) => dataMax * 1.3]}
             hide
           />
           <Bar
@@ -64,9 +66,9 @@ export function GuessStatsChart({
             radius={[0, 5, 5, 0]}
           >
             <LabelList
-              position="insideRight"
+              position="right"
               dataKey="barLabel"
-              className="fill-foreground font-bold"
+              className="fill-foreground text-sm font-bold md:text-base"
             />
           </Bar>
         </BarChart>
