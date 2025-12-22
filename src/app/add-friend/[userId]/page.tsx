@@ -1,9 +1,30 @@
+import type { Metadata } from "next";
 import { getServerSession } from "@/lib/auth";
 import { notFound, redirect } from "next/navigation";
 import { FriendRequestForm } from "./friend-request-form";
 import { getFriendStatus } from "@/actions/server-only";
 import { Stack } from "@/components/ui/stack";
 import { db } from "@/db";
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ userId: string }>;
+}): Promise<Metadata> => {
+  const { userId } = await params;
+  const user = await db.user.findUnique({ where: { id: userId } });
+  if (!user) return {};
+
+  const images = user.isPublic && user.image ? [{ url: user.image }] : [];
+
+  return {
+    title: `Inventedle`,
+    description: `Add ${user?.name} as a friend`,
+    openGraph: {
+      images,
+    },
+  };
+};
 
 export default async function Page({
   params,
