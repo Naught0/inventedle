@@ -244,7 +244,7 @@ export async function getIOTDFriendStats(iotdId: number, userId: string) {
         { iotd_id: iotdId },
         {
           user_id: {
-            in: [user.id, ...friends.map((f) => f.id)],
+            in: friends.map((f) => f.id),
           },
         },
       ],
