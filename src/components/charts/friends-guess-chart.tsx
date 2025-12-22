@@ -14,6 +14,7 @@ import { FriendGuessChartResults } from "@/actions/server-only";
 import Image from "next/image";
 import { Stack } from "../ui/stack";
 import { useState } from "react";
+import Link from "next/link";
 
 export function FriendsGuessChartAlt({
   data,
@@ -84,12 +85,6 @@ export function FriendsGuessChart({
             padding={{ left: 0, right: 0 }}
             hide
           />
-          <Tooltip
-            cursor={false}
-            animationDuration={100}
-            content={FriendTooltip}
-            allowEscapeViewBox={{ x: false, y: true }}
-          />
           <Bar
             dataKey="value"
             fill="#f56bb0"
@@ -113,26 +108,6 @@ export function FriendsGuessChart({
   );
 }
 
-function FriendTooltip({
-  active,
-  payload,
-}: TooltipContentProps<string, string>) {
-  const people = payload.flatMap((p) => p.payload.friends);
-  if (active && payload && payload.length && people.length) {
-    return (
-      <div className="bg-primary-dark flex h-fit w-full min-w-48 max-w-72 flex-col gap-2 rounded-md p-3 shadow">
-        {people.map((p) => (
-          <div className="inline-flex items-center gap-2" key={p.id}>
-            <FriendBubble data={p} />
-            {p.name}
-          </div>
-        ))}
-      </div>
-    );
-  }
-  return null;
-}
-
 function FriendBubbleLabel(props: LabelProps) {
   const value = props.value as unknown as StatFriend[];
   const [hover, setHover] = useState(false);
@@ -152,7 +127,7 @@ function FriendBubbleLabel(props: LabelProps) {
           .map((f) => (
             <span
               key={f.id}
-              className={`transition-all ${hover ? "mr-0.5" : "-mr-4"}`}
+              className={`transition-all ${hover ? "mr-1" : "-mr-4 lg:-mr-3"}`}
             >
               <FriendBubble data={f} />
             </span>
@@ -166,19 +141,22 @@ type StatFriend = NonNullable<FriendGuessChartResults[string][number]["user"]>;
 
 function FriendBubble({ data }: { data: StatFriend }) {
   return (
-    <div className="flex items-center gap-2">
-      {data.image ? (
-        <Image
-          src={data.image}
-          width={32}
-          height={32}
-          alt={`${data.name} profile picture`}
-          className="border-foreground rounded-full border-2 shadow-md"
-        />
-      ) : (
-        <PlaceholderImage name={data.name} />
-      )}
-    </div>
+    <Link href={`/stats/${data.id}`} prefetch={false}>
+      <div className="flex items-center gap-2">
+        {data.image ? (
+          <Image
+            src={data.image}
+            width={32}
+            height={32}
+            alt={`${data.name} profile picture`}
+            title={data.name}
+            className="border-foreground rounded-full border-2 shadow-md"
+          />
+        ) : (
+          <PlaceholderImage name={data.name} />
+        )}
+      </div>
+    </Link>
   );
 }
 
