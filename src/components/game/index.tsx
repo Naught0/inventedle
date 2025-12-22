@@ -26,6 +26,7 @@ import { Hyperlink } from "../hyperlink";
 import { ImageWithCaption } from "../image-with-caption";
 import { FriendsGuessChart } from "../charts/friends-guess-chart";
 import type { FriendGuessChartResults } from "@/actions/server-only";
+import { Stack } from "../ui/stack";
 
 export default function Game({
   invention,
@@ -138,22 +139,21 @@ export default function Game({
               </div>
             )}
           </div>
-          <div className="flex flex-col gap-3 lg:gap-6">
-            {gameWon && (
-              <div className="text-2xl font-bold">
-                You won! The year was{" "}
-                <span className="text-primary underline underline-offset-8">
+          <div className="flex flex-col gap-3">
+            {gameOver && (
+              <Stack className="text-2xl font-bold">
+                <p>
+                  {gameWon
+                    ? "You won!"
+                    : gameLost
+                      ? "You lost!"
+                      : "Something strange happened..."}{" "}
+                  The year was
+                </p>
+                <p className="text-primary w-fit rounded-lg border-dashed text-3xl">
                   {formatYear(invention.year, true)}
-                </span>
-              </div>
-            )}
-            {gameLost && (
-              <div className="text-2xl font-bold">
-                You lost! The year was{" "}
-                <span className="text-primary underline underline-offset-8">
-                  {formatYear(invention.year, true)}
-                </span>
-              </div>
+                </p>
+              </Stack>
             )}
             {gameOver ? (
               <div className="flex flex-col gap-6">
