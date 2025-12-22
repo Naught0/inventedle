@@ -47,12 +47,12 @@ export function UserStats({
           {showPrivateUserBanner ? (
             <Stack className="text-muted-foreground text-center text-sm">
               <p className="text-muted-foreground text-sm">
-                Only you can see this page
+                Only you &amp; your friends can see this page
               </p>
               <p>
                 <Hyperlink href="/profile">
-                  If you want to share your stats, change your privacy settings{" "}
-                  here
+                  If you want to share your stats with anyone, change your
+                  privacy settings here
                 </Hyperlink>
               </p>
             </Stack>
