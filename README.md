@@ -25,3 +25,4 @@ TODO:
     - [ ] none
 - [ ] Manually go thru wiki for inventions for variety
 - [ ] Sidebar for easier access to friends/friend code in footer
+    - [ ] Friend notifications
