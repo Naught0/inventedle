@@ -6,8 +6,6 @@ import {
   LabelList,
   ResponsiveContainer,
   LabelProps,
-  Tooltip,
-  TooltipContentProps,
 } from "recharts";
 import { ChartContainer } from "./chart-container";
 import { FriendGuessChartResults } from "@/actions/server-only";

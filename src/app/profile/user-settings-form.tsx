@@ -4,7 +4,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Stack } from "@/components/ui/stack";
-import { updateUser } from "@/actions/server-actions";
 import { useSession } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { useForm, useStore } from "@tanstack/react-form";
@@ -13,7 +12,7 @@ import { useEffect, useState } from "react";
 import { CgSpinner } from "react-icons/cg";
 import { SectionHeading } from "./section-heading";
 import { CopyInput } from "@/components/ui/copy-input";
-import { SessionWithUser } from "@/lib/auth";
+import { updateUser } from "@/actions/server-actions";
 
 function FormField({
   children,

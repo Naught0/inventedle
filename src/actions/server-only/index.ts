@@ -1,11 +1,7 @@
 "server-only";
 import { db } from "@/db";
 import { getIOTD, getRandomInvention } from "@/db/actions";
-import {
-  FriendshipGetPayload,
-  FriendshipInclude,
-  ResultGetPayload,
-} from "@/db/prisma/generated/models";
+import { ResultGetPayload } from "@/db/prisma/generated/models";
 import { TZDate } from "@date-fns/tz";
 import { format, isSameDay, subMonths } from "date-fns";
 import { Metadata } from "next";
