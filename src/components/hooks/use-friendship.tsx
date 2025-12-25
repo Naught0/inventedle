@@ -109,7 +109,7 @@ export async function deleteFriend(friendshipId: string) {
 }
 
 export async function rejectFriend(friendshipId: string) {
-  return await updateFriend(friendshipId, "REJECTED");
+  return await deleteFriend(friendshipId);
 }
 
 export async function acceptFriend(friendshipId: string) {
