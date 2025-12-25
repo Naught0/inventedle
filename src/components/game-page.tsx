@@ -40,8 +40,8 @@ export function GamePage({
   );
 
   return (
-    <div className="flex w-full flex-col items-center gap-4 lg:gap-6">
-      <div className="grid gap-2 text-center lg:gap-3">
+    <div className="flex w-full flex-col items-center gap-4">
+      <div className="grid text-center">
         <div className="inline-flex items-center justify-center gap-3">
           <Button
             aria-label="previous puzzle"

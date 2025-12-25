@@ -42,6 +42,10 @@ export function Help() {
                 guess within one year to get it right. The margin to win becomes
                 more forgiving as you go farther back in time.
               </p>
+              <p>
+                Arrows indicate the direction of the correct answer from your
+                guess.
+              </p>
               <p>Find all the rules in the table below.</p>
             </article>
           </DialogDescription>

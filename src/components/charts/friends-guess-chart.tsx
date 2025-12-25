@@ -23,7 +23,7 @@ export function FriendsGuessChartAlt({
     <ChartContainer title="Friend Stats">
       <Stack className="flex flex-col gap-6">
         {Object.entries(data ?? {}).map(([label, result]) => (
-          <Stack key={label} className="gap-4" horizontal>
+          <Stack key={label} className="gap-3" horizontal>
             <span className="w-fit text-xl font-bold">{label}</span>
             <div className="inline-flex w-full items-center gap-2">
               {result

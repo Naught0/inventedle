@@ -18,7 +18,7 @@ export default function Logo() {
         <Dangle isHovering={hovered}>
           <span className="text-primary whitespace-nowrap">
             le{" "}
-            <MdLightbulb className="-mt-3 inline p-0 text-yellow-300 lg:-ml-4" />
+            <MdLightbulb className="-ml-4 -mt-3 inline p-0 text-yellow-300" />
           </span>
         </Dangle>
       </strong>

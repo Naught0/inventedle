@@ -20,16 +20,37 @@ import { Stack } from "./ui/stack";
 import { useRouter } from "next/navigation";
 import { DiscordButton } from "./ui/discord-button";
 import { GoogleButton } from "./ui/google-button";
+import { useFriendship } from "./hooks/use-friendship";
+import { cn } from "@/lib/utils";
 
-function MenuItem({ children }: { children: React.ReactNode }) {
+function MenuItem({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <li className="border-muted-foreground menu-item w-full border-white py-2">
+    <li
+      className={cn(
+        "border-muted-foreground menu-item w-full border-white py-2",
+        className,
+      )}
+    >
       {children}
     </li>
   );
 }
 
-function Menu({ signedIn, userId }: { signedIn: boolean; userId?: string }) {
+function Menu({
+  signedIn,
+  userId,
+  friendRequests,
+}: {
+  signedIn: boolean;
+  userId?: string;
+  friendRequests?: number;
+}) {
   const children = [];
   const router = useRouter();
 
@@ -48,7 +69,17 @@ function Menu({ signedIn, userId }: { signedIn: boolean; userId?: string }) {
           Stats
         </Link>
       </MenuItem>,
-      <MenuItem key="profile">
+      <MenuItem key="profile" className="relative">
+        {!!friendRequests && (
+          <Stack
+            className="bg-primary absolute right-1 top-3 size-5 rounded-full"
+            center
+          >
+            <span className="text-primary-foreground text-sm font-extrabold">
+              {friendRequests}
+            </span>
+          </Stack>
+        )}
         <Link
           className={buttonVariants({
             variant: "ghost",
@@ -93,6 +124,7 @@ export function SigninButton({ loading = false }: { loading?: boolean }) {
   const isLoading = isPending || loading;
   const signedIn = !!data;
   const userId = data?.user?.id;
+  const { incoming } = useFriendship({ userId });
 
   return (
     <Popover>
@@ -102,15 +134,27 @@ export function SigninButton({ loading = false }: { loading?: boolean }) {
             variant={"outline"}
             className="inline-flex items-center gap-2"
           >
-            {!isPending && data?.user?.image && (
-              <Image
-                alt="profile picture"
-                src={data?.user.image}
-                className="rounded-full py-0.5"
-                width={48}
-                height={48}
-              />
-            )}
+            <div className="relative">
+              {!isPending && data?.user?.image && (
+                <Image
+                  alt="profile picture"
+                  src={data?.user.image}
+                  className="rounded-full py-0.5"
+                  width={48}
+                  height={48}
+                />
+              )}
+              {!!incoming.length && (
+                <Stack
+                  className="bg-primary absolute right-0 top-0 -mr-2 -mt-1 size-5 rounded-full"
+                  center
+                >
+                  <span className="text-primary-foreground text-sm font-extrabold">
+                    {incoming.length}
+                  </span>
+                </Stack>
+              )}
+            </div>
             {!signedIn && isLoading && (
               <CgSpinnerAlt className="text-primary mx-9 my-0.5 h-12 w-12 animate-spin text-4xl" />
             )}
@@ -133,7 +177,11 @@ export function SigninButton({ loading = false }: { loading?: boolean }) {
         </PopoverTrigger>
       </PopoverAnchor>
       <PopoverContent className="bg-accent m-3 border-0 p-0 shadow shadow-black">
-        <Menu userId={userId} signedIn={signedIn} />
+        <Menu
+          userId={userId}
+          signedIn={signedIn}
+          friendRequests={incoming.length}
+        />
       </PopoverContent>
     </Popover>
   );

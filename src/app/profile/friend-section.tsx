@@ -83,22 +83,6 @@ export function FriendsSection({ session }: { session: SessionWithUser }) {
           </Stack>
         </Section>
         <Section>
-          <h3 className="mb-2 text-xl">Sent</h3>
-          {outgoing.map((f) => (
-            <Friend key={f.id} data={f}>
-              <Button
-                size={"sm"}
-                onClick={() => {
-                  deleteFriend(f.friendshipId);
-                  refetch();
-                }}
-              >
-                Cancel
-              </Button>
-            </Friend>
-          ))}
-        </Section>
-        <Section>
           <h3 className="mb-2 text-xl">Incoming</h3>
           {incoming.map((f) => (
             <Friend key={f.id} data={f}>
@@ -120,6 +104,22 @@ export function FriendsSection({ session }: { session: SessionWithUser }) {
                   Decline
                 </Button>
               </Stack>
+            </Friend>
+          ))}
+        </Section>
+        <Section>
+          <h3 className="mb-2 text-xl">Sent</h3>
+          {outgoing.map((f) => (
+            <Friend key={f.id} data={f}>
+              <Button
+                size={"sm"}
+                onClick={() => {
+                  deleteFriend(f.friendshipId);
+                  refetch();
+                }}
+              >
+                Cancel
+              </Button>
             </Friend>
           ))}
         </Section>
