@@ -2,14 +2,21 @@ import { Hyperlink } from "@/components/hyperlink";
 import { Nav } from "@/components/nav";
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
+import { Atkinson_Hyperlegible_Next } from "next/font/google";
 import "./globals.css";
 import { Help } from "@/components/help";
 import { QueryContext } from "@/components/hooks/query";
 
-const jbMono = JetBrains_Mono({
+const mono = JetBrains_Mono({
   weight: ["500", "800"],
   subsets: ["latin"],
   variable: "--font-mono",
+});
+
+const sans = Atkinson_Hyperlegible_Next({
+  weight: ["500", "800"],
+  subsets: ["latin"],
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
@@ -29,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`bg-gradient dark ${jbMono.variable} font-mono antialiased`}
+        className={`bg-gradient dark ${sans.variable} ${mono.variable} font-sans antialiased`}
       >
         <Nav />
         <main className="mb-12 flex w-full flex-col items-center justify-start gap-3 p-3 pb-12 font-sans">

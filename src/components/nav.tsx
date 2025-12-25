@@ -20,9 +20,9 @@ export function Nav() {
             <SigninButton />
           </Suspense>
         </div>
-        <div className="flex w-full flex-col flex-wrap items-center justify-center gap-3 font-mono">
+        <div className="flex w-full flex-col flex-wrap items-center justify-center gap-3">
           <Logo />
-          <span className="text-base italic lg:text-xl">
+          <span className="text-muted-foreground text-base italic lg:text-xl">
             the inventurous daily guessing game
           </span>
           <div className="lg:hidden">

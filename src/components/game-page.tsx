@@ -54,7 +54,7 @@ export function GamePage({
               <span className="sr-only">previous puzzle</span>
             </Link>
           </Button>
-          <h2 className="text-center text-2xl font-bold">
+          <h2 className="text-center text-3xl font-bold">
             Inventedle #{iotd.id}
           </h2>
           <Button
@@ -68,7 +68,9 @@ export function GamePage({
             </Link>
           </Button>
         </div>
-        <p className="text-xl">{iotd.created_at.toLocaleDateString()}</p>
+        <p className="font-mono text-xl">
+          {iotd.created_at.toLocaleDateString()}
+        </p>
         <p>
           {!isToday(iotd.created_at) && (
             <Hyperlink href="/" target="" className="italic">

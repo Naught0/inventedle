@@ -8,7 +8,7 @@ export const StatCard = ({
   children: ReactNode;
 }) => {
   return (
-    <figure className="bg-accent flex min-h-32 min-w-36 flex-grow flex-col items-center justify-center gap-3 rounded-lg p-3 text-center md:min-w-48 lg:p-5">
+    <figure className="bg-accent flex min-h-32 min-w-36 flex-grow flex-col items-center justify-center gap-3 rounded-lg p-3 text-center font-mono md:min-w-48 lg:p-5">
       <figcaption className="text-muted-foreground font-lighter uppercase">
         {title}
       </figcaption>

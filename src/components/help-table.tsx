@@ -19,7 +19,7 @@ const getBg = (idx: number) => {
 
 export function HelpTable({ rules }: { rules: GameRule[] }) {
   return (
-    <div className="w-full overflow-x-auto">
+    <div className="w-full overflow-x-auto font-extrabold">
       <table className="w-full text-right">
         <thead>
           <tr>
@@ -53,12 +53,12 @@ export function HelpTable({ rules }: { rules: GameRule[] }) {
             <th>
               <div className="inline-flex gap-2 px-2 md:px-3">
                 <Square className="bg-status-error" />
-                <span className="hidden md:inline"> Far</span>
+                <span className="hidden md:inline">Far</span>
               </div>
             </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="font-mono font-extrabold">
           {rules.map((rule) => (
             <tr key={`${JSON.stringify(rule)}`}>
               <td className="bg-background sticky left-0 px-2 py-3 text-left md:px-3">

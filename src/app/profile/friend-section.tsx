@@ -83,7 +83,7 @@ export function FriendsSection({ session }: { session: SessionWithUser }) {
           </Stack>
         </Section>
         <Section>
-          <h3 className="mb-2 text-xl font-bold">Sent</h3>
+          <h3 className="mb-2 text-xl">Sent</h3>
           {outgoing.map((f) => (
             <Friend key={f.id} data={f}>
               <Button
@@ -99,7 +99,7 @@ export function FriendsSection({ session }: { session: SessionWithUser }) {
           ))}
         </Section>
         <Section>
-          <h3 className="mb-2 text-xl font-bold">Incoming</h3>
+          <h3 className="mb-2 text-xl">Incoming</h3>
           {incoming.map((f) => (
             <Friend key={f.id} data={f}>
               <Stack className="gap-1" horizontal>

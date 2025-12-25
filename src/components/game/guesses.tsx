@@ -56,7 +56,7 @@ export function Guess(props: {
 
   return (
     <li
-      className={`flex w-full items-center justify-between rounded px-6 py-3 text-3xl font-bold lg:py-2 lg:text-2xl ${getBgClassName()}`}
+      className={`flex w-full items-center justify-between rounded px-6 py-3 font-mono text-3xl font-bold lg:py-2 lg:text-2xl ${getBgClassName()}`}
     >
       {props.guess}
       <span className="inline-flex gap-6 text-3xl">{getIcon()}</span>

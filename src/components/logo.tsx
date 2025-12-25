@@ -10,7 +10,7 @@ export default function Logo() {
   return (
     <Link href="/" prefetch={false}>
       <strong
-        className="border-muted-foreground inline-flex select-none rounded-lg border-b-2 border-r-2 p-3 text-3xl md:text-4xl lg:text-5xl"
+        className="border-muted-foreground inline-flex select-none rounded-lg border-b-2 border-r-2 p-3 font-sans text-3xl md:text-4xl lg:text-5xl"
         onMouseOver={() => setHovered(true)}
         onMouseOut={() => setHovered(false)}
       >
@@ -18,7 +18,7 @@ export default function Logo() {
         <Dangle isHovering={hovered}>
           <span className="text-primary whitespace-nowrap">
             le{" "}
-            <MdLightbulb className="-ml-4 -mt-2 inline p-0 text-yellow-300 lg:-ml-8" />
+            <MdLightbulb className="-mt-3 inline p-0 text-yellow-300 lg:-ml-4" />
           </span>
         </Dangle>
       </strong>

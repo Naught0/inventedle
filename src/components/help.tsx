@@ -25,7 +25,7 @@ export function Help() {
           <span>How to play</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-screen max-h-[90vh] overflow-y-auto font-mono md:max-w-screen-sm">
+      <DialogContent className="max-w-screen max-h-[90vh] overflow-y-auto md:max-w-screen-sm">
         <DialogHeader>
           <DialogTitle>Game Rules</DialogTitle>
           <DialogDescription className="text-left text-base">

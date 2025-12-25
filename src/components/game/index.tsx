@@ -118,22 +118,27 @@ export default function Game({
                   alt={`${invention.name}`}
                 >
                   {invention.image_url && (
-                    <div className="inline-flex h-4 items-center gap-1.5">
-                      <span>
-                        image from{" "}
-                        {new URL(invention.image_url).hostname.split(".")[1]}
-                      </span>
-                      <Separator
-                        orientation="vertical"
-                        className="bg-muted-foreground"
-                      />
-                      <Hyperlink
-                        href={invention.invention_link ?? invention.image_url}
-                        className="inline-flex items-center gap-1"
-                      >
-                        source
-                      </Hyperlink>
-                    </div>
+                    <Stack className="gap-0" center>
+                      <div className="inline-flex h-4 items-center gap-1">
+                        <span>
+                          image from{" "}
+                          {new URL(invention.image_url).hostname.split(".")[1]}
+                        </span>
+                        <Separator
+                          orientation="vertical"
+                          className="bg-muted-foreground h-3 w-[1px]"
+                        />
+                        <Hyperlink
+                          href={invention.invention_link ?? invention.image_url}
+                          className="inline-flex items-center gap-1"
+                        >
+                          source
+                        </Hyperlink>
+                      </div>
+                      <p className="text-muted-foreground text-xs italic">
+                        images are not a hint and can be misleading
+                      </p>
+                    </Stack>
                   )}
                 </ImageWithCaption>
               </div>
@@ -148,9 +153,9 @@ export default function Game({
                     : gameLost
                       ? "You lost!"
                       : "Something strange happened..."}{" "}
-                  The year was
+                  The year was:
                 </p>
-                <p className="text-primary w-fit rounded-lg border-dashed text-3xl">
+                <p className="text-primary w-fit rounded-lg border-dashed font-mono text-4xl">
                   {formatYear(invention.year, true)}
                 </p>
               </Stack>

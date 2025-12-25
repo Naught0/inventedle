@@ -11,7 +11,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         mono: ["var(--font-mono)", "monospace"],
-        sans: ["var(--font-mono)", "var(--fallback-fonts)"],
+        sans: ["var(--font-sans)", "var(--fallback-fonts)"],
       },
       colors: {
         closeYellow: "hsla(var(--close-yellow))",
