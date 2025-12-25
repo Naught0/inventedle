@@ -6,6 +6,8 @@ import { Atkinson_Hyperlegible_Next } from "next/font/google";
 import "./globals.css";
 import { Help } from "@/components/help";
 import { QueryContext } from "@/components/hooks/query";
+import { SigninButton } from "@/components/signin-button";
+import { Stack } from "@/components/ui/stack";
 
 const mono = JetBrains_Mono({
   weight: ["500", "800"],
@@ -43,9 +45,12 @@ export default function RootLayout({
           <aside className="flex items-center justify-center">
             <Help />
           </aside>
-          <div className="flex min-h-[50vh] w-full max-w-screen-sm justify-center lg:max-w-screen-lg">
-            <QueryContext>{children}</QueryContext>
-          </div>
+          <QueryContext>
+            <SigninButton />
+            <div className="flex min-h-[50vh] w-full max-w-screen-sm justify-center lg:max-w-screen-lg">
+              {children}
+            </div>
+          </QueryContext>
         </main>
         <footer>
           <div className="-mb-1 w-full">
