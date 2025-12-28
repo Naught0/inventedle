@@ -141,7 +141,7 @@ export function Friend({
 }) {
   return (
     <Stack
-      className="bg-accent items-center gap-3 rounded-md px-4 py-2 text-sm"
+      className="bg-accent flex-wrap items-center gap-3 rounded-md px-4 py-2 text-sm"
       horizontal
     >
       <Stack horizontal center>
@@ -155,7 +155,7 @@ export function Friend({
           />
         )}
         <div className="flex flex-col">
-          <Hyperlink href={`/stats/${data.id}`} className="whitespace-nowrap">
+          <Hyperlink href={`/stats/${data.id}`}>
             <span>{data.name}</span>
           </Hyperlink>
         </div>
