@@ -10,7 +10,7 @@ export default function Logo() {
   return (
     <Link href="/" prefetch={false}>
       <strong
-        className="border-muted-foreground inline-flex select-none rounded-lg border-b-2 border-r-2 p-3 font-sans text-3xl md:text-4xl lg:text-5xl"
+        className="border-muted-foreground inline-flex select-none rounded-lg border-b-2 border-r-2 p-3 font-sans text-4xl lg:text-5xl"
         onMouseOver={() => setHovered(true)}
         onMouseOut={() => setHovered(false)}
       >
