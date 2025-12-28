@@ -41,7 +41,7 @@ export function UserStats({
           />
         )}
         <Stack className="items-center gap-3">
-          <h2 className="text-accent-foreground w-full text-center text-3xl font-bold">
+          <h2 className="text-accent-foreground text-center text-3xl font-bold">
             {!user ? "Local" : `${user.name}'s`} Stats
           </h2>
           {showPrivateUserBanner ? (

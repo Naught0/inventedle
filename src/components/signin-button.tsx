@@ -33,7 +33,7 @@ function MenuItem({
   return (
     <li
       className={cn(
-        "border-muted-foreground menu-item w-full border-white py-2",
+        "border-muted-foreground menu-item border-white py-2",
         className,
       )}
     >
