@@ -7,7 +7,7 @@ import "./globals.css";
 import { Help } from "@/components/help";
 import { QueryContext } from "@/components/hooks/query";
 import { SigninButton } from "@/components/signin-button";
-import { Stack } from "@/components/ui/stack";
+import Script from "next/script";
 
 const mono = JetBrains_Mono({
   weight: ["500", "800"],
@@ -83,6 +83,7 @@ export default function RootLayout({
           </div>
         </footer>
       </body>
+      <Script defer src="https://plausible.jamese.dev/js/script.js"></Script>
     </html>
   );
 }
