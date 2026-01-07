@@ -12,6 +12,7 @@ export const auth = betterAuth({
     ",",
   ) as string[],
   session: {
+    storeSessionInDatabase: true,
     cookieCache: {
       enabled: true,
     },
