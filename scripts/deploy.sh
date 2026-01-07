@@ -3,19 +3,19 @@
 set -eo pipefail
 
 transferApp() {
-  scp inventedle.tar.gz qtbot:~/inventedle && rm inventedle.tar.gz
+  scp inventedle.tar.gz franc:~/inventedle && rm inventedle.tar.gz
 }
 
 transferCron() {
-  scp iotd-cron.tar.gz qtbot:~/inventedle && rm iotd-cron.tar.gz
+  scp iotd-cron.tar.gz franc:~/inventedle && rm iotd-cron.tar.gz
 }
 
 loadApp() {
-  ssh qtbot "cd ~/inventedle && docker tag inventedle:latest inventedle:rollback && docker load < inventedle.tar.gz && docker compose up app -d"
+  ssh franc "cd ~/inventedle && docker tag inventedle:latest inventedle:rollback && docker load < inventedle.tar.gz && docker compose up app -d"
 }
 
 loadCron() {
-  ssh qtbot "cd ~/inventedle && docker tag iotd-cron:latest iotd-cron:rollback && docker load < iotd-cron.tar.gz && docker compose up cron -d"
+  ssh franc "cd ~/inventedle && docker tag iotd-cron:latest iotd-cron:rollback && docker load < iotd-cron.tar.gz && docker compose up cron -d"
 }
 
 main() {
