@@ -79,13 +79,12 @@ export default function Game({
   >({
     queryKey: ["iotdStats", iotdId],
     queryFn: () => makeIotdStatsRequest(iotdId),
-    enabled: gameOver,
   });
 
   const { data: friendIOTDStats } = useQuery({
     queryKey: ["friendIOTDStats", iotdId],
     queryFn: () => makeIotdFriendStatsRequest(iotdId),
-    enabled: gameOver,
+    enabled: gameOver && isLoggedIn,
   });
 
   useEffect(
@@ -94,8 +93,8 @@ export default function Game({
       if (gameOver) {
         recordGame(game, !isLoggedIn).then(() => {
           setSyncEnabled(false);
-          refetchIotdStats();
           if (!isLoggedIn) recordGameToLocalStorage(game);
+          refetchIotdStats();
         });
         return;
       }
