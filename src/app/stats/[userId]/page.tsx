@@ -4,6 +4,11 @@ import { getUserGameStats } from "@/actions/server-only";
 import { getServerSession } from "@/lib/auth";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import {
+  calculateAverageGuesses,
+  calculateTotalGuesses,
+  getTotalWins,
+} from "@/lib/stats";
 
 export const dynamic = "force-dynamic";
 
@@ -23,18 +28,21 @@ export const generateMetadata = async ({
       },
     };
 
-  const totalWins = await db.result.count({
-    where: {
-      user_id: userId,
-      win: true,
-    },
-  });
+  const stats = await getUserGameStats(userId);
+  const totalGames = Object.values(stats).reduce((a, b) => a + b, 0);
+  const totalWins = getTotalWins(stats);
+  const totalLosses = stats["X"];
+  const averageGuesses = calculateAverageGuesses(stats);
+  const totalGuesses = calculateTotalGuesses(stats);
+  const winPercent = Intl.NumberFormat().format(
+    Math.round((totalWins / totalGames) * 100),
+  );
 
   const images = [{ url: user.image ?? "" }];
 
   return {
-    title: "Inventedle",
-    description: `${user.name}'s Stats - ${totalWins} win${totalWins === 1 ? "" : "s"}`,
+    title: `Inventedle - ${user.name}'s Stats`,
+    description: `${totalWins}W/${totalLosses}L (${winPercent}%) | Avg. ${averageGuesses} to Win | ${totalGuesses} Total Guesses`,
     twitter: {
       card: "summary",
     },
