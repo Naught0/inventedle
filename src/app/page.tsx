@@ -9,7 +9,11 @@ import { generateIOTDMeta } from "@/actions/server-only";
 
 export const dynamic = "force-dynamic";
 
-export const generateMetadata = async () => await generateIOTDMeta();
+export const generateMetadata = async () => {
+  const meta = await generateIOTDMeta();
+  meta.title = "Inventedle";
+  return meta;
+};
 
 export default async function Page() {
   const iotd = await getIOTD();
