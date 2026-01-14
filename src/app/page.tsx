@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import { LoadingGame } from "@/components/loading";
 import { GamePage } from "@/components/game-page";
 import { generateIOTDMeta } from "@/actions/server-only";
+import { RefreshAfter } from "@/components/useRefreshAfter";
 
 export const dynamic = "force-dynamic";
 
@@ -30,6 +31,12 @@ export default async function Page() {
 
   return (
     <Suspense fallback={<LoadingGame />}>
+      {!iotd && (
+        <>
+          <RefreshAfter afterSeconds={5} />
+          <LoadingGame />
+        </>
+      )}
       {iotd && <GamePage iotd={iotd} gameResult={result} />}
     </Suspense>
   );
