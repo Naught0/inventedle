@@ -4,7 +4,7 @@ export function LoadingGame() {
   return (
     <div className="flex w-full max-w-md flex-col items-center justify-center gap-6 lg:max-w-screen-lg lg:gap-6">
       <div className="flex flex-col items-center gap-3">
-        <Skeleton className="h-14 w-96" />
+        <h2 className="text-3xl font-extrabold">Loading game...</h2>
         <Skeleton className="h-8 w-48" />
         <Skeleton className="h-6 w-52" />
       </div>
