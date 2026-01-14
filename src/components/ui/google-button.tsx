@@ -15,7 +15,7 @@ export function GoogleButton(props: ButtonProps) {
       }
       {...props}
     >
-      <span className="inline-flex items-center gap-3 font-normal">
+      <span className="inline-flex items-center gap-3">
         <BiLogoGoogle className="text-3xl" /> Google
       </span>
     </Button>

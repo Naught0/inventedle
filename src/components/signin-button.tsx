@@ -119,7 +119,13 @@ function Menu({
   return <ul className="h-full w-full px-6 py-3">{children}</ul>;
 }
 
-export function SigninButton({ loading = false }: { loading?: boolean }) {
+export function SigninButton({
+  className,
+  loading = false,
+}: {
+  className?: string;
+  loading?: boolean;
+}) {
   const { data, isPending } = useSession();
   const isLoading = isPending || loading;
   const signedIn = !!data;
@@ -131,7 +137,10 @@ export function SigninButton({ loading = false }: { loading?: boolean }) {
       <PopoverAnchor>
         <PopoverTrigger asChild>
           <Button
-            className="hover:bg-accent inline-flex items-center gap-3 px-3 py-2"
+            className={cn(
+              "hover:bg-accent inline-flex items-center gap-3 px-3 py-2",
+              className,
+            )}
             variant="ghost"
           >
             <div className="relative">
