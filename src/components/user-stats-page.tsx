@@ -65,9 +65,9 @@ export function UserStatsPage({
                 value={
                   typeof window !== "undefined" ? window.location.href : ""
                 }
-                className="inline-flex w-fit items-center gap-2"
+                className="bg-accent hover:bg-accent/80 inline-flex w-fit items-center gap-2"
                 icon={<PiShareFatFill />}
-                variant={"link"}
+                variant={"outline"}
               >
                 Share
               </CopyButton>

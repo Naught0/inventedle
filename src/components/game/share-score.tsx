@@ -12,6 +12,7 @@ import { buttonVariants } from "../ui/button";
 import { HotnessRules } from "./types";
 import { Hotness } from "./enum";
 import { BiSolidSquareRounded } from "react-icons/bi";
+import { cn } from "@/lib/utils";
 
 function getClassName(hotness: Hotness, bgOrText: "bg" | "text" = "bg") {
   // These must be explicitcly in the code for tailwind to include them
@@ -96,11 +97,14 @@ export function ShareScore(props: {
     <Popover open={showCopied}>
       <PopoverAnchor>
         <PopoverTrigger
-          className={buttonVariants({
-            className: "gap-2 !p-0 font-bold",
-            size: "xl",
-            variant: "link",
-          })}
+          className={cn(
+            buttonVariants({
+              className: "gap-2 font-bold",
+              size: "xl",
+              variant: "outline",
+            }),
+            "bg-accent text-accent-foreground",
+          )}
           type="button"
           onClick={onClick}
         >
