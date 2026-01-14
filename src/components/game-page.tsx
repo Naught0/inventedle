@@ -40,53 +40,48 @@ export function GamePage({
   );
 
   return (
-    <div className="flex w-full flex-col items-center gap-4">
-      <div className="grid text-center">
-        <div className="inline-flex items-center justify-center gap-3">
-          <Button
-            aria-label="previous puzzle"
-            className={cn("rounded-full", prevId === 0 ? "invisible" : "")}
-            variant="link"
-            asChild
-          >
-            <Link href={`/${prevId}`} aria-label="previous puzzle" prefetch>
-              <PiCaretLeftBold
-                className="text-2xl lg:text-3xl"
-                strokeWidth={30}
-              />
-              <span className="sr-only">previous puzzle</span>
-            </Link>
-          </Button>
-          <h2 className="text-center text-3xl font-bold">
-            Inventedle #{iotd.id}
-          </h2>
-          <Button
-            className={cn("rounded-full", isTodaysPuzzle ? "invisible" : "")}
-            variant="link"
-            asChild
-          >
-            <Link href={`/${nextId}`} prefetch>
-              <PiCaretRightBold
-                className="text-2xl lg:text-3xl"
-                strokeWidth={30}
-              />
-              <span className="sr-only">next puzzle</span>
-            </Link>
-          </Button>
-        </div>
-        <p className="font-mono text-xl">
-          {iotd.created_at.toLocaleDateString()}
-        </p>
+    <div className="flex w-full flex-col items-center gap-1">
+      <div className="inline-flex items-center justify-center">
+        <Button
+          aria-label="previous puzzle"
+          className={cn("rounded-full py-1.5", prevId === 0 ? "invisible" : "")}
+          variant="link"
+          asChild
+        >
+          <Link href={`/${prevId}`} aria-label="previous puzzle" prefetch>
+            <PiCaretLeftBold className="text-3xl" strokeWidth={30} />
+            <span className="sr-only">previous puzzle</span>
+            <span className="hidden md:inline">prev</span>
+          </Link>
+        </Button>
+        <p className="text-center text-3xl font-bold">Inventedle #{iotd.id}</p>
+        <Button
+          className={cn(
+            "rounded-full py-1.5",
+            isTodaysPuzzle ? "invisible" : "",
+          )}
+          variant="link"
+          asChild
+        >
+          <Link href={`/${nextId}`} prefetch>
+            <span className="hidden md:inline">next</span>
+            <PiCaretRightBold className="text-3xl" strokeWidth={30} />
+            <span className="sr-only">next puzzle</span>
+          </Link>
+        </Button>
+      </div>
+      <div className="text-center">
+        <p className="text-xl">{iotd.created_at.toLocaleDateString()}</p>
         <p>
           {!isToday(iotd.created_at) && (
-            <Hyperlink href="/" target="" className="italic">
+            <Hyperlink tabIndex={0} href="/" target="" className="italic">
               Click here for today&apos;s puzzle
             </Hyperlink>
           )}
         </p>
       </div>
-      <h2 className="text-center text-3xl font-normal lg:text-4xl">
-        <span className="text-far-red font-extrabold">{invention.name}</span>
+      <h2 className="mb-3 text-center text-3xl font-normal lg:text-4xl">
+        <span className="text-far-red !font-extrabold">{invention.name}</span>
       </h2>
       <Game
         iotdId={iotd.id}

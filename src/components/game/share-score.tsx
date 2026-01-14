@@ -97,8 +97,9 @@ export function ShareScore(props: {
       <PopoverAnchor>
         <PopoverTrigger
           className={buttonVariants({
-            className: "gap-2 font-bold",
+            className: "gap-2 !p-0 font-bold",
             size: "xl",
+            variant: "link",
           })}
           type="button"
           onClick={onClick}

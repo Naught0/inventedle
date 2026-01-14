@@ -103,10 +103,11 @@ export default function Game({
     },
     [game, gameOver, isLoggedIn, syncEnabled, refetchIotdStats],
   );
+  const [answerYear, answerEra] = formatYear(invention.year, true).split(" ");
 
   return (
-    <>
-      <div className="flex w-full max-w-md flex-col items-center justify-center gap-6 lg:max-w-screen-lg lg:gap-12">
+    <div className="flex flex-col items-center gap-8">
+      <div className="flex w-full max-w-md flex-col items-center justify-center gap-6 md:max-w-lg lg:max-w-screen-lg lg:gap-12">
         <div className="grid w-full grid-cols-1 gap-3 lg:grid-cols-2 lg:gap-6">
           <div className="flex w-full flex-col justify-start">
             {invention.image_url && (
@@ -143,9 +144,9 @@ export default function Game({
               </div>
             )}
           </div>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-1">
             {gameOver && (
-              <Stack className="text-2xl font-bold">
+              <Stack className="text-3xl font-bold">
                 <p>
                   {gameWon
                     ? "You won!"
@@ -154,13 +155,17 @@ export default function Game({
                       : "Something strange happened..."}{" "}
                   The year was:
                 </p>
-                <p className="text-primary w-fit rounded-lg border-dashed font-mono text-4xl">
-                  {formatYear(invention.year, true)}
+                <p className="text-primary w-fit rounded-lg border-transparent font-mono text-4xl">
+                  {answerYear}
+                  <span className="text-primary font-sans text-3xl">
+                    {" "}
+                    {answerEra}
+                  </span>
                 </p>
               </Stack>
             )}
             {gameOver ? (
-              <div className="flex flex-col gap-6">
+              <div className="mb-3 flex flex-col gap-3">
                 {guesses && (
                   <ShareScore
                     iotdId={iotdId}
@@ -230,15 +235,17 @@ export default function Game({
         </div>
       </div>
       <Activity mode={gameOver && !!iotdStatsData ? "visible" : "hidden"}>
-        <p className="text-2xl font-bold">Stats</p>
-        <div className="flex w-full max-w-md flex-wrap justify-center gap-3 lg:max-w-full lg:flex-nowrap">
-          {Object.values(friendIOTDStats ?? {}).some((f) => f.length) && (
-            <FriendsGuessChart data={friendIOTDStats} />
-          )}
-          <GuessStatsChart numGuesses={iotdStatsData} />
+        <div className="flex w-full flex-col items-center gap-3">
+          <p className="text-3xl font-bold lg:text-4xl">Stats</p>
+          <div className="flex w-full flex-wrap justify-center gap-3 lg:max-w-full lg:flex-nowrap">
+            {Object.values(friendIOTDStats ?? {}).some((f) => f.length) && (
+              <FriendsGuessChart data={friendIOTDStats} />
+            )}
+            <GuessStatsChart numGuesses={iotdStatsData} />
+          </div>
         </div>
       </Activity>
-    </>
+    </div>
   );
 }
 

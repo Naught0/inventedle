@@ -1,16 +1,14 @@
 import { Hyperlink } from "@/components/hyperlink";
-import { Nav } from "@/components/nav";
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import { Atkinson_Hyperlegible_Next } from "next/font/google";
 import "./globals.css";
-import { Help } from "@/components/help";
 import { QueryContext } from "@/components/hooks/query";
-import { SigninButton } from "@/components/signin-button";
 import Script from "next/script";
+import { Nav } from "@/components/nav";
 
 const mono = JetBrains_Mono({
-  weight: ["500", "800"],
+  weight: ["500"],
   subsets: ["latin"],
   variable: "--font-mono",
 });
@@ -40,18 +38,14 @@ export default function RootLayout({
       <body
         className={`bg-gradient dark ${sans.variable} ${mono.variable} font-sans antialiased`}
       >
-        <Nav />
-        <main className="mb-12 flex w-full flex-col items-center justify-start gap-3 p-3 pb-12 font-sans">
-          <aside className="flex items-center justify-center">
-            <Help />
-          </aside>
-          <QueryContext>
-            <SigninButton />
-            <div className="flex min-h-[50vh] w-full max-w-screen-sm justify-center lg:max-w-screen-lg">
+        <QueryContext>
+          <Nav />
+          <main className="mb-24 flex w-full flex-col items-center justify-start gap-3 p-3 pb-12 font-sans md:px-6">
+            <div className="flex min-h-[70vh] w-full max-w-screen-sm justify-center lg:max-w-screen-lg">
               {children}
             </div>
-          </QueryContext>
-        </main>
+          </main>
+        </QueryContext>
         <footer>
           <div className="-mb-1 w-full">
             <Wave />

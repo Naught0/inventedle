@@ -19,7 +19,7 @@ export function Help() {
       <DialogTrigger asChild>
         <Button
           variant={"link"}
-          className="inline-flex items-center gap-2 text-base"
+          className="hover:text-primary text-foreground hover:border-primary inline-flex h-fit w-fit items-center rounded-lg border-b-4 border-transparent px-3 py-2 transition-colors hover:no-underline lg:text-lg"
         >
           <PiQuestion className="text-xl" strokeWidth={10} />
           <span>How to play</span>

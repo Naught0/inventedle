@@ -1,16 +1,20 @@
 "use client";
 import { useState } from "react";
 import { Dangle } from "./animations/dangle";
-import { MdLightbulb } from "react-icons/md";
+import { FaLightbulb } from "react-icons/fa6";
 import Link from "next/link";
 
 export default function Logo() {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <Link href="/" prefetch={false}>
+    <Link
+      className="border-muted-foreground flex w-fit flex-col items-center justify-center rounded-lg text-center font-sans text-4xl sm:text-5xl lg:text-4xl"
+      href="/"
+      prefetch={false}
+    >
       <strong
-        className="border-muted-foreground inline-flex select-none rounded-lg border-b-2 border-r-2 p-3 font-sans text-4xl lg:text-5xl"
+        className="inline-flex flex-nowrap"
         onMouseOver={() => setHovered(true)}
         onMouseOut={() => setHovered(false)}
       >
@@ -18,10 +22,13 @@ export default function Logo() {
         <Dangle isHovering={hovered}>
           <span className="text-primary whitespace-nowrap">
             le{" "}
-            <MdLightbulb className="-ml-4 -mt-3 inline p-0 text-yellow-300" />
+            <FaLightbulb className="lg:-pl-2 -ml-4 -mt-2 inline pl-4 text-yellow-300 lg:-mt-2" />
           </span>
         </Dangle>
       </strong>
+      <span className="text-muted-foreground -ml-4 pl-4 text-sm font-light italic sm:text-base">
+        the inventurous daily guessing game
+      </span>
     </Link>
   );
 }

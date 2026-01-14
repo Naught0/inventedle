@@ -9,7 +9,7 @@ import {
   PopoverTrigger,
 } from "./ui/popover";
 import {
-  PiChartBarFill,
+  PiChartBarHorizontalFill,
   PiSignInFill,
   PiSignOutBold,
   PiUserGearFill,
@@ -65,7 +65,7 @@ function Menu({
           href={`/stats/${userId}`}
           prefetch={false}
         >
-          <PiChartBarFill className="text-2xl" />
+          <PiChartBarHorizontalFill className="text-2xl" />
           Stats
         </Link>
       </MenuItem>,
@@ -131,15 +131,15 @@ export function SigninButton({ loading = false }: { loading?: boolean }) {
       <PopoverAnchor>
         <PopoverTrigger asChild>
           <Button
-            variant={"outline"}
-            className="inline-flex items-center gap-2"
+            className="hover:bg-accent inline-flex items-center gap-3 px-3 py-2"
+            variant="ghost"
           >
             <div className="relative">
               {!isPending && data?.user?.image && (
                 <Image
                   alt="profile picture"
                   src={data?.user.image}
-                  className="rounded-full py-0.5"
+                  className="border-muted-foreground rounded-full border"
                   width={48}
                   height={48}
                 />
@@ -164,7 +164,7 @@ export function SigninButton({ loading = false }: { loading?: boolean }) {
               </span>
             )}
             {signedIn && (
-              <Stack className="gap-0">
+              <Stack className="flex gap-0">
                 <span className="text-muted-foreground/20 text-xs">
                   signed in as
                 </span>

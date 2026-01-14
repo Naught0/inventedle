@@ -1,12 +1,11 @@
 import { Hyperlink } from "../hyperlink";
 import { InventionModel } from "@/db/prisma/generated/models";
-import { Stack } from "../ui/stack";
 
 export function Summary({ invention }: { invention: InventionModel }) {
   return (
-    <article className="flex flex-col gap-2">
+    <article className="flex flex-col gap-0">
       {invention.inventor && (
-        <Stack className="gap-0">
+        <div className="mb-3">
           <p className="text-lg font-bold">Inventor</p>
           <p>
             {invention.inventor_link ? (
@@ -17,7 +16,7 @@ export function Summary({ invention }: { invention: InventionModel }) {
               invention.inventor
             )}
           </p>
-        </Stack>
+        </div>
       )}
       <blockquote className="text-muted-foreground border-primary bg-accent rounded-lg p-2.5">
         {invention.description}
