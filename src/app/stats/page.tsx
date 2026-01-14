@@ -9,10 +9,10 @@ export default async function Page() {
     redirect(`/stats/${session.user.id}`, RedirectType.replace);
 
   return (
-    <div className="my-3 grid gap-6">
+    <div className="my-3 flex flex-col gap-6 text-center">
       <h2 className="text-center text-4xl font-extrabold">Local Stats</h2>
       <LocalStatsPage />
-      <aside className="text-muted-foreground grid gap-2 text-center text-sm italic">
+      <aside className="text-muted-foreground flex flex-col gap-2 text-center text-sm italic">
         <p>
           Your stats are only saved locally, which means you can&apos;t share
           them with others or with yourself across devices

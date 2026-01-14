@@ -11,7 +11,7 @@ export default async function Page() {
   }
 
   return (
-    <Stack className="xs:px-8 xs:py-6 bg-accent h-fit justify-start rounded-lg px-3 shadow">
+    <Stack className="xs:px-12 xs:py-6 bg-accent h-fit justify-start rounded-lg px-3 shadow">
       <h2 className="xs:text-5xl mb-6 text-center text-4xl font-extrabold">
         Sign in with
       </h2>
