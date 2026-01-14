@@ -34,7 +34,7 @@ export function UserStats({
   const totalWins = getTotalWins(stats);
   const totalLosses = stats["X"];
   return (
-    <article className="my-3 flex w-full flex-col items-center justify-center">
+    <article className="flex w-full flex-col items-center justify-center">
       <Stack className="mb-6 flex-col items-center gap-1">
         {user?.image && (
           <Image
