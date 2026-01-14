@@ -103,7 +103,7 @@ export function ShareScore(props: {
               size: "xl",
               variant: "outline",
             }),
-            "bg-accent text-accent-foreground",
+            "bg-accent text-accent-foreground hover:bg-accent/80",
           )}
           type="button"
           onClick={onClick}
