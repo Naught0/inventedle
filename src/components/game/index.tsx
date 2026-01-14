@@ -165,7 +165,7 @@ export default function Game({
               </Stack>
             )}
             {gameOver ? (
-              <div className="mb-3 flex flex-col gap-3">
+              <div className="my-3 flex flex-col gap-3">
                 {guesses && (
                   <ShareScore
                     iotdId={iotdId}
