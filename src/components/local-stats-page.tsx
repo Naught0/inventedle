@@ -18,7 +18,9 @@ export function LocalStatsPage() {
 
   const totalGames = allGames.length;
   const totalWins = allGames.filter((game) => game.win).length;
-  const totalLosses = totalGames - totalWins;
+  const totalLosses = allGames.filter(
+    (game) => !game.win && game.guesses.length >= 5,
+  ).length;
   const gameStats: Stats = allGames.reduce((acc, game) => {
     if (game.win) {
       const key = game.guesses.length.toString() as keyof Stats;
