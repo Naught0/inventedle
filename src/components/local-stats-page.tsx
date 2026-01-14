@@ -31,12 +31,16 @@ export function LocalStatsPage() {
     return acc;
   }, {} as Stats);
 
-  return (
+  return totalGames > 0 ? (
     <UserStatsSection
       totalWins={totalWins}
       totalLosses={totalLosses}
       totalGames={totalGames}
       gameStats={gameStats}
     />
+  ) : (
+    <h3 className="text-muted-foreground text-2xl">
+      You haven&apos;t played any games yet. Play some games to see your stats.
+    </h3>
   );
 }
