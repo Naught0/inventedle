@@ -8,6 +8,7 @@ export function Hyperlink({
   className,
   rel,
   target,
+  prefetch = false,
   ...props
 }: PropsWithChildren<HTMLProps<HTMLAnchorElement>> & LinkProps) {
   return (
@@ -18,6 +19,7 @@ export function Hyperlink({
       )}
       rel={rel ?? "noopener noreferrer"}
       target={target ?? "_blank"}
+      prefetch={prefetch}
       {...props}
     >
       <span className={className}>
