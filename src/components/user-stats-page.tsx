@@ -16,20 +16,18 @@ import {
   getTotalWins,
 } from "@/lib/stats";
 
-export function UserStats({
+export function UserStatsPage({
   user,
   stats,
   showPrivateUserBanner,
   loginSession,
 }: {
-  user?: SessionWithUser["user"];
-  stats?: Stats;
+  user: SessionWithUser["user"];
+  stats: Stats;
   showPrivateUserBanner?: boolean;
   loginSession?: SessionWithUser | null;
   friendRequest?: FriendshipModel | null;
 }) {
-  if (!stats) return null;
-
   const totalGames = Object.values(stats).reduce((a, b) => a + b, 0);
   const totalWins = getTotalWins(stats);
   const totalLosses = stats["X"];
@@ -47,7 +45,7 @@ export function UserStats({
         )}
         <Stack className="items-center gap-3">
           <h2 className="text-accent-foreground text-center text-3xl font-bold">
-            {!user ? "Local" : `${user.name}'s`} Stats
+            {user.name} Stats
           </h2>
           {showPrivateUserBanner ? (
             <Stack className="text-muted-foreground text-center text-sm">
@@ -80,28 +78,49 @@ export function UserStats({
           )}
         </Stack>
       </Stack>
-      <div className="my-3 flex flex-col items-center gap-3">
-        <div className="flex w-full flex-col gap-3">
-          <div className="flex flex-grow flex-wrap justify-center gap-3">
-            <StatCard title={"Games"}>
-              <span>{totalWins}W</span>/<span>{totalLosses}L</span>
-            </StatCard>
-            <StatCard title={"Win %"}>
-              {Intl.NumberFormat().format(
-                Math.round((totalWins / totalGames) * 100),
-              )}
-              %
-            </StatCard>
-            <StatCard title={"Total Guesses"}>
-              {calculateTotalGuesses(stats)}
-            </StatCard>
-            <StatCard title={"Avg. Guesses to Win"}>
-              {calculateAverageGuesses(stats)}
-            </StatCard>
-          </div>
-        </div>
-        <GuessStatsChart title={"Game Results"} numGuesses={stats} />
-      </div>
+      <UserStatsSection
+        totalWins={totalWins}
+        totalLosses={totalLosses}
+        totalGames={totalGames}
+        gameStats={stats}
+      />
     </article>
+  );
+}
+
+export function UserStatsSection({
+  totalWins,
+  totalLosses,
+  totalGames,
+  gameStats: stats,
+}: {
+  totalWins: number;
+  totalLosses: number;
+  totalGames: number;
+  gameStats: Stats;
+}) {
+  return (
+    <div className="my-3 flex flex-col items-center gap-3">
+      <div className="flex w-full flex-col gap-3">
+        <div className="flex flex-grow flex-wrap justify-center gap-3">
+          <StatCard title={"Games"}>
+            <span>{totalWins}W</span>/<span>{totalLosses}L</span>
+          </StatCard>
+          <StatCard title={"Win %"}>
+            {Intl.NumberFormat().format(
+              Math.round((totalWins / totalGames) * 100),
+            )}
+            %
+          </StatCard>
+          <StatCard title={"Total Guesses"}>
+            {calculateTotalGuesses(stats)}
+          </StatCard>
+          <StatCard title={"Avg. Guesses to Win"}>
+            {calculateAverageGuesses(stats)}
+          </StatCard>
+        </div>
+      </div>
+      <GuessStatsChart title={"Game Results"} numGuesses={stats} />
+    </div>
   );
 }

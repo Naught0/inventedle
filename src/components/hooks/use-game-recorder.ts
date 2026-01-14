@@ -5,7 +5,7 @@ export type LocalGame = Omit<
   "user_id" | "created_at" | "num_guesses" | "guesses" | "user"
 > & { guesses: number[] };
 
-const localStorageKeyBase = "inventedle-game-result";
+export const localStorageKeyBase = "inventedle-game-result";
 
 export function recordGameToLocalStorage(game: LocalGame) {
   localStorage.setItem(

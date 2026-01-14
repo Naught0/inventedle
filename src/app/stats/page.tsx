@@ -1,9 +1,29 @@
+import { Hyperlink } from "@/components/hyperlink";
+import { LocalStatsPage } from "@/components/local-stats-page";
 import { getServerSession } from "@/lib/auth";
-import { notFound, redirect, RedirectType } from "next/navigation";
+import { redirect, RedirectType } from "next/navigation";
 
 export default async function Page() {
   const session = await getServerSession();
-  if (!session?.user) notFound();
+  if (session?.user)
+    redirect(`/stats/${session.user.id}`, RedirectType.replace);
 
-  redirect(`/stats/${session.user.id}`, RedirectType.replace);
+  return (
+    <div className="my-3 grid gap-6">
+      <h2 className="text-center text-4xl font-extrabold">Local Stats</h2>
+      <LocalStatsPage />
+      <aside className="text-muted-foreground grid gap-2 text-center text-sm italic">
+        <p>
+          Your stats are only saved locally, which means you can&apos;t share
+          them with others or with yourself across devices
+        </p>
+        <p>
+          <Hyperlink href="/sign-in" prefetch={false} target="_self">
+            Sign in
+          </Hyperlink>{" "}
+          to start saving your stats, competing with friends &amp; more
+        </p>
+      </aside>
+    </div>
+  );
 }

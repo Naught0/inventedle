@@ -1,4 +1,4 @@
-import { UserStats } from "@/components/user-stats";
+import { UserStatsPage } from "@/components/user-stats-page";
 import { db } from "@/db";
 import { getUserGameStats } from "@/actions/server-only";
 import { getServerSession } from "@/lib/auth";
@@ -103,7 +103,7 @@ export default async function Page({
   if (!stats) notFound();
 
   return (
-    <UserStats
+    <UserStatsPage
       loginSession={session}
       user={user}
       stats={stats}
