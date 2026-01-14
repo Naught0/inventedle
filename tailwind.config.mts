@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "425px",
+      },
       fontFamily: {
         mono: ["var(--font-mono)", "monospace"],
         sans: ["var(--font-sans)", "var(--fallback-fonts)"],
