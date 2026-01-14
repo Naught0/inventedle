@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
-        xs: "425px",
+        xs: "375px",
       },
       fontFamily: {
         mono: ["var(--font-mono)", "monospace"],
