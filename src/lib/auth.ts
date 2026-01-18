@@ -13,6 +13,7 @@ export const auth = betterAuth({
   ) as string[],
   session: {
     storeSessionInDatabase: true,
+    expiresIn: 60 * 60 * 24 * 365,
     cookieCache: {
       enabled: true,
     },
