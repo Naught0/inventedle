@@ -49,9 +49,9 @@ export const defaultRules: GameRule[] = [
   {
     yearEnding: -1,
     scale: [
-      { maxDistance: 100, hotness: CORRECT },
-      { maxDistance: 200, hotness: HOT },
-      { maxDistance: 300, hotness: WARM },
+      { maxDistance: 200, hotness: CORRECT },
+      { maxDistance: 400, hotness: HOT },
+      { maxDistance: 800, hotness: WARM },
     ],
   },
 ];
