@@ -1,9 +1,9 @@
 # Inventedle
+> The inventurous daily guessing game!  
 
-The inventurous daily guessing game! Guess the year of the invention within a range to win.
+Guess the year of the invention within a range to win.
 
-<img width="1614" height="1054" alt="image" src="https://github.com/user-attachments/assets/071a078d-3aee-4c5a-8abe-79ea0fbb923e" />
-
+<img width="2930" height="1964" alt="image" src="https://github.com/user-attachments/assets/366502cc-61f1-4b0d-ac7c-00b623fe2a84" />
 
 TODO:
 - [ ] Use a better colorscheme
