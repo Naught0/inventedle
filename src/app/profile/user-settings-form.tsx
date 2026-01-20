@@ -8,7 +8,7 @@ import { useSession } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { useForm, useStore } from "@tanstack/react-form";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { CgSpinner } from "react-icons/cg";
 import { SectionHeading } from "./section-heading";
 import { CopyInput } from "@/components/ui/copy-input";
@@ -65,7 +65,7 @@ export function UserSettingsForm() {
   );
 
   const imageUrl = useStore(form.store, (state) => state.values.image);
-  const [lastImageUrl, setLastImageUrl] = useState(
+  const lastImageUrl = useRef(
     typeof window !== "undefined"
       ? (sessionStorage.getItem("userImageUrl") ?? "")
       : "",
@@ -74,7 +74,7 @@ export function UserSettingsForm() {
   useEffect(
     function syncLastImage() {
       if (imageUrl) {
-        setLastImageUrl(imageUrl);
+        lastImageUrl.current = imageUrl;
         sessionStorage.setItem("userImageUrl", imageUrl);
       }
     },
@@ -193,7 +193,7 @@ export function UserSettingsForm() {
                     {!field.state.value && (
                       <Button
                         variant={"link"}
-                        onClick={() => field.handleChange(lastImageUrl)}
+                        onClick={() => field.handleChange(lastImageUrl.current)}
                         size="sm"
                         type="button"
                       >
