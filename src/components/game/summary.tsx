@@ -18,7 +18,7 @@ export function Summary({ invention }: { invention: InventionModel }) {
           </p>
         </div>
       )}
-      <blockquote className="text-muted-foreground border-primary bg-accent rounded-lg p-2.5">
+      <blockquote className="text-muted-foreground border-primary bg-accent mb-1 rounded-lg p-2.5">
         {invention.description}
       </blockquote>
       {invention.invention_link && (
