@@ -45,7 +45,7 @@ export function UserStatsPage({
         )}
         <Stack className="items-center gap-3">
           <h2 className="text-accent-foreground text-center text-3xl font-bold">
-            {user.name} Stats
+            {user.name}&apos;s Stats
           </h2>
           {showPrivateUserBanner ? (
             <Stack className="text-muted-foreground text-center text-sm">
