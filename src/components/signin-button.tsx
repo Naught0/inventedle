@@ -22,6 +22,8 @@ import { DiscordButton } from "./ui/discord-button";
 import { GoogleButton } from "./ui/google-button";
 import { useFriendship } from "./hooks/use-friendship";
 import { cn } from "@/lib/utils";
+import { useMissingResultsToImport } from "./hooks/use-backfill-results";
+import { ImportLocalGamesLink } from "./import-local-games-btn";
 
 function MenuItem({
   children,
@@ -46,8 +48,10 @@ function Menu({
   signedIn,
   userId,
   friendRequests,
+  gamesToImport,
 }: {
   signedIn: boolean;
+  gamesToImport?: number;
   userId?: string;
   friendRequests?: number;
 }) {
@@ -106,6 +110,16 @@ function Menu({
         </Button>
       </MenuItem>,
     );
+
+    if (gamesToImport) {
+      children.splice(
+        2,
+        0,
+        <MenuItem key="import-local-stats">
+          <ImportLocalGamesLink gamesToImport={gamesToImport} />
+        </MenuItem>,
+      );
+    }
   } else {
     children.push(
       <MenuItem key="discord-sign-in">
@@ -116,6 +130,7 @@ function Menu({
       </MenuItem>,
     );
   }
+
   return <ul className="h-full w-full px-6 py-3">{children}</ul>;
 }
 
@@ -131,6 +146,9 @@ export function SigninButton({
   const signedIn = !!data;
   const userId = data?.user?.id;
   const { incoming } = useFriendship({ userId });
+  const { data: localGamesToImport } = useMissingResultsToImport({
+    userId: data?.user.id,
+  });
 
   return (
     <Popover>
@@ -190,6 +208,7 @@ export function SigninButton({
           userId={userId}
           signedIn={signedIn}
           friendRequests={incoming.length}
+          gamesToImport={localGamesToImport?.length}
         />
       </PopoverContent>
     </Popover>
