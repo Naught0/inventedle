@@ -6,7 +6,11 @@ import { Help } from "./help";
 import { NavLink } from "./navlink";
 import { Stack } from "./ui/stack";
 import { cn } from "@/lib/utils";
-import { PiChartBarHorizontalFill, PiUserGearFill } from "react-icons/pi";
+import {
+  PiChartBarHorizontalFill,
+  PiHouseFill,
+  PiUserGearFill,
+} from "react-icons/pi";
 
 export function Nav() {
   const { data: session } = useSession();
@@ -37,6 +41,9 @@ function Links({ userId, className }: { userId?: string; className?: string }) {
         className,
       )}
     >
+      <NavLink href="/" className="hidden justify-center sm:flex">
+        <PiHouseFill />
+      </NavLink>
       <span className="inline-flex w-full items-center justify-center text-center">
         <Help />
       </span>
