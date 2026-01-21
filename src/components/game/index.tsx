@@ -106,7 +106,7 @@ export default function Game({
   const [answerYear, answerEra] = formatYear(invention.year, true).split(" ");
 
   return (
-    <div className="flex w-full flex-col items-center gap-8">
+    <div className="flex w-full flex-col items-center gap-6">
       <div className="flex w-full max-w-md flex-grow flex-col items-center justify-center gap-6 md:max-w-lg lg:max-w-screen-lg lg:gap-12">
         <div className="grid w-full grid-cols-1 gap-3 lg:grid-cols-2 lg:gap-6">
           <div className="flex w-full flex-col justify-start">
