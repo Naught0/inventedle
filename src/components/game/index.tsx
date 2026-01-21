@@ -106,8 +106,8 @@ export default function Game({
   const [answerYear, answerEra] = formatYear(invention.year, true).split(" ");
 
   return (
-    <div className="flex flex-col items-center gap-8">
-      <div className="flex w-full max-w-md flex-col items-center justify-center gap-6 md:max-w-lg lg:max-w-screen-lg lg:gap-12">
+    <div className="flex w-full flex-col items-center gap-8">
+      <div className="flex w-full max-w-md flex-grow flex-col items-center justify-center gap-6 md:max-w-lg lg:max-w-screen-lg lg:gap-12">
         <div className="grid w-full grid-cols-1 gap-3 lg:grid-cols-2 lg:gap-6">
           <div className="flex w-full flex-col justify-start">
             {invention.image_url && (
@@ -200,7 +200,7 @@ export default function Game({
                 <div className="flex flex-grow flex-col gap-3">
                   <div className="flex flex-row items-center gap-0">
                     <Input
-                      className="text-foreground placeholder:text-muted-foreground bg-background rounded-r-none"
+                      className="text-foreground placeholder:text-muted-foreground bg-background rounded-r-none py-2.5"
                       name="guess"
                       type="number"
                       inputMode="numeric"
