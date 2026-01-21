@@ -35,7 +35,7 @@ export function GamePage({
   };
   const [nextId, prevId] = [iotd.id + 1, iotd.id - 1];
   const isTodaysPuzzle = isSameDay(
-    new TZDate(iotd.created_at, "America/New_York"),
+    new TZDate(iotd.created_at, "UTC"),
     new TZDate(new Date(), "America/New_York"),
   );
 
