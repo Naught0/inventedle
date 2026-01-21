@@ -197,8 +197,8 @@ export default function Game({
                   formRef.current?.reset();
                 }}
               >
-                <div className="flex flex-grow flex-col gap-3">
-                  <div className="flex flex-row items-center gap-0">
+                <div className="mt-3 flex flex-grow flex-col gap-3">
+                  <Stack horizontal gap={false}>
                     <Input
                       className="text-foreground placeholder:text-muted-foreground bg-background rounded-r-none py-2.5"
                       name="guess"
@@ -222,7 +222,7 @@ export default function Game({
                       onChange={setEra}
                       disabled={gameOver}
                     />
-                  </div>
+                  </Stack>
                   <div>
                     <Button size="xl" type="submit" disabled={gameOver}>
                       Guess
