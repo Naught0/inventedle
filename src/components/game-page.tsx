@@ -5,7 +5,7 @@ import {
   ResultModel,
 } from "@/db/prisma/generated/models";
 import { TZDate } from "@date-fns/tz";
-import { isSameDay, isToday } from "date-fns";
+import { formatDate, isSameDay, isToday } from "date-fns";
 import Link from "next/link";
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
 import { cn } from "@/lib/utils";
@@ -34,8 +34,9 @@ export function GamePage({
     guesses: (gameResult?.guesses ?? []) as number[],
   };
   const [nextId, prevId] = [iotd.id + 1, iotd.id - 1];
+  const utcPuzzleDate = new TZDate(iotd.created_at, "UTC");
   const isTodaysPuzzle = isSameDay(
-    new TZDate(iotd.created_at, "UTC"),
+    utcPuzzleDate,
     new TZDate(new Date(), "America/New_York"),
   );
 
@@ -71,7 +72,9 @@ export function GamePage({
         </Button>
       </div>
       <div className="text-center">
-        <p className="text-xl">{iotd.created_at.toLocaleDateString()}</p>
+        <p className="text-xl">
+          {formatDate(new TZDate(iotd.created_at, "America/New_York"), "P")}
+        </p>
         <p>
           {!isToday(iotd.created_at) && (
             <Hyperlink tabIndex={0} href="/" target="" className="italic">
