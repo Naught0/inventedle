@@ -4,8 +4,8 @@ import {
   InventionOfTheDayModel,
   ResultModel,
 } from "@/db/prisma/generated/models";
-import { TZDate } from "@date-fns/tz";
-import { formatDate, isSameDay, isToday } from "date-fns";
+import { tz, TZDate } from "@date-fns/tz";
+import { formatDate, isSameDay } from "date-fns";
 import Link from "next/link";
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
 import { cn } from "@/lib/utils";
@@ -34,11 +34,9 @@ export function GamePage({
     guesses: (gameResult?.guesses ?? []) as number[],
   };
   const [nextId, prevId] = [iotd.id + 1, iotd.id - 1];
-  const utcPuzzleDate = new TZDate(iotd.created_at, "UTC");
-  const isTodaysPuzzle = isSameDay(
-    utcPuzzleDate,
-    new TZDate(new Date(), "America/New_York"),
-  );
+  const isTodaysPuzzle = isSameDay(new Date(), iotd.created_at, {
+    in: tz("America/New_York"),
+  });
 
   return (
     <div className="flex w-full flex-col items-center gap-1">
@@ -76,7 +74,7 @@ export function GamePage({
           {formatDate(new TZDate(iotd.created_at, "America/New_York"), "P")}
         </p>
         <p>
-          {!isToday(iotd.created_at) && (
+          {!isTodaysPuzzle && (
             <Hyperlink tabIndex={0} href="/" target="" className="italic">
               Click here for today&apos;s puzzle
             </Hyperlink>
