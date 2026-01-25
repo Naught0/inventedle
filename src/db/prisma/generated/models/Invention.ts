@@ -46,6 +46,7 @@ export type InventionMinAggregateOutputType = {
   inventor: string | null
   inventor_link: string | null
   invention_link: string | null
+  related_links: string | null
 }
 
 export type InventionMaxAggregateOutputType = {
@@ -58,6 +59,7 @@ export type InventionMaxAggregateOutputType = {
   inventor: string | null
   inventor_link: string | null
   invention_link: string | null
+  related_links: string | null
 }
 
 export type InventionCountAggregateOutputType = {
@@ -70,6 +72,7 @@ export type InventionCountAggregateOutputType = {
   inventor: number
   inventor_link: number
   invention_link: number
+  related_links: number
   _all: number
 }
 
@@ -94,6 +97,7 @@ export type InventionMinAggregateInputType = {
   inventor?: true
   inventor_link?: true
   invention_link?: true
+  related_links?: true
 }
 
 export type InventionMaxAggregateInputType = {
@@ -106,6 +110,7 @@ export type InventionMaxAggregateInputType = {
   inventor?: true
   inventor_link?: true
   invention_link?: true
+  related_links?: true
 }
 
 export type InventionCountAggregateInputType = {
@@ -118,6 +123,7 @@ export type InventionCountAggregateInputType = {
   inventor?: true
   inventor_link?: true
   invention_link?: true
+  related_links?: true
   _all?: true
 }
 
@@ -217,6 +223,7 @@ export type InventionGroupByOutputType = {
   inventor: string | null
   inventor_link: string | null
   invention_link: string | null
+  related_links: string | null
   _count: InventionCountAggregateOutputType | null
   _avg: InventionAvgAggregateOutputType | null
   _sum: InventionSumAggregateOutputType | null
@@ -252,6 +259,7 @@ export type InventionWhereInput = {
   inventor?: Prisma.StringNullableFilter<"Invention"> | string | null
   inventor_link?: Prisma.StringNullableFilter<"Invention"> | string | null
   invention_link?: Prisma.StringNullableFilter<"Invention"> | string | null
+  related_links?: Prisma.StringNullableFilter<"Invention"> | string | null
   inventionOfTheDays?: Prisma.InventionOfTheDayListRelationFilter
 }
 
@@ -265,6 +273,7 @@ export type InventionOrderByWithRelationInput = {
   inventor?: Prisma.SortOrderInput | Prisma.SortOrder
   inventor_link?: Prisma.SortOrderInput | Prisma.SortOrder
   invention_link?: Prisma.SortOrderInput | Prisma.SortOrder
+  related_links?: Prisma.SortOrderInput | Prisma.SortOrder
   inventionOfTheDays?: Prisma.InventionOfTheDayOrderByRelationAggregateInput
 }
 
@@ -281,6 +290,7 @@ export type InventionWhereUniqueInput = Prisma.AtLeast<{
   inventor?: Prisma.StringNullableFilter<"Invention"> | string | null
   inventor_link?: Prisma.StringNullableFilter<"Invention"> | string | null
   invention_link?: Prisma.StringNullableFilter<"Invention"> | string | null
+  related_links?: Prisma.StringNullableFilter<"Invention"> | string | null
   inventionOfTheDays?: Prisma.InventionOfTheDayListRelationFilter
 }, "id">
 
@@ -294,6 +304,7 @@ export type InventionOrderByWithAggregationInput = {
   inventor?: Prisma.SortOrderInput | Prisma.SortOrder
   inventor_link?: Prisma.SortOrderInput | Prisma.SortOrder
   invention_link?: Prisma.SortOrderInput | Prisma.SortOrder
+  related_links?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.InventionCountOrderByAggregateInput
   _avg?: Prisma.InventionAvgOrderByAggregateInput
   _max?: Prisma.InventionMaxOrderByAggregateInput
@@ -314,6 +325,7 @@ export type InventionScalarWhereWithAggregatesInput = {
   inventor?: Prisma.StringNullableWithAggregatesFilter<"Invention"> | string | null
   inventor_link?: Prisma.StringNullableWithAggregatesFilter<"Invention"> | string | null
   invention_link?: Prisma.StringNullableWithAggregatesFilter<"Invention"> | string | null
+  related_links?: Prisma.StringNullableWithAggregatesFilter<"Invention"> | string | null
 }
 
 export type InventionCreateInput = {
@@ -325,6 +337,7 @@ export type InventionCreateInput = {
   inventor?: string | null
   inventor_link?: string | null
   invention_link?: string | null
+  related_links?: string | null
   inventionOfTheDays?: Prisma.InventionOfTheDayCreateNestedManyWithoutInventionInput
 }
 
@@ -338,6 +351,7 @@ export type InventionUncheckedCreateInput = {
   inventor?: string | null
   inventor_link?: string | null
   invention_link?: string | null
+  related_links?: string | null
   inventionOfTheDays?: Prisma.InventionOfTheDayUncheckedCreateNestedManyWithoutInventionInput
 }
 
@@ -350,6 +364,7 @@ export type InventionUpdateInput = {
   inventor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inventor_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invention_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  related_links?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inventionOfTheDays?: Prisma.InventionOfTheDayUpdateManyWithoutInventionNestedInput
 }
 
@@ -363,6 +378,7 @@ export type InventionUncheckedUpdateInput = {
   inventor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inventor_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invention_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  related_links?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inventionOfTheDays?: Prisma.InventionOfTheDayUncheckedUpdateManyWithoutInventionNestedInput
 }
 
@@ -376,6 +392,7 @@ export type InventionCreateManyInput = {
   inventor?: string | null
   inventor_link?: string | null
   invention_link?: string | null
+  related_links?: string | null
 }
 
 export type InventionUpdateManyMutationInput = {
@@ -387,6 +404,7 @@ export type InventionUpdateManyMutationInput = {
   inventor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inventor_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invention_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  related_links?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type InventionUncheckedUpdateManyInput = {
@@ -399,6 +417,7 @@ export type InventionUncheckedUpdateManyInput = {
   inventor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inventor_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invention_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  related_links?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type InventionScalarRelationFilter = {
@@ -416,6 +435,7 @@ export type InventionCountOrderByAggregateInput = {
   inventor?: Prisma.SortOrder
   inventor_link?: Prisma.SortOrder
   invention_link?: Prisma.SortOrder
+  related_links?: Prisma.SortOrder
 }
 
 export type InventionAvgOrderByAggregateInput = {
@@ -433,6 +453,7 @@ export type InventionMaxOrderByAggregateInput = {
   inventor?: Prisma.SortOrder
   inventor_link?: Prisma.SortOrder
   invention_link?: Prisma.SortOrder
+  related_links?: Prisma.SortOrder
 }
 
 export type InventionMinOrderByAggregateInput = {
@@ -445,6 +466,7 @@ export type InventionMinOrderByAggregateInput = {
   inventor?: Prisma.SortOrder
   inventor_link?: Prisma.SortOrder
   invention_link?: Prisma.SortOrder
+  related_links?: Prisma.SortOrder
 }
 
 export type InventionSumOrderByAggregateInput = {
@@ -483,6 +505,7 @@ export type InventionCreateWithoutInventionOfTheDaysInput = {
   inventor?: string | null
   inventor_link?: string | null
   invention_link?: string | null
+  related_links?: string | null
 }
 
 export type InventionUncheckedCreateWithoutInventionOfTheDaysInput = {
@@ -495,6 +518,7 @@ export type InventionUncheckedCreateWithoutInventionOfTheDaysInput = {
   inventor?: string | null
   inventor_link?: string | null
   invention_link?: string | null
+  related_links?: string | null
 }
 
 export type InventionCreateOrConnectWithoutInventionOfTheDaysInput = {
@@ -522,6 +546,7 @@ export type InventionUpdateWithoutInventionOfTheDaysInput = {
   inventor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inventor_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invention_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  related_links?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type InventionUncheckedUpdateWithoutInventionOfTheDaysInput = {
@@ -534,6 +559,7 @@ export type InventionUncheckedUpdateWithoutInventionOfTheDaysInput = {
   inventor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inventor_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invention_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  related_links?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -577,6 +603,7 @@ export type InventionSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   inventor?: boolean
   inventor_link?: boolean
   invention_link?: boolean
+  related_links?: boolean
   inventionOfTheDays?: boolean | Prisma.Invention$inventionOfTheDaysArgs<ExtArgs>
   _count?: boolean | Prisma.InventionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["invention"]>
@@ -591,6 +618,7 @@ export type InventionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   inventor?: boolean
   inventor_link?: boolean
   invention_link?: boolean
+  related_links?: boolean
 }, ExtArgs["result"]["invention"]>
 
 export type InventionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -603,6 +631,7 @@ export type InventionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   inventor?: boolean
   inventor_link?: boolean
   invention_link?: boolean
+  related_links?: boolean
 }, ExtArgs["result"]["invention"]>
 
 export type InventionSelectScalar = {
@@ -615,9 +644,10 @@ export type InventionSelectScalar = {
   inventor?: boolean
   inventor_link?: boolean
   invention_link?: boolean
+  related_links?: boolean
 }
 
-export type InventionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "year" | "description" | "image_url" | "created_at" | "inventor" | "inventor_link" | "invention_link", ExtArgs["result"]["invention"]>
+export type InventionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "year" | "description" | "image_url" | "created_at" | "inventor" | "inventor_link" | "invention_link" | "related_links", ExtArgs["result"]["invention"]>
 export type InventionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   inventionOfTheDays?: boolean | Prisma.Invention$inventionOfTheDaysArgs<ExtArgs>
   _count?: boolean | Prisma.InventionCountOutputTypeDefaultArgs<ExtArgs>
@@ -640,6 +670,7 @@ export type $InventionPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     inventor: string | null
     inventor_link: string | null
     invention_link: string | null
+    related_links: string | null
   }, ExtArgs["result"]["invention"]>
   composites: {}
 }
@@ -1073,6 +1104,7 @@ export interface InventionFieldRefs {
   readonly inventor: Prisma.FieldRef<"Invention", 'String'>
   readonly inventor_link: Prisma.FieldRef<"Invention", 'String'>
   readonly invention_link: Prisma.FieldRef<"Invention", 'String'>
+  readonly related_links: Prisma.FieldRef<"Invention", 'String'>
 }
     
 
