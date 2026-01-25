@@ -1,6 +1,6 @@
-import { db } from ".";
-import data from "../../data.json";
-import { InventionCreateInput } from "./prisma/generated/models";
+import { db } from "@/db";
+import data from "../data.json";
+import { InventionCreateInput } from "@/db/prisma/generated/models";
 
 function convertSchema(item: (typeof data)[0]): InventionCreateInput {
   return {
