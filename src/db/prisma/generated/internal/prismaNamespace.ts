@@ -1057,7 +1057,8 @@ export const InventionScalarFieldEnum = {
   created_at: 'created_at',
   inventor: 'inventor',
   inventor_link: 'inventor_link',
-  invention_link: 'invention_link'
+  invention_link: 'invention_link',
+  related_links: 'related_links'
 } as const
 
 export type InventionScalarFieldEnum = (typeof InventionScalarFieldEnum)[keyof typeof InventionScalarFieldEnum]

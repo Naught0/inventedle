@@ -31,6 +31,7 @@ model Invention {
   inventor           String?
   inventor_link      String?
   invention_link     String?
+  related_links      String?
   inventionOfTheDays InventionOfTheDay[]
 
   @@map("inventions")
