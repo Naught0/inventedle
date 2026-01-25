@@ -5,7 +5,9 @@ export function LoadingGame() {
   return (
     <Stack className="w-full gap-6 sm:max-w-md lg:max-w-screen-lg" center>
       <Stack center>
-        <h2 className="text-3xl font-extrabold">Loading game...</h2>
+        <h2 className="text-muted-foreground animate-pulse text-3xl font-extrabold">
+          Loading game...
+        </h2>
         <Skeleton className="h-8 w-48" />
         <Skeleton className="h-6 w-52" />
       </Stack>
