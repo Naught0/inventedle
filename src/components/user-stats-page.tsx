@@ -120,7 +120,9 @@ export function UserStatsSection({
           </StatCard>
         </div>
       </div>
-      <GuessStatsChart title={"Game Results"} numGuesses={stats} />
+      <div className="flex w-full justify-center">
+        <GuessStatsChart title={"Game Results"} numGuesses={stats} />
+      </div>
     </div>
   );
 }

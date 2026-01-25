@@ -1,12 +1,4 @@
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  LabelList,
-  ResponsiveContainer,
-  LabelProps,
-} from "recharts";
+import { BarChart, Bar, XAxis, YAxis, LabelList, LabelProps } from "recharts";
 import { ChartContainer } from "./chart-container";
 import { FriendGuessChartResults } from "@/actions/server-only";
 import Image from "next/image";
@@ -58,52 +50,50 @@ export function FriendsGuessChart({
   }));
   return (
     <ChartContainer title={"Friends"}>
-      <ResponsiveContainer>
-        <BarChart
-          layout="vertical"
-          margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
-          responsive
-          width="100%"
-          height="100%"
-          data={chartData}
+      <BarChart
+        layout="vertical"
+        margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
+        responsive
+        width="100%"
+        height="100%"
+        data={chartData}
+      >
+        <YAxis
+          type="category"
+          dataKey="label"
+          tick={{ fill: "#eee" }}
+          fontSize={18}
+          tickLine={false}
+          axisLine={false}
+          tickMargin={10}
+          padding={{ top: 0, bottom: 0 }}
+          width={32}
+        />
+        <XAxis
+          type="number"
+          dataKey={"value"}
+          padding={{ left: 0, right: 0 }}
+          domain={[0, (dataMax) => dataMax * 1.3]}
+          hide
+        />
+        <Bar
+          dataKey="value"
+          fill="#f56bb0"
+          activeBar={{ fill: "hsl(333, 78%, 60%)" }}
+          radius={[0, 5, 5, 0]}
         >
-          <YAxis
-            type="category"
-            dataKey="label"
-            tick={{ fill: "#eee" }}
-            fontSize={18}
-            tickLine={false}
-            axisLine={false}
-            tickMargin={10}
-            padding={{ top: 0, bottom: 0 }}
-            width={32}
+          <LabelList
+            dataKey={(data) => data.friends}
+            className="fill-foreground font-bold"
+            content={<FriendBubbleLabel />}
           />
-          <XAxis
-            type="number"
-            dataKey={"value"}
-            padding={{ left: 0, right: 0 }}
-            domain={[0, (dataMax) => dataMax * 1.3]}
-            hide
+          <LabelList
+            position="right"
+            dataKey="barLabel"
+            className="fill-foreground text-sm font-bold md:text-base"
           />
-          <Bar
-            dataKey="value"
-            fill="#f56bb0"
-            activeBar={{ fill: "hsl(333, 78%, 60%)" }}
-            radius={[0, 5, 5, 0]}
-          >
-            <LabelList
-              dataKey={(data) => data.friends}
-              className="fill-foreground font-bold"
-              content={<FriendBubbleLabel />}
-            />
-            <LabelList
-              position="right"
-              dataKey="barLabel"
-              className="fill-foreground text-sm font-bold md:text-base"
-            />
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
+        </Bar>
+      </BarChart>
     </ChartContainer>
   );
 }

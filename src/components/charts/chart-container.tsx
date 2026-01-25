@@ -1,4 +1,5 @@
 import { PropsWithChildren } from "react";
+import { ResponsiveContainer } from "recharts";
 
 export function ChartContainer({
   children,
@@ -9,7 +10,9 @@ export function ChartContainer({
       <h4 className="text-muted-foreground h-fit text-center text-xl font-extralight uppercase">
         {title}
       </h4>
-      {children}
+      <ResponsiveContainer width="100%" height="100%">
+        {children}
+      </ResponsiveContainer>
     </div>
   );
 }
