@@ -4,7 +4,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Stack } from "@/components/ui/stack";
-import { useSession } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { useForm, useStore } from "@tanstack/react-form";
 import Image from "next/image";
@@ -13,6 +12,7 @@ import { CgSpinner } from "react-icons/cg";
 import { SectionHeading } from "./section-heading";
 import { CopyInput } from "@/components/ui/copy-input";
 import { updateUser } from "@/actions/server-actions";
+import { useDefaultSession } from "@/components/hooks/useDefaultSession";
 
 function FormField({
   children,
@@ -32,7 +32,7 @@ const defaultValues = {
 };
 
 export function UserSettingsForm() {
-  const { data: session, refetch, isRefetching } = useSession();
+  const { session, refetch, isRefetching } = useDefaultSession();
   const form = useForm({
     asyncDebounceMs: 1000,
     defaultValues: session?.user ?? defaultValues,

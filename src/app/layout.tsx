@@ -6,6 +6,8 @@ import "./globals.css";
 import { QueryContext } from "@/components/hooks/query";
 import Script from "next/script";
 import { Nav } from "@/components/nav";
+import { Providers } from "@/components/providers";
+import { getServerSession } from "@/lib/auth";
 
 const mono = JetBrains_Mono({
   weight: ["500"],
@@ -28,24 +30,25 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession();
   return (
     <html lang="en">
       <body
         className={`bg-gradient dark ${sans.variable} ${mono.variable} font-sans antialiased`}
       >
-        <QueryContext>
+        <Providers session={session}>
           <Nav />
           <main className="mb-24 flex w-full flex-col items-center justify-start gap-3 p-3 pb-12 font-sans md:px-6">
             <div className="flex min-h-[70vh] w-full max-w-screen-sm justify-center lg:max-w-screen-lg">
               {children}
             </div>
           </main>
-        </QueryContext>
+        </Providers>
         <footer>
           <div className="-mb-1 w-full">
             <Wave />

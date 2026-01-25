@@ -1,5 +1,5 @@
 "use client";
-import { signOut, useSession } from "@/lib/auth-client";
+import { signOut } from "@/lib/auth-client";
 import { Button, buttonVariants } from "./ui/button";
 import Image from "next/image";
 import {
@@ -24,6 +24,7 @@ import { useFriendship } from "./hooks/use-friendship";
 import { cn } from "@/lib/utils";
 import { useMissingResultsToImport } from "./hooks/use-backfill-results";
 import { ImportLocalGamesLink } from "./import-local-games-btn";
+import { useDefaultSession } from "./hooks/useDefaultSession";
 
 function MenuItem({
   children,
@@ -101,8 +102,13 @@ function Menu({
           variant="ghost"
           className="inline-flex w-full items-center gap-2"
           onClick={() => {
-            void signOut();
-            router.push("/");
+            void signOut({
+              fetchOptions: {
+                onSuccess: () => {
+                  router.refresh();
+                },
+              },
+            });
           }}
         >
           <PiSignOutBold className="text-2xl" />
@@ -141,13 +147,13 @@ export function SigninButton({
   className?: string;
   loading?: boolean;
 }) {
-  const { data, isPending } = useSession();
+  const { session, isPending } = useDefaultSession();
   const isLoading = isPending || loading;
-  const signedIn = !!data;
-  const userId = data?.user?.id;
+  const signedIn = !!session;
+  const userId = session?.user?.id;
   const { incoming } = useFriendship({ userId });
   const { data: localGamesToImport } = useMissingResultsToImport({
-    userId: data?.user.id,
+    userId: session?.user.id,
   });
 
   return (
@@ -162,10 +168,10 @@ export function SigninButton({
             variant="ghost"
           >
             <div className="relative">
-              {!isPending && data?.user?.image && (
+              {!isPending && session?.user?.image && (
                 <Image
                   alt="profile picture"
-                  src={data?.user.image}
+                  src={session?.user.image}
                   className="border-muted-foreground rounded-full border"
                   width={48}
                   height={48}
@@ -185,7 +191,7 @@ export function SigninButton({
             {!signedIn && isLoading && (
               <CgSpinnerAlt className="text-primary mx-9 my-0.5 h-12 w-12 animate-spin text-4xl" />
             )}
-            {!isLoading && !data && (
+            {!isLoading && !session && (
               <span className="inline-flex items-center gap-2 py-3">
                 <PiSignInFill className="text-2xl" strokeWidth={15} /> Sign in
               </span>
@@ -196,7 +202,7 @@ export function SigninButton({
                   signed in as
                 </span>
                 <span className="text-muted-foreground max-w-36 overflow-hidden text-ellipsis text-sm lg:max-w-20">
-                  {data.user.name}
+                  {session.user.name}
                 </span>
               </Stack>
             )}

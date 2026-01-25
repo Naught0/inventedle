@@ -15,19 +15,19 @@ import {
   calculateTotalGuesses,
   getTotalWins,
 } from "@/lib/stats";
+import { useDefaultSession } from "./hooks/useDefaultSession";
 
 export function UserStatsPage({
   user,
   stats,
   showPrivateUserBanner,
-  loginSession,
 }: {
   user: SessionWithUser["user"];
   stats: Stats;
   showPrivateUserBanner?: boolean;
-  loginSession?: SessionWithUser | null;
   friendRequest?: FriendshipModel | null;
 }) {
+  const { session: loginSession } = useDefaultSession();
   const totalGames = Object.values(stats).reduce((a, b) => a + b, 0);
   const totalWins = getTotalWins(stats);
   const totalLosses = stats["X"];

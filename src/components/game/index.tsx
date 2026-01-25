@@ -1,5 +1,5 @@
 "use client";
-import { Activity } from "react";
+import { Activity, useContext } from "react";
 import { InventionModel } from "@/db/prisma/generated/models";
 import { createRef, useEffect, useMemo, useState } from "react";
 import { Button } from "../ui/button";
@@ -17,7 +17,6 @@ import {
   LocalGame,
   recordGameToLocalStorage,
 } from "../hooks/use-game-recorder";
-import { useSession } from "@/lib/auth-client";
 import { useQuery } from "@tanstack/react-query";
 import { useImmer } from "use-immer";
 import { GuessStatsChart } from "../charts/guess-stats-chart";
@@ -27,6 +26,7 @@ import { ImageWithCaption } from "../image-with-caption";
 import { FriendsGuessChart } from "../charts/friends-guess-chart";
 import type { FriendGuessChartResults } from "@/actions/server-only";
 import { Stack } from "../ui/stack";
+import { useDefaultSession } from "../hooks/useDefaultSession";
 
 export default function Game({
   invention,
@@ -37,8 +37,8 @@ export default function Game({
   iotdId: number;
   gameResult?: LocalGame | null;
 }) {
-  const { data, isPending } = useSession();
-  const isLoggedIn = !!data;
+  const { session } = useDefaultSession();
+  const isLoggedIn = !!session;
   const [era, setEra] = useState<Era>(Era.CE);
   const rules = getRulesByYear(invention.year);
   const formRef = createRef<HTMLFormElement>();
@@ -209,7 +209,7 @@ export default function Game({
                           ? new Date().getFullYear() + 1
                           : undefined
                       }
-                      disabled={isPending || gameOver}
+                      disabled={gameOver}
                       placeholder={
                         !gameOver
                           ? `Guess a year | (Guess ${guesses.length + 1} / 5)`

@@ -1,5 +1,4 @@
 "use client";
-import { useSession } from "@/lib/auth-client";
 import Logo from "./logo";
 import { SigninButton } from "./signin-button";
 import { Help } from "./help";
@@ -11,9 +10,9 @@ import {
   PiHouseFill,
   PiUserGearFill,
 } from "react-icons/pi";
+import { useDefaultSession } from "./hooks/useDefaultSession";
 
 export function Nav() {
-  const { data: session } = useSession();
   return (
     <nav className="relative mx-auto flex w-full max-w-screen-2xl flex-col items-center justify-center gap-3 p-6 pb-3 lg:mb-10 lg:flex-row">
       <div className="absolute left-6 top-3 hidden lg:block">
@@ -25,7 +24,7 @@ export function Nav() {
       <div className="lg:hidden">
         <SigninButton />
       </div>
-      <Links className="" userId={session?.user?.id} />
+      <Links className="" />
       <div className="absolute right-3 top-3 hidden lg:block">
         <SigninButton />
       </div>
@@ -33,7 +32,9 @@ export function Nav() {
   );
 }
 
-function Links({ userId, className }: { userId?: string; className?: string }) {
+function Links({ className }: { className?: string }) {
+  const { session } = useDefaultSession();
+  const userId = session?.user?.id;
   return (
     <Stack
       className={cn(

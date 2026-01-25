@@ -104,7 +104,6 @@ export default async function Page({
 
   return (
     <UserStatsPage
-      loginSession={session}
       user={user}
       stats={stats}
       showPrivateUserBanner={session?.user.id === user.id && !user.isPublic}
