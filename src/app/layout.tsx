@@ -71,6 +71,11 @@ export default async function RootLayout({
                     encyclopedia britannica®
                   </Hyperlink>
                 </li>
+                <li>
+                  <Hyperlink href="https://en.wikipedia.org">
+                    wikipedia
+                  </Hyperlink>
+                </li>
               </ul>
             </div>
             <p>
