@@ -3,7 +3,7 @@ import { db } from "@/db";
 import { getIOTD, getRandomInvention } from "@/db/actions";
 import { ResultGetPayload } from "@/db/prisma/generated/models";
 import { TZDate } from "@date-fns/tz";
-import { format, isSameDay, subMonths } from "date-fns";
+import { format, isSameDay } from "date-fns";
 import { Metadata } from "next";
 /**
  * Creates an Invention of the Day unless one has already been created for today (EST)
@@ -22,11 +22,6 @@ export async function createIOTD() {
     await db.inventionOfTheDay.findMany({
       select: { invention_id: true },
       distinct: ["invention_id"],
-      where: {
-        created_at: {
-          gt: subMonths(now, 3),
-        },
-      },
     })
   ).map((i) => i.invention_id);
   const avoidBadInventions = (
@@ -51,6 +46,8 @@ export async function createIOTD() {
     ...avoidIOTDs,
     ...avoidBadInventions,
   ]);
+  if (!invention) throw new Error("No more inventions available!");
+
   const newIotd = await db.inventionOfTheDay.create({
     data: {
       invention_id: invention.id,

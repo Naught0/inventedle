@@ -20,6 +20,9 @@ export async function getRandomInvention(excludeIds: number[] = []) {
     select: { id: true },
     where: { image_url: { not: null }, id: { notIn: excludeIds } },
   });
+  if (ids.length === 0) {
+    return null;
+  }
   const { id } = ids[Math.floor(Math.random() * ids.length)];
   return (await db.invention.findUnique({ where: { id } }))!;
 }
