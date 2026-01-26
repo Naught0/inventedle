@@ -136,7 +136,7 @@ export function UserStatsSection({
 
 function Streaks({ streaks }: { streaks: UserStreaks }) {
   return (
-    <Stack horizontal className="flex-wrap">
+    <Stack horizontal className="w-full flex-grow flex-wrap sm:w-fit">
       <StatCard title="Current Streak">{streaks.currentStreak}</StatCard>
       <StatCard title="Longest Streak">{streaks.longestStreak}</StatCard>
     </Stack>
