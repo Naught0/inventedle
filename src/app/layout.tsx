@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import { Atkinson_Hyperlegible_Next } from "next/font/google";
 import "./globals.css";
-import { QueryContext } from "@/components/hooks/query";
 import Script from "next/script";
 import { Nav } from "@/components/nav";
 import { Providers } from "@/components/providers";
