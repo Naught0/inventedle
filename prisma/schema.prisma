@@ -23,7 +23,7 @@ model InventionOfTheDay {
 
 model Invention {
   id                 Int                 @id @default(autoincrement())
-  name               String?
+  name               String              @unique
   year               Int
   description        String
   image_url          String?
