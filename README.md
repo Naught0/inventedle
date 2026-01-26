@@ -18,16 +18,16 @@ TODO:
     - [x] for user stats
     - [x] for puzzle
     - [ ] improve both
-- [ ] Logo/favicon
+- [x] Logo/favicon
 - [x] Loading states
-- [ ] CI/CD pipeline
+- [x] CI/CD pipeline
 - [ ] page transitions/animation fadein (all css?)
 - [x] friends & privacy levels  
     - [x] public
     - [x] friends only
     - [ ] none
-- [ ] Manually go thru wiki for inventions for variety
-- [ ] Sidebar for easier access to friends/friend code in footer
+- [x] Manually go thru wiki for inventions for variety
+- [x] ~Sidebar~ menu for easier access to friends/friend code in footer
     - [x] Friend notifications
 - [ ] Badges/achievements
     - [ ] 'Inventurer' - Win a game
