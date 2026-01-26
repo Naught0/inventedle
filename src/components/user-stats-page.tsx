@@ -103,7 +103,7 @@ export function UserStatsSection({
   totalLosses: number;
   totalGames: number;
   gameStats: Stats;
-  streaks?: UserStreaks;
+  streaks?: UserStreaks | null;
 }) {
   return (
     <div className="my-3 flex flex-col items-center gap-3">
