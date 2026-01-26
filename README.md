@@ -45,3 +45,4 @@ TODO:
     - [ ] 'Third times the charm' - Complete a puzzle in three guesses
     - [ ] 'Play Streak {}' - Running tally of consecutive days played (result created_at must be day of iotd)
     - [ ] 'Win Streak {}' - Running tally of consecutive days played (result created_at must be day of iotd)
+    - [ ] maybe try color coding difficulty of badges
