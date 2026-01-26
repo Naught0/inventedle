@@ -8,11 +8,11 @@ import * as $runtime from "@prisma/client/runtime/client"
 /**
  * @param userId
  */
-export const getCurrentStreak = $runtime.makeTypedQueryFactory("SELECT COUNT(*) AS streak\nFROM result\nWHERE user_id = :userId\nAND win = 1\nAND id > COALESCE((\nSELECT id\nFROM result\nWHERE user_id = :userId AND win = 0\nORDER BY id DESC\nLIMIT 1\n), 0);\n") as (userId: string) => $runtime.TypedSql<getCurrentStreak.Parameters, getCurrentStreak.Result>
+export const getCurrentStreak = $runtime.makeTypedQueryFactory("WITH results AS (\nSELECT\nresult.created_at,\nJULIANDAY(DATE(result.created_at)) - ROW_NUMBER() OVER (ORDER BY result.created_at) AS streak_id\nFROM\nresult AS result\nLEFT JOIN\ninvention_of_the_day AS iotd ON iotd.id = result.iotd_id\nWHERE\nresult.user_id = :userId\nAND DATE(result.created_at) = DATE(iotd.created_at)\nAND result.win = 1\n),\nstreaks AS (\nSELECT\nCOUNT(*) AS streak,\nstreak_id\nFROM\nresults\nGROUP BY\nstreak_id\n)\nSELECT\nstreak\nFROM\nstreaks\nORDER BY\nstreak_id DESC\nLIMIT 1;") as (userId: string) => $runtime.TypedSql<getCurrentStreak.Parameters, getCurrentStreak.Result>
 
 export namespace getCurrentStreak {
   export type Parameters = [userId: string]
   export type Result = {
-    streak: bigint
+    streak: null | null
   }
 }

@@ -8,7 +8,7 @@ import * as $runtime from "@prisma/client/runtime/client"
 /**
  * @param userId
  */
-export const getLongestStreak = $runtime.makeTypedQueryFactory("WITH UserHistory AS (\n/* 1. Get ONLY this user's games and give them a clean 1,2,3... sequence */\nSELECT\nwin,\nROW_NUMBER() OVER (ORDER BY id) as row_num\nFROM result\nWHERE user_id = :userId\n),\nWinGroups AS (\n/* 2. Subtract a second row_number (for wins only) from the first.\nThis 'difference' stays the same during a streak. */\nSELECT\n(row_num - ROW_NUMBER() OVER (ORDER BY row_num)) as group_id\nFROM UserHistory\nWHERE win = 1\n)\n/* 3. The biggest group is the longest streak. */\nSELECT COUNT(*) as streak\nFROM WinGroups\nGROUP BY group_id\nORDER BY streak DESC\nLIMIT 1;\n") as (userId: string) => $runtime.TypedSql<getLongestStreak.Parameters, getLongestStreak.Result>
+export const getLongestStreak = $runtime.makeTypedQueryFactory("WITH Gaps AS (\nSELECT\niotd_id,\nCASE\nWHEN LAG(iotd_id) OVER (ORDER BY iotd_id) = iotd_id - 1 THEN 0\nELSE 1\nEND AS is_start\nFROM result\nWHERE user_id = :userId AND win = 1\n),\nGroups AS (\nSELECT\nSUM(is_start) OVER (ORDER BY iotd_id) AS group_id\nFROM Gaps\n)\nSELECT COUNT(*) AS streak\nFROM Groups\nGROUP BY group_id\nORDER BY streak DESC\nLIMIT 1;") as (userId: string) => $runtime.TypedSql<getLongestStreak.Parameters, getLongestStreak.Result>
 
 export namespace getLongestStreak {
   export type Parameters = [userId: string]
