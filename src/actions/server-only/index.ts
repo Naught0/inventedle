@@ -108,7 +108,7 @@ async function getGuessStats({
 }
 
 export async function generateIOTDMeta(iotdId?: number): Promise<Metadata> {
-  const iotd = iotdId
+  const iotd = !!iotdId
     ? await db.inventionOfTheDay.findUnique({
         where: { id: iotdId },
         include: { invention: true },
