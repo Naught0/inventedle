@@ -9,6 +9,7 @@ import {
   calculateTotalGuesses,
   getTotalWins,
 } from "@/lib/stats";
+import { getAuthedUserStreaks } from "@/db/accolades/streak";
 
 export const dynamic = "force-dynamic";
 
@@ -99,13 +100,17 @@ export default async function Page({
     if (!user.isPublic && !isFriends) notFound();
   }
 
-  const stats = await getUserGameStats(userId);
+  const [stats, streaks] = await Promise.all([
+    getUserGameStats(userId),
+    getAuthedUserStreaks(userId, session),
+  ]);
   if (!stats) notFound();
 
   return (
     <UserStatsPage
       user={user}
       stats={stats}
+      streaks={streaks}
       showPrivateUserBanner={session?.user.id === user.id && !user.isPublic}
     />
   );

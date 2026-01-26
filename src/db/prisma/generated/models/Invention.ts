@@ -215,7 +215,7 @@ export type InventionGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 
 export type InventionGroupByOutputType = {
   id: number
-  name: string | null
+  name: string
   year: number
   description: string
   image_url: string | null
@@ -251,7 +251,7 @@ export type InventionWhereInput = {
   OR?: Prisma.InventionWhereInput[]
   NOT?: Prisma.InventionWhereInput | Prisma.InventionWhereInput[]
   id?: Prisma.IntFilter<"Invention"> | number
-  name?: Prisma.StringNullableFilter<"Invention"> | string | null
+  name?: Prisma.StringFilter<"Invention"> | string
   year?: Prisma.IntFilter<"Invention"> | number
   description?: Prisma.StringFilter<"Invention"> | string
   image_url?: Prisma.StringNullableFilter<"Invention"> | string | null
@@ -265,7 +265,7 @@ export type InventionWhereInput = {
 
 export type InventionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrderInput | Prisma.SortOrder
+  name?: Prisma.SortOrder
   year?: Prisma.SortOrder
   description?: Prisma.SortOrder
   image_url?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -279,10 +279,10 @@ export type InventionOrderByWithRelationInput = {
 
 export type InventionWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  name?: string
   AND?: Prisma.InventionWhereInput | Prisma.InventionWhereInput[]
   OR?: Prisma.InventionWhereInput[]
   NOT?: Prisma.InventionWhereInput | Prisma.InventionWhereInput[]
-  name?: Prisma.StringNullableFilter<"Invention"> | string | null
   year?: Prisma.IntFilter<"Invention"> | number
   description?: Prisma.StringFilter<"Invention"> | string
   image_url?: Prisma.StringNullableFilter<"Invention"> | string | null
@@ -292,11 +292,11 @@ export type InventionWhereUniqueInput = Prisma.AtLeast<{
   invention_link?: Prisma.StringNullableFilter<"Invention"> | string | null
   related_links?: Prisma.StringNullableFilter<"Invention"> | string | null
   inventionOfTheDays?: Prisma.InventionOfTheDayListRelationFilter
-}, "id">
+}, "id" | "name">
 
 export type InventionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrderInput | Prisma.SortOrder
+  name?: Prisma.SortOrder
   year?: Prisma.SortOrder
   description?: Prisma.SortOrder
   image_url?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -317,7 +317,7 @@ export type InventionScalarWhereWithAggregatesInput = {
   OR?: Prisma.InventionScalarWhereWithAggregatesInput[]
   NOT?: Prisma.InventionScalarWhereWithAggregatesInput | Prisma.InventionScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Invention"> | number
-  name?: Prisma.StringNullableWithAggregatesFilter<"Invention"> | string | null
+  name?: Prisma.StringWithAggregatesFilter<"Invention"> | string
   year?: Prisma.IntWithAggregatesFilter<"Invention"> | number
   description?: Prisma.StringWithAggregatesFilter<"Invention"> | string
   image_url?: Prisma.StringNullableWithAggregatesFilter<"Invention"> | string | null
@@ -329,7 +329,7 @@ export type InventionScalarWhereWithAggregatesInput = {
 }
 
 export type InventionCreateInput = {
-  name?: string | null
+  name: string
   year: number
   description: string
   image_url?: string | null
@@ -343,7 +343,7 @@ export type InventionCreateInput = {
 
 export type InventionUncheckedCreateInput = {
   id?: number
-  name?: string | null
+  name: string
   year: number
   description: string
   image_url?: string | null
@@ -356,7 +356,7 @@ export type InventionUncheckedCreateInput = {
 }
 
 export type InventionUpdateInput = {
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -370,7 +370,7 @@ export type InventionUpdateInput = {
 
 export type InventionUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -384,7 +384,7 @@ export type InventionUncheckedUpdateInput = {
 
 export type InventionCreateManyInput = {
   id?: number
-  name?: string | null
+  name: string
   year: number
   description: string
   image_url?: string | null
@@ -396,7 +396,7 @@ export type InventionCreateManyInput = {
 }
 
 export type InventionUpdateManyMutationInput = {
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -409,7 +409,7 @@ export type InventionUpdateManyMutationInput = {
 
 export type InventionUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -488,16 +488,16 @@ export type InventionUpdateOneRequiredWithoutInventionOfTheDaysNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.InventionUpdateToOneWithWhereWithoutInventionOfTheDaysInput, Prisma.InventionUpdateWithoutInventionOfTheDaysInput>, Prisma.InventionUncheckedUpdateWithoutInventionOfTheDaysInput>
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
 export type InventionCreateWithoutInventionOfTheDaysInput = {
-  name?: string | null
+  name: string
   year: number
   description: string
   image_url?: string | null
@@ -510,7 +510,7 @@ export type InventionCreateWithoutInventionOfTheDaysInput = {
 
 export type InventionUncheckedCreateWithoutInventionOfTheDaysInput = {
   id?: number
-  name?: string | null
+  name: string
   year: number
   description: string
   image_url?: string | null
@@ -538,7 +538,7 @@ export type InventionUpdateToOneWithWhereWithoutInventionOfTheDaysInput = {
 }
 
 export type InventionUpdateWithoutInventionOfTheDaysInput = {
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -551,7 +551,7 @@ export type InventionUpdateWithoutInventionOfTheDaysInput = {
 
 export type InventionUncheckedUpdateWithoutInventionOfTheDaysInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -662,7 +662,7 @@ export type $InventionPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    name: string | null
+    name: string
     year: number
     description: string
     image_url: string | null

@@ -15,13 +15,14 @@ export default async function Page() {
       <aside className="text-muted-foreground flex flex-col gap-2 text-center text-sm italic">
         <p>
           Your stats are only saved locally, which means you can&apos;t share
-          them with others or with yourself across devices
+          them with others or yourself across devices
         </p>
         <p>
           <Hyperlink href="/sign-in" prefetch={false} target="_self">
             Sign in
           </Hyperlink>{" "}
-          to start saving your stats, competing with friends &amp; more
+          to save your stats &amp; compete with friends&mdash;you can import the
+          games you&apos;ve already played
         </p>
       </aside>
     </div>

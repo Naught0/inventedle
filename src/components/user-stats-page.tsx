@@ -16,14 +16,17 @@ import {
   getTotalWins,
 } from "@/lib/stats";
 import { useDefaultSession } from "./hooks/useDefaultSession";
+import { UserStreaks } from "@/db/accolades/streak";
 
 export function UserStatsPage({
   user,
   stats,
   showPrivateUserBanner,
+  streaks,
 }: {
   user: SessionWithUser["user"];
   stats: Stats;
+  streaks?: UserStreaks | null;
   showPrivateUserBanner?: boolean;
   friendRequest?: FriendshipModel | null;
 }) {
@@ -83,6 +86,7 @@ export function UserStatsPage({
         totalLosses={totalLosses}
         totalGames={totalGames}
         gameStats={stats}
+        streaks={streaks}
       />
     </article>
   );
@@ -93,14 +97,17 @@ export function UserStatsSection({
   totalLosses,
   totalGames,
   gameStats: stats,
+  streaks,
 }: {
   totalWins: number;
   totalLosses: number;
   totalGames: number;
   gameStats: Stats;
+  streaks?: UserStreaks | null;
 }) {
   return (
     <div className="my-3 flex flex-col items-center gap-3">
+      {streaks && <Streaks streaks={streaks} />}
       <div className="flex w-full flex-col gap-3">
         <div className="flex flex-grow flex-wrap justify-center gap-3">
           <StatCard title={"Games"}>
@@ -124,5 +131,14 @@ export function UserStatsSection({
         <GuessStatsChart title={"Game Results"} numGuesses={stats} />
       </div>
     </div>
+  );
+}
+
+function Streaks({ streaks }: { streaks: UserStreaks }) {
+  return (
+    <Stack horizontal className="flex-wrap">
+      <StatCard title="Current Streak">{streaks.currentStreak}</StatCard>
+      <StatCard title="Longest Streak">{streaks.longestStreak}</StatCard>
+    </Stack>
   );
 }

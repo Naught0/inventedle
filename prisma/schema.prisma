@@ -4,6 +4,7 @@ generator client {
   generatedFileExtension = "ts"
   importFileExtension    = "ts"
   moduleFormat           = "esm"
+  previewFeatures        = ["typedSql"]
 }
 
 datasource db {

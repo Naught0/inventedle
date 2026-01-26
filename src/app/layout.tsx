@@ -8,6 +8,7 @@ import Script from "next/script";
 import { Nav } from "@/components/nav";
 import { Providers } from "@/components/providers";
 import { getServerSession } from "@/lib/auth";
+import { Stack } from "@/components/ui/stack";
 
 const mono = JetBrains_Mono({
   weight: ["500"],
@@ -63,21 +64,15 @@ export default async function RootLayout({
                 open source!
               </Hyperlink>
             </p>
-            <div className="text-left">
-              <p>inventions retrieved from:</p>
-              <ul className="ml-3.5 list-outside list-disc">
-                <li>
-                  <Hyperlink href="https://www.britannica.com">
-                    encyclopedia britannica®
-                  </Hyperlink>
-                </li>
-                <li>
-                  <Hyperlink href="https://en.wikipedia.org">
-                    wikipedia
-                  </Hyperlink>
-                </li>
-              </ul>
-            </div>
+            <Stack center>
+              <p>inventions retrieved from</p>
+              <Stack gap="gap-1.5">
+                <Hyperlink href="https://www.britannica.com">
+                  britannica®
+                </Hyperlink>
+                <Hyperlink href="https://en.wikipedia.org">wikipedia</Hyperlink>
+              </Stack>
+            </Stack>
             <p>
               inventedle is in no way related to or endorsed by britannica® or
               by any other sources
