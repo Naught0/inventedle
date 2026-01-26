@@ -1,5 +1,4 @@
 "server-only";
-import { SessionWithUser } from "@/lib/auth";
 import { db } from "..";
 import { getLongestStreak, getCurrentStreak } from "../prisma/generated/sql";
 import { getUserWithFriends } from "@/actions/server-only/friendship";
@@ -19,15 +18,15 @@ export type UserStreaks = Awaited<ReturnType<typeof getUserStreaks>>;
 
 export async function getAuthedUserStreaks(
   userId: string,
-  session?: SessionWithUser | null,
+  sessionUserId?: string,
 ) {
   const user = await getUserWithFriends(userId);
   if (!user) throw new Error("User not found");
 
   if (!user.isPublic) {
     if (
-      !user.friendIds.includes(session?.user.id ?? "") &&
-      session?.user?.id !== userId
+      !user.friendIds.includes(sessionUserId ?? "") &&
+      sessionUserId !== userId
     ) {
       throw new Error("Users not friends and user is not public");
     }
