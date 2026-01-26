@@ -5,17 +5,10 @@ import { db } from "@/db";
 import { Suspense } from "react";
 import { LoadingGame } from "@/components/loading";
 import { GamePage } from "@/components/game-page";
-import { generateIOTDMeta } from "@/actions/server-only";
 import { RefreshAfter } from "@/components/useRefreshAfter";
 import { Providers } from "@/components/providers";
 
 export const dynamic = "force-dynamic";
-
-export const generateMetadata = async () => {
-  const meta = await generateIOTDMeta();
-  meta.title = "Inventedle";
-  return meta;
-};
 
 export default async function Page() {
   const iotd = await getIOTD();
