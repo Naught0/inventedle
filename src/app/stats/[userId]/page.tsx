@@ -38,12 +38,13 @@ export const generateMetadata = async ({
   const winPercent = Intl.NumberFormat().format(
     Math.round((totalWins / totalGames) * 100),
   );
+  const { longestStreak, currentStreak } = await getAuthedUserStreaks(userId);
 
   const images = [{ url: user.image ?? "" }];
 
   return {
     title: `Inventedle - ${user.name}'s Stats`,
-    description: `${totalWins}W/${totalLosses}L (${winPercent}%) | Avg. ${averageGuesses} to Win | ${totalGuesses} Total Guesses`,
+    description: `${totalWins}W/${totalLosses}L (${winPercent}%) | Avg. ${averageGuesses} to Win | ${totalGuesses} Total Guesses | ${currentStreak} Win Streak (Best  ${longestStreak})`,
     twitter: {
       card: "summary",
     },
@@ -102,7 +103,7 @@ export default async function Page({
 
   const [stats, streaks] = await Promise.all([
     getUserGameStats(userId),
-    getAuthedUserStreaks(userId, session),
+    getAuthedUserStreaks(userId, session?.user.id),
   ]);
   if (!stats) notFound();
 
