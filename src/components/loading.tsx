@@ -3,7 +3,7 @@ import { Stack } from "./ui/stack";
 
 export function LoadingGame() {
   return (
-    <Stack className="w-full gap-6 sm:max-w-md lg:max-w-screen-lg" center>
+    <Stack className="w-full gap-6 pt-6 sm:max-w-md lg:max-w-screen-lg" center>
       <Stack center>
         <h2 className="text-muted-foreground animate-pulse text-3xl font-extrabold">
           Loading game...

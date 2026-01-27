@@ -14,7 +14,7 @@ import { useDefaultSession } from "./hooks/useDefaultSession";
 
 export function Nav() {
   return (
-    <nav className="relative mx-auto flex w-full max-w-screen-2xl flex-col items-center justify-center gap-3 p-6 pb-3 lg:mb-10 lg:flex-row">
+    <nav className="relative mx-auto flex w-full max-w-screen-2xl flex-col items-center justify-center gap-3 p-6 pb-3 lg:flex-row">
       <div className="absolute left-6 top-3 hidden lg:block">
         <Logo />
       </div>

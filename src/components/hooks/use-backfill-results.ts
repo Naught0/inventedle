@@ -21,7 +21,13 @@ export function useMissingIotds({ userId }: { userId?: string }) {
 }
 
 export function useMissingResultsToImport({ userId }: { userId?: string }) {
-  const { data: missingIotds, refetch: refetchMissingIotds } = useMissingIotds({
+  const {
+    data: missingIotds,
+    refetch: refetchMissingIotds,
+    isLoading,
+    isError,
+    error,
+  } = useMissingIotds({
     userId,
   });
 
@@ -41,6 +47,9 @@ export function useMissingResultsToImport({ userId }: { userId?: string }) {
   return {
     data: localResultsToImport,
     refetch: refetchMissingIotds,
+    isLoading,
+    isError,
+    error,
   };
 }
 

@@ -1,5 +1,5 @@
 "use client";
-import { Activity, useContext } from "react";
+import { Activity } from "react";
 import { InventionModel } from "@/db/prisma/generated/models";
 import { createRef, useEffect, useMemo, useState } from "react";
 import { Button } from "../ui/button";
@@ -26,18 +26,19 @@ import { ImageWithCaption } from "../image-with-caption";
 import { FriendsGuessChart } from "../charts/friends-guess-chart";
 import type { FriendGuessChartResults } from "@/actions/server-only";
 import { Stack } from "../ui/stack";
-import { useDefaultSession } from "../hooks/useDefaultSession";
+import { SessionWithUser } from "@/lib/auth";
 
 export default function Game({
   invention,
   iotdId,
   gameResult,
+  session,
 }: {
+  session?: SessionWithUser | null;
   invention: InventionModel;
   iotdId: number;
   gameResult?: LocalGame | null;
 }) {
-  const { session } = useDefaultSession();
   const isLoggedIn = !!session;
   const [era, setEra] = useState<Era>(Era.CE);
   const rules = getRulesByYear(invention.year);

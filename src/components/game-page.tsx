@@ -4,15 +4,18 @@ import {
   InventionOfTheDayModel,
   ResultModel,
 } from "@/db/prisma/generated/models";
+import { cn } from "@/lib/utils";
 import { tz, TZDate } from "@date-fns/tz";
 import { formatDate, isSameDay } from "date-fns";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
-import { cn } from "@/lib/utils";
 import { LocalGame } from "./hooks/use-game-recorder";
 import { Hyperlink } from "./hyperlink";
 import { Button } from "./ui/button";
-import dynamic from "next/dynamic";
+import { useDefaultSession } from "./hooks/useDefaultSession";
+import { useMissingResultsToImport } from "./hooks/use-backfill-results";
+import { LocalGamesBanner } from "./import-local-games-banner";
 
 const Game = dynamic(() => import("./game/index"), { ssr: false });
 
@@ -23,6 +26,10 @@ export function GamePage({
   iotd: InventionOfTheDayModel & { invention: InventionModel };
   gameResult?: ResultModel | null;
 }) {
+  const { session } = useDefaultSession();
+  const { data: missingGames } = useMissingResultsToImport({
+    userId: session?.user?.id,
+  });
   const { invention } = iotd;
   if (!invention) {
     throw new Error("Something has gone horribly wrong");
@@ -40,6 +47,9 @@ export function GamePage({
 
   return (
     <div className="flex w-full flex-col items-center gap-1">
+      <div className="mb-8">
+        <LocalGamesBanner games={missingGames ?? []} />
+      </div>
       <div className="inline-flex items-center justify-center">
         <Button
           aria-label="previous puzzle"
@@ -88,6 +98,7 @@ export function GamePage({
         iotdId={iotd.id}
         invention={invention}
         gameResult={!!gameResult ? localGame : null}
+        session={session}
       />
     </div>
   );
