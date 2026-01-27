@@ -1,6 +1,8 @@
 import { Hyperlink } from "../hyperlink";
 import { InventionModel } from "@/db/prisma/generated/models";
 import { Stack } from "../ui/stack";
+import { PiLinkSimpleHorizontal } from "react-icons/pi";
+import { BsWikipedia } from "react-icons/bs";
 
 function getSourceName(link: string) {
   if (link.includes("wikipedia")) {
@@ -14,9 +16,9 @@ function getSourceName(link: string) {
 }
 export function Summary({ invention }: { invention: InventionModel }) {
   return (
-    <article className="flex flex-col gap-2">
+    <article className="flex flex-col gap-3">
       {invention.inventor && (
-        <div className="mb-3">
+        <div>
           <p className="text-lg font-bold">Inventor</p>
           <p>
             {invention.inventor_link ? (
@@ -45,19 +47,39 @@ export function Summary({ invention }: { invention: InventionModel }) {
       </Stack>
       {invention.related_links && (
         <Stack gap={false}>
-          <label className="font-bold">Further Reading</label>
+          <label className="mb-1 font-bold">Related Pages</label>
           {invention.related_links.split(/[\n,]/).map((link) => (
-            <Hyperlink
-              key={link}
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {link}
-            </Hyperlink>
+            <RelatedLink key={link} href={link} />
           ))}
         </Stack>
       )}
     </article>
+  );
+}
+
+function getSourceIcon(href: string) {
+  if (href.includes("wikipedia"))
+    return (
+      <span className="text-primary-dark bg-foreground size-fit rounded p-[3px]">
+        <BsWikipedia strokeWidth={0.33} size={14} />
+      </span>
+    );
+
+  return <PiLinkSimpleHorizontal />;
+}
+
+function getTitleFromUrl(url: string) {
+  if (url.includes("wikipedia"))
+    return decodeURIComponent(url.split("/").slice(-1)[0]).replaceAll("_", " ");
+
+  return url;
+}
+
+function RelatedLink({ href }: { href: string }) {
+  return (
+    <Hyperlink className="inline-flex items-center gap-1" href={href}>
+      {getSourceIcon(href)}
+      {getTitleFromUrl(href)}
+    </Hyperlink>
   );
 }
