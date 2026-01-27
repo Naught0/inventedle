@@ -46,7 +46,7 @@ export function Summary({ invention }: { invention: InventionModel }) {
       {invention.related_links && (
         <Stack gap={false}>
           <label className="font-bold">Further Reading</label>
-          {invention.related_links.split(",").map((link) => (
+          {invention.related_links.split(/[\n,]/).map((link) => (
             <Hyperlink
               key={link}
               href={link}
