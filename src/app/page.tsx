@@ -6,7 +6,6 @@ import { Suspense } from "react";
 import { LoadingGame } from "@/components/loading";
 import { GamePage } from "@/components/game-page";
 import { RefreshAfter } from "@/components/useRefreshAfter";
-import { Providers } from "@/components/providers";
 
 export const dynamic = "force-dynamic";
 
@@ -24,16 +23,14 @@ export default async function Page() {
   }
 
   return (
-    <Providers session={session}>
-      <Suspense fallback={<LoadingGame />}>
-        {!iotd && (
-          <>
-            <RefreshAfter afterSeconds={5} />
-            <LoadingGame />
-          </>
-        )}
-        {iotd && <GamePage iotd={iotd} gameResult={result} />}
-      </Suspense>
-    </Providers>
+    <Suspense fallback={<LoadingGame />}>
+      {!iotd && (
+        <>
+          <RefreshAfter afterSeconds={5} />
+          <LoadingGame />
+        </>
+      )}
+      {iotd && <GamePage iotd={iotd} gameResult={result} />}
+    </Suspense>
   );
 }
