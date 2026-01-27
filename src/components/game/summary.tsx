@@ -40,6 +40,7 @@ export function Summary({ invention }: { invention: InventionModel }) {
             href={invention.invention_link}
             target="_blank"
             rel="noopener noreferrer"
+            className="w-fit"
           >
             Read more on {getSourceName(invention.invention_link)}
           </Hyperlink>
@@ -77,7 +78,7 @@ function getTitleFromUrl(url: string) {
 
 function RelatedLink({ href }: { href: string }) {
   return (
-    <Hyperlink className="inline-flex items-center gap-1" href={href}>
+    <Hyperlink className="inline-flex w-fit items-center gap-1" href={href}>
       {getSourceIcon(href)}
       {getTitleFromUrl(href)}
     </Hyperlink>
