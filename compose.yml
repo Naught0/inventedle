@@ -7,10 +7,10 @@ services:
     env_file: .env
     environment:
       - NODE_ENV=production
-    restart: unless-stopped
+    restart: always
   cron:
     image: iotd-cron:latest
     build:
       dockerfile: IOTD.Dockerfile
-    restart: unless-stopped
+    restart: always
     env_file: .env
