@@ -8,11 +8,11 @@ import * as $runtime from "@prisma/client/runtime/client"
 /**
  * @param userId
  */
-export const getCurrentStreak = $runtime.makeTypedQueryFactory("WITH results AS (\nSELECT\nresult.created_at,\nJULIANDAY(DATE(result.created_at)) - ROW_NUMBER() OVER (ORDER BY result.created_at) AS streak_id\nFROM\nresult AS result\nLEFT JOIN\ninvention_of_the_day AS iotd ON iotd.id = result.iotd_id\nWHERE\nresult.user_id = :userId\nAND DATE(result.created_at) = DATE(iotd.created_at)\nAND result.win = 1\n),\nstreaks AS (\nSELECT\nCOUNT(*) AS streak,\nstreak_id\nFROM\nresults\nGROUP BY\nstreak_id\n)\nSELECT\nstreak\nFROM\nstreaks\nORDER BY\nstreak_id DESC\nLIMIT 1;") as (userId: string) => $runtime.TypedSql<getCurrentStreak.Parameters, getCurrentStreak.Result>
+export const getCurrentStreak = $runtime.makeTypedQueryFactory("WITH daily_results AS (\nSELECT\nDATE(r.created_at) as game_date,\nMAX(r.win) as won_day -- 1 if they won at least once that day\nFROM result r\nJOIN invention_of_the_day iotd ON r.iotd_id = iotd.id\nWHERE r.user_id = :userId\nGROUP BY 1\n),\nstreak_calc AS (\nSELECT\ngame_date,\nwon_day,\nJULIANDAY(game_date) - ROW_NUMBER() OVER (ORDER BY game_date) as grp\nFROM daily_results\nWHERE won_day = 1\n),\nlatest_streak AS (\nSELECT\nCOUNT(*) as streak_length,\nMAX(game_date) as last_win_date\nFROM streak_calc\nGROUP BY grp\nORDER BY last_win_date DESC\nLIMIT 1\n)\nSELECT\nCASE\nWHEN last_win_date >= DATE('now', '-1 day') THEN streak_length\nELSE 0\nEND as current_streak\nFROM latest_streak;") as (userId: unknown) => $runtime.TypedSql<getCurrentStreak.Parameters, getCurrentStreak.Result>
 
 export namespace getCurrentStreak {
-  export type Parameters = [userId: string]
+  export type Parameters = [userId: unknown]
   export type Result = {
-    streak: null | null
+    current_streak: null | null
   }
 }
