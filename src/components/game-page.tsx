@@ -57,7 +57,11 @@ export function GamePage({
           variant="link"
           asChild
         >
-          <Link href={`/${prevId}`} aria-label="previous puzzle" prefetch>
+          <Link
+            href={`/${prevId}`}
+            aria-label="previous puzzle"
+            prefetch={iotd.id > 1}
+          >
             <PiCaretLeftBold className="text-3xl" strokeWidth={30} />
             <span className="sr-only">previous puzzle</span>
             <span className="hidden md:inline">prev</span>
@@ -72,7 +76,11 @@ export function GamePage({
           variant="link"
           asChild
         >
-          <Link href={`/${nextId}`} prefetch>
+          <Link
+            href={`/${nextId}`}
+            aria-label="next puzzle"
+            prefetch={!isTodaysPuzzle}
+          >
             <span className="hidden md:inline">next</span>
             <PiCaretRightBold className="text-3xl" strokeWidth={30} />
             <span className="sr-only">next puzzle</span>
