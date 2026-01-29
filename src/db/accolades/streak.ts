@@ -10,7 +10,7 @@ async function getUserStreaks(userId: string) {
       where: { user_id: userId },
       select: { win: true, iotd_id: true },
       orderBy: {
-        created_at: "desc",
+        iotd_id: "desc",
       },
     }),
   ]);
