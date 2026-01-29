@@ -18,6 +18,10 @@ loadCron() {
   ssh franc "cd ~/inventedle && docker tag iotd-cron:latest iotd-cron:rollback && docker load < iotd-cron.tar.gz && docker compose up cron -d"
 }
 
+gitPull() {
+  ssh franc "cd ~/inventedle && git pull origin main"
+}
+
 main() {
   # https://stackoverflow.com/a/14203146/7770440
   OPTIND=1 # Reset in case getopts has been used previously in the shell.
@@ -38,6 +42,8 @@ main() {
   done
   shift $((OPTIND - 1))
   [ "${1:-}" = "--" ] && shift
+
+  gitPull
 
   if [ $app -eq 1 ]; then
     echo "Deploying app"
