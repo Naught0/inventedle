@@ -76,7 +76,7 @@ export function ShareScore(props: {
     const emojis = [...guesses, "⬛ ".repeat(pad)];
     const winner =
       props.guessDistances.findIndex((d) => guessIsCorrect(d, props.rules)) + 1;
-    const text = `Inventedle #${props.iotdId} ${winner ? `${winner}/5` : "X/5"}\n\n${emojis.join(" ")}`;
+    const text = `Inventedle #${props.iotdId} ${winner ? `${winner}/5` : "X/5"}\n${emojis.join(" ")}\ninventedle.com`;
     navigator.clipboard.writeText(text);
     setCopiedMessage(
       props.guessDistances.map((d, idx) => (
