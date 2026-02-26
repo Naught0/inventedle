@@ -114,7 +114,7 @@ export async function generateIOTDMeta(iotdId?: number): Promise<Metadata> {
         include: { invention: true },
       })
     : await getIOTD();
-  const title = `Inventedle${iotd?.id ? ` #${iotd.id}` : ""}`;
+  const title = `Inventedle${iotd?.id ? ` #${iotd.id}` : ""}: ${iotd?.invention.name}`;
   const description = "The inventurous daily guessing game";
   const imageUrl = iotd?.invention.image_url;
   const images = imageUrl ? [{ url: imageUrl }] : [];
