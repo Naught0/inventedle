@@ -2,18 +2,24 @@ import { GamePage } from "@/components/game-page";
 import { db } from "@/db";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { redirect, RedirectType } from "next/navigation";
+import { notFound, redirect, RedirectType } from "next/navigation";
 import { generateIOTDMeta } from "@/actions/server-only";
 import { InventionOfTheDayGetPayload } from "@/db/prisma/generated/models";
+import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 
-async function meta({ params }: { params: Promise<{ id: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
   const { id } = await params;
+  if (!parseInt(id)) {
+    notFound();
+  }
   return await generateIOTDMeta(parseInt(id));
 }
-
-export const generateMetadata = meta;
 
 export default async function Page({
   params,
