@@ -79,3 +79,8 @@ export type Verification = Prisma.VerificationModel
  * 
  */
 export type Friendship = Prisma.FriendshipModel
+/**
+ * Model RateLimit
+ * 
+ */
+export type RateLimit = Prisma.RateLimitModel

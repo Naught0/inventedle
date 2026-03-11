@@ -58,7 +58,8 @@ export const ModelName = {
   Session: 'Session',
   User: 'User',
   Verification: 'Verification',
-  Friendship: 'Friendship'
+  Friendship: 'Friendship',
+  RateLimit: 'RateLimit'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -183,6 +184,17 @@ export const FriendshipScalarFieldEnum = {
 } as const
 
 export type FriendshipScalarFieldEnum = (typeof FriendshipScalarFieldEnum)[keyof typeof FriendshipScalarFieldEnum]
+
+
+export const RateLimitScalarFieldEnum = {
+  id: 'id',
+  identifier: 'identifier',
+  window: 'window',
+  count: 'count',
+  ttl: 'ttl'
+} as const
+
+export type RateLimitScalarFieldEnum = (typeof RateLimitScalarFieldEnum)[keyof typeof RateLimitScalarFieldEnum]
 
 
 export const SortOrder = {

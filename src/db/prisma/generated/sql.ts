@@ -5,6 +5,4 @@
 // @ts-nocheck 
 export { type $DbEnums } from "./sql/$DbEnums.ts"
 
-export * from "./sql/getCurrentStreak.ts"
-
 export * from "./sql/getLongestStreak.ts"
