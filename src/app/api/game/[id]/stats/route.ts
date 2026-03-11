@@ -2,7 +2,7 @@ import { getIOTDStats } from "@/actions/server-only";
 import { NextRequest } from "next/server";
 
 export async function GET(
-  req: NextRequest,
+  _: NextRequest,
   ctx: RouteContext<"/api/game/[id]/stats">,
 ) {
   const params = await ctx.params;
