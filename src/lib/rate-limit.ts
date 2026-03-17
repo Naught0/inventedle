@@ -1,6 +1,6 @@
 "server-only";
 
-import { db } from "@/db";
+import { RateLimiter as RabbitRateLimiter } from "@rabbit-company/rate-limiter";
 import { NextResponse, NextRequest } from "next/server";
 import { getServerSession } from "./auth";
 
@@ -11,112 +11,56 @@ export interface RateLimitOptions {
 }
 
 export interface RateLimitResult {
-  /** Whether the request is allowed */
   allowed: boolean;
-  /** Remaining requests in the current window */
   remaining: number;
-  /** Total requests allowed per window */
   limit: number;
-  /** Timestamp when the window resets (in seconds) */
   reset: number;
-  /** Seconds until retry is allowed (when not allowed) */
   retryAfter: number;
 }
 
 export interface RateLimitConfig {
-  /** Maximum requests allowed per window */
   limit: number;
-  /** Window duration in seconds */
   window: number;
-  /** Function to extract identifier from request */
   identifierExtractor?: (req: NextRequest) => string;
 }
 
-/**
- * Fixed window rate limiter using SQLite/Prisma
- * Stores request counts per identifier per time window
- */
-export class RateLimiter {
-  /**
-   * Check rate limit and increment counter if allowed
-   * Uses atomic upsert to handle concurrent requests
-   */
-  static async check(options: RateLimitOptions): Promise<RateLimitResult> {
-    const now = new Date();
-    const windowStart = new Date(
-      Math.floor(now.getTime() / (options.window * 1000)) *
-        (options.window * 1000),
+const limiterCache = new Map<string, RabbitRateLimiter>();
+
+function getLimiter(limit: number, window: number): RabbitRateLimiter {
+  const key = `${limit}:${window}`;
+  if (!limiterCache.has(key)) {
+    limiterCache.set(
+      key,
+      new RabbitRateLimiter({
+        window: window * 1000,
+        max: limit,
+        cleanupInterval: 30 * 1000,
+        enableCleanup: true,
+      }),
     );
-    const windowEnd = new Date(windowStart.getTime() + options.window * 1000);
-    const reset = Math.floor(windowEnd.getTime() / 1000);
+  }
+  return limiterCache.get(key)!;
+}
 
-    // Clean up expired records (older than 2x window to prevent bloat)
-    const expiryThreshold = new Date(now.getTime() - options.window * 2 * 1000);
-    await db.rateLimit.deleteMany({
-      where: {
-        ttl: {
-          lt: expiryThreshold,
-        },
-      },
-    });
+export class RateLimiter {
+  static async check(options: RateLimitOptions): Promise<RateLimitResult> {
+    const rl = getLimiter(options.limit, options.window);
+    const result = rl.check("default", options.identifier);
 
-    // Atomic upsert to handle concurrent requests
-    const record = await db.$transaction(async (tx) => {
-      // First, try to find existing record
-      const existing = await tx.rateLimit.findUnique({
-        where: {
-          identifier_window: {
-            identifier: options.identifier,
-            window: windowStart,
-          },
-        },
-      });
-
-      if (existing) {
-        // Increment count
-        return await tx.rateLimit.update({
-          where: {
-            identifier_window: {
-              identifier: options.identifier,
-              window: windowStart,
-            },
-          },
-          data: {
-            count: existing.count + 1,
-            ttl: windowEnd,
-          },
-        });
-      } else {
-        // Create new record
-        return await tx.rateLimit.create({
-          data: {
-            identifier: options.identifier,
-            window: windowStart,
-            count: 1,
-            ttl: windowEnd,
-          },
-        });
-      }
-    });
-
-    const remaining = Math.max(0, options.limit - record.count);
-    const allowed = record.count <= options.limit;
-    const retryAfter = allowed
-      ? 0
-      : Math.ceil((windowEnd.getTime() - now.getTime()) / 1000);
+    const reset = Math.floor(result.reset / 1000);
+    const retryAfter = result.limited
+      ? Math.ceil((result.reset - Date.now()) / 1000)
+      : 0;
 
     return {
-      allowed,
-      remaining,
+      allowed: !result.limited,
+      remaining: result.remaining,
       limit: options.limit,
       reset,
       retryAfter,
     };
   }
 
-  /**
-   * Create a NextResponse with 429 status and rate limit headers
-   */
   static createLimitResponse(result: RateLimitResult): NextResponse {
     return new NextResponse(
       JSON.stringify({
@@ -136,10 +80,6 @@ export class RateLimiter {
     );
   }
 
-  /**
-   * Helper to get client identifier from request
-   * Supports IP address, user ID, or custom identifier
-   */
   static async getIdentifier(
     req: NextRequest,
     options: {
@@ -148,7 +88,6 @@ export class RateLimiter {
       customHeader?: string;
     } = {},
   ): Promise<string> {
-    // Try custom header first
     if (options.customHeader) {
       const custom = req.headers.get(options.customHeader);
       if (custom) return custom;
@@ -161,25 +100,16 @@ export class RateLimiter {
 
     const forwarded = req.headers.get("x-forwarded-for");
     if (forwarded) {
-      // Get the first IP in the list (client IP)
       const ip = forwarded.split(",")[0].trim();
       return `ip:${ip}`;
     }
 
-    // Fallback to x-real-ip
     const realIp = req.headers.get("x-real-ip");
     if (realIp) return `ip:${realIp}`;
 
-    // Generate a generic identifier if no IP is available
     throw new Error("Unable to determine client identifier");
   }
 
-  /**
-   * Wrap an API route handler with rate limiting
-   * @param config Rate limit configuration
-   * @param handler The API route handler to wrap
-   * @returns Wrapped handler with rate limiting
-   */
   static async wrapHandler(
     config: RateLimitConfig,
     handler: (req: NextRequest) => Promise<NextResponse>,
@@ -202,7 +132,6 @@ export class RateLimiter {
 
         const response = await handler(req);
 
-        // Add rate limit headers to the response
         response.headers.set("X-RateLimit-Limit", String(result.limit));
         response.headers.set("X-RateLimit-Remaining", String(result.remaining));
         response.headers.set("X-RateLimit-Reset", String(result.reset));
@@ -210,16 +139,12 @@ export class RateLimiter {
         return response;
       } catch (error) {
         console.error("Rate limiting error:", error);
-        // Fail open - allow request through if rate limiting fails
         return handler(req);
       }
     };
   }
 }
 
-/**
- * Factory function to create rate limiters with specific configurations
- */
 export function createRateLimiter(config: RateLimitConfig) {
   return {
     limit: config.limit,
