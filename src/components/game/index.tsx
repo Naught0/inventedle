@@ -132,6 +132,16 @@ export default function Game({
                         <Hyperlink
                           href={invention.invention_link ?? invention.image_url}
                           className="inline-flex items-center gap-1"
+                          onClick={(e) => {
+                            if (
+                              !gameOver &&
+                              !window.confirm(
+                                "This page may contain spoilers for this puzzle! Continue?",
+                              )
+                            ) {
+                              e.preventDefault();
+                            }
+                          }}
                         >
                           source
                         </Hyperlink>
