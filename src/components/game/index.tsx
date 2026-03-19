@@ -115,7 +115,7 @@ export default function Game({
               <div className="flex flex-1 basis-1/2 flex-col justify-start gap-3 rounded-lg lg:gap-6">
                 <ImageWithCaption
                   className="max-h-[512px] max-w-full rounded-lg"
-                  src={invention.image_url}
+                  src={`https://img.inventedle.com/${invention.id}`}
                   alt={`${invention.name}`}
                 >
                   {invention.image_url && (
