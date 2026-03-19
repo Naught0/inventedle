@@ -209,7 +209,7 @@ export default function Game({
                 }}
               >
                 <div className="mt-3 flex flex-grow flex-col gap-3">
-                  <Stack horizontal gap={false}>
+                  <Stack horizontal gap={false} center>
                     <Input
                       className="text-foreground placeholder:text-muted-foreground bg-background rounded-r-none py-2.5"
                       name="guess"

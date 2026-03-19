@@ -16,7 +16,7 @@ export function EraSelect({
   return (
     <Button
       type="button"
-      className="h-[42px] rounded-l-none lg:h-[46px]"
+      className="h-11 rounded-l-none"
       onClick={toggleEra}
       disabled={disabled}
     >
